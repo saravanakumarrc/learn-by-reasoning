@@ -1,0 +1,2 @@
+# Runtime dependency for communicating with the local Ollama HTTP API
+requests>=2.31.0,<3
