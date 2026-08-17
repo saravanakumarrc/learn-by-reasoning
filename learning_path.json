@@ -1832,8 +1832,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "Replication",
-      "status": "in_progress",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-6-replication.md"
     },
     {
       "section_number": "3.2.7",
@@ -1841,8 +1842,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "Read replicas",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-7-read-replicas.md"
     },
     {
       "section_number": "3.2.8",
@@ -1850,8 +1852,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "CDC",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-8-cdc.md"
     },
     {
       "section_number": "3.2.9",
@@ -1859,8 +1862,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "Data pipelines",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-9-data-pipelines.md"
     },
     {
       "section_number": "3.2.10",
@@ -1868,8 +1872,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "ETL / ELT",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-10-etl-elt.md"
     },
     {
       "section_number": "3.2.11",
@@ -1877,8 +1882,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "Data lakes",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-11-data-lakes.md"
     },
     {
       "section_number": "3.2.12",
@@ -1886,8 +1892,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "Data warehouses",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-12-data-warehouses.md"
     },
     {
       "section_number": "3.2.13",
@@ -1895,8 +1902,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "Lakehouses",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-13-lakehouses.md"
     },
     {
       "section_number": "3.2.14",
@@ -1904,8 +1912,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "Data governance",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-14-data-governance.md"
     },
     {
       "section_number": "3.2.15",
@@ -1913,8 +1922,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "Data lineage",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-15-data-lineage.md"
     },
     {
       "section_number": "3.2.16",
@@ -1922,8 +1932,9 @@
       "phase_title": "Data Architecture",
       "section_title": "Data architecture",
       "topic_title": "Data quality",
-      "status": "pending",
-      "folder": "03-data-architecture/02-data-architecture/"
+      "status": "completed",
+      "folder": "03-data-architecture/02-data-architecture/",
+      "output_file": "03-data-architecture\\02-data-architecture\\3-2-16-data-quality.md"
     },
     {
       "section_number": "3.3.1",
@@ -1931,8 +1942,9 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Embeddings",
-      "status": "pending",
-      "folder": "03-data-architecture/03-ai-specific-data/"
+      "status": "completed",
+      "folder": "03-data-architecture/03-ai-specific-data/",
+      "output_file": "03-data-architecture\\03-ai-specific-data\\3-3-1-embeddings.md"
     },
     {
       "section_number": "3.3.2",
@@ -1940,7 +1952,7 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Vector databases",
-      "status": "pending",
+      "status": "in_progress",
       "folder": "03-data-architecture/03-ai-specific-data/"
     },
     {
