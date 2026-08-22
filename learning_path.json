@@ -3403,7 +3403,8 @@
       "section_title": "LLM patterns",
       "topic_title": "Router",
       "folder": "07-llm-application-engineering/03-llm-patterns/",
-      "status": "in_progress"
+      "status": "completed",
+      "output_file": "07-llm-application-engineering\\03-llm-patterns\\7-3-3-router.md"
     },
     {
       "section_number": "7.3.4",
@@ -3412,7 +3413,8 @@
       "section_title": "LLM patterns",
       "topic_title": "Parallel execution",
       "folder": "07-llm-application-engineering/03-llm-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "07-llm-application-engineering\\03-llm-patterns\\7-3-4-parallel-execution.md"
     },
     {
       "section_number": "7.3.5",
@@ -3421,7 +3423,8 @@
       "section_title": "LLM patterns",
       "topic_title": "Map/reduce",
       "folder": "07-llm-application-engineering/03-llm-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "07-llm-application-engineering\\03-llm-patterns\\7-3-5-map-reduce.md"
     },
     {
       "section_number": "7.3.6",
@@ -3430,7 +3433,8 @@
       "section_title": "LLM patterns",
       "topic_title": "Reflection",
       "folder": "07-llm-application-engineering/03-llm-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "07-llm-application-engineering\\03-llm-patterns\\7-3-6-reflection.md"
     },
     {
       "section_number": "7.3.7",
@@ -3439,7 +3443,8 @@
       "section_title": "LLM patterns",
       "topic_title": "Critic",
       "folder": "07-llm-application-engineering/03-llm-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "07-llm-application-engineering\\03-llm-patterns\\7-3-7-critic.md"
     },
     {
       "section_number": "7.3.8",
@@ -3448,7 +3453,8 @@
       "section_title": "LLM patterns",
       "topic_title": "Generator/validator",
       "folder": "07-llm-application-engineering/03-llm-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "07-llm-application-engineering\\03-llm-patterns\\7-3-8-generator-validator.md"
     },
     {
       "section_number": "7.3.9",
@@ -3457,7 +3463,8 @@
       "section_title": "LLM patterns",
       "topic_title": "Planner/executor",
       "folder": "07-llm-application-engineering/03-llm-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "07-llm-application-engineering\\03-llm-patterns\\7-3-9-planner-executor.md"
     },
     {
       "section_number": "8.1.1",
@@ -3466,7 +3473,8 @@
       "section_title": "Learn",
       "topic_title": "RAG fundamentals",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-1-rag-fundamentals.md"
     },
     {
       "section_number": "8.1.2",
@@ -3475,7 +3483,8 @@
       "section_title": "Learn",
       "topic_title": "Document ingestion",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-2-document-ingestion.md"
     },
     {
       "section_number": "8.1.3",
@@ -3484,7 +3493,8 @@
       "section_title": "Learn",
       "topic_title": "Parsing",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-3-parsing.md"
     },
     {
       "section_number": "8.1.4",
@@ -3493,7 +3503,8 @@
       "section_title": "Learn",
       "topic_title": "OCR",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-4-ocr.md"
     },
     {
       "section_number": "8.1.5",
@@ -3502,7 +3513,8 @@
       "section_title": "Learn",
       "topic_title": "Chunking",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-5-chunking.md"
     },
     {
       "section_number": "8.1.6",
@@ -3511,7 +3523,8 @@
       "section_title": "Learn",
       "topic_title": "Metadata",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-6-metadata.md"
     },
     {
       "section_number": "8.1.7",
@@ -3520,7 +3533,8 @@
       "section_title": "Learn",
       "topic_title": "Embeddings",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-7-embeddings.md"
     },
     {
       "section_number": "8.1.8",
@@ -3529,7 +3543,8 @@
       "section_title": "Learn",
       "topic_title": "Vector databases",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-8-vector-databases.md"
     },
     {
       "section_number": "8.1.9",
@@ -3538,7 +3553,8 @@
       "section_title": "Learn",
       "topic_title": "Similarity search",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-9-similarity-search.md"
     },
     {
       "section_number": "8.1.10",
@@ -3547,7 +3563,8 @@
       "section_title": "Learn",
       "topic_title": "ANN indexes",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-10-ann-indexes.md"
     },
     {
       "section_number": "8.1.11",
@@ -3556,7 +3573,8 @@
       "section_title": "Learn",
       "topic_title": "Hybrid search",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-11-hybrid-search.md"
     },
     {
       "section_number": "8.1.12",
@@ -3565,7 +3583,8 @@
       "section_title": "Learn",
       "topic_title": "BM25",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-12-bm25.md"
     },
     {
       "section_number": "8.1.13",
@@ -3574,7 +3593,8 @@
       "section_title": "Learn",
       "topic_title": "Reranking",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-13-reranking.md"
     },
     {
       "section_number": "8.1.14",
@@ -3583,7 +3603,8 @@
       "section_title": "Learn",
       "topic_title": "Query rewriting",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-14-query-rewriting.md"
     },
     {
       "section_number": "8.1.15",
@@ -3592,7 +3613,8 @@
       "section_title": "Learn",
       "topic_title": "Multi-query retrieval",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-15-multi-query-retrieval.md"
     },
     {
       "section_number": "8.1.16",
@@ -3601,7 +3623,8 @@
       "section_title": "Learn",
       "topic_title": "Context compression",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-16-context-compression.md"
     },
     {
       "section_number": "8.1.17",
@@ -3610,7 +3633,8 @@
       "section_title": "Learn",
       "topic_title": "Contextual retrieval",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-17-contextual-retrieval.md"
     },
     {
       "section_number": "8.1.18",
@@ -3619,7 +3643,8 @@
       "section_title": "Learn",
       "topic_title": "Parent-child retrieval",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-18-parent-child-retrieval.md"
     },
     {
       "section_number": "8.1.19",
@@ -3628,7 +3653,8 @@
       "section_title": "Learn",
       "topic_title": "Hierarchical retrieval",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-19-hierarchical-retrieval.md"
     },
     {
       "section_number": "8.1.20",
@@ -3637,7 +3663,8 @@
       "section_title": "Learn",
       "topic_title": "Filtering",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-20-filtering.md"
     },
     {
       "section_number": "8.1.21",
@@ -3646,7 +3673,8 @@
       "section_title": "Learn",
       "topic_title": "Semantic search",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-21-semantic-search.md"
     },
     {
       "section_number": "8.1.22",
@@ -3655,7 +3683,8 @@
       "section_title": "Learn",
       "topic_title": "Knowledge graphs",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-22-knowledge-graphs.md"
     },
     {
       "section_number": "8.1.23",
@@ -3664,7 +3693,8 @@
       "section_title": "Learn",
       "topic_title": "Graph RAG",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-23-graph-rag.md"
     },
     {
       "section_number": "8.1.24",
@@ -3673,7 +3703,8 @@
       "section_title": "Learn",
       "topic_title": "Multimodal RAG",
       "folder": "08-rag-architecture/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\01-learn\\8-1-24-multimodal-rag.md"
     },
     {
       "section_number": "8.2.1",
@@ -3682,7 +3713,8 @@
       "section_title": "RAG architecture",
       "topic_title": "Naive RAG",
       "folder": "08-rag-architecture/02-rag-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\02-rag-architecture\\8-2-1-naive-rag.md"
     },
     {
       "section_number": "8.2.2",
@@ -3691,7 +3723,8 @@
       "section_title": "RAG architecture",
       "topic_title": "Advanced RAG",
       "folder": "08-rag-architecture/02-rag-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\02-rag-architecture\\8-2-2-advanced-rag.md"
     },
     {
       "section_number": "8.2.3",
@@ -3700,7 +3733,8 @@
       "section_title": "RAG architecture",
       "topic_title": "Agentic RAG",
       "folder": "08-rag-architecture/02-rag-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\02-rag-architecture\\8-2-3-agentic-rag.md"
     },
     {
       "section_number": "8.2.4",
@@ -3709,7 +3743,8 @@
       "section_title": "RAG architecture",
       "topic_title": "Graph RAG",
       "folder": "08-rag-architecture/02-rag-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\02-rag-architecture\\8-2-4-graph-rag.md"
     },
     {
       "section_number": "8.2.5",
@@ -3718,7 +3753,8 @@
       "section_title": "RAG architecture",
       "topic_title": "Hybrid RAG",
       "folder": "08-rag-architecture/02-rag-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\02-rag-architecture\\8-2-5-hybrid-rag.md"
     },
     {
       "section_number": "8.2.6",
@@ -3727,7 +3763,8 @@
       "section_title": "RAG architecture",
       "topic_title": "Multi-index RAG",
       "folder": "08-rag-architecture/02-rag-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\02-rag-architecture\\8-2-6-multi-index-rag.md"
     },
     {
       "section_number": "8.2.7",
@@ -3736,7 +3773,8 @@
       "section_title": "RAG architecture",
       "topic_title": "Multi-tenant RAG",
       "folder": "08-rag-architecture/02-rag-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\02-rag-architecture\\8-2-7-multi-tenant-rag.md"
     },
     {
       "section_number": "8.3.1",
@@ -3745,7 +3783,7 @@
       "section_title": "RAG failure modes",
       "topic_title": "Bad chunking",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "section_number": "8.3.2",
