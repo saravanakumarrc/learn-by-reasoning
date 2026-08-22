@@ -1952,8 +1952,9 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Vector databases",
-      "status": "in_progress",
-      "folder": "03-data-architecture/03-ai-specific-data/"
+      "status": "completed",
+      "folder": "03-data-architecture/03-ai-specific-data/",
+      "output_file": "03-data-architecture\\03-ai-specific-data\\3-3-2-vector-databases.md"
     },
     {
       "section_number": "3.3.3",
@@ -1961,8 +1962,9 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Vector indexes",
-      "status": "pending",
-      "folder": "03-data-architecture/03-ai-specific-data/"
+      "status": "completed",
+      "folder": "03-data-architecture/03-ai-specific-data/",
+      "output_file": "03-data-architecture\\03-ai-specific-data\\3-3-3-vector-indexes.md"
     },
     {
       "section_number": "3.3.4",
@@ -1970,8 +1972,9 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Metadata",
-      "status": "pending",
-      "folder": "03-data-architecture/03-ai-specific-data/"
+      "status": "completed",
+      "folder": "03-data-architecture/03-ai-specific-data/",
+      "output_file": "03-data-architecture\\03-ai-specific-data\\3-3-4-metadata.md"
     },
     {
       "section_number": "3.3.5",
@@ -1979,8 +1982,9 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Chunking",
-      "status": "pending",
-      "folder": "03-data-architecture/03-ai-specific-data/"
+      "status": "completed",
+      "folder": "03-data-architecture/03-ai-specific-data/",
+      "output_file": "03-data-architecture\\03-ai-specific-data\\3-3-5-chunking.md"
     },
     {
       "section_number": "3.3.6",
@@ -1988,8 +1992,9 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Document processing",
-      "status": "pending",
-      "folder": "03-data-architecture/03-ai-specific-data/"
+      "status": "completed",
+      "folder": "03-data-architecture/03-ai-specific-data/",
+      "output_file": "03-data-architecture\\03-ai-specific-data\\3-3-6-document-processing.md"
     },
     {
       "section_number": "3.3.7",
@@ -1997,8 +2002,9 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Semantic search",
-      "status": "pending",
-      "folder": "03-data-architecture/03-ai-specific-data/"
+      "status": "completed",
+      "folder": "03-data-architecture/03-ai-specific-data/",
+      "output_file": "03-data-architecture\\03-ai-specific-data\\3-3-7-semantic-search.md"
     },
     {
       "section_number": "3.3.8",
@@ -2006,7 +2012,7 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Hybrid search",
-      "status": "pending",
+      "status": "in_progress",
       "folder": "03-data-architecture/03-ai-specific-data/"
     },
     {
@@ -2015,8 +2021,9 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Knowledge graphs",
-      "status": "pending",
-      "folder": "03-data-architecture/03-ai-specific-data/"
+      "status": "completed",
+      "folder": "03-data-architecture/03-ai-specific-data/",
+      "output_file": "03-data-architecture\\03-ai-specific-data\\3-3-9-knowledge-graphs.md"
     },
     {
       "section_number": "3.3.10",
@@ -2024,8 +2031,9 @@
       "phase_title": "Data Architecture",
       "section_title": "AI-specific data",
       "topic_title": "Graph databases",
-      "status": "pending",
-      "folder": "03-data-architecture/03-ai-specific-data/"
+      "status": "completed",
+      "folder": "03-data-architecture/03-ai-specific-data/",
+      "output_file": "03-data-architecture\\03-ai-specific-data\\3-3-10-graph-databases.md"
     },
     {
       "section_number": "4.1.1",
@@ -2033,8 +2041,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "Compute",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-1-compute.md"
     },
     {
       "section_number": "4.1.2",
@@ -2042,8 +2051,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "Storage",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-2-storage.md"
     },
     {
       "section_number": "4.1.3",
@@ -2051,8 +2061,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "Networking",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-3-networking.md"
     },
     {
       "section_number": "4.1.4",
@@ -2060,8 +2071,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "DNS",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-4-dns.md"
     },
     {
       "section_number": "4.1.5",
@@ -2069,8 +2081,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "Load balancing",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-5-load-balancing.md"
     },
     {
       "section_number": "4.1.6",
@@ -2078,8 +2091,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "CDN",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-6-cdn.md"
     },
     {
       "section_number": "4.1.7",
@@ -2087,8 +2101,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "VPC/VNet",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-7-vpc-vnet.md"
     },
     {
       "section_number": "4.1.8",
@@ -2096,8 +2111,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "Subnets",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-8-subnets.md"
     },
     {
       "section_number": "4.1.9",
@@ -2105,7 +2121,7 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "Firewalls",
-      "status": "pending",
+      "status": "in_progress",
       "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
     },
     {
@@ -2114,8 +2130,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "Private endpoints",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-10-private-endpoints.md"
     },
     {
       "section_number": "4.1.11",
@@ -2123,8 +2140,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "IAM",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-11-iam.md"
     },
     {
       "section_number": "4.1.12",
@@ -2132,8 +2150,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "Secrets management",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-12-secrets-management.md"
     },
     {
       "section_number": "4.1.13",
@@ -2141,8 +2160,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Cloud fundamentals",
       "topic_title": "Managed services",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
+      "output_file": "04-cloud-infrastructure-architecture\\01-cloud-fundamentals\\4-1-13-managed-services.md"
     },
     {
       "section_number": "4.2.1",
@@ -2150,8 +2170,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Containers",
       "topic_title": "Docker",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/02-containers/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/02-containers/",
+      "output_file": "04-cloud-infrastructure-architecture\\02-containers\\4-2-1-docker.md"
     },
     {
       "section_number": "4.2.2",
@@ -2159,8 +2180,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Containers",
       "topic_title": "Container networking",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/02-containers/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/02-containers/",
+      "output_file": "04-cloud-infrastructure-architecture\\02-containers\\4-2-2-container-networking.md"
     },
     {
       "section_number": "4.2.3",
@@ -2168,8 +2190,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Containers",
       "topic_title": "Images",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/02-containers/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/02-containers/",
+      "output_file": "04-cloud-infrastructure-architecture\\02-containers\\4-2-3-images.md"
     },
     {
       "section_number": "4.2.4",
@@ -2177,8 +2200,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Containers",
       "topic_title": "Registries",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/02-containers/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/02-containers/",
+      "output_file": "04-cloud-infrastructure-architecture\\02-containers\\4-2-4-registries.md"
     },
     {
       "section_number": "4.2.5",
@@ -2186,8 +2210,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Containers",
       "topic_title": "Security scanning",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/02-containers/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/02-containers/",
+      "output_file": "04-cloud-infrastructure-architecture\\02-containers\\4-2-5-security-scanning.md"
     },
     {
       "section_number": "4.3.1",
@@ -2195,8 +2220,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Pods",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-1-pods.md"
     },
     {
       "section_number": "4.3.2",
@@ -2204,8 +2230,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Deployments",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-2-deployments.md"
     },
     {
       "section_number": "4.3.3",
@@ -2213,8 +2240,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Services",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-3-services.md"
     },
     {
       "section_number": "4.3.4",
@@ -2222,8 +2250,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Ingress",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-4-ingress.md"
     },
     {
       "section_number": "4.3.5",
@@ -2231,8 +2260,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "ConfigMaps",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-5-configmaps.md"
     },
     {
       "section_number": "4.3.6",
@@ -2240,8 +2270,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Secrets",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-6-secrets.md"
     },
     {
       "section_number": "4.3.7",
@@ -2249,8 +2280,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "StatefulSets",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-7-statefulsets.md"
     },
     {
       "section_number": "4.3.8",
@@ -2258,8 +2290,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Jobs",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-8-jobs.md"
     },
     {
       "section_number": "4.3.9",
@@ -2267,8 +2300,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "CronJobs",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-9-cronjobs.md"
     },
     {
       "section_number": "4.3.10",
@@ -2276,8 +2310,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "HPA",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-10-hpa.md"
     },
     {
       "section_number": "4.3.11",
@@ -2285,8 +2320,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "KEDA",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-11-keda.md"
     },
     {
       "section_number": "4.3.12",
@@ -2294,8 +2330,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Resource limits",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-12-resource-limits.md"
     },
     {
       "section_number": "4.3.13",
@@ -2303,8 +2340,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Scheduling",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-13-scheduling.md"
     },
     {
       "section_number": "4.3.14",
@@ -2312,8 +2350,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Persistent volumes",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-14-persistent-volumes.md"
     },
     {
       "section_number": "4.3.15",
@@ -2321,8 +2360,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Kubernetes",
       "topic_title": "Network policies",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\4-3-15-network-policies.md"
     },
     {
       "section_number": "4.4.1",
@@ -2330,8 +2370,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Platform engineering",
       "topic_title": "Kubernetes architecture",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\4-4-1-kubernetes-architecture.md"
     },
     {
       "section_number": "4.4.2",
@@ -2339,8 +2380,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Platform engineering",
       "topic_title": "Helm",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\4-4-2-helm.md"
     },
     {
       "section_number": "4.4.3",
@@ -2348,8 +2390,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Platform engineering",
       "topic_title": "GitOps",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\4-4-3-gitops.md"
     },
     {
       "section_number": "4.4.4",
@@ -2357,8 +2400,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Platform engineering",
       "topic_title": "ArgoCD",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\4-4-4-argocd.md"
     },
     {
       "section_number": "4.4.5",
@@ -2366,8 +2410,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Platform engineering",
       "topic_title": "Infrastructure as Code",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\4-4-5-infrastructure-as-code.md"
     },
     {
       "section_number": "4.4.6",
@@ -2375,8 +2420,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Platform engineering",
       "topic_title": "Terraform",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\4-4-6-terraform.md"
     },
     {
       "section_number": "4.4.7",
@@ -2384,8 +2430,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Platform engineering",
       "topic_title": "Environment management",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\4-4-7-environment-management.md"
     },
     {
       "section_number": "4.4.8",
@@ -2393,8 +2440,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Platform engineering",
       "topic_title": "Service mesh",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\4-4-8-service-mesh.md"
     },
     {
       "section_number": "4.4.9",
@@ -2402,8 +2450,9 @@
       "phase_title": "Cloud & Infrastructure Architecture",
       "section_title": "Platform engineering",
       "topic_title": "Platform APIs",
-      "status": "pending",
-      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/"
+      "status": "completed",
+      "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\4-4-9-platform-apis.md"
     },
     {
       "section_number": "5.1.1",
@@ -2411,8 +2460,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "Authentication",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-1-authentication.md"
     },
     {
       "section_number": "5.1.2",
@@ -2420,8 +2470,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "Authorization",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-2-authorization.md"
     },
     {
       "section_number": "5.1.3",
@@ -2429,8 +2480,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "RBAC",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-3-rbac.md"
     },
     {
       "section_number": "5.1.4",
@@ -2438,8 +2490,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "ABAC",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-4-abac.md"
     },
     {
       "section_number": "5.1.5",
@@ -2447,8 +2500,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "OAuth2",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-5-oauth2.md"
     },
     {
       "section_number": "5.1.6",
@@ -2456,8 +2510,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "OIDC",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-6-oidc.md"
     },
     {
       "section_number": "5.1.7",
@@ -2465,8 +2520,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "JWT",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-7-jwt.md"
     },
     {
       "section_number": "5.1.8",
@@ -2474,8 +2530,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "mTLS",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-8-mtls.md"
     },
     {
       "section_number": "5.1.9",
@@ -2483,8 +2540,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "TLS",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-9-tls.md"
     },
     {
       "section_number": "5.1.10",
@@ -2492,8 +2550,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "Secrets",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-10-secrets.md"
     },
     {
       "section_number": "5.1.11",
@@ -2501,8 +2560,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "Encryption",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-11-encryption.md"
     },
     {
       "section_number": "5.1.12",
@@ -2510,8 +2570,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Application security",
       "topic_title": "Key management",
-      "status": "pending",
-      "folder": "05-security-architecture/01-application-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/01-application-security/",
+      "output_file": "05-security-architecture\\01-application-security\\5-1-12-key-management.md"
     },
     {
       "section_number": "5.2.1",
@@ -2519,8 +2580,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Enterprise security",
       "topic_title": "Zero Trust",
-      "status": "pending",
-      "folder": "05-security-architecture/02-enterprise-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/02-enterprise-security/",
+      "output_file": "05-security-architecture\\02-enterprise-security\\5-2-1-zero-trust.md"
     },
     {
       "section_number": "5.2.2",
@@ -2528,8 +2590,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Enterprise security",
       "topic_title": "Network segmentation",
-      "status": "pending",
-      "folder": "05-security-architecture/02-enterprise-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/02-enterprise-security/",
+      "output_file": "05-security-architecture\\02-enterprise-security\\5-2-2-network-segmentation.md"
     },
     {
       "section_number": "5.2.3",
@@ -2537,8 +2600,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Enterprise security",
       "topic_title": "Private networking",
-      "status": "pending",
-      "folder": "05-security-architecture/02-enterprise-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/02-enterprise-security/",
+      "output_file": "05-security-architecture\\02-enterprise-security\\5-2-3-private-networking.md"
     },
     {
       "section_number": "5.2.4",
@@ -2546,8 +2610,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Enterprise security",
       "topic_title": "Identity boundaries",
-      "status": "pending",
-      "folder": "05-security-architecture/02-enterprise-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/02-enterprise-security/",
+      "output_file": "05-security-architecture\\02-enterprise-security\\5-2-4-identity-boundaries.md"
     },
     {
       "section_number": "5.2.5",
@@ -2555,8 +2620,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Enterprise security",
       "topic_title": "Data classification",
-      "status": "pending",
-      "folder": "05-security-architecture/02-enterprise-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/02-enterprise-security/",
+      "output_file": "05-security-architecture\\02-enterprise-security\\5-2-5-data-classification.md"
     },
     {
       "section_number": "5.2.6",
@@ -2564,8 +2630,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Enterprise security",
       "topic_title": "Data loss prevention",
-      "status": "pending",
-      "folder": "05-security-architecture/02-enterprise-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/02-enterprise-security/",
+      "output_file": "05-security-architecture\\02-enterprise-security\\5-2-6-data-loss-prevention.md"
     },
     {
       "section_number": "5.2.7",
@@ -2573,8 +2640,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Enterprise security",
       "topic_title": "Audit logging",
-      "status": "pending",
-      "folder": "05-security-architecture/02-enterprise-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/02-enterprise-security/",
+      "output_file": "05-security-architecture\\02-enterprise-security\\5-2-7-audit-logging.md"
     },
     {
       "section_number": "5.2.8",
@@ -2582,8 +2650,9 @@
       "phase_title": "Security Architecture",
       "section_title": "Enterprise security",
       "topic_title": "Compliance",
-      "status": "pending",
-      "folder": "05-security-architecture/02-enterprise-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/02-enterprise-security/",
+      "output_file": "05-security-architecture\\02-enterprise-security\\5-2-8-compliance.md"
     },
     {
       "section_number": "5.3.1",
@@ -2591,8 +2660,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Prompt injection",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-1-prompt-injection.md"
     },
     {
       "section_number": "5.3.2",
@@ -2600,8 +2670,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Indirect prompt injection",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-2-indirect-prompt-injection.md"
     },
     {
       "section_number": "5.3.3",
@@ -2609,8 +2680,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Jailbreaking",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-3-jailbreaking.md"
     },
     {
       "section_number": "5.3.4",
@@ -2618,8 +2690,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Data exfiltration",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-4-data-exfiltration.md"
     },
     {
       "section_number": "5.3.5",
@@ -2627,8 +2700,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Tool abuse",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-5-tool-abuse.md"
     },
     {
       "section_number": "5.3.6",
@@ -2636,8 +2710,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Excessive agency",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-6-excessive-agency.md"
     },
     {
       "section_number": "5.3.7",
@@ -2645,8 +2720,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Insecure output handling",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-7-insecure-output-handling.md"
     },
     {
       "section_number": "5.3.8",
@@ -2654,8 +2730,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "RAG poisoning",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-8-rag-poisoning.md"
     },
     {
       "section_number": "5.3.9",
@@ -2663,8 +2740,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Training-data concerns",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-9-training-data-concerns.md"
     },
     {
       "section_number": "5.3.10",
@@ -2672,8 +2750,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Model supply-chain risks",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-10-model-supply-chain-risks.md"
     },
     {
       "section_number": "5.3.11",
@@ -2681,8 +2760,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Agent identity",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-11-agent-identity.md"
     },
     {
       "section_number": "5.3.12",
@@ -2690,8 +2770,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Tool authorization",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-12-tool-authorization.md"
     },
     {
       "section_number": "5.3.13",
@@ -2699,8 +2780,9 @@
       "phase_title": "Security Architecture",
       "section_title": "AI security",
       "topic_title": "Tenant isolation",
-      "status": "pending",
-      "folder": "05-security-architecture/03-ai-security/"
+      "status": "completed",
+      "folder": "05-security-architecture/03-ai-security/",
+      "output_file": "05-security-architecture\\03-ai-security\\5-3-13-tenant-isolation.md"
     },
     {
       "section_number": "6.1.1",
@@ -2708,8 +2790,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "AI vs ML vs Deep Learning vs GenAI",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-1-ai-vs-ml-vs-deep-learning-vs-genai.md"
     },
     {
       "section_number": "6.1.2",
@@ -2717,8 +2800,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Foundation models",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-2-foundation-models.md"
     },
     {
       "section_number": "6.1.3",
@@ -2726,8 +2810,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "LLMs",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-3-llms.md"
     },
     {
       "section_number": "6.1.4",
@@ -2735,8 +2820,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Tokens",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-4-tokens.md"
     },
     {
       "section_number": "6.1.5",
@@ -2744,8 +2830,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Context windows",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-5-context-windows.md"
     },
     {
       "section_number": "6.1.6",
@@ -2753,8 +2840,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Transformer high-level architecture",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-6-transformer-high-level-architecture.md"
     },
     {
       "section_number": "6.1.7",
@@ -2762,8 +2850,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Attention — conceptual understanding",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-7-attention-conceptual-understanding.md"
     },
     {
       "section_number": "6.1.8",
@@ -2771,8 +2860,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Embeddings",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-8-embeddings.md"
     },
     {
       "section_number": "6.1.9",
@@ -2780,8 +2870,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Inference",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-9-inference.md"
     },
     {
       "section_number": "6.1.10",
@@ -2789,8 +2880,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Temperature",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-10-temperature.md"
     },
     {
       "section_number": "6.1.11",
@@ -2798,8 +2890,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Top-p",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-11-top-p.md"
     },
     {
       "section_number": "6.1.12",
@@ -2807,8 +2900,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Model parameters",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-12-model-parameters.md"
     },
     {
       "section_number": "6.1.13",
@@ -2816,8 +2910,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Model capabilities",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "failed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=1800)"
     },
     {
       "section_number": "6.1.14",
@@ -2825,8 +2920,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Understand",
       "topic_title": "Model limitations",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/01-understand/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/01-understand/",
+      "output_file": "06-ai-llm-foundations\\01-understand\\6-1-14-model-limitations.md"
     },
     {
       "section_number": "6.2.1",
@@ -2834,8 +2930,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model selection",
       "topic_title": "Quality",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/02-model-selection/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/02-model-selection/",
+      "output_file": "06-ai-llm-foundations\\02-model-selection\\6-2-1-quality.md"
     },
     {
       "section_number": "6.2.2",
@@ -2843,8 +2940,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model selection",
       "topic_title": "Latency",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/02-model-selection/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/02-model-selection/",
+      "output_file": "06-ai-llm-foundations\\02-model-selection\\6-2-2-latency.md"
     },
     {
       "section_number": "6.2.3",
@@ -2852,8 +2950,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model selection",
       "topic_title": "Cost",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/02-model-selection/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/02-model-selection/",
+      "output_file": "06-ai-llm-foundations\\02-model-selection\\6-2-3-cost.md"
     },
     {
       "section_number": "6.2.4",
@@ -2861,8 +2960,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model selection",
       "topic_title": "Context length",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/02-model-selection/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/02-model-selection/",
+      "output_file": "06-ai-llm-foundations\\02-model-selection\\6-2-4-context-length.md"
     },
     {
       "section_number": "6.2.5",
@@ -2870,8 +2970,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model selection",
       "topic_title": "Multimodal capability",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/02-model-selection/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/02-model-selection/",
+      "output_file": "06-ai-llm-foundations\\02-model-selection\\6-2-5-multimodal-capability.md"
     },
     {
       "section_number": "6.2.6",
@@ -2879,8 +2980,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model selection",
       "topic_title": "Privacy",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/02-model-selection/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/02-model-selection/",
+      "output_file": "06-ai-llm-foundations\\02-model-selection\\6-2-6-privacy.md"
     },
     {
       "section_number": "6.2.7",
@@ -2888,8 +2990,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model selection",
       "topic_title": "Hosting",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/02-model-selection/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/02-model-selection/",
+      "output_file": "06-ai-llm-foundations\\02-model-selection\\6-2-7-hosting.md"
     },
     {
       "section_number": "6.2.8",
@@ -2897,8 +3000,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model selection",
       "topic_title": "Availability",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/02-model-selection/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/02-model-selection/",
+      "output_file": "06-ai-llm-foundations\\02-model-selection\\6-2-8-availability.md"
     },
     {
       "section_number": "6.2.9",
@@ -2906,8 +3010,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model selection",
       "topic_title": "Vendor lock-in",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/02-model-selection/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/02-model-selection/",
+      "output_file": "06-ai-llm-foundations\\02-model-selection\\6-2-9-vendor-lock-in.md"
     },
     {
       "section_number": "6.3.1",
@@ -2915,8 +3020,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model patterns",
       "topic_title": "Foundation models",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/03-model-patterns/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/03-model-patterns/",
+      "output_file": "06-ai-llm-foundations\\03-model-patterns\\6-3-1-foundation-models.md"
     },
     {
       "section_number": "6.3.2",
@@ -2924,8 +3030,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model patterns",
       "topic_title": "Small language models",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/03-model-patterns/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/03-model-patterns/",
+      "output_file": "06-ai-llm-foundations\\03-model-patterns\\6-3-2-small-language-models.md"
     },
     {
       "section_number": "6.3.3",
@@ -2933,8 +3040,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model patterns",
       "topic_title": "Open-source models",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/03-model-patterns/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/03-model-patterns/",
+      "output_file": "06-ai-llm-foundations\\03-model-patterns\\6-3-3-open-source-models.md"
     },
     {
       "section_number": "6.3.4",
@@ -2942,8 +3050,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model patterns",
       "topic_title": "Hosted models",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/03-model-patterns/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/03-model-patterns/",
+      "output_file": "06-ai-llm-foundations\\03-model-patterns\\6-3-4-hosted-models.md"
     },
     {
       "section_number": "6.3.5",
@@ -2951,8 +3060,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model patterns",
       "topic_title": "Fine-tuning",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/03-model-patterns/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/03-model-patterns/",
+      "output_file": "06-ai-llm-foundations\\03-model-patterns\\6-3-5-fine-tuning.md"
     },
     {
       "section_number": "6.3.6",
@@ -2960,8 +3070,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model patterns",
       "topic_title": "LoRA / PEFT",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/03-model-patterns/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/03-model-patterns/",
+      "output_file": "06-ai-llm-foundations\\03-model-patterns\\6-3-6-lora-peft.md"
     },
     {
       "section_number": "6.3.7",
@@ -2969,8 +3080,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model patterns",
       "topic_title": "Quantization",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/03-model-patterns/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/03-model-patterns/",
+      "output_file": "06-ai-llm-foundations\\03-model-patterns\\6-3-7-quantization.md"
     },
     {
       "section_number": "6.3.8",
@@ -2978,8 +3090,9 @@
       "phase_title": "AI / LLM Foundations",
       "section_title": "Model patterns",
       "topic_title": "Distillation",
-      "status": "pending",
-      "folder": "06-ai-llm-foundations/03-model-patterns/"
+      "status": "completed",
+      "folder": "06-ai-llm-foundations/03-model-patterns/",
+      "output_file": "06-ai-llm-foundations\\03-model-patterns\\6-3-8-distillation.md"
     },
     {
       "section_number": "7.1.1",
@@ -2987,8 +3100,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Prompt engineering",
       "topic_title": "System prompts",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/01-prompt-engineering/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/01-prompt-engineering/",
+      "output_file": "07-llm-application-engineering\\01-prompt-engineering\\7-1-1-system-prompts.md"
     },
     {
       "section_number": "7.1.2",
@@ -2996,8 +3110,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Prompt engineering",
       "topic_title": "User prompts",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/01-prompt-engineering/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/01-prompt-engineering/",
+      "output_file": "07-llm-application-engineering\\01-prompt-engineering\\7-1-2-user-prompts.md"
     },
     {
       "section_number": "7.1.3",
@@ -3005,8 +3120,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Prompt engineering",
       "topic_title": "Few-shot prompting",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/01-prompt-engineering/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/01-prompt-engineering/",
+      "output_file": "07-llm-application-engineering\\01-prompt-engineering\\7-1-3-few-shot-prompting.md"
     },
     {
       "section_number": "7.1.4",
@@ -3014,8 +3130,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Prompt engineering",
       "topic_title": "Structured prompting",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/01-prompt-engineering/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/01-prompt-engineering/",
+      "output_file": "07-llm-application-engineering\\01-prompt-engineering\\7-1-4-structured-prompting.md"
     },
     {
       "section_number": "7.1.5",
@@ -3023,8 +3140,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Prompt engineering",
       "topic_title": "Prompt templates",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/01-prompt-engineering/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/01-prompt-engineering/",
+      "output_file": "07-llm-application-engineering\\01-prompt-engineering\\7-1-5-prompt-templates.md"
     },
     {
       "section_number": "7.1.6",
@@ -3032,8 +3150,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Prompt engineering",
       "topic_title": "Prompt versioning",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/01-prompt-engineering/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/01-prompt-engineering/",
+      "output_file": "07-llm-application-engineering\\01-prompt-engineering\\7-1-6-prompt-versioning.md"
     },
     {
       "section_number": "7.1.7",
@@ -3041,8 +3160,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Prompt engineering",
       "topic_title": "Prompt injection resistance",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/01-prompt-engineering/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/01-prompt-engineering/",
+      "output_file": "07-llm-application-engineering\\01-prompt-engineering\\7-1-7-prompt-injection-resistance.md"
     },
     {
       "section_number": "7.1.8",
@@ -3050,8 +3170,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Prompt engineering",
       "topic_title": "Output constraints",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/01-prompt-engineering/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/01-prompt-engineering/",
+      "output_file": "07-llm-application-engineering\\01-prompt-engineering\\7-1-8-output-constraints.md"
     },
     {
       "section_number": "7.2.1",
@@ -3059,8 +3180,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Structured outputs",
       "topic_title": "JSON schema",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/02-structured-outputs/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/02-structured-outputs/",
+      "output_file": "07-llm-application-engineering\\02-structured-outputs\\7-2-1-json-schema.md"
     },
     {
       "section_number": "7.2.2",
@@ -3068,8 +3190,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Structured outputs",
       "topic_title": "Function calling",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/02-structured-outputs/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/02-structured-outputs/",
+      "output_file": "07-llm-application-engineering\\02-structured-outputs\\7-2-2-function-calling.md"
     },
     {
       "section_number": "7.2.3",
@@ -3077,8 +3200,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Structured outputs",
       "topic_title": "Typed outputs",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/02-structured-outputs/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/02-structured-outputs/",
+      "output_file": "07-llm-application-engineering\\02-structured-outputs\\7-2-3-typed-outputs.md"
     },
     {
       "section_number": "7.2.4",
@@ -3086,8 +3210,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Structured outputs",
       "topic_title": "Validation",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/02-structured-outputs/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/02-structured-outputs/",
+      "output_file": "07-llm-application-engineering\\02-structured-outputs\\7-2-4-validation.md"
     },
     {
       "section_number": "7.2.5",
@@ -3095,8 +3220,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Structured outputs",
       "topic_title": "Retries",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/02-structured-outputs/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/02-structured-outputs/",
+      "output_file": "07-llm-application-engineering\\02-structured-outputs\\7-2-5-retries.md"
     },
     {
       "section_number": "7.2.6",
@@ -3104,8 +3230,9 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "Structured outputs",
       "topic_title": "Output parsing",
-      "status": "pending",
-      "folder": "07-llm-application-engineering/02-structured-outputs/"
+      "status": "completed",
+      "folder": "07-llm-application-engineering/02-structured-outputs/",
+      "output_file": "07-llm-application-engineering\\02-structured-outputs\\7-2-6-output-parsing.md"
     },
     {
       "section_number": "7.3.1",
@@ -3113,7 +3240,7 @@
       "phase_title": "LLM Application Engineering",
       "section_title": "LLM patterns",
       "topic_title": "Simple completion",
-      "status": "pending",
+      "status": "in_progress",
       "folder": "07-llm-application-engineering/03-llm-patterns/"
     },
     {
