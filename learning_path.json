@@ -4813,7 +4813,8 @@
       "section_title": "LangGraph concepts",
       "topic_title": "Streaming",
       "folder": "13-ai-orchestration/01-langgraph-concepts/",
-      "status": "in_progress"
+      "status": "completed",
+      "output_file": "13-ai-orchestration\\01-langgraph-concepts\\13-1-13-streaming.md"
     },
     {
       "section_number": "13.1.14",
@@ -4822,7 +4823,8 @@
       "section_title": "LangGraph concepts",
       "topic_title": "Durable execution",
       "folder": "13-ai-orchestration/01-langgraph-concepts/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "13-ai-orchestration\\01-langgraph-concepts\\13-1-14-durable-execution.md"
     },
     {
       "section_number": "13.1.15",
@@ -4831,7 +4833,8 @@
       "section_title": "LangGraph concepts",
       "topic_title": "Workflow engines",
       "folder": "13-ai-orchestration/01-langgraph-concepts/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "13-ai-orchestration\\01-langgraph-concepts\\13-1-15-workflow-engines.md"
     },
     {
       "section_number": "13.1.16",
@@ -4840,7 +4843,8 @@
       "section_title": "LangGraph concepts",
       "topic_title": "Event-driven AI",
       "folder": "13-ai-orchestration/01-langgraph-concepts/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "13-ai-orchestration\\01-langgraph-concepts\\13-1-16-event-driven-ai.md"
     },
     {
       "section_number": "13.1.17",
@@ -4849,7 +4853,7 @@
       "section_title": "LangGraph concepts",
       "topic_title": "Temporal-style durable workflows",
       "folder": "13-ai-orchestration/01-langgraph-concepts/",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "section_number": "13.1.18",
@@ -4858,7 +4862,8 @@
       "section_title": "LangGraph concepts",
       "topic_title": "n8n-style automation",
       "folder": "13-ai-orchestration/01-langgraph-concepts/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "13-ai-orchestration\\01-langgraph-concepts\\13-1-18-n8n-style-automation.md"
     },
     {
       "section_number": "13.1.19",
@@ -4867,7 +4872,8 @@
       "section_title": "LangGraph concepts",
       "topic_title": "Deterministic vs agentic orchestration",
       "folder": "13-ai-orchestration/01-langgraph-concepts/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "13-ai-orchestration\\01-langgraph-concepts\\13-1-19-deterministic-vs-agentic-orchestration.md"
     },
     {
       "section_number": "14.1.1",
@@ -4876,7 +4882,8 @@
       "section_title": "Evaluation",
       "topic_title": "Offline evaluation",
       "folder": "14-ai-evaluation/01-evaluation/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\01-evaluation\\14-1-1-offline-evaluation.md"
     },
     {
       "section_number": "14.1.2",
@@ -4885,7 +4892,8 @@
       "section_title": "Evaluation",
       "topic_title": "Online evaluation",
       "folder": "14-ai-evaluation/01-evaluation/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\01-evaluation\\14-1-2-online-evaluation.md"
     },
     {
       "section_number": "14.1.3",
@@ -4894,7 +4902,8 @@
       "section_title": "Evaluation",
       "topic_title": "Golden datasets",
       "folder": "14-ai-evaluation/01-evaluation/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\01-evaluation\\14-1-3-golden-datasets.md"
     },
     {
       "section_number": "14.1.4",
@@ -4903,7 +4912,8 @@
       "section_title": "Evaluation",
       "topic_title": "Human evaluation",
       "folder": "14-ai-evaluation/01-evaluation/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\01-evaluation\\14-1-4-human-evaluation.md"
     },
     {
       "section_number": "14.1.5",
@@ -4912,7 +4922,8 @@
       "section_title": "Evaluation",
       "topic_title": "LLM-as-judge",
       "folder": "14-ai-evaluation/01-evaluation/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\01-evaluation\\14-1-5-llm-as-judge.md"
     },
     {
       "section_number": "14.1.6",
@@ -4921,7 +4932,8 @@
       "section_title": "Evaluation",
       "topic_title": "Regression testing",
       "folder": "14-ai-evaluation/01-evaluation/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\01-evaluation\\14-1-6-regression-testing.md"
     },
     {
       "section_number": "14.1.7",
@@ -4930,7 +4942,8 @@
       "section_title": "Evaluation",
       "topic_title": "Prompt evaluation",
       "folder": "14-ai-evaluation/01-evaluation/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\01-evaluation\\14-1-7-prompt-evaluation.md"
     },
     {
       "section_number": "14.1.8",
@@ -4939,7 +4952,8 @@
       "section_title": "Evaluation",
       "topic_title": "Retrieval evaluation",
       "folder": "14-ai-evaluation/01-evaluation/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\01-evaluation\\14-1-8-retrieval-evaluation.md"
     },
     {
       "section_number": "14.1.9",
@@ -4948,7 +4962,8 @@
       "section_title": "Evaluation",
       "topic_title": "Agent evaluation",
       "folder": "14-ai-evaluation/01-evaluation/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\01-evaluation\\14-1-9-agent-evaluation.md"
     },
     {
       "section_number": "14.2.1",
@@ -4957,7 +4972,8 @@
       "section_title": "RAG metrics",
       "topic_title": "Precision",
       "folder": "14-ai-evaluation/02-rag-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\02-rag-metrics\\14-2-1-precision.md"
     },
     {
       "section_number": "14.2.2",
@@ -4966,7 +4982,8 @@
       "section_title": "RAG metrics",
       "topic_title": "Recall",
       "folder": "14-ai-evaluation/02-rag-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\02-rag-metrics\\14-2-2-recall.md"
     },
     {
       "section_number": "14.2.3",
@@ -4975,7 +4992,8 @@
       "section_title": "RAG metrics",
       "topic_title": "Context relevance",
       "folder": "14-ai-evaluation/02-rag-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\02-rag-metrics\\14-2-3-context-relevance.md"
     },
     {
       "section_number": "14.2.4",
@@ -4984,7 +5002,8 @@
       "section_title": "RAG metrics",
       "topic_title": "Context precision",
       "folder": "14-ai-evaluation/02-rag-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\02-rag-metrics\\14-2-4-context-precision.md"
     },
     {
       "section_number": "14.2.5",
@@ -4993,7 +5012,8 @@
       "section_title": "RAG metrics",
       "topic_title": "Context recall",
       "folder": "14-ai-evaluation/02-rag-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\02-rag-metrics\\14-2-5-context-recall.md"
     },
     {
       "section_number": "14.2.6",
@@ -5002,7 +5022,8 @@
       "section_title": "RAG metrics",
       "topic_title": "Faithfulness",
       "folder": "14-ai-evaluation/02-rag-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\02-rag-metrics\\14-2-6-faithfulness.md"
     },
     {
       "section_number": "14.2.7",
@@ -5011,7 +5032,8 @@
       "section_title": "RAG metrics",
       "topic_title": "Answer relevance",
       "folder": "14-ai-evaluation/02-rag-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\02-rag-metrics\\14-2-7-answer-relevance.md"
     },
     {
       "section_number": "14.3.1",
@@ -5020,7 +5042,8 @@
       "section_title": "Agent metrics",
       "topic_title": "Task success",
       "folder": "14-ai-evaluation/03-agent-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\03-agent-metrics\\14-3-1-task-success.md"
     },
     {
       "section_number": "14.3.2",
@@ -5029,7 +5052,8 @@
       "section_title": "Agent metrics",
       "topic_title": "Tool selection accuracy",
       "folder": "14-ai-evaluation/03-agent-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\03-agent-metrics\\14-3-2-tool-selection-accuracy.md"
     },
     {
       "section_number": "14.3.3",
@@ -5038,7 +5062,8 @@
       "section_title": "Agent metrics",
       "topic_title": "Tool execution success",
       "folder": "14-ai-evaluation/03-agent-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\03-agent-metrics\\14-3-3-tool-execution-success.md"
     },
     {
       "section_number": "14.3.4",
@@ -5047,7 +5072,7 @@
       "section_title": "Agent metrics",
       "topic_title": "Planning quality",
       "folder": "14-ai-evaluation/03-agent-metrics/",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "section_number": "14.3.5",
