@@ -3783,7 +3783,8 @@
       "section_title": "RAG failure modes",
       "topic_title": "Bad chunking",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "in_progress"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\03-rag-failure-modes\\8-3-1-bad-chunking.md"
     },
     {
       "section_number": "8.3.2",
@@ -3792,7 +3793,8 @@
       "section_title": "RAG failure modes",
       "topic_title": "Missing documents",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\03-rag-failure-modes\\8-3-2-missing-documents.md"
     },
     {
       "section_number": "8.3.3",
@@ -3801,7 +3803,8 @@
       "section_title": "RAG failure modes",
       "topic_title": "Poor retrieval",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\03-rag-failure-modes\\8-3-3-poor-retrieval.md"
     },
     {
       "section_number": "8.3.4",
@@ -3810,7 +3813,8 @@
       "section_title": "RAG failure modes",
       "topic_title": "Wrong ranking",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\03-rag-failure-modes\\8-3-4-wrong-ranking.md"
     },
     {
       "section_number": "8.3.5",
@@ -3819,7 +3823,8 @@
       "section_title": "RAG failure modes",
       "topic_title": "Context overload",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\03-rag-failure-modes\\8-3-5-context-overload.md"
     },
     {
       "section_number": "8.3.6",
@@ -3828,7 +3833,8 @@
       "section_title": "RAG failure modes",
       "topic_title": "Stale data",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\03-rag-failure-modes\\8-3-6-stale-data.md"
     },
     {
       "section_number": "8.3.7",
@@ -3837,7 +3843,8 @@
       "section_title": "RAG failure modes",
       "topic_title": "Conflicting sources",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\03-rag-failure-modes\\8-3-7-conflicting-sources.md"
     },
     {
       "section_number": "8.3.8",
@@ -3846,7 +3853,8 @@
       "section_title": "RAG failure modes",
       "topic_title": "Hallucination",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\03-rag-failure-modes\\8-3-8-hallucination.md"
     },
     {
       "section_number": "8.3.9",
@@ -3855,7 +3863,8 @@
       "section_title": "RAG failure modes",
       "topic_title": "Citation failures",
       "folder": "08-rag-architecture/03-rag-failure-modes/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "08-rag-architecture\\03-rag-failure-modes\\8-3-9-citation-failures.md"
     },
     {
       "section_number": "9.1.1",
@@ -3864,7 +3873,8 @@
       "section_title": "Memory types",
       "topic_title": "Conversation memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\01-memory-types\\9-1-1-conversation-memory.md"
     },
     {
       "section_number": "9.1.2",
@@ -3873,7 +3883,8 @@
       "section_title": "Memory types",
       "topic_title": "Short-term memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\01-memory-types\\9-1-2-short-term-memory.md"
     },
     {
       "section_number": "9.1.3",
@@ -3882,7 +3893,8 @@
       "section_title": "Memory types",
       "topic_title": "Long-term memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\01-memory-types\\9-1-3-long-term-memory.md"
     },
     {
       "section_number": "9.1.4",
@@ -3891,7 +3903,8 @@
       "section_title": "Memory types",
       "topic_title": "Semantic memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\01-memory-types\\9-1-4-semantic-memory.md"
     },
     {
       "section_number": "9.1.5",
@@ -3900,7 +3913,8 @@
       "section_title": "Memory types",
       "topic_title": "Episodic memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\01-memory-types\\9-1-5-episodic-memory.md"
     },
     {
       "section_number": "9.1.6",
@@ -3909,7 +3923,8 @@
       "section_title": "Memory types",
       "topic_title": "Procedural memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\01-memory-types\\9-1-6-procedural-memory.md"
     },
     {
       "section_number": "9.1.7",
@@ -3918,7 +3933,8 @@
       "section_title": "Memory types",
       "topic_title": "Working memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\01-memory-types\\9-1-7-working-memory.md"
     },
     {
       "section_number": "9.1.8",
@@ -3927,7 +3943,8 @@
       "section_title": "Memory types",
       "topic_title": "User memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\01-memory-types\\9-1-8-user-memory.md"
     },
     {
       "section_number": "9.1.9",
@@ -3936,7 +3953,8 @@
       "section_title": "Memory types",
       "topic_title": "Organizational memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\01-memory-types\\9-1-9-organizational-memory.md"
     },
     {
       "section_number": "9.2.1",
@@ -3945,7 +3963,8 @@
       "section_title": "Architecture",
       "topic_title": "What should be remembered?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\02-architecture\\9-2-1-what-should-be-remembered.md"
     },
     {
       "section_number": "9.2.2",
@@ -3954,7 +3973,8 @@
       "section_title": "Architecture",
       "topic_title": "What should never be remembered?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\02-architecture\\9-2-2-what-should-never-be-remembered.md"
     },
     {
       "section_number": "9.2.3",
@@ -3963,7 +3983,8 @@
       "section_title": "Architecture",
       "topic_title": "Where should memory live?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\02-architecture\\9-2-3-where-should-memory-live.md"
     },
     {
       "section_number": "9.2.4",
@@ -3972,7 +3993,8 @@
       "section_title": "Architecture",
       "topic_title": "When should memory be retrieved?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\02-architecture\\9-2-4-when-should-memory-be-retrieved.md"
     },
     {
       "section_number": "9.2.5",
@@ -3981,7 +4003,8 @@
       "section_title": "Architecture",
       "topic_title": "When should memory be updated?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\02-architecture\\9-2-5-when-should-memory-be-updated.md"
     },
     {
       "section_number": "9.2.6",
@@ -3990,7 +4013,8 @@
       "section_title": "Architecture",
       "topic_title": "How do we forget?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\02-architecture\\9-2-6-how-do-we-forget.md"
     },
     {
       "section_number": "9.2.7",
@@ -3999,7 +4023,8 @@
       "section_title": "Architecture",
       "topic_title": "How do we correct memory?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\02-architecture\\9-2-7-how-do-we-correct-memory.md"
     },
     {
       "section_number": "9.2.8",
@@ -4008,7 +4033,8 @@
       "section_title": "Architecture",
       "topic_title": "How do we prevent memory poisoning?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "09-ai-memory\\02-architecture\\9-2-8-how-do-we-prevent-memory-poisoning.md"
     },
     {
       "section_number": "10.1.1",
@@ -4017,7 +4043,8 @@
       "section_title": "Learn",
       "topic_title": "Function calling",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-1-function-calling.md"
     },
     {
       "section_number": "10.1.2",
@@ -4026,7 +4053,8 @@
       "section_title": "Learn",
       "topic_title": "Tool schemas",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-2-tool-schemas.md"
     },
     {
       "section_number": "10.1.3",
@@ -4035,7 +4063,8 @@
       "section_title": "Learn",
       "topic_title": "Tool discovery",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-3-tool-discovery.md"
     },
     {
       "section_number": "10.1.4",
@@ -4044,7 +4073,8 @@
       "section_title": "Learn",
       "topic_title": "Tool selection",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-4-tool-selection.md"
     },
     {
       "section_number": "10.1.5",
@@ -4053,7 +4083,8 @@
       "section_title": "Learn",
       "topic_title": "Tool validation",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-5-tool-validation.md"
     },
     {
       "section_number": "10.1.6",
@@ -4062,7 +4093,8 @@
       "section_title": "Learn",
       "topic_title": "Tool permissions",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-6-tool-permissions.md"
     },
     {
       "section_number": "10.1.7",
@@ -4071,7 +4103,8 @@
       "section_title": "Learn",
       "topic_title": "Tool execution",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-7-tool-execution.md"
     },
     {
       "section_number": "10.1.8",
@@ -4080,7 +4113,8 @@
       "section_title": "Learn",
       "topic_title": "Tool results",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-8-tool-results.md"
     },
     {
       "section_number": "10.1.9",
@@ -4089,7 +4123,8 @@
       "section_title": "Learn",
       "topic_title": "Error handling",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-9-error-handling.md"
     },
     {
       "section_number": "10.1.10",
@@ -4098,7 +4133,8 @@
       "section_title": "Learn",
       "topic_title": "Tool retries",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-10-tool-retries.md"
     },
     {
       "section_number": "10.1.11",
@@ -4107,7 +4143,8 @@
       "section_title": "Learn",
       "topic_title": "Idempotency",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-11-idempotency.md"
     },
     {
       "section_number": "10.1.12",
@@ -4116,7 +4153,8 @@
       "section_title": "Learn",
       "topic_title": "Human approval",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\01-learn\\10-1-12-human-approval.md"
     },
     {
       "section_number": "10.2.1",
@@ -4125,7 +4163,8 @@
       "section_title": "MCP",
       "topic_title": "MCP architecture",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-1-mcp-architecture.md"
     },
     {
       "section_number": "10.2.2",
@@ -4134,7 +4173,8 @@
       "section_title": "MCP",
       "topic_title": "MCP clients",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-2-mcp-clients.md"
     },
     {
       "section_number": "10.2.3",
@@ -4143,7 +4183,8 @@
       "section_title": "MCP",
       "topic_title": "MCP servers",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-3-mcp-servers.md"
     },
     {
       "section_number": "10.2.4",
@@ -4152,7 +4193,8 @@
       "section_title": "MCP",
       "topic_title": "Resources",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-4-resources.md"
     },
     {
       "section_number": "10.2.5",
@@ -4161,7 +4203,8 @@
       "section_title": "MCP",
       "topic_title": "Tools",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-5-tools.md"
     },
     {
       "section_number": "10.2.6",
@@ -4170,7 +4213,8 @@
       "section_title": "MCP",
       "topic_title": "Prompts",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-6-prompts.md"
     },
     {
       "section_number": "10.2.7",
@@ -4179,7 +4223,8 @@
       "section_title": "MCP",
       "topic_title": "Authentication",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-7-authentication.md"
     },
     {
       "section_number": "10.2.8",
@@ -4188,7 +4233,8 @@
       "section_title": "MCP",
       "topic_title": "Authorization",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-8-authorization.md"
     },
     {
       "section_number": "10.2.9",
@@ -4197,7 +4243,8 @@
       "section_title": "MCP",
       "topic_title": "Security",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-9-security.md"
     },
     {
       "section_number": "10.2.10",
@@ -4206,7 +4253,8 @@
       "section_title": "MCP",
       "topic_title": "Enterprise MCP architecture",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "10-tool-calling-ai-interfaces\\02-mcp\\10-2-10-enterprise-mcp-architecture.md"
     },
     {
       "section_number": "11.1.1",
@@ -4215,7 +4263,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Agent definition",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-1-agent-definition.md"
     },
     {
       "section_number": "11.1.2",
@@ -4224,7 +4273,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Perception",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-2-perception.md"
     },
     {
       "section_number": "11.1.3",
@@ -4233,7 +4283,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Reasoning",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-3-reasoning.md"
     },
     {
       "section_number": "11.1.4",
@@ -4242,7 +4293,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Planning",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-4-planning.md"
     },
     {
       "section_number": "11.1.5",
@@ -4251,7 +4303,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Action",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-5-action.md"
     },
     {
       "section_number": "11.1.6",
@@ -4260,7 +4313,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Observation",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-6-observation.md"
     },
     {
       "section_number": "11.1.7",
@@ -4269,7 +4323,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Feedback",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-7-feedback.md"
     },
     {
       "section_number": "11.1.8",
@@ -4278,7 +4333,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "State",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-8-state.md"
     },
     {
       "section_number": "11.1.9",
@@ -4287,7 +4343,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Goals",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-9-goals.md"
     },
     {
       "section_number": "11.1.10",
@@ -4296,7 +4353,8 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Tools",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "11-agentic-ai\\01-agent-fundamentals\\11-1-10-tools.md"
     },
     {
       "section_number": "11.2.1",
@@ -4305,7 +4363,7 @@
       "section_title": "Agent patterns",
       "topic_title": "ReAct",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "section_number": "11.2.2",
