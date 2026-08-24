@@ -2157,7 +2157,7 @@
       "section_title": "AI-specific data",
       "topic_title": "Hybrid search",
       "folder": "03-data-architecture/03-ai-specific-data/",
-      "status": "in_progress"
+      "status": "pending"
     },
     {
       "section_number": "3.3.9",
@@ -2266,7 +2266,7 @@
       "section_title": "Cloud fundamentals",
       "topic_title": "Firewalls",
       "folder": "04-cloud-infrastructure-architecture/01-cloud-fundamentals/",
-      "status": "in_progress"
+      "status": "pending"
     },
     {
       "section_number": "4.1.10",
@@ -3385,7 +3385,7 @@
       "section_title": "LLM patterns",
       "topic_title": "Simple completion",
       "folder": "07-llm-application-engineering/03-llm-patterns/",
-      "status": "in_progress"
+      "status": "pending"
     },
     {
       "section_number": "7.3.2",
@@ -3394,7 +3394,7 @@
       "section_title": "LLM patterns",
       "topic_title": "Chain",
       "folder": "07-llm-application-engineering/03-llm-patterns/",
-      "status": "in_progress"
+      "status": "pending"
     },
     {
       "section_number": "7.3.3",
@@ -4853,7 +4853,7 @@
       "section_title": "LangGraph concepts",
       "topic_title": "Temporal-style durable workflows",
       "folder": "13-ai-orchestration/01-langgraph-concepts/",
-      "status": "in_progress"
+      "status": "pending"
     },
     {
       "section_number": "13.1.18",
@@ -5082,7 +5082,7 @@
       "section_title": "Agent metrics",
       "topic_title": "Number of steps",
       "folder": "14-ai-evaluation/03-agent-metrics/",
-      "status": "in_progress"
+      "status": "pending"
     },
     {
       "section_number": "14.3.6",
@@ -5860,8 +5860,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Test doubles: mocks, stubs, fakes",
-      "status": "in_progress",
-      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/",
+      "output_file": "22-testing-quality-observability-foundations\\01-testing-strategy\\22-1-3-test-doubles-mocks-stubs-fakes.md"
     },
     {
       "section_number": "22.1.4",
@@ -5869,8 +5870,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Property-based testing",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/",
+      "output_file": "22-testing-quality-observability-foundations\\01-testing-strategy\\22-1-4-property-based-testing.md"
     },
     {
       "section_number": "22.1.5",
@@ -5878,8 +5880,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Snapshot testing",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/",
+      "output_file": "22-testing-quality-observability-foundations\\01-testing-strategy\\22-1-5-snapshot-testing.md"
     },
     {
       "section_number": "22.1.6",
@@ -5887,8 +5890,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Chaos engineering basics",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/",
+      "output_file": "22-testing-quality-observability-foundations\\01-testing-strategy\\22-1-6-chaos-engineering-basics.md"
     },
     {
       "section_number": "22.1.7",
@@ -5896,8 +5900,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Load testing",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/",
+      "output_file": "22-testing-quality-observability-foundations\\01-testing-strategy\\22-1-7-load-testing.md"
     },
     {
       "section_number": "22.1.8",
@@ -5905,8 +5910,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Performance testing strategy",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/",
+      "output_file": "22-testing-quality-observability-foundations\\01-testing-strategy\\22-1-8-performance-testing-strategy.md"
     },
     {
       "section_number": "22.1.9",
@@ -5914,8 +5920,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Test data management",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/",
+      "output_file": "22-testing-quality-observability-foundations\\01-testing-strategy\\22-1-9-test-data-management.md"
     },
     {
       "section_number": "22.2.1",
@@ -5923,8 +5930,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Structured logging",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/",
+      "output_file": "22-testing-quality-observability-foundations\\02-observability-foundations\\22-2-1-structured-logging.md"
     },
     {
       "section_number": "22.2.2",
@@ -5932,8 +5940,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Metrics fundamentals",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/",
+      "output_file": "22-testing-quality-observability-foundations\\02-observability-foundations\\22-2-2-metrics-fundamentals.md"
     },
     {
       "section_number": "22.2.3",
@@ -5941,8 +5950,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Distributed tracing basics",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/",
+      "output_file": "22-testing-quality-observability-foundations\\02-observability-foundations\\22-2-3-distributed-tracing-basics.md"
     },
     {
       "section_number": "22.2.4",
@@ -5950,8 +5960,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "OpenTelemetry",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/",
+      "output_file": "22-testing-quality-observability-foundations\\02-observability-foundations\\22-2-4-opentelemetry.md"
     },
     {
       "section_number": "22.2.5",
@@ -5959,8 +5970,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Dashboards",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/",
+      "output_file": "22-testing-quality-observability-foundations\\02-observability-foundations\\22-2-5-dashboards.md"
     },
     {
       "section_number": "22.2.6",
@@ -5968,8 +5980,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Alerting fundamentals",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/",
+      "output_file": "22-testing-quality-observability-foundations\\02-observability-foundations\\22-2-6-alerting-fundamentals.md"
     },
     {
       "section_number": "22.2.7",
@@ -5977,8 +5990,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "SLI/SLO introduction",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/02-observability-foundations/",
+      "output_file": "22-testing-quality-observability-foundations\\02-observability-foundations\\22-2-7-sli-slo-introduction.md"
     },
     {
       "section_number": "22.3.1",
@@ -5986,8 +6000,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "Postmortems",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/",
+      "output_file": "22-testing-quality-observability-foundations\\03-incident-on-call-basics\\22-3-1-postmortems.md"
     },
     {
       "section_number": "22.3.2",
@@ -5995,8 +6010,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "Blameless culture",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/",
+      "output_file": "22-testing-quality-observability-foundations\\03-incident-on-call-basics\\22-3-2-blameless-culture.md"
     },
     {
       "section_number": "22.3.3",
@@ -6004,8 +6020,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "On-call rotations",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/",
+      "output_file": "22-testing-quality-observability-foundations\\03-incident-on-call-basics\\22-3-3-on-call-rotations.md"
     },
     {
       "section_number": "22.3.4",
@@ -6013,8 +6030,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "Runbooks",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/",
+      "output_file": "22-testing-quality-observability-foundations\\03-incident-on-call-basics\\22-3-4-runbooks.md"
     },
     {
       "section_number": "22.3.5",
@@ -6022,8 +6040,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "Incident severity levels",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/03-incident-on-call-basics/",
+      "output_file": "22-testing-quality-observability-foundations\\03-incident-on-call-basics\\22-3-5-incident-severity-levels.md"
     },
     {
       "section_number": "23.1.1",
@@ -6031,8 +6050,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Scalability",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\23-1-1-scalability.md"
     },
     {
       "section_number": "23.1.2",
@@ -6040,8 +6060,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Availability",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\23-1-2-availability.md"
     },
     {
       "section_number": "23.1.3",
@@ -6049,8 +6070,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Reliability",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\23-1-3-reliability.md"
     },
     {
       "section_number": "23.1.4",
@@ -6058,8 +6080,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Durability",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\23-1-4-durability.md"
     },
     {
       "section_number": "23.1.5",
@@ -6067,8 +6090,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Maintainability",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\23-1-5-maintainability.md"
     },
     {
       "section_number": "23.1.6",
@@ -6076,8 +6100,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Performance requirements",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\23-1-6-performance-requirements.md"
     },
     {
       "section_number": "23.1.7",
@@ -6085,8 +6110,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "SLA",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\23-1-7-sla.md"
     },
     {
       "section_number": "23.1.8",
@@ -6094,8 +6120,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "SLO",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "failed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "error": "[WinError 5] Access is denied: 'C:\\\\Users\\\\sarav\\\\source\\\\repos\\\\learn-by-reasoning\\\\learning_path.tmp' -> 'C:\\\\Users\\\\sarav\\\\source\\\\repos\\\\learn-by-reasoning\\\\learning_path.json'"
     },
     {
       "section_number": "23.1.9",
@@ -6103,8 +6130,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "SLI",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\23-1-9-sli.md"
     },
     {
       "section_number": "23.1.10",
@@ -6112,8 +6140,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Capacity planning",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\23-1-10-capacity-planning.md"
     },
     {
       "section_number": "23.2.1",
@@ -6121,8 +6150,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Multi-region architecture",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\23-2-1-multi-region-architecture.md"
     },
     {
       "section_number": "23.2.2",
@@ -6130,8 +6160,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Active-active vs active-passive",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\23-2-2-active-active-vs-active-passive.md"
     },
     {
       "section_number": "23.2.3",
@@ -6139,8 +6170,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Backup strategies",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\23-2-3-backup-strategies.md"
     },
     {
       "section_number": "23.2.4",
@@ -6148,8 +6180,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Restore testing",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\23-2-4-restore-testing.md"
     },
     {
       "section_number": "23.2.5",
@@ -6157,8 +6190,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "RTO / RPO",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\23-2-5-rto-rpo.md"
     },
     {
       "section_number": "23.2.6",
@@ -6166,8 +6200,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Failover design",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\23-2-6-failover-design.md"
     },
     {
       "section_number": "23.2.7",
@@ -6175,8 +6210,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Business continuity planning",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\23-2-7-business-continuity-planning.md"
     },
     {
       "section_number": "23.3.1",
@@ -6184,8 +6220,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Reserved vs spot instances",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\23-3-1-reserved-vs-spot-instances.md"
     },
     {
       "section_number": "23.3.2",
@@ -6193,8 +6230,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Right-sizing",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\23-3-2-right-sizing.md"
     },
     {
       "section_number": "23.3.3",
@@ -6202,8 +6240,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Storage tiering",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\23-3-3-storage-tiering.md"
     },
     {
       "section_number": "23.3.4",
@@ -6211,8 +6250,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Cost allocation & tagging",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\23-3-4-cost-allocation-tagging.md"
     },
     {
       "section_number": "23.3.5",
@@ -6220,8 +6260,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Cost monitoring",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\23-3-5-cost-monitoring.md"
     },
     {
       "section_number": "23.3.6",
@@ -6229,8 +6270,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Autoscaling for cost efficiency",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\23-3-6-autoscaling-for-cost-efficiency.md"
     },
     {
       "section_number": "23.3.7",
@@ -6238,8 +6280,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Multi-cloud cost trade-offs",
-      "status": "pending",
-      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/"
+      "status": "completed",
+      "folder": "23-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
+      "output_file": "23-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\23-3-7-multi-cloud-cost-trade-offs.md"
     },
     {
       "section_number": "24.1.1",
@@ -6247,7 +6290,7 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Code & delivery practices",
       "topic_title": "Code review practices",
-      "status": "pending",
+      "status": "in_progress",
       "folder": "24-technical-leadership-delivery/01-code-delivery-practices/"
     },
     {
