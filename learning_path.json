@@ -5072,7 +5072,8 @@
       "section_title": "Agent metrics",
       "topic_title": "Planning quality",
       "folder": "14-ai-evaluation/03-agent-metrics/",
-      "status": "in_progress"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\03-agent-metrics\\14-3-4-planning-quality.md"
     },
     {
       "section_number": "14.3.5",
@@ -5081,7 +5082,7 @@
       "section_title": "Agent metrics",
       "topic_title": "Number of steps",
       "folder": "14-ai-evaluation/03-agent-metrics/",
-      "status": "pending"
+      "status": "in_progress"
     },
     {
       "section_number": "14.3.6",
@@ -5090,7 +5091,8 @@
       "section_title": "Agent metrics",
       "topic_title": "Failure rate",
       "folder": "14-ai-evaluation/03-agent-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\03-agent-metrics\\14-3-6-failure-rate.md"
     },
     {
       "section_number": "14.3.7",
@@ -5099,7 +5101,8 @@
       "section_title": "Agent metrics",
       "topic_title": "Human intervention rate",
       "folder": "14-ai-evaluation/03-agent-metrics/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "14-ai-evaluation\\03-agent-metrics\\14-3-7-human-intervention-rate.md"
     },
     {
       "section_number": "15.1.1",
@@ -5108,7 +5111,8 @@
       "section_title": "Observability",
       "topic_title": "Logs",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-1-logs.md"
     },
     {
       "section_number": "15.1.2",
@@ -5117,7 +5121,8 @@
       "section_title": "Observability",
       "topic_title": "Metrics",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-2-metrics.md"
     },
     {
       "section_number": "15.1.3",
@@ -5126,7 +5131,8 @@
       "section_title": "Observability",
       "topic_title": "Traces",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-3-traces.md"
     },
     {
       "section_number": "15.1.4",
@@ -5135,7 +5141,8 @@
       "section_title": "Observability",
       "topic_title": "OpenTelemetry",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-4-opentelemetry.md"
     },
     {
       "section_number": "15.1.5",
@@ -5144,7 +5151,8 @@
       "section_title": "Observability",
       "topic_title": "Distributed tracing",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-5-distributed-tracing.md"
     },
     {
       "section_number": "15.1.6",
@@ -5153,7 +5161,8 @@
       "section_title": "Observability",
       "topic_title": "Token usage",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-6-token-usage.md"
     },
     {
       "section_number": "15.1.7",
@@ -5162,7 +5171,8 @@
       "section_title": "Observability",
       "topic_title": "Latency",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-7-latency.md"
     },
     {
       "section_number": "15.1.8",
@@ -5171,7 +5181,8 @@
       "section_title": "Observability",
       "topic_title": "Model calls",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-8-model-calls.md"
     },
     {
       "section_number": "15.1.9",
@@ -5180,7 +5191,8 @@
       "section_title": "Observability",
       "topic_title": "Retrieval traces",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-9-retrieval-traces.md"
     },
     {
       "section_number": "15.1.10",
@@ -5189,7 +5201,8 @@
       "section_title": "Observability",
       "topic_title": "Tool traces",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-10-tool-traces.md"
     },
     {
       "section_number": "15.1.11",
@@ -5198,7 +5211,8 @@
       "section_title": "Observability",
       "topic_title": "Agent traces",
       "folder": "15-llmops-ai-observability/01-observability/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\01-observability\\15-1-11-agent-traces.md"
     },
     {
       "section_number": "15.2.1",
@@ -5207,7 +5221,8 @@
       "section_title": "AI-specific monitoring",
       "topic_title": "Hallucination",
       "folder": "15-llmops-ai-observability/02-ai-specific-monitoring/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\02-ai-specific-monitoring\\15-2-1-hallucination.md"
     },
     {
       "section_number": "15.2.2",
@@ -5216,7 +5231,8 @@
       "section_title": "AI-specific monitoring",
       "topic_title": "Drift",
       "folder": "15-llmops-ai-observability/02-ai-specific-monitoring/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\02-ai-specific-monitoring\\15-2-2-drift.md"
     },
     {
       "section_number": "15.2.3",
@@ -5225,7 +5241,8 @@
       "section_title": "AI-specific monitoring",
       "topic_title": "Retrieval degradation",
       "folder": "15-llmops-ai-observability/02-ai-specific-monitoring/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\02-ai-specific-monitoring\\15-2-3-retrieval-degradation.md"
     },
     {
       "section_number": "15.2.4",
@@ -5234,7 +5251,8 @@
       "section_title": "AI-specific monitoring",
       "topic_title": "Prompt changes",
       "folder": "15-llmops-ai-observability/02-ai-specific-monitoring/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\02-ai-specific-monitoring\\15-2-4-prompt-changes.md"
     },
     {
       "section_number": "15.2.5",
@@ -5243,7 +5261,8 @@
       "section_title": "AI-specific monitoring",
       "topic_title": "Model changes",
       "folder": "15-llmops-ai-observability/02-ai-specific-monitoring/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\02-ai-specific-monitoring\\15-2-5-model-changes.md"
     },
     {
       "section_number": "15.2.6",
@@ -5252,7 +5271,8 @@
       "section_title": "AI-specific monitoring",
       "topic_title": "Cost changes",
       "folder": "15-llmops-ai-observability/02-ai-specific-monitoring/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\02-ai-specific-monitoring\\15-2-6-cost-changes.md"
     },
     {
       "section_number": "15.2.7",
@@ -5261,7 +5281,8 @@
       "section_title": "AI-specific monitoring",
       "topic_title": "Quality degradation",
       "folder": "15-llmops-ai-observability/02-ai-specific-monitoring/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\02-ai-specific-monitoring\\15-2-7-quality-degradation.md"
     },
     {
       "section_number": "15.2.8",
@@ -5270,7 +5291,8 @@
       "section_title": "AI-specific monitoring",
       "topic_title": "Agent loops",
       "folder": "15-llmops-ai-observability/02-ai-specific-monitoring/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\02-ai-specific-monitoring\\15-2-8-agent-loops.md"
     },
     {
       "section_number": "15.2.9",
@@ -5279,7 +5301,8 @@
       "section_title": "AI-specific monitoring",
       "topic_title": "Tool failures",
       "folder": "15-llmops-ai-observability/02-ai-specific-monitoring/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "15-llmops-ai-observability\\02-ai-specific-monitoring\\15-2-9-tool-failures.md"
     },
     {
       "section_number": "16.1.1",
@@ -5288,7 +5311,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Token economics",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-1-token-economics.md"
     },
     {
       "section_number": "16.1.2",
@@ -5297,7 +5321,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Input vs output tokens",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-2-input-vs-output-tokens.md"
     },
     {
       "section_number": "16.1.3",
@@ -5306,7 +5331,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Model selection",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-3-model-selection.md"
     },
     {
       "section_number": "16.1.4",
@@ -5315,7 +5341,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Caching",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-4-caching.md"
     },
     {
       "section_number": "16.1.5",
@@ -5324,7 +5351,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Semantic caching",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-5-semantic-caching.md"
     },
     {
       "section_number": "16.1.6",
@@ -5333,7 +5361,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Prompt caching",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-6-prompt-caching.md"
     },
     {
       "section_number": "16.1.7",
@@ -5342,7 +5371,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Batch inference",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-7-batch-inference.md"
     },
     {
       "section_number": "16.1.8",
@@ -5351,7 +5381,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Model routing",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-8-model-routing.md"
     },
     {
       "section_number": "16.1.9",
@@ -5360,7 +5391,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Small vs large models",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-9-small-vs-large-models.md"
     },
     {
       "section_number": "16.1.10",
@@ -5369,7 +5401,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Embedding costs",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-10-embedding-costs.md"
     },
     {
       "section_number": "16.1.11",
@@ -5378,7 +5411,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Vector database costs",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-11-vector-database-costs.md"
     },
     {
       "section_number": "16.1.12",
@@ -5387,7 +5421,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "GPU costs",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-12-gpu-costs.md"
     },
     {
       "section_number": "16.1.13",
@@ -5396,7 +5431,8 @@
       "section_title": "Learn to reason about",
       "topic_title": "Infrastructure costs",
       "folder": "16-ai-cost-architecture/01-learn-to-reason-about/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "16-ai-cost-architecture\\01-learn-to-reason-about\\16-1-13-infrastructure-costs.md"
     },
     {
       "section_number": "18.1.1",
@@ -5405,7 +5441,8 @@
       "section_title": "Learn",
       "topic_title": "AI governance",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-1-ai-governance.md"
     },
     {
       "section_number": "18.1.2",
@@ -5414,7 +5451,8 @@
       "section_title": "Learn",
       "topic_title": "Model governance",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-2-model-governance.md"
     },
     {
       "section_number": "18.1.3",
@@ -5423,7 +5461,8 @@
       "section_title": "Learn",
       "topic_title": "Data governance",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-3-data-governance.md"
     },
     {
       "section_number": "18.1.4",
@@ -5432,7 +5471,8 @@
       "section_title": "Learn",
       "topic_title": "Privacy",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-4-privacy.md"
     },
     {
       "section_number": "18.1.5",
@@ -5441,7 +5481,8 @@
       "section_title": "Learn",
       "topic_title": "PII",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-5-pii.md"
     },
     {
       "section_number": "18.1.6",
@@ -5450,7 +5491,8 @@
       "section_title": "Learn",
       "topic_title": "Data residency",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-6-data-residency.md"
     },
     {
       "section_number": "18.1.7",
@@ -5459,7 +5501,8 @@
       "section_title": "Learn",
       "topic_title": "Consent",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-7-consent.md"
     },
     {
       "section_number": "18.1.8",
@@ -5468,7 +5511,8 @@
       "section_title": "Learn",
       "topic_title": "Auditability",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-8-auditability.md"
     },
     {
       "section_number": "18.1.9",
@@ -5477,7 +5521,8 @@
       "section_title": "Learn",
       "topic_title": "Explainability",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-9-explainability.md"
     },
     {
       "section_number": "18.1.10",
@@ -5486,7 +5531,8 @@
       "section_title": "Learn",
       "topic_title": "Transparency",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-10-transparency.md"
     },
     {
       "section_number": "18.1.11",
@@ -5495,7 +5541,8 @@
       "section_title": "Learn",
       "topic_title": "Human oversight",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-11-human-oversight.md"
     },
     {
       "section_number": "18.1.12",
@@ -5504,7 +5551,8 @@
       "section_title": "Learn",
       "topic_title": "Risk classification",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-12-risk-classification.md"
     },
     {
       "section_number": "18.1.13",
@@ -5513,7 +5561,8 @@
       "section_title": "Learn",
       "topic_title": "AI policies",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-13-ai-policies.md"
     },
     {
       "section_number": "18.1.14",
@@ -5522,7 +5571,8 @@
       "section_title": "Learn",
       "topic_title": "Model cards",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-14-model-cards.md"
     },
     {
       "section_number": "18.1.15",
@@ -5531,7 +5581,8 @@
       "section_title": "Learn",
       "topic_title": "AI system documentation",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-15-ai-system-documentation.md"
     },
     {
       "section_number": "18.1.16",
@@ -5540,7 +5591,8 @@
       "section_title": "Learn",
       "topic_title": "EU AI Act",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-16-eu-ai-act.md"
     },
     {
       "section_number": "18.1.17",
@@ -5549,7 +5601,8 @@
       "section_title": "Learn",
       "topic_title": "GDPR",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-17-gdpr.md"
     },
     {
       "section_number": "18.1.18",
@@ -5558,7 +5611,8 @@
       "section_title": "Learn",
       "topic_title": "Sector-specific regulation",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-18-sector-specific-regulation.md"
     },
     {
       "section_number": "18.1.19",
@@ -5567,7 +5621,8 @@
       "section_title": "Learn",
       "topic_title": "Financial-services AI governance",
       "folder": "18-responsible-ai-governance/01-learn/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "18-responsible-ai-governance\\01-learn\\18-1-19-financial-services-ai-governance.md"
     },
     {
       "section_number": "19.1.1",
@@ -5576,7 +5631,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "AI gateway",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-1-ai-gateway.md"
     },
     {
       "section_number": "19.1.2",
@@ -5585,7 +5641,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Model gateway",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-2-model-gateway.md"
     },
     {
       "section_number": "19.1.3",
@@ -5594,7 +5651,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "AI service layer",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-3-ai-service-layer.md"
     },
     {
       "section_number": "19.1.4",
@@ -5603,7 +5661,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Prompt registry",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-4-prompt-registry.md"
     },
     {
       "section_number": "19.1.5",
@@ -5612,7 +5671,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Model registry",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-5-model-registry.md"
     },
     {
       "section_number": "19.1.6",
@@ -5621,7 +5681,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Agent registry",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-6-agent-registry.md"
     },
     {
       "section_number": "19.1.7",
@@ -5630,7 +5691,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Tool registry",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-7-tool-registry.md"
     },
     {
       "section_number": "19.1.8",
@@ -5639,7 +5701,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Knowledge platform",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-8-knowledge-platform.md"
     },
     {
       "section_number": "19.1.9",
@@ -5648,7 +5711,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "RAG platform",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-9-rag-platform.md"
     },
     {
       "section_number": "19.1.10",
@@ -5657,7 +5721,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Evaluation platform",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-10-evaluation-platform.md"
     },
     {
       "section_number": "19.1.11",
@@ -5666,7 +5731,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "AI observability platform",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-11-ai-observability-platform.md"
     },
     {
       "section_number": "19.1.12",
@@ -5675,7 +5741,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Guardrail layer",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-12-guardrail-layer.md"
     },
     {
       "section_number": "19.1.13",
@@ -5684,7 +5751,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Policy engine",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-13-policy-engine.md"
     },
     {
       "section_number": "19.1.14",
@@ -5693,7 +5761,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Identity layer",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-14-identity-layer.md"
     },
     {
       "section_number": "19.1.15",
@@ -5702,7 +5771,8 @@
       "section_title": "Enterprise patterns",
       "topic_title": "Audit layer",
       "folder": "19-enterprise-ai-architecture/01-enterprise-patterns/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\01-enterprise-patterns\\19-1-15-audit-layer.md"
     },
     {
       "section_number": "19.2.1",
@@ -5711,7 +5781,8 @@
       "section_title": "Multi-tenancy",
       "topic_title": "Tenant isolation",
       "folder": "19-enterprise-ai-architecture/02-multi-tenancy/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\02-multi-tenancy\\19-2-1-tenant-isolation.md"
     },
     {
       "section_number": "19.2.2",
@@ -5720,7 +5791,8 @@
       "section_title": "Multi-tenancy",
       "topic_title": "Tenant-specific knowledge",
       "folder": "19-enterprise-ai-architecture/02-multi-tenancy/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\02-multi-tenancy\\19-2-2-tenant-specific-knowledge.md"
     },
     {
       "section_number": "19.2.3",
@@ -5729,7 +5801,8 @@
       "section_title": "Multi-tenancy",
       "topic_title": "Tenant-specific memory",
       "folder": "19-enterprise-ai-architecture/02-multi-tenancy/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\02-multi-tenancy\\19-2-3-tenant-specific-memory.md"
     },
     {
       "section_number": "19.2.4",
@@ -5738,7 +5811,8 @@
       "section_title": "Multi-tenancy",
       "topic_title": "Tenant-specific policies",
       "folder": "19-enterprise-ai-architecture/02-multi-tenancy/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\02-multi-tenancy\\19-2-4-tenant-specific-policies.md"
     },
     {
       "section_number": "19.2.5",
@@ -5747,7 +5821,8 @@
       "section_title": "Multi-tenancy",
       "topic_title": "Tenant-specific agents",
       "folder": "19-enterprise-ai-architecture/02-multi-tenancy/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\02-multi-tenancy\\19-2-5-tenant-specific-agents.md"
     },
     {
       "section_number": "19.2.6",
@@ -5756,7 +5831,8 @@
       "section_title": "Multi-tenancy",
       "topic_title": "Tenant-specific models",
       "folder": "19-enterprise-ai-architecture/02-multi-tenancy/",
-      "status": "pending"
+      "status": "completed",
+      "output_file": "19-enterprise-ai-architecture\\02-multi-tenancy\\19-2-6-tenant-specific-models.md"
     },
     {
       "section_number": "22.1.1",
@@ -5764,8 +5840,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Test pyramid trade-offs",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/",
+      "output_file": "22-testing-quality-observability-foundations\\01-testing-strategy\\22-1-1-test-pyramid-trade-offs.md"
     },
     {
       "section_number": "22.1.2",
@@ -5773,8 +5850,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Unit vs integration vs e2e testing",
-      "status": "pending",
-      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
+      "status": "completed",
+      "folder": "22-testing-quality-observability-foundations/01-testing-strategy/",
+      "output_file": "22-testing-quality-observability-foundations\\01-testing-strategy\\22-1-2-unit-vs-integration-vs-e2e-testing.md"
     },
     {
       "section_number": "22.1.3",
@@ -5782,7 +5860,7 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Test doubles: mocks, stubs, fakes",
-      "status": "pending",
+      "status": "in_progress",
       "folder": "22-testing-quality-observability-foundations/01-testing-strategy/"
     },
     {
