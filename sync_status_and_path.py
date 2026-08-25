@@ -41,10 +41,10 @@ from datetime import datetime
 
 # ----------------------------- CONFIG ---------------------------------
 ROOT_DIR = "english"                 # folder that contains 01-..., 02-..., etc.
-JSON_PATH = "C:\Users\sarav\source\repos\learn-by-reasoning\english\ai-solution-architect-learning-path.json"     # path to your JSON file
+JSON_PATH = "learning_path_new.json"     # path to your JSON file
 # ------------------------------------------------------------------------
 
-    
+
 def slugify(text: str) -> str:
     """Matches the slug style already used in your folder names:
     "Architect's Developer Foundation" -> "architect-s-developer-foundation"
