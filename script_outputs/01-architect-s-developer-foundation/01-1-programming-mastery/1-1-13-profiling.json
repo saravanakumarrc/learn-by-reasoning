@@ -1,0 +1,96 @@
+{
+  "section_number": "1.1.13",
+  "prompt_version": "v1",
+  "video_title": "Why Profiling Beats Guessing Performance",
+  "thumbnail_text": "Profile, Don't Guess",
+  "core_insight": "Profiling turns performance from opinion into evidence by showing where time and memory are actually spent under real load, letting you fix the true bottleneck instead of scaling the wrong thing.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "You have a slow service. Logs tell you what happened. Metrics tell you when. Neither tells you why.",
+      "visual": "Dashboard with latency spike, logs and metrics panels, question mark over why.",
+      "on_screen_text": "Logs = what. Metrics = when. Why?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 16,
+      "voice": "The obvious fix is to guess. Add cache because it must be DB. Add replicas because CPU is high. That works until it doesn't.",
+      "visual": "Engineer adding cache and replicas icons, cost meter rising, then regression warning.",
+      "on_screen_text": "Guessing = wasted capacity",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 16,
+      "end_seconds": 26,
+      "voice": "Profiling is an instrument panel, not a debugger. It observes the running system and aggregates where resources go: CPU, allocations, I/O wait, lock contention.",
+      "visual": "Flight data recorder metaphor over code execution, resource gauges filling.",
+      "on_screen_text": "Profiler = instrument panel",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 26,
+      "end_seconds": 40,
+      "voice": "Two ways to collect. Sampling interrupts every few milliseconds and records the call stack. Low overhead, production safe. Instrumentation counts entries and allocations precisely but changes behavior.",
+      "visual": "Split view sampling clock ticks vs instrumentation probes on code.",
+      "on_screen_text": "Sampling vs Instrumentation",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 40,
+      "end_seconds": 52,
+      "voice": "How data flows from live workload to insight.",
+      "visual": "Simple flow diagram animating.",
+      "on_screen_text": "Workload → Profiler → Insight",
+      "mermaid": "flowchart LR\n    A[Live workload] --> B[Profiler Agent]\n    B --> C{Sampling vs Instrumentation}\n    C --> D[Stack samples / events]\n    D --> E[Aggregation]\n    E --> F[Hot paths, alloc rate, contention]"
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 52,
+      "end_seconds": 68,
+      "voice": "Example. Payment API P99 spikes to 800ms. CPU is only 45%. Continuous CPU sampling shows 60% of samples in json.Marshal and allocation rate triples at peak. Reusing buffers and streaming the response drops P99 to 180ms without adding replicas.",
+      "visual": "Latency graph spike, flamegraph highlighting json.Marshal, allocation rate chart, then latency drop.",
+      "on_screen_text": "Hot path found, not more replicas",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 68,
+      "end_seconds": 82,
+      "voice": "Trade-offs. Sampling is safe but noisy. Instrumentation is precise but invasive. Profile in production with real load, not just staging. And correlate with traces, because a hot function in a third-party library may need an architectural fix, not micro-optimization.",
+      "visual": "Warning icons for observer effect, wrong environment, averaging hides tails, third-party code.",
+      "on_screen_text": "Observer effect, real load, context",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 82,
+      "end_seconds": 90,
+      "voice": "Start from a symptom, use sampling in production, and treat a hot path as an architectural signal. Profile to prove why, not to browse code.",
+      "visual": "Mental model card: Metrics = what, Traces = where, Profiles = why.",
+      "on_screen_text": "Metrics what, Traces where, Profiles why",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of observability in three tiers: Metrics tell you what happened, Traces tell you where in the request it happened, Profiles tell you why it cost resources. Use sampling profilers continuously in production for evidence, and instrumentation only for targeted dev deep dives.",
+  "final_takeaway": "Don't scale the guess. Profile the symptom and fix the real bottleneck.",
+  "related_video_ideas": [
+    "When to use sampling vs instrumentation profilers",
+    "How to correlate profiles with traces to find tail latency"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-13-profiling.md"
+  }
+}

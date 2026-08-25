@@ -1,0 +1,88 @@
+{
+  "section_number": "1.3.5",
+  "prompt_version": "v1",
+  "video_title": "Modular Monolith: Logical Separation Without Physical Distribution",
+  "thumbnail_text": "One App, Clear Boundaries",
+  "core_insight": "A modular monolith gives you the developer speed of a monolith with enforced module boundaries, letting you defer microservices until you have proven need for independent scale or deploy.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "voice": "Why do successful apps suddenly feel slow to change? The code works, but every feature touches everything.",
+      "visual": "Developer looking at tangled code lines, then a big ball of mud diagram forming.",
+      "on_screen_text": "Big ball of mud?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 8,
+      "end_seconds": 18,
+      "voice": "A layered monolith is fast at first. As it grows, changes in one feature break unrelated features, tests take minutes, onboarding drags.",
+      "visual": "Simple layered boxes growing into a tangled mesh.",
+      "on_screen_text": "Monolith grows → coupling",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "Microservices fix coupling, but they bring network latency, distributed transactions, separate deploys, and ops overhead. For many products, that cost is too high early on.",
+      "visual": "Boxes split into separate services with network lines, latency icons.",
+      "on_screen_text": "Microservices = independence, complexity",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "So what if you want logical separation without physical distribution? That's a modular monolith: one deployable app with enforced internal boundaries.",
+      "visual": "Single app box containing distinct module districts.",
+      "on_screen_text": "One deploy, clear modules",
+      "mermaid": "flowchart TB\n    subgraph App [Single Deployable Application]\n        direction TB\n        UI[Web/API Layer]\n        subgraph Modules\n            direction LR\n            Billing[Billing Module]\n            Catalog[Catalog Module]\n            Orders[Orders Module]\n        end\n        DB[(Single Database)]\n    end\n    UI --> Billing\n    UI --> Catalog\n    UI --> Orders\n    Billing --> Orders\n    Orders --> Catalog\n    Billing --> DB\n    Catalog --> DB\n    Orders --> DB"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "Each module owns its domain model and exposes a public API. Tools like ArchUnit forbid imports except via that API. No direct access to internals, dependencies are one-directional.",
+      "visual": "Module boxes with public API gate, red cross on direct internal access.",
+      "on_screen_text": "Enforced boundaries, not suggestions",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 75,
+      "voice": "You keep one repo, one database, one deploy, and local transactions. You gain clarity and faster delivery. The trade-off: you can't scale Billing independently of Catalog, and a bug can affect the whole process.",
+      "visual": "Scale arrow up for whole app, warning icon for blast radius.",
+      "on_screen_text": "Vertical scale only",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 75,
+      "end_seconds": 90,
+      "voice": "Think city with districts, not independent cities. Design modules as future services. Extract to microservices only when you prove need for independent deploy cadence, scaling, or team ownership.",
+      "visual": "City map with districts, then one district lifts out as a service.",
+      "on_screen_text": "Districts now, services later",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "A city with districts inside one city limits. Modules are cohesive business capabilities with private internals and a published API, enforced by architectural tests. You get monolith operational simplicity with service-like clarity, and each module is a candidate for future extraction.",
+  "final_takeaway": "Use a modular monolith when you need logical boundaries now and physical boundaries maybe later. Enforce module APIs with tests, and extract only when independent scale or deploy is proven.",
+  "related_video_ideas": [
+    "When does a modular monolith become a distributed monolith?",
+    "How to enforce module boundaries with ArchUnit and import-linter",
+    "Monolith vs Microservices: decision framework for team size and complexity"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-5-modular-monolith.md"
+  }
+}

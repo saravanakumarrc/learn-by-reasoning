@@ -1,0 +1,87 @@
+{
+  "section_number": "1.1.11",
+  "prompt_version": "v1",
+  "video_title": "Refactoring is not rewriting",
+  "thumbnail_text": "Refactor with tests, not hope",
+  "core_insight": "Refactoring is deliberate structural improvement with zero behavior change, made safe by tests and small steps, to lower future change cost and risk.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why do teams avoid touching old code even when the business needs change?",
+      "visual": "Developer hesitating over a large file, red warning icons on tangled code lines.",
+      "on_screen_text": "Why avoid old code?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "Business needs change. Code accretes. Duplication appears, responsibilities blur. A small change touches five files.",
+      "visual": "Layers stacking on a codebase diagram, arrows showing same logic in three places.",
+      "on_screen_text": "Change cost rises non-linearly",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "The problem isn't bad code. It's change cost and risk. Velocity drops, defects rise, team avoids the area.",
+      "visual": "Graph of change cost climbing steeply with complexity.",
+      "on_screen_text": "Problem = change cost",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "Obvious fix? Rewrite it. But rewrites lose implicit behavior and are high risk. Leave it? Debt compounds.",
+      "visual": "Two paths: Rewrite with explosion icon, Leave it with debt pile growing.",
+      "on_screen_text": "Rewrite vs Leave it",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "Refactoring is structural improvement with zero behavior change. Tests first as safety net, then one small change, verify, repeat.",
+      "visual": "Scaffolding around a house with people inside, small edits highlighted.",
+      "on_screen_text": "Tests → Small step → Verify",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 75,
+      "voice": "Example: 400 line processPayment. Extract Validate, Charge, Audit, Notify. Introduce FraudProvider interface. Audit becomes queue write. Behavior unchanged, seams created.",
+      "visual": "Monolith block splitting into labeled boxes with interface seam.",
+      "on_screen_text": "Create seams, not beauty",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 75,
+      "end_seconds": 90,
+      "voice": "Trade-off: capacity now for speed later. No tests means no refactor. Stop when next change is easy, not when code is perfect.",
+      "visual": "Flow diagram showing problem to safe steps to preserved behavior.",
+      "on_screen_text": "Refactor for change, not purity",
+      "mermaid": "flowchart TD\nProblem[Changing business needs] --> Complexity[Code accretes, coupling rises]\nComplexity --> Cost[Change cost and risk increase]\nCost --> Decision{Refactor?}\nDecision -->|Yes| SafetyNet[Tests as safety net]\nSafetyNet --> SmallSteps[Small safe changes, verify]\nSmallSteps --> Preserve[Behavior preserved, structure improved]\nDecision -->|No| Debt[Technical debt compounds]"
+    }
+  ],
+  "mental_model": "Treat code like a house people live in. Refactor by adding scaffolding, moving one load-bearing wall at a time, and verifying nothing collapsed with tests. Improve shape to lower future change cost, not to achieve perfect aesthetics.",
+  "final_takeaway": "Refactor with tests and small steps to lower change cost and risk, not to make code pretty.",
+  "related_video_ideas": [
+    "When to rewrite vs refactor: decision criteria",
+    "Characterization tests: how to create a safety net for legacy code"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-11-refactoring.md"
+  }
+}

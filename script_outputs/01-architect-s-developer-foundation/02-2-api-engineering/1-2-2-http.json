@@ -1,0 +1,96 @@
+{
+  "section_number": "1.2.2",
+  "prompt_version": "v1",
+  "video_title": "Why HTTP Wins at the Edge Even Though It's Inefficient",
+  "thumbnail_text": "HTTP = Operability > Efficiency",
+  "core_insight": "HTTP is a stateless, uniform resource contract that trades raw efficiency for universality, operability and safe intermediaries.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why does almost every public API still use HTTP even though it's verbose and slow?",
+      "visual": "Client icon on left, Server on right, with Proxy/CDN/LB icons between them. Question mark overlay.",
+      "on_screen_text": "Why HTTP at the edge?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "You have services in different languages, behind firewalls, proxies and CDNs. You need a reliable request-response contract that intermediaries can inspect, cache and route without knowing your business logic.",
+      "visual": "Map of distributed services, different tech stacks, network with proxies.",
+      "on_screen_text": "Different stacks, unreliable network, intermediaries",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "Custom binary RPC is efficient inside one org. It breaks at the public internet boundary because firewalls, caches and gateways can't reason about it.",
+      "visual": "Binary blob hitting a firewall with red X, then HTTP text passing through.",
+      "on_screen_text": "Binary RPC works inside. Breaks outside.",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "HTTP is a stateless conversation about resources. Client sends method plus path plus headers plus body. Server replies with status plus headers plus body. State lives in the resource, not the connection.",
+      "visual": "Simple request-response animation with labels.",
+      "on_screen_text": "Stateless resource contract",
+      "mermaid": "flowchart LR\n    C[Client] -->|Request: method + path + headers + body| S[Server]\n    S -->|Response: status + headers + body| C\n    S -.-> P[Proxy / CDN / LB]"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 58,
+      "voice": "The uniform interface lets proxies cache GETs, gateways enforce auth, and clients retry safely using status codes. Methods encode intent and idempotency is a contract, not an implementation detail.",
+      "visual": "Gateway layer showing Auth, Rate Limit, Cache with arrows to service.",
+      "on_screen_text": "Uniform interface = operability",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 58,
+      "end_seconds": 72,
+      "voice": "You pay for this with overhead. Text is verbose, JSON is larger than protobuf, and request-response has no backpressure. You also push state out: sessions live in tokens or external stores.",
+      "visual": "Scale up icons for services, with token and external store icons.",
+      "on_screen_text": "Trade-off: overhead for operability",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 72,
+      "end_seconds": 85,
+      "voice": "So choose HTTP for public APIs and edge integration where you need caching, observability and independent evolution. Choose binary RPC for low-latency internal paths you control.",
+      "visual": "Decision split: Public/Edge -> HTTP, Internal high-throughput -> gRPC.",
+      "on_screen_text": "HTTP for edge, gRPC for internal",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 85,
+      "end_seconds": 90,
+      "voice": "HTTP optimizes for interoperability and operability, not raw speed. That's why it wins at the boundary.",
+      "visual": "Final card with key phrase.",
+      "on_screen_text": "Interoperability > Efficiency at the edge",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of HTTP as a stateless, uniform resource contract. Each request is self-contained with intent in the method and outcome in the status code. Intermediaries can reason about traffic without knowing business logic, which buys you operability at the cost of efficiency.",
+  "final_takeaway": "Use HTTP when you need universality, caching and safe intermediaries; accept overhead for operability.",
+  "related_video_ideas": [
+    "When to choose gRPC over HTTP for internal services",
+    "Idempotency keys and safe retries in HTTP APIs"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-2-http.md"
+  }
+}

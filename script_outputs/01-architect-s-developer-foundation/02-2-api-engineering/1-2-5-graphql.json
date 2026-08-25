@@ -1,0 +1,96 @@
+{
+  "section_number": "1.2.5",
+  "prompt_version": "v1",
+  "video_title": "Why GraphQL Exists: Client-Driven Data Shaping",
+  "thumbnail_text": "One endpoint, client decides shape",
+  "core_insight": "GraphQL inverts control of data shaping from server to client, solving over-fetching and under-fetching at the cost of server complexity and caching.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why does a single API need to serve web, mobile, and partners all at once?",
+      "visual": "Three devices - web, mobile, partner portal - all hitting same backend, with different data needs highlighted.",
+      "on_screen_text": "Same backend, different data needs",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "With REST, the server decides the shape. Mobile asks for id and name, gets email, profile, orders too. That's over-fetching.",
+      "visual": "REST response box showing user object with many fields, mobile client only using two, rest crossed out.",
+      "on_screen_text": "Over-fetching",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 28,
+      "voice": "Or you need user plus orders items price. That's three round trips. Under-fetching.",
+      "visual": "Sequence of three REST calls: /users, /users/{id}/orders, /orders/{id}/items.",
+      "on_screen_text": "Under-fetching = more round trips",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 28,
+      "end_seconds": 38,
+      "voice": "New field needed? Version the API or duplicate endpoints. Frontend is coupled to backend release cycles.",
+      "visual": "Version labels v1, v2 stacking up next to endpoint list.",
+      "on_screen_text": "Version churn",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 38,
+      "end_seconds": 50,
+      "voice": "The real constraint is data shaping, not CRUD. Producers and consumers evolve at different speeds, and network is expensive.",
+      "visual": "Two timelines: backend release slow, frontend iteration fast, with network cost icon.",
+      "on_screen_text": "Problem = data shaping",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 50,
+      "end_seconds": 65,
+      "voice": "GraphQL inverts control. One endpoint, one schema. Client declares exactly what it needs in a single request. Server validates and runs only those resolvers.",
+      "visual": "Client sends query box to /graphql, schema routes to resolvers, returns shaped response.",
+      "on_screen_text": "Client declares shape",
+      "mermaid": "flowchart LR\n    Client -->|POST /graphql { query }| Gateway\n    Gateway --> Schema\n    Schema --> ResolverA[Resolver]\n    Schema --> ResolverB[Resolver]\n    ResolverA --> Service1[(Service)]\n    ResolverB --> Service2[(Service)]"
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 65,
+      "end_seconds": 78,
+      "voice": "You gain frontend autonomy and fewer round trips. You pay with server complexity. Caching is hard because one URL with a POST body. N+1 queries can explode without DataLoader and cost limits.",
+      "visual": "Scale icon up for autonomy, down for caching. N+1 diagram with many small DB calls.",
+      "on_screen_text": "Autonomy vs complexity",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 78,
+      "end_seconds": 90,
+      "voice": "Use GraphQL when many heterogeneous clients need different shapes and UI moves fast. Avoid it when you need simple HTTP caching and service-to-service efficiency.",
+      "visual": "Decision split: many clients + rapid UI -> GraphQL, public stable + CDN -> REST.",
+      "on_screen_text": "Choose for shape variability",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of an API as a data shaping problem. REST pre-shapes responses for the server. GraphQL lets the client shape the response, trading server simplicity for client autonomy.",
+  "final_takeaway": "GraphQL solves client-driven data shaping, not CRUD. One endpoint gives autonomy, but you must architect for cost control.",
+  "related_video_ideas": [
+    "When REST beats GraphQL: caching and simplicity",
+    "Preventing N+1 in GraphQL with DataLoader and query cost limits"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-5-graphql.md"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "section_number": "1.2.12",
+  "prompt_version": "v1",
+  "video_title": "API Gateway: Why a Front Door for Microservices",
+  "thumbnail_text": "Front door, not business logic",
+  "core_insight": "An API Gateway centralizes edge concerns for north-south traffic so clients stay stable while services change, but it must stay thin and stateless to avoid becoming a bottleneck and a hidden monolith.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "You have 20 to 40 microservices. Mobile apps, web, partners all need to call them. Why does this get messy fast?",
+      "visual": "Multiple client icons pointing to many service boxes with tangled lines.",
+      "on_screen_text": "20-40 services, many clients",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "Clients end up discovering the right service, handling retries, knowing versions, and dealing with different protocols. Each service re-implements auth, rate limiting, logging, TLS.",
+      "visual": "Client box with checklist: discovery, retries, versions, protocols. Service boxes each with duplicated auth, rate limit, logging icons.",
+      "on_screen_text": "Duplication in services, fragility in clients",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "Centralizing that in services creates duplication and coupling. Scattering it in clients creates fragility. You need one stable entry point.",
+      "visual": "Two bad patterns highlighted, then a single gateway icon appearing at edge.",
+      "on_screen_text": "Need a stable edge",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "That is the API Gateway. Think front door and traffic cop, not business logic. All external requests enter here. It authenticates, shapes, and routes.",
+      "visual": "Simple flow Client -> Gateway -> Services.",
+      "on_screen_text": "Front door, not business logic",
+      "mermaid": "flowchart LR\n    C[Client] --> G[API Gateway]\n    G --> A[AuthN/Z]\n    G --> R[Rate Limit]\n    G --> S1[Service A]\n    G --> S2[Service B]\n    G --> S3[Service C]"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "It does routing and optional composition, protocol translation, cross-cutting policy like auth, rate limiting, validation, caching, and observability. Services stay focused on domain logic.",
+      "visual": "Gateway box with labels: Routing, Auth, Rate Limit, Transform, Logs/Metrics. Clean arrows to services.",
+      "on_screen_text": "Edge concerns only",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 75,
+      "voice": "When does it help? Many external clients need a stable contract while backends change. You want one place for security, rate limiting, versioning. It decouples client contract from service topology.",
+      "visual": "Client contract stable on left, services changing on right, gateway in middle bridging.",
+      "on_screen_text": "Stable contract, changing topology",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 75,
+      "end_seconds": 90,
+      "voice": "Trade-offs: every request passes through it, so size it right or it adds latency and becomes a hot spot. It is a single point of failure, so run multi-zone active-active. And resist putting business logic here or you create a hidden monolith.",
+      "visual": "Gateway with warning icons: latency, SPOF, business logic creep. Then checkmarks for stateless, horizontal scale, config-driven.",
+      "on_screen_text": "Latency, SPOF, no business logic",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Treat the API Gateway as a stateless edge traffic cop for north-south ingress only. It enforces cross-cutting concerns and hides service topology from clients. Keep it thin; business logic stays in services. Use service mesh for east-west.",
+  "final_takeaway": "API Gateway centralizes edge concerns to decouple clients from services. Keep it stateless and thin, or it becomes a bottleneck and a hidden monolith.",
+  "related_video_ideas": [
+    "Service Mesh vs API Gateway: north-south vs east-west",
+    "Backend for Frontend pattern when clients need different compositions",
+    "Gateway failure modes: thundering herd and config drift"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-12-api-gateways.md"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "section_number": "1.3.2",
+  "prompt_version": "v1",
+  "video_title": "Clean Architecture: Why Dependency Direction Matters",
+  "thumbnail_text": "Core depends on nothing",
+  "core_insight": "Clean Architecture protects business rules by inverting dependencies so frameworks and UI can change without touching the core.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why do small changes in database or API force rewrites in business logic?",
+      "visual": "Split screen: left shows DB schema change rippling into controller code, right shows question mark over tangled code.",
+      "on_screen_text": "Why does a DB change break business logic?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "The real problem isn't layers, it's dependency direction. When core business rules depend on frameworks, databases, or UI, everything is coupled.",
+      "visual": "Arrows pointing outward from Entities to Frameworks, with red warning icons.",
+      "on_screen_text": "Problem = dependency direction",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "Think of a house. Business rules are the foundation and load-bearing walls. Plumbing, electrical, paint are frameworks and UI. You can rewire without moving walls.",
+      "visual": "Simple house cross-section: foundation labeled Business Rules, outer layers labeled Frameworks & UI.",
+      "on_screen_text": "Foundation vs finish",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "Clean Architecture inverts this. Dependencies point inward only. Frameworks and drivers depend on adapters, adapters depend on use cases, use cases depend on entities. Core knows nothing about the outside.",
+      "visual": "Concentric layers animating with arrows pointing inward.",
+      "on_screen_text": "Dependencies point inward",
+      "mermaid": "graph TD\n    FW[Frameworks & Drivers<br/>UI, DB, HTTP, Queue]\n    IA[Interface Adapters<br/>Controllers, Presenters, Gateways]\n    UC[Application Business Rules<br/>Use Cases / Interactors]\n    ENT[Enterprise Business Rules<br/>Entities]\n    FW --> IA\n    IA --> UC\n    UC --> ENT\n    style ENT fill:#111,stroke:#fff,color:#fff"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 58,
+      "voice": "The use case says what to do. Adapters say how to get data in and out. Frameworks are replaceable. You can swap PostgreSQL for DynamoDB or REST for gRPC without touching Order or PlaceOrder.",
+      "visual": "Order entity box stays still while DB and API icons swap around it.",
+      "on_screen_text": "Replace outer layers, keep core",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 58,
+      "end_seconds": 72,
+      "voice": "This buys testability and replaceability, at the cost of indirection and discipline. For a small script or CRUD prototype, the overhead isn't worth it. For complex, long-lived business rules with multiple interfaces, it pays off.",
+      "visual": "Scale graphic: left side small app with checkmark for simple, right side enterprise with checkmark for Clean Architecture.",
+      "on_screen_text": "Trade-off: indirection vs coupling",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 72,
+      "end_seconds": 85,
+      "voice": "Decision rule: use it when the cost of changing the core later exceeds the cost of extra indirection now. Enforce the boundary first: no framework types in entities.",
+      "visual": "Red X over User importing JpaRepository, green check over pure Order.canBePlaced().",
+      "on_screen_text": "No framework types in core",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 85,
+      "end_seconds": 90,
+      "voice": "Clean Architecture is dependency inversion for software. Protect the core, let the outside change.",
+      "visual": "Final lock icon over Entities with arrows pointing inward.",
+      "on_screen_text": "Protect business rules from change",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Treat business rules as the house foundation. Dependencies must point inward so you can rewire plumbing and paint without moving walls. If a change to DB or UI requires editing core logic, the dependency direction is wrong.",
+  "final_takeaway": "Protect business rules by making the core depend on nothing. Frameworks change, the core stays.",
+  "related_video_ideas": [
+    "Hexagonal Architecture vs Clean Architecture: same idea, different names?",
+    "When Clean Architecture hurts: prototypes, CRUD, and the cost of indirection"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-2-clean-architecture.md"
+  }
+}

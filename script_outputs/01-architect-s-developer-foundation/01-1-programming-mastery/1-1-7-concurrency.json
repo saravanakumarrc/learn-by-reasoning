@@ -1,0 +1,96 @@
+{
+  "section_number": "1.1.7",
+  "prompt_version": "v1",
+  "video_title": "Concurrency is about hiding latency, not making one core faster",
+  "thumbnail_text": "Concurrency ≠ Parallelism",
+  "core_insight": "Concurrency overlaps waiting work so the system keeps making progress; parallelism uses multiple cores for CPU work. Choose async for I/O bound, threads/processes for CPU bound, and bound concurrency to stay predictable.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why does a single fast CPU still feel slow under load? The problem isn't compute, it's waiting.",
+      "visual": "Single request timeline with long idle gaps on I/O, CPU utilization drops to zero during waits.",
+      "on_screen_text": "Fast CPU, slow system?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 16,
+      "voice": "One execution path can only do one thing at a time. When a request blocks on DB or network, the thread is wasted for tens of milliseconds.",
+      "visual": "One thread timeline blocked on DB call, idle gap highlighted.",
+      "on_screen_text": "Blocking = wasted thread",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 16,
+      "end_seconds": 26,
+      "voice": "The real constraint is latency hiding and resource utilization. We need progress on B while A is waiting.",
+      "visual": "Two request timelines, A waiting, B starts in the gap.",
+      "on_screen_text": "Make progress while waiting",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 26,
+      "end_seconds": 38,
+      "voice": "Concurrency is overlapping work, not necessarily simultaneous. Think of one chef with many orders, interleaving prep and waiting.",
+      "visual": "Chef analogy with timers, chopping while simmering.",
+      "on_screen_text": "Overlapping, not simultaneous",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 38,
+      "end_seconds": 52,
+      "voice": "Two families. Shared-memory with threads for CPU bound work, but shared state is dangerous. Cooperative event-driven with async await for I/O bound work, one thread, many tasks, never block the loop.",
+      "visual": "Split screen: threads preemptive switching vs event loop with tasks yielding on I/O.",
+      "on_screen_text": "Threads vs Async Event Loop",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 52,
+      "end_seconds": 65,
+      "voice": "The essential mechanism is the same: a scheduler, a way to yield, and a way to resume.",
+      "visual": "Simple flow diagram of API to event loop to tasks.",
+      "on_screen_text": "Scheduler + Yield + Resume",
+      "mermaid": "flowchart LR\n    Client1 --> API[API Handler]\n    Client2 --> API\n    Client3 --> API\n    API --> Loop[Event Loop]\n    Loop --> TaskA[Task A waiting I/O]\n    Loop --> TaskB[Task B CPU work]\n    Loop --> TaskC[Task C waiting I/O]\n    TaskA -- I/O complete --> Loop"
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 65,
+      "end_seconds": 78,
+      "voice": "Choose async for I/O bound APIs and ingestion where most time is waiting. Choose threads or processes for CPU bound work like inference. Mixing both is normal.",
+      "visual": "Payment service diagram: async API layer, bounded worker pool for fraud scoring, queue for events.",
+      "on_screen_text": "Async API + Worker Pool",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 78,
+      "end_seconds": 90,
+      "voice": "Concurrency buys throughput at the cost of reasoning. Bound concurrency, avoid blocking the loop, and design for backpressure and observability from day one.",
+      "visual": "Bounded pool with semaphore, backpressure signal, metrics.",
+      "on_screen_text": "Bound it, observe it",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of concurrency as a chef interleaving orders: you cannot cook two dishes at once, but you can keep the kitchen busy by switching when one is waiting. Async hides I/O latency on one core; threads/processes use multiple cores for CPU work. Always bound concurrency and keep the hot path non-blocking.",
+  "final_takeaway": "Concurrency hides latency, parallelism uses cores. Use async for I/O, threads for CPU, and bound your concurrency.",
+  "related_video_ideas": [
+    "When async blocks the event loop and kills throughput",
+    "Thread pools vs process pools: isolation and CPU utilization trade-offs"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-7-concurrency.md"
+  }
+}

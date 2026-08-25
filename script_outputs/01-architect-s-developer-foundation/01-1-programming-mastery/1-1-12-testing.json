@@ -1,0 +1,97 @@
+{
+  "section_number": "1.1.12",
+  "prompt_version": "v1",
+  "video_title": "Tests are risk contracts, not a checklist",
+  "thumbnail_text": "Fast feedback > 100% coverage",
+  "core_insight": "Testing is risk allocation: use the cheapest test that gives you the signal fast enough for the failure you care about, and reserve expensive tests for risks that only appear with real interactions.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why do teams with 100% coverage still ship breaking changes? The problem isn't missing tests. It's misallocated testing budget.",
+      "visual": "Developer merges PR, green checkmarks, then production alert lights up. Quick zoom to '100% coverage' badge vs incident.",
+      "on_screen_text": "100% coverage ≠ safe",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "Code changes constantly. The real risk is a change in service A silently breaking service B, or a model degrading on real data. You need confidence to move fast.",
+      "visual": "Two services diagram, arrow from Service A change to Service B failure. Small model chart drifting down.",
+      "on_screen_text": "Risk is change, not today's bugs",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 32,
+      "voice": "Testing is a feedback funnel. Each layer trades speed for realism.",
+      "visual": "Simple funnel graphic with labels Unit → Integration → Contract → E2E → Production.",
+      "on_screen_text": "Speed vs fidelity",
+      "mermaid": "flowchart LR\n    CodeChange --> U[Unit: <100ms, isolated]\n    U --> I[Integration: seconds, in-process]\n    I --> C[Contract: cross-service, mocked]\n    C --> E[E2E / Prod-like: minutes, real infra]\n    E --> Deploy\n    Deploy --> Observability"
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 32,
+      "end_seconds": 45,
+      "voice": "Unit tests catch logic fast and cheap. Integration catches wiring, DB, queues. Contract tests protect decoupled teams from silent breaking changes. E2E proves critical journeys, but it's slow and flaky.",
+      "visual": "Four cards appear with icons: Unit = function, Integration = DB, Contract = two services handshake, E2E = browser checkout.",
+      "on_screen_text": "Different risks, different tests",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 58,
+      "voice": "The constraint is cost. Fast tests get run. Slow tests get skipped. A 40-minute suite is a dead suite. Push risk left: if a cheap fast test can catch it, don't pay for an expensive slow one.",
+      "visual": "CI timeline bar growing from 2 min to 55 min, developer clicking 'skip tests'. Red X on skipped pipeline.",
+      "on_screen_text": "Slow tests don't run",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 58,
+      "end_seconds": 72,
+      "voice": "So what do you change first when CI is 55 minutes and a gRPC contract broke prod? Add a cheap contract test at the boundary. It fails in seconds on a schema change, no full stack needed. Keep E2E for nightly critical paths only.",
+      "visual": "Before/after split: left full K8s spin up per PR, right small contract check with green check. E2E moved to nightly clock.",
+      "on_screen_text": "Contract test > full E2E per PR",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 72,
+      "end_seconds": 85,
+      "voice": "For AI, you don't test exact output. You test data contracts, feature pipelines, and statistical properties. Golden datasets and drift monitors are your production tests.",
+      "visual": "Model box with input data contract check, golden dataset, and drift gauge rising.",
+      "on_screen_text": "AI: test invariants, not outputs",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 85,
+      "end_seconds": 90,
+      "voice": "Tests are executable risk contracts. Ask: what failure am I preventing, how fast must I know, and what's the cheapest test for that signal?",
+      "visual": "Text card with three questions fading in.",
+      "on_screen_text": "What failure? How fast? Cheapest signal?",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of tests as a portfolio of risk contracts. Allocate testing budget by failure cost and detection speed. Push risk left with cheap fast tests, reserve expensive realistic tests for risks that only emerge with real interactions. Keep signal-to-noise high.",
+  "final_takeaway": "Fast feedback beats exhaustive coverage. Invest tests where failure cost is highest.",
+  "related_video_ideas": [
+    "Contract testing vs E2E: when decoupling demands contracts",
+    "Flaky tests and test debt: why signal quality matters more than count",
+    "Testing AI systems: data contracts, golden sets, and drift monitoring"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-12-testing.md"
+  }
+}

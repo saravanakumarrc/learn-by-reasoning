@@ -1,0 +1,87 @@
+{
+  "section_number": "2.1.14",
+  "prompt_version": "v1",
+  "video_title": "Why Distributed Transactions Can't Be ACID",
+  "thumbnail_text": "ACID stops at network",
+  "core_insight": "ACID guarantees break at network boundaries; you can’t hold locks across services, so you must trade immediate atomicity for local transactions with compensations.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "If you have two accounts in different services, can you still do an all-or-nothing transfer?",
+      "visual": "Two service boxes with separate databases, an arrow trying to wrap both in one box labeled ACID.",
+      "on_screen_text": "ACID stops at network",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "A single database gives you atomicity: debit A and credit B both happen or neither happens. That works because there is one log and one lock manager.",
+      "visual": "Single DB with one transaction box covering two rows, check mark.",
+      "on_screen_text": "One DB = one transaction",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "Put the accounts in different services and you cross a network. No shared lock manager, no single log, and the network can partition or delay.",
+      "visual": "Network line between services, lock icon broken in middle.",
+      "on_screen_text": "Network = no shared locks",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "The obvious fix is 2PC: coordinator asks all participants to prepare, then commit or abort. It gives strong atomicity but locks resources until decision and needs everyone available.",
+      "visual": "Coordinator box with prepare/commit arrows to two participants.",
+      "on_screen_text": "2PC = strong but brittle",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "In microservices that is a distributed lock and a single point of failure. The practical way is to make each step a local transaction and define a compensation.",
+      "visual": "Three steps in a row, each with a local commit check, and a reverse arrow labeled compensate.",
+      "on_screen_text": "Local commit + compensation",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 75,
+      "voice": "That is a Saga. Orchestrator runs reserve inventory, charge payment, schedule shipping. If payment fails, it triggers release reservation. Services stay autonomous.",
+      "visual": "Sequence diagram of orchestrator to inventory, payment, shipping with compensation note.",
+      "on_screen_text": "Saga = eventual all-or-nothing",
+      "mermaid": "sequenceDiagram\n    participant Orchestrator\n    participant Inventory\n    participant Payment\n    participant Shipping\n    Orchestrator->>Inventory: reserve items\n    Inventory-->>Orchestrator: reserved\n    Orchestrator->>Payment: charge card\n    Payment-->>Orchestrator: charged\n    Orchestrator->>Shipping: schedule\n    Shipping-->>Orchestrator: scheduled\n    Note over Orchestrator,Shipping: If payment fails -> compensate inventory\n    Orchestrator->>Inventory: release reservation"
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 75,
+      "end_seconds": 90,
+      "voice": "You gain availability and autonomy, you sacrifice immediate consistency. Design for idempotent steps and reliable outbox delivery, not distributed locks.",
+      "visual": "Scale up icon vs clock icon, trade-off balance.",
+      "on_screen_text": "Availability vs immediate consistency",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of distributed transactions as coordinating independent actors who each commit locally. Choose all-or-nothing now with coordination cost, or all-or-nothing eventually with local transactions plus compensations.",
+  "final_takeaway": "ACID does not cross network boundaries for free. Use local transactions with compensations when availability matters more than immediate atomicity.",
+  "related_video_ideas": [
+    "When to use 2PC vs Saga in practice",
+    "Outbox pattern for reliable event delivery"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\02-distributed-systems\\01-core-concepts\\2-1-14-distributed-transactions.md"
+  }
+}

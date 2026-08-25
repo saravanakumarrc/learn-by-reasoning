@@ -1,0 +1,96 @@
+{
+  "section_number": "1.2.10",
+  "prompt_version": "v1",
+  "video_title": "Why API Authentication Is a Trust Boundary, Not a Login Form",
+  "thumbnail_text": "Stateless auth, not sessions",
+  "core_insight": "Authentication in distributed APIs is about proving identity on every request without a central bottleneck; signed, short-lived tokens let APIs verify locally and scale horizontally, while revocation is handled via TTL and refresh rotation rather than per-request DB checks.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "voice": "Why do APIs need authentication at all? HTTP is stateless, so every request looks the same.",
+      "visual": "Browser, mobile app, and server icons sending requests to an API gateway; requests appear identical with no identity.",
+      "on_screen_text": "HTTP is stateless",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 8,
+      "end_seconds": 18,
+      "voice": "The real problem isn’t adding a login. It’s proving who is calling, every request, in a distributed system without a central bottleneck.",
+      "visual": "Map of distributed services with a question mark over each request: who is this?",
+      "on_screen_text": "Prove identity per request",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "The obvious first idea is server sessions with cookies. Server remembers you. Simple revocation, but it doesn’t scale horizontally and breaks for mobile and cross-domain APIs.",
+      "visual": "Server box holding session table; new API instance appears and can’t see session.",
+      "on_screen_text": "Sessions = state",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "Modern APIs use claim-based signed tokens. Client authenticates once with an Auth Server, gets a signed JWT with claims like sub, exp, aud, scope. API verifies signature locally, no DB lookup.",
+      "visual": "Flow diagram of client to Auth Server to API with token in Authorization header.",
+      "on_screen_text": "Signed token, verify locally",
+      "mermaid": "flowchart LR\n    C[Client] -->|credentials| AS[Auth Server]\n    AS -->|signed token| C\n    C -->|token in Authorization header| API\n    API -->|verify signature, check claims| API\n    API -->|allow/deny| C"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 58,
+      "voice": "That gives you stateless verification and horizontal scale. The constraint is revocation. You can’t revoke a signed token instantly without state.",
+      "visual": "Token with expiry clock; revocation list icon appears with warning.",
+      "on_screen_text": "Stateless vs revocable",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 58,
+      "end_seconds": 70,
+      "voice": "So we accept a trade-off: short-lived access tokens, about five to fifteen minutes, plus refresh token rotation. Security improves with short TTL, latency stays low because verification is local.",
+      "visual": "Access token short timer, refresh token rotating; API verifies signature quickly.",
+      "on_screen_text": "Short TTL + refresh rotation",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 70,
+      "end_seconds": 82,
+      "voice": "Decision rule: first-party apps use Authorization Code plus PKCE with short access and HttpOnly refresh. Third parties use OAuth2 OIDC with scopes. Internal services prefer mTLS or signed service tokens.",
+      "visual": "Three columns: Browser app, Partner, Internal service with icons for cookies, OAuth, mTLS.",
+      "on_screen_text": "Choose by client type",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 82,
+      "end_seconds": 90,
+      "voice": "Authentication is a trust boundary. Use signed tokens for scale, keep them small, verify locally, and handle revocation with lifetime, not lookups.",
+      "visual": "Border crossing metaphor: passport check then visa check; token as passport.",
+      "on_screen_text": "Passport = auth, visa = authz",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of authentication as a border crossing: the passport is a signed, short-lived claim you can verify locally without calling the issuer. Authorization is the visa check against policy. Scale comes from stateless verification; control comes from short lifetimes and refresh rotation.",
+  "final_takeaway": "Stateless signed tokens scale APIs; revocation is managed by short TTLs and refresh rotation, not per-request checks.",
+  "related_video_ideas": [
+    "When to use mTLS vs JWT for service-to-service auth",
+    "OAuth2 flows explained: Authorization Code + PKCE vs Client Credentials"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-10-authentication.md"
+  }
+}

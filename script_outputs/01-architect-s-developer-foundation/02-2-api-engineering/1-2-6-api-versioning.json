@@ -1,0 +1,96 @@
+{
+  "section_number": "1.2.6",
+  "prompt_version": "v1",
+  "video_title": "Why API Versioning Exists",
+  "thumbnail_text": "Versioning = Time Travel for Contracts",
+  "core_insight": "API versioning decouples producer and consumer release cycles by keeping multiple contract versions alive in parallel, routing callers to the version they understand, and retiring old versions on a schedule.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "voice": "Here’s the uncomfortable truth about APIs: once you ship a shape, thousands of clients start depending on it.",
+      "visual": "Close-up of a POST /orders request with fields {item, qty} being called by multiple client icons. A red warning appears as a field is crossed out.",
+      "on_screen_text": "APIs are contracts",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 8,
+      "end_seconds": 18,
+      "voice": "Product wants to add price, rename qty to quantity, change error codes. You can’t update every mobile app and partner at once.",
+      "visual": "Timeline showing mobile app updates lagging months, internal services deploying on different cadences, partner SLA badge.",
+      "on_screen_text": "Clients update at different speeds",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 28,
+      "voice": "The real problem isn’t change. It’s the constraint: ship new behavior while old clients keep working, without forking your codebase into unmaintainable copies.",
+      "visual": "Split screen: left shows new feature request, right shows old client breaking with error icon. A scale balances 'evolve' vs 'breakage'.",
+      "on_screen_text": "Evolve without breaking",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 28,
+      "end_seconds": 40,
+      "voice": "The obvious fix is strict backward compatibility: only add optional fields, never rename. That works for small internal teams, but fails when semantics must change.",
+      "visual": "Code diff showing only additive optional fields. Then a red X over a rename from qty to quantity.",
+      "on_screen_text": "Backward compat only → hits a wall",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 40,
+      "end_seconds": 55,
+      "voice": "Versioning is time travel for your contract. Keep v1 and v2 alive in parallel. The client promises which contract it speaks, the gateway routes to the right implementation.",
+      "visual": "Simple flowchart animating client promises to router to service versions.",
+      "on_screen_text": "Client promise → Router → Implementation",
+      "mermaid": "flowchart LR\n    ClientA -->|v1| Router\n    ClientB -->|v2| Router\n    Router -->|route| Service_v1\n    Router -->|route| Service_v2\n    Service_v1 --> DB\n    Service_v2 --> DB"
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 55,
+      "end_seconds": 68,
+      "voice": "Version can be in the URI like /v1/orders, a header like Accept-Version, or content negotiation. Pick one visible scheme early and stick with it.",
+      "visual": "Three request examples highlighting URI, header, and Accept media type.",
+      "on_screen_text": "URI, Header, Content negotiation",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 68,
+      "end_seconds": 80,
+      "voice": "You gain independent release cycles. You pay for it with version explosion, data model drift, and ops overhead. The hidden cost is adapters that map a single domain model to multiple contract shapes.",
+      "visual": "Domain model in center with adapters branching to v1 and v2 response shapes. Metrics dashboard shows requests per version.",
+      "on_screen_text": "Gain: decoupling. Cost: maintenance",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 80,
+      "end_seconds": 90,
+      "voice": "Version when you have external consumers, long-lived clients, or independent teams. Monitor usage per version and retire aggressively. Keeping old versions is a liability.",
+      "visual": "Deprecation timeline with traffic dropping below 1% and a sunset icon.",
+      "on_screen_text": "Monitor → Deprecate → Retire",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of versioning as decoupling release cycles via explicit client promises. Client declares version → Gateway routes → Implementation evolves. Compatibility cost lives in adapters and data model, not just routing. Retire versions on metrics, not feelings.",
+  "final_takeaway": "Versioning exists to decouple producer and consumer release cycles. Ship new behavior without breaking old clients, and retire old versions on a schedule.",
+  "related_video_ideas": [
+    "When to use URI vs Header versioning and why visibility matters for debugging",
+    "Adapter pattern for API versioning: mapping one domain model to multiple contract shapes"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-6-api-versioning.md"
+  }
+}

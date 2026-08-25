@@ -1,0 +1,96 @@
+{
+  "section_number": "1.2.9",
+  "prompt_version": "v1",
+  "video_title": "Rate Limiting: The Bouncer for Your API",
+  "thumbnail_text": "Why 429 exists",
+  "core_insight": "Rate limiting makes finite capacity predictable and fair by controlling admission rate, not by blocking bad actors only.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "voice": "Why does an API return 429 Too Many Requests even for paying customers?",
+      "visual": "Close-up of API response 429 flashing, then zoom out to a busy API gateway with request lines piling up.",
+      "on_screen_text": "Why 429?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 8,
+      "end_seconds": 18,
+      "voice": "An API can handle X requests per second. Clients can generate 100X. One noisy tenant or a retry bug can saturate workers, raise latency for everyone, and exhaust downstream quotas.",
+      "visual": "Simple line graph: capacity flat at X, demand spike to 100X, latency climbing.",
+      "on_screen_text": "Unbounded demand vs finite capacity",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "The obvious fix is autoscale or queue everything. Autoscaling helps average load but not spikes and cost. Queuing is good if latency tolerant, bad if you must reject fast.",
+      "visual": "Split screen: autoscaling up/down icons vs queue building up, with a red X on both for spike case.",
+      "on_screen_text": "Autoscale? Queue? Not enough",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 42,
+      "voice": "You need a control point that says you may use this resource, but only at a sustainable pace. That’s rate limiting. Think nightclub bouncer with a fixed number of bartenders.",
+      "visual": "Nightclub analogy: bouncer with clicker letting people in at steady pace, bar inside with limited bartenders.",
+      "on_screen_text": "Rate limiter = bouncer",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 42,
+      "end_seconds": 58,
+      "voice": "On each request the limiter checks budget. If yes, allow and decrement. If no, return 429. Budget is defined by rate, sustained capacity, and burst, how much can be borrowed up front.",
+      "visual": "Token bucket animation: tokens refill at rate, request consumes one token, bucket empties then refills.",
+      "on_screen_text": "Rate = sustained, Burst = upfront",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 58,
+      "end_seconds": 72,
+      "voice": "Token bucket allows bursts then smooths to rate. Fixed or sliding window is simpler but can allow double burst at window edges. Distributed enforcement trades accuracy for performance.",
+      "visual": "Mermaid flowchart showing request flow through limiter to service or 429.",
+      "on_screen_text": "Where to enforce?",
+      "mermaid": "flowchart LR\n    Client --> Gateway\n    Gateway --> Limiter{Rate Limiter}\n    Limiter -->|allow| Service\n    Limiter -->|reject 429| Client\n    Limiter --> Store[(Counter / Bucket)]"
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 72,
+      "end_seconds": 84,
+      "voice": "Granularity matters. Per API key for contracts, per tenant for fairness, global for downstream protection. Enforce at edge for cost and DDoS, and service level for business logic. Always return 429 with Retry-After and expect clients to backoff with jitter.",
+      "visual": "Layers diagram: Edge gateway limiter, then service limiter, with labels per-IP, per-key, global.",
+      "on_screen_text": "Edge + Service, with Retry-After",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 84,
+      "end_seconds": 90,
+      "voice": "Rate limiting isn’t about blocking attackers. It’s about making finite capacity predictable and fair.",
+      "visual": "Bouncer clicker morphs into token bucket icon, then text takeaway.",
+      "on_screen_text": "Make capacity predictable",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Treat rate limiting as an admission controller, like a bouncer with a clicker. Rate is the long-term service speed, burst is the initial queue you allow. Choose granularity and location based on what you need to protect: cost, latency, downstream quotas, fairness. Accept small overage for speed in distributed systems.",
+  "final_takeaway": "Rate limiting makes finite capacity predictable and fair. Use token bucket for burst tolerance, enforce at the right granularity and location, and always return 429 with Retry-After.",
+  "related_video_ideas": [
+    "Backpressure vs Rate Limiting: When to queue and when to reject",
+    "Token Bucket vs Fixed Window: Burst tolerance trade-offs in practice"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-9-rate-limiting.md"
+  }
+}

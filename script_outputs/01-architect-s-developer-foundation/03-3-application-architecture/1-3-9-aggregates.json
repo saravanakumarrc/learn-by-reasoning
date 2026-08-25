@@ -1,0 +1,88 @@
+{
+  "section_number": "1.3.9",
+  "prompt_version": "v1",
+  "video_title": "Why Aggregates Exist: Consistency Boundary, Not a Table",
+  "thumbnail_text": "Aggregate = Consistency Boundary",
+  "core_insight": "An aggregate is a transactional consistency boundary that groups related domain objects under one root so invariants are enforced atomically without locking the whole database.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why do we need aggregates at all? Because related objects must stay consistent together.",
+      "visual": "Close-up of an Order with items, total, status, payment flickering out of sync.",
+      "on_screen_text": "Why aggregates?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "An Order has items, a total, a status, a payment. Update them independently and you get a cancelled order with new items, or a total that doesn't match items.",
+      "visual": "Split screen showing partial writes leading to invalid state: cancelled + new item, total mismatch.",
+      "on_screen_text": "Partial writes = invalid state",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "The obvious fix is a big database transaction. That works, but it locks a lot and couples services. The other extreme is accept eventual consistency everywhere and write compensating logic for every invariant.",
+      "visual": "Scale diagram: big DB transaction covering whole DB vs scattered services with compensations.",
+      "on_screen_text": "Big TX vs eventual consistency",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "We need a boundary smaller than the whole database and larger than a single row. That's an aggregate: a consistency boundary with one owner.",
+      "visual": "Mermaid graph showing Client -> Aggregate Root -> Entities/Value Objects, Repository loads/saves whole graph.",
+      "on_screen_text": "Aggregate = consistency boundary",
+      "mermaid": "graph TD\n    Client --> AR[Aggregate Root]\n    AR --> E1[Entity]\n    AR --> E2[Entity]\n    AR --> VO[Value Object]\n    AR -. enforces invariants .-> State\n    Repository -->|load/save whole graph| AR"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "All changes go through the root. The root checks the whole graph before mutating. Children are private; nothing outside holds a direct reference to them.",
+      "visual": "Animation of addItem() call entering root, root validating total and status, then persisting.",
+      "on_screen_text": "Root enforces invariants",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 75,
+      "voice": "Trade-off: a larger aggregate means more data loaded per transaction and higher contention. Keep aggregates small and cohesive. For queries, use read models, not the aggregate.",
+      "visual": "Size vs contention curve rising with aggregate size, then read model arrow for queries.",
+      "on_screen_text": "Size vs contention",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 75,
+      "end_seconds": 90,
+      "voice": "So model aggregates around business transactions, not tables. The aggregate is the unit of consistency, not the unit of persistence.",
+      "visual": "Order aggregate example with invariant total == sum(items) and valid status transitions highlighted.",
+      "on_screen_text": "Unit of consistency",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of an aggregate as a single unit of work with one owner. Load the whole graph, mutate only via the root, persist the whole graph. Use IDs for cross-aggregate references, domain events or sagas for coordination.",
+  "final_takeaway": "Aggregate is a consistency boundary, not a performance trick. Root enforces invariants; keep it small and use read models for queries.",
+  "related_video_ideas": [
+    "When to split an aggregate: size vs contention trade-off",
+    "Aggregates vs Sagas: when to use eventual consistency across services",
+    "Read models vs aggregates: CQRS separation for queries and writes"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-9-aggregates.md"
+  }
+}

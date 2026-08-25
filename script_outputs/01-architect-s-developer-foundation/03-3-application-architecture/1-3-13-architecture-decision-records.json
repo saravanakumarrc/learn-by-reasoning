@@ -1,0 +1,88 @@
+{
+  "section_number": "1.3.13",
+  "prompt_version": "v1",
+  "video_title": "Why Architecture Decisions Disappear and How ADRs Fix It",
+  "thumbnail_text": "Why did we choose Kafka?",
+  "core_insight": "An ADR is a time-stamped audit trail of why an architecture choice was made under specific constraints, not documentation of what was built. It makes trade-offs explicit now so you can learn from them later.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Six months after shipping, a new engineer asks: Why did we pick Kafka over SQS for events?",
+      "visual": "Engineer at desk, Slack thread and old design doc on screen, question bubble 'Why Kafka?'",
+      "on_screen_text": "Why did we pick Kafka over SQS?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "The answer is in a Slack thread, a lost doc, or someone's head. Teams re-debate the same choice, or undo it without knowing the constraints that shaped it.",
+      "visual": "Split screen: fading Slack messages, unlinked doc, person leaving. Redo icon over architecture diagram.",
+      "on_screen_text": "Knowledge lost = re-debate",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "As systems grow, decisions compound. Requirements change, people leave, code drifts from intent. Without a durable record of why, you lose accountability and waste time reconstructing history.",
+      "visual": "Timeline of system growth, people icons leaving, code diverging from intent arrow.",
+      "on_screen_text": "Decisions compound over time",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "An Architecture Decision Record is a lightweight, time-stamped log of a significant choice and the reasoning behind it. Think of it as a commit message for architecture.",
+      "visual": "Markdown file /docs/adr/001-kafka-events.md opens. Fields appear: Context, Options, Decision, Consequences.",
+      "on_screen_text": "ADR = commit message for architecture",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "Context and constraints at the time, options considered, decision made, consequences accepted. Status moves Proposed to Accepted to Superseded. You never edit an old ADR, you create a new one that links back.",
+      "visual": "Simple flow diagram animating.",
+      "on_screen_text": "Context → Options → Decision → Consequences",
+      "mermaid": "flowchart LR\n    Context[Context + Constraints] --> Options[Options]\n    Options --> Decision[Decision]\n    Decision --> Consequences[Consequences]\n    Consequences --> ADR[ADR Accepted]\n    ADR -->|time passes| Review[Review / New Context]\n    Review -->|changed| NewADR[New ADR Supersedes]"
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 75,
+      "voice": "This helps with memory loss for new hires, prevents re-debate by showing what was known then, and makes risk visible. Don't ADR every dependency bump. Use it when the choice shapes the system and is hard to reverse.",
+      "visual": "Checklist appears: data model, service boundaries, consistency model, deployment topology. Threshold note: hard to reverse >1 sprint?",
+      "on_screen_text": "Use for irreversible, high-impact choices",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 75,
+      "end_seconds": 90,
+      "voice": "Trade-off: ADRs can rot if never updated, or create noise if overused. Keep the template minimal, time-box to about twenty minutes, and treat the record as a hypothesis with metrics that would prove it wrong.",
+      "visual": "Warning icons for ADR rot and over-documentation, then minimal template and metric gauge.",
+      "on_screen_text": "Small, time-stamped, supersedable",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Treat architecture as a series of time-bound hypotheses. An ADR captures the context, options, and accepted trade-offs at that moment, so future you can judge if the hypothesis still holds instead of re-debating from scratch.",
+  "final_takeaway": "ADRs don't guarantee the right decision, they make the reasoning inspectable and reversible over time.",
+  "related_video_ideas": [
+    "When to write an ADR vs a simple note",
+    "How to write a good ADR in 20 minutes",
+    "ADR rot: how to keep decision records alive"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-13-architecture-decision-records.md"
+  }
+}

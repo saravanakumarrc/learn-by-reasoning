@@ -1,0 +1,87 @@
+{
+  "section_number": "2.1.13",
+  "prompt_version": "v1",
+  "video_title": "Why Retries Create Duplicate Payments",
+  "thumbnail_text": "Retries ≠ Duplicates",
+  "core_insight": "Idempotency makes repeated requests for the same intent collapse to a single effect by anchoring retries to a stable idempotency key and a deduplication store.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why do retries in a distributed API sometimes create duplicate payments?",
+      "visual": "Client phone sending POST /payments, network icon flickers, response lost.",
+      "on_screen_text": "Retries ≠ Duplicates?",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "You send POST /payments. The service creates the payment, but the response is lost. The client retries. Now you have two payments for one intent.",
+      "visual": "Sequence: Client → API → Payment created. Response drops. Client retries, second payment created.",
+      "on_screen_text": "At-least-once delivery + non-idempotent write = duplicate",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "The obvious fix is to stop retries. That gives at-most-once, but you lose reliability. Exactly-once needs distributed transactions and global coordination. Impractical at scale.",
+      "visual": "Three options on cards: Stop retries, Exactly-once, Idempotency. X on first two.",
+      "on_screen_text": "Stop retries = unreliable. Exactly-once = impractical",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "Idempotency means applying the same operation N times has the same effect as once. SET volume = 10 is idempotent. INCREMENT volume is not.",
+      "visual": "Split screen: SET to 10 run twice stays 10. INCREMENT run twice goes 10 → 12.",
+      "on_screen_text": "Same effect after N times",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 65,
+      "voice": "For non-idempotent writes like POST /payments, make the intent addressable. Client sends a stable idempotency key. Service checks a dedupe store. Hit, return cached response. Miss, process once, store result, then return.",
+      "visual": "Flow diagram of client, API, idempotency store, payment service.",
+      "on_screen_text": "Key anchors the intent",
+      "mermaid": "flowchart LR\n    C[Client] -->|POST /payments {idempotencyKey: abc123}| A[API]\n    A --> D[(Idempotency Store)]\n    D -->|hit| A\n    D -->|miss| A\n    A -->|process once| P[Payment Service]\n    A -->|store result| D\n    A --> C"
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 65,
+      "end_seconds": 78,
+      "voice": "First call creates payment pay_123 and caches key → pay_123. Retry with same key returns cached pay_123. No double charge. New key each retry would still double charge. Idempotency is a client-server contract.",
+      "visual": "First request miss → create & store. Second request hit → return cached.",
+      "on_screen_text": "Same key = same effect",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 78,
+      "end_seconds": 90,
+      "voice": "You gain safe retries without coordination. You pay with state: store keys with TTL, design keys as client + operation + business key, and handle partial failures where process succeeds but store write fails.",
+      "visual": "Trade-off scale: Reliability up, State management cost up. TTL clock on keys.",
+      "on_screen_text": "Effectively once, not free",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think in intents, not requests. Give each business intent a stable identity via an idempotency key, and let the API collapse repeated requests for that identity to one effect using a deduplication store.",
+  "final_takeaway": "Idempotency makes retries safe by making the same intent idempotent, not by stopping retries.",
+  "related_video_ideas": [
+    "When is PUT naturally idempotent and POST is not?",
+    "Exactly-once vs effectively-once in distributed messaging"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\02-distributed-systems\\01-core-concepts\\2-1-13-idempotency.md"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "section_number": "2.1.2",
+  "prompt_version": "v1",
+  "video_title": "Threads: Why Shared Memory Concurrency Is a Trade-off",
+  "thumbnail_text": "Threads = Shared Kitchen",
+  "core_insight": "Threads give cheap concurrency with shared memory inside one process, but shared state creates coordination cost; choose threads when you need blocking synchronous code and in-process sharing, not for massive I/O concurrency.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why does a single web service choke under load? One execution path can do only one thing at a time.",
+      "visual": "Single line of requests queuing behind a slow DB call, latency rising.",
+      "on_screen_text": "One thread = one thing at a time",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 16,
+      "voice": "You need many independent units of work on one machine, but a process per request is too heavy. The problem is modeling concurrency cheaply with isolation and resource control.",
+      "visual": "Process per request balloons memory vs thread pool reusing workers.",
+      "on_screen_text": "Need concurrency, not process explosion",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 16,
+      "end_seconds": 28,
+      "voice": "A thread is a lightweight execution context sharing an address space. Think of a process as a kitchen, threads as chefs sharing knives and counters.",
+      "visual": "Kitchen analogy with multiple chefs sharing same station.",
+      "on_screen_text": "Process = kitchen, Threads = chefs",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 28,
+      "end_seconds": 42,
+      "voice": "A thread pool pre-creates workers and reuses them. Request in, idle worker picks it up, blocks on I/O, scheduler runs another thread.",
+      "visual": "Flow from client to load balancer to service to thread pool to workers to DB/Cache.",
+      "on_screen_text": "Thread pool hides I/O latency",
+      "mermaid": "flowchart LR\n    Client --> LB[Load Balancer]\n    LB --> S[Service Process]\n    S --> TP[Thread Pool]\n    TP --> W1[Worker Thread 1]\n    TP --> W2[Worker Thread 2]\n    TP --> Wn[Worker Thread N]\n    W1 --> DB[(DB)]\n    W2 --> Cache[(Cache)]"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 42,
+      "end_seconds": 55,
+      "voice": "That shared memory is the win and the risk. Cheap creation and fast in-memory communication, but you now have locks, races, deadlocks, and visibility issues.",
+      "visual": "Two threads accessing shared cache with lock contention highlighted.",
+      "on_screen_text": "Shared memory = coordination cost",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 55,
+      "end_seconds": 70,
+      "voice": "Threads help for I/O-bound services with blocking synchronous code and shared in-process state like a cache or connection pool. They hurt when you need tens of thousands of concurrent connections or CPU-bound work.",
+      "visual": "Comparison: thread pool saturates vs async event loop handling many connections.",
+      "on_screen_text": "Good for I/O wait, bad for massive concurrency",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 70,
+      "end_seconds": 82,
+      "voice": "Classic failure: one slow DB call holds a thread. Under load the pool saturates, queue grows, latency spikes. That's thread starvation.",
+      "visual": "Pool fills up, queue backs up, 503 shed load.",
+      "on_screen_text": "Pool saturation = latency spike",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 82,
+      "end_seconds": 90,
+      "voice": "Mental model: threads are local node concurrency with shared memory. Choose them for moderate, blocking, shared-state workloads. Scale concurrency with the workload, not by adding threads blindly.",
+      "visual": "Summary card: Shared memory, coordination cost, pool sizing.",
+      "on_screen_text": "Threads = shared kitchen, coordinate carefully",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of a process as a kitchen and threads as chefs sharing the same ingredients and tools. Concurrency is cheap, coordination is expensive. Size the pool to the workload and protect shared state.",
+  "final_takeaway": "Threads trade cheap shared-memory concurrency for coordination complexity; use them for blocking I/O with shared in-process state, not for massive concurrency.",
+  "related_video_ideas": [
+    "Thread Pools vs Async Event Loops: When to choose which",
+    "Thread Starvation and Backpressure in Production Services"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\02-distributed-systems\\01-core-concepts\\2-1-2-threads.md"
+  }
+}

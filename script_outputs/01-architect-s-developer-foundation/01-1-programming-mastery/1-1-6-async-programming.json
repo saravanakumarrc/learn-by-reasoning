@@ -1,0 +1,96 @@
+{
+  "section_number": "1.1.6",
+  "prompt_version": "v1",
+  "video_title": "Async Programming: Why Wait Is The Real Problem",
+  "thumbnail_text": "Async solves waiting, not work",
+  "core_insight": "Async programming increases concurrency per thread by yielding on I/O instead of blocking a thread per wait, trading simplicity for massive I/O concurrency.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "voice": "Why does a thread-per-request server hit a wall? It’s not CPU, it’s waiting.",
+      "visual": "Server handling requests, threads piling up while each waits on DB/HTTP icons.",
+      "on_screen_text": "Problem is waiting, not CPU",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 8,
+      "end_seconds": 18,
+      "voice": "Each request blocks a thread while waiting for DB, HTTP, disk. Threads cost MBs of memory, context switches add up, OS caps you at thousands, not millions.",
+      "visual": "Thread stack memory bars growing, context switch arrows, limit counter.",
+      "on_screen_text": "Threads = memory + context switch cost",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "Obvious fix? More threads. But you’re paying for idle waiters. The constraint is waiting time, not work time.",
+      "visual": "Waiter per table standing idle while kitchen cooks, vs one waiter moving.",
+      "on_screen_text": "Paying for idle threads",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "Async is cooperative multitasking on one or a few threads. One event loop acts like a single waiter: start I/O, yield, handle next task, resume when kernel notifies.",
+      "visual": "Single waiter taking orders, handing to kitchen, moving on.",
+      "on_screen_text": "Event loop = single waiter",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "Mechanism is non-blocking I/O plus explicit yield. Start operation, await, loop runs other ready tasks, kernel completion resumes the task.",
+      "visual": "Flow diagram of loop scheduling tasks and resuming on I/O complete.",
+      "on_screen_text": "Start → await → resume",
+      "mermaid": "flowchart LR\n    Loop[Event Loop] -->|schedule| T1[Task A: send request]\n    T1 -->|await| Loop\n    Loop -->|schedule| T2[Task B: process queue]\n    T2 -->|await| Loop\n    Kernel[Kernel I/O Complete] --> Loop\n    Loop -->|resume| T1"
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 75,
+      "voice": "This helps when you’re I/O bound with high fan-out and low CPU per request. It hurts for CPU-bound work. Async does not parallelize.",
+      "visual": "Split screen: network calls fan-out vs CPU crunch.",
+      "on_screen_text": "I/O bound yes, CPU bound no",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 75,
+      "end_seconds": 88,
+      "voice": "Trade-off: max concurrency per core, minimal overhead, maximal complexity. One blocking call stalls everything. You must audit all dependencies.",
+      "visual": "One blocking call freezing entire loop, warning icon.",
+      "on_screen_text": "One sync call kills throughput",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 88,
+      "end_seconds": 100,
+      "voice": "Mental model: async solves waiting, not work. Never block the event loop. Offload CPU and legacy blocking code.",
+      "visual": "Event loop as single point, with offload arrows to thread pool.",
+      "on_screen_text": "Async = yield on wait",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of the event loop as a single waiter who never stands idle. Tasks are orders that explicitly yield while the kitchen works. Concurrency comes from yielding on I/O, not from more threads.",
+  "final_takeaway": "Async increases concurrency per thread by yielding on I/O. Never block the loop.",
+  "related_video_ideas": [
+    "Thread pool vs async: when to choose which",
+    "Why mixing sync and async kills throughput"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-6-async-programming.md"
+  }
+}

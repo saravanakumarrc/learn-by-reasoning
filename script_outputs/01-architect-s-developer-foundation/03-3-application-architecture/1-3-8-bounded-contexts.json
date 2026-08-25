@@ -1,0 +1,91 @@
+{
+  "section_number": "1.3.8",
+  "prompt_version": "v1",
+  "video_title": "Why Bounded Contexts Exist",
+  "thumbnail_text": "Same word, different meaning",
+  "core_insight": "Bounded contexts contain meaning, not just code. They let teams evolve their own model and language independently by making translation at the boundary explicit.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Same word, different meaning. Why does Order mean three different things in the same company?",
+      "visual": "Three sticky notes labeled Sales, Warehouse, Finance each writing 'Order' with different attributes underneath.",
+      "on_screen_text": "Same word. Different meaning.",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "In a monolith, Order is one entity. At scale, Sales cares about discounts and tax, Warehouse cares about pickable lines and weight, Finance cares about invoiceable document and audit trail.",
+      "visual": "One central 'Order' box with arrows from Sales, Warehouse, Finance pulling in conflicting fields. Box gets cluttered with nullable fields.",
+      "on_screen_text": "One model → god object or constant conflict",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "The obvious fix is one shared model. That creates a god model with nullable fields for every use case, or endless merge conflicts as teams change it for their own needs.",
+      "visual": "Split screen: left 'God Model' with many optional fields, right 'Merge Conflicts' icon.",
+      "on_screen_text": "Shared model breaks down",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "The real constraint is organizational and linguistic. Teams move at different speeds, own different subdomains, and need autonomy without breaking each other.",
+      "visual": "Three teams with different clocks: Sales fast, Pricing daily, Fulfillment steady. Arrows show coupling.",
+      "on_screen_text": "Different speed, different meaning",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "A bounded context is a semantic boundary where a model and ubiquitous language are valid inside, and translation happens explicitly at the edge.",
+      "visual": "Three boxes: Ordering BC, Pricing BC, Fulfillment BC. Inside each, a clean model. Between them, labeled translation arrows.",
+      "on_screen_text": "Boundary = meaning, not code",
+      "mermaid": {
+        "type": "graph LR",
+        "code": "Ordering[Ordering BC\\nOrder = intent to buy]\nPricing[Pricing BC\\nPrice = rules + tax]\nFulfillment[Fulfillment BC\\nOrder = pick list]\nOrdering -->|OrderPlaced event| Pricing\nPricing -->|PriceCalculated event| Ordering\nOrdering -->|OrderConfirmed event| Fulfillment"
+      }
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 75,
+      "voice": "Contexts interact only through contracts, never by sharing internal models. An anti-corruption layer maps the foreign model to yours so leakage doesn't happen.",
+      "visual": "Zoom into boundary between Ordering and Pricing with a thin layer labeled Anti-Corruption Layer translating fields.",
+      "on_screen_text": "Translate, don't share",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 75,
+      "end_seconds": 90,
+      "voice": "You gain independent evolution and team autonomy. You pay translation cost, duplication, and eventual consistency. Use bounded contexts when model divergence and organizational scale outweigh that overhead.",
+      "visual": "Scale balance: left side 'Autonomy + Independent deploy', right side 'Translation + Duplication + Eventual consistency'.",
+      "on_screen_text": "Trade-off: autonomy vs translation cost",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of a bounded context as a translation zone. Inside, one meaning is true. At the edge, you explicitly translate. Boundaries are semantic first, technical second.",
+  "final_takeaway": "Bounded contexts protect meaning. Contain the model, make translation explicit, and let teams evolve independently.",
+  "related_video_ideas": [
+    "Shared Kernel vs Bounded Context: when a little sharing helps",
+    "Anti-Corruption Layer in practice: mapping events without leaking models",
+    "Context explosion: how to avoid creating a bounded context per microservice"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-8-bounded-contexts.md"
+  }
+}

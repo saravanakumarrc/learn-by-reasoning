@@ -1,0 +1,105 @@
+{
+  "section_number": "1.1.14",
+  "prompt_version": "v1",
+  "video_title": "Performance Engineering: Find the Bottleneck Before You Optimize",
+  "thumbnail_text": "Bottleneck First, Not Faster Code",
+  "core_insight": "Performance is constraint management. Every system has a bottleneck that limits throughput and amplifies latency. Measure where it saturates, then decide whether to reduce work, move work, scale resources, or redesign architecture.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Your system works fine with 10 users and falls apart with 10,000. The code is correct, but the architecture isn't sustainable.",
+      "visual": "Split screen: smooth request flow with 10 users on left, spiking latency and errors with 10,000 users on right.",
+      "on_screen_text": "Works at 10 users. Fails at 10,000.",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 15,
+      "voice": "Performance engineering isn't about making code fast. It's about finding where the system saturates and moving the bottleneck.",
+      "visual": "Simple system diagram with CPU, memory, DB, network icons, one highlighted in red as bottleneck.",
+      "on_screen_text": "Performance = constraint management",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 15,
+      "end_seconds": 26,
+      "voice": "You can only change four things: work per request, request rate, resources, and architecture. Improve one, you trade another.",
+      "visual": "Four cards: Work, Rate, Resources, Architecture with arrows showing trade-offs.",
+      "on_screen_text": "Work • Rate • Resources • Architecture",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 26,
+      "end_seconds": 38,
+      "voice": "The loop is measure, find bottleneck, hypothesize, test under load, validate. Golden signals are latency distribution, throughput, saturation, errors.",
+      "visual": "Loop diagram animating Measure → Analyze → Hypothesis → Test → Validate → Measure.",
+      "on_screen_text": "Measure first. Then reason.",
+      "mermaid": "flowchart LR\n    Measure[Measure: latency p50/p95/p99, throughput, saturation, errors] --> Analyze[Find bottleneck]\n    Analyze --> Hypothesis[Hypothesis: code, data, infra, arch]\n    Hypothesis --> Test[Isolate with load test / profiling]\n    Test --> Validate[Validate change under load]\n    Validate --> Measure"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 38,
+      "end_seconds": 50,
+      "voice": "Obvious fix is add more instances. But if CPU is 40% and DB query time is stable, scaling won't help. Latency rising with rate points to queuing or contention, not compute.",
+      "visual": "Dashboard showing CPU 40%, memory 60%, network 30%, DB 20ms stable, p99 latency climbing with RPS.",
+      "on_screen_text": "Scaling won't fix queuing",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 50,
+      "end_seconds": 62,
+      "voice": "Ask: can we reduce work per request? Cache, precompute, batch. Can we move work? Async, read replica, edge. Can we scale the bottleneck? Horizontal for stateless, vertical for memory bound. Must we redesign for fundamental contention?",
+      "visual": "Decision tree with four branches: Reduce work, Move work, Scale bottleneck, Redesign.",
+      "on_screen_text": "Reduce • Move • Scale • Redesign",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 62,
+      "end_seconds": 74,
+      "voice": "E-commerce checkout during flash sale: p95 jumps to 4s at 2k RPS. DB CPU 95%, 17 sequential queries with N+1 lookup. Caching catalog and batching lookups drops p95 to 350ms at 5k RPS on same DB.",
+      "visual": "Before/after latency chart and query count reduction from 17 to batched.",
+      "on_screen_text": "Cache read-heavy data. Batch queries.",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 74,
+      "end_seconds": 85,
+      "voice": "Trade-offs matter. Low latency vs high throughput. Cost vs performance. Local optimum hides global bottleneck. And premature optimization without measurement adds complexity for nothing.",
+      "visual": "Balance scales showing Latency vs Throughput, Cost vs Performance.",
+      "on_screen_text": "Every gain trades cost, complexity, or consistency",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-09",
+      "start_seconds": 85,
+      "end_seconds": 90,
+      "voice": "Find the bottleneck first. Measure distribution, not averages. Architectural change beats code tweaks when the constraint is systemic.",
+      "visual": "Bottleneck highlighted, then moving downstream as fixes applied.",
+      "on_screen_text": "Bottleneck first. Measure distribution.",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of performance as constraint management with four levers: work per request, request rate, resources, architecture. Locate the saturating resource via latency distribution, throughput, saturation, errors under realistic load, then choose reduce work, move work, scale bottleneck, or redesign based on where the constraint lives.",
+  "final_takeaway": "Find the bottleneck first, measure latency distribution under load, and change architecture before micro-optimizing code.",
+  "related_video_ideas": [
+    "Tail Latency: Why p99 Matters More Than Average",
+    "When to Cache vs When to Scale the Database"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-14-performance-engineering.md"
+  }
+}

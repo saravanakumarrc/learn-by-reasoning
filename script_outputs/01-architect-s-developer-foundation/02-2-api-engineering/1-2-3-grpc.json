@@ -1,0 +1,97 @@
+{
+  "section_number": "1.2.3",
+  "prompt_version": "v1",
+  "video_title": "Why gRPC Exists: Contract First RPC for Internal Services",
+  "thumbnail_text": "gRPC is not REST",
+  "core_insight": "gRPC solves internal service-to-service efficiency and contract safety via a single proto contract, codegen, HTTP/2 and protobuf; it is not a browser-facing API.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why does a team with 50+ internal services move away from REST/JSON? The pain isn't the idea of HTTP, it's the cost at scale.",
+      "visual": "Title card with 50+ service icons, REST/JSON label, latency and payload icons rising.",
+      "on_screen_text": "REST/JSON at scale hurts",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "Every request pays for text parsing and large payloads. HTTP/1.1 forces one TCP connection per request or complex pooling. There's no standard for bidirectional streaming, and the schema is implicit so breaking changes show up at runtime.",
+      "visual": "Split screen: JSON text parsing vs binary protobuf, HTTP/1.1 serial connections vs HTTP/2 multiplex.",
+      "on_screen_text": "Parsing cost, connection limits, no streaming standard",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "You also need the same contract enforced across Go, Java, Python, TypeScript. The real problem is low latency, efficient wire format, and a single source of truth for the API contract that can generate clients and servers.",
+      "visual": "Polyglot services with mismatched types, red warning on breaking change.",
+      "on_screen_text": "Polyglot + contract safety",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "The obvious fix is REST over HTTP/2 with JSON. That helps connections but you still pay text overhead and you still have no enforced schema. The constraint is you need compile-time types and a language-neutral contract.",
+      "visual": "Reasonable approach arrow to failure: still JSON, still implicit schema.",
+      "on_screen_text": "HTTP/2 helps, schema doesn't",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "gRPC is contract-first RPC over HTTP/2. You write the API once in .proto, codegen produces strongly typed stubs for each language, and the runtime runs over HTTP/2 with binary protobuf. That's the decision.",
+      "visual": "Mermaid flowchart showing client to codegen to stubs to HTTP/2 + protobuf to service.",
+      "on_screen_text": "Proto contract → codegen → HTTP/2 + protobuf",
+      "mermaid": "flowchart LR\n    Client[Service A] -->|proto contract| Codegen\n    Codegen --> ClientStub\n    Codegen --> ServerStub\n    ServerStub -->|HTTP/2 + protobuf| Service B\n    Service B -->|HTTP/2 + protobuf| Service A"
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 72,
+      "voice": "What you gain is multiplexed streams on one TCP connection, header compression, flow control, 3 to 10x smaller payloads, and early breaking-change detection at compile time. Streaming becomes first class for telemetry, chat, inference.",
+      "visual": "Metrics rising down: latency down, bytes down, connections down; streaming arrows.",
+      "on_screen_text": "Gain: latency, bytes, types, streaming",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 72,
+      "end_seconds": 82,
+      "voice": "What you sacrifice is human readability and browser friendliness. Binary protobuf is hard to debug without tools, HTTP/2 can be blocked by proxies, and you need schema discipline and contract testing to avoid version skew.",
+      "visual": "Curl failing on binary, proxy blocking HTTP/2, version skew warning.",
+      "on_screen_text": "Trade-off: debuggability, HTTP/2, versioning",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 82,
+      "end_seconds": 90,
+      "voice": "Mental model: use gRPC for internal service mesh where throughput and type safety matter, keep REST/JSON at the public edge via a gateway. The value is the proto contract plus codegen, HTTP/2 and protobuf are enablers.",
+      "visual": "Edge gateway translating REST to gRPC, internal mesh labeled gRPC.",
+      "on_screen_text": "Internal gRPC, Edge REST",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think Problem → Constraints → Options → Trade-offs → Decision. For service-to-service: if you need low latency, efficient bytes, streaming, and polyglot type safety, choose contract-first RPC with proto + codegen over HTTP/2. If you need browser or human debuggability, keep REST at the edge.",
+  "final_takeaway": "gRPC is for internal machine-to-machine efficiency and contract safety, not a REST replacement for the web.",
+  "related_video_ideas": [
+    "When to use REST vs gRPC at the edge",
+    "Protocol Buffers schema evolution and versioning discipline",
+    "Streaming RPC patterns for real-time AI inference"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-3-grpc.md"
+  }
+}

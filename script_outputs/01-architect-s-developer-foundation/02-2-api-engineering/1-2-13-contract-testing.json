@@ -1,0 +1,97 @@
+{
+  "section_number": "1.2.13",
+  "prompt_version": "v1",
+  "video_title": "Contract Testing: Why Independent Teams Need a Handshake",
+  "thumbnail_text": "Deploy without breaking each other",
+  "core_insight": "Contract testing moves compatibility checks left by making the API agreement explicit and testable, enabling independent deploys without running both services together.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "voice": "Why do two teams that deploy independently keep breaking each other?",
+      "visual": "Two timelines: Provider deploys 10x/day, Consumer deploys 5x/day, with a red break icon at merge.",
+      "on_screen_text": "Independent deploys = hidden breakage",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 8,
+      "end_seconds": 18,
+      "voice": "Integration tests need both services up. They are slow, flaky, and catch problems late, after merge.",
+      "visual": "Integration test diagram with both services, shared env, and a clock showing delay.",
+      "on_screen_text": "E2E tests are slow and late",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "The obvious fix is to couple releases or add more integration tests. Coupling slows everyone down. More tests don’t fix the feedback timing.",
+      "visual": "Scale balancing speed vs safety, then a red X over coupling.",
+      "on_screen_text": "Coupling slows you down",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "Contract testing is a handshake with a test. The consumer defines what it needs, the provider defines what it can offer, and a contract verifies they match, independently.",
+      "visual": "Simple handshake icon between Consumer and Provider with a document in between.",
+      "on_screen_text": "Handshake, not integration",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "Consumer writes expectations for request shape, status codes, headers, errors. That contract is published. Provider verifies it against its own code in CI. Consumer tests against a mock from the contract.",
+      "visual": "Flow diagram showing consumer defining expectations, publishing contract, provider verifying, gate deploy.",
+      "on_screen_text": "Verify locally, gate deploy",
+      "mermaid": "flowchart LR\n    C[Consumer Service] -->|defines expectations| CT[Contract]\n    CT --> P[Provider Service]\n    P -->|verifies against own code| V[Contract Verification]\n    V -->|pass/fail| D[Deploy Gate]\n    C -.->|runs its own contract tests| CCheck[Consumer Tests]"
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 72,
+      "voice": "You gain fast, build-time feedback on breaking changes without a shared environment. You sacrifice coverage of real business behavior. A contract can be technically satisfied but semantically wrong.",
+      "visual": "Split screen: left checkmark for speed, right warning for semantic gap.",
+      "on_screen_text": "Speed vs semantics",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 72,
+      "end_seconds": 85,
+      "voice": "Use it when teams deploy independently, for public APIs, or when you need early break detection. Don’t rely on it alone. Contracts rot if not owned and kept in sync with real usage.",
+      "visual": "Checklist for when to use, then a decaying document icon for contract drift.",
+      "on_screen_text": "Own contracts or they rot",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 85,
+      "end_seconds": 90,
+      "voice": "Contract testing trades integration runtime for explicit, testable interface compatibility.",
+      "visual": "Final summary card with core insight.",
+      "on_screen_text": "Explicit contract = safe independent deploys",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Think of an API as a legal contract between teams. The consumer states needs, the provider states capabilities. Test the agreement, not the whole system, and verify each side locally before merging.",
+  "final_takeaway": "Make the interface agreement explicit and testable, so teams can deploy independently without breaking each other.",
+  "related_video_ideas": [
+    "When schema validation is enough and when it isn’t",
+    "Versioning strategies for APIs with multiple consumers",
+    "Consumer-driven contracts vs provider-driven contracts"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-13-contract-testing.md"
+  }
+}

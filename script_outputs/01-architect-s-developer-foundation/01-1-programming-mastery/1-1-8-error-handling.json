@@ -1,0 +1,87 @@
+{
+  "section_number": "1.1.8",
+  "prompt_version": "v1",
+  "video_title": "Error Handling Is Not Catching Exceptions",
+  "thumbnail_text": "Errors are data, not control flow",
+  "core_insight": "The value of error handling is not preventing errors but deciding what the system does next at a boundary, based on classification of recoverability.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why do distributed systems feel fragile even when every service has try-catch? Because we treat errors as exceptions, not as signals.",
+      "visual": "Single server with try-catch, then zoom out to mesh of services with network lines flickering red.",
+      "on_screen_text": "Errors are normal in distributed systems",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "In one process an exception is annoying. In a distributed system an error is normal. Services call services, networks partition, APIs throttle. The real problem is not the error, it is what the system does next when an error crosses a boundary.",
+      "visual": "Sequence of Request → Service → Dependency with failure arrow returning.",
+      "on_screen_text": "What happens next matters",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 32,
+      "voice": "The obvious approach is to retry everything. That feels safe. But retries without classification create retry storms and amplify overload.",
+      "visual": "Loop arrows showing repeated retries hitting a struggling dependency, load spiking.",
+      "on_screen_text": "Retry everything? Amplification risk",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 32,
+      "end_seconds": 48,
+      "voice": "So we need a decision at the boundary. Capture the error, classify it, then decide. Is it transient or permanent? Client or server or business? Can the caller do something meaningful?",
+      "visual": "Flow diagram of capture → classify → decide → respond → observe.",
+      "on_screen_text": "Capture → Classify → Decide → Respond → Observe",
+      "mermaid": "flowchart TD\n    Request --> Service\n    Service --> Dependency\n    Dependency -->|failure| Service\n    Service --> Classify{Transient vs Permanent<br/>Client vs Server vs Business}\n    Classify -->|Transient| RetryWithBackoff\n    Classify -->|Permanent| FailFast\n    Classify -->|Degradable| GracefulDegradation\n    RetryWithBackoff -->|exhausted| CircuitOpen"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 48,
+      "end_seconds": 62,
+      "voice": "Transient like timeout or 429 means retry with backoff and jitter, with idempotency. Permanent like invalid input means fail fast, no retry. Business outcome like declined payment is not a bug, it is a valid result.",
+      "visual": "Three cards: Transient → Retry, Permanent → Fail Fast, Business → Return result. Highlight idempotency key.",
+      "on_screen_text": "Classify first, then respond",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 62,
+      "end_seconds": 78,
+      "voice": "Handle errors at the component boundary, not deep inside. Translate to a stable contract: status code, error code, retryability hint, correlation id. Propagate up if the caller can act, absorb locally if you can provide a safe default and you can observe the degradation.",
+      "visual": "Service box with internal precise errors, boundary layer translating to structured error to client and observability.",
+      "on_screen_text": "Boundary translation, not leakage",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 78,
+      "end_seconds": 90,
+      "voice": "You gain reliability and availability, you sacrifice simplicity. Error handling code itself can fail. Test failure paths as first class.",
+      "visual": "Scale balancing reliability vs complexity, then checklist: timeouts, circuit close, logs with context, jitter.",
+      "on_screen_text": "Design the policy, not just the catch",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Treat errors as data about contract violations. Classify by recoverability and ownership, decide policy at the boundary, and make every error observable. Propagate if caller can act, absorb with safe default if you can observe.",
+  "final_takeaway": "Classify first: transient vs permanent, business vs system. The class dictates the response, and the boundary decides what the caller sees.",
+  "related_video_ideas": [
+    "Circuit Breaker: When to stop retrying and why",
+    "Idempotency Keys: Making retries safe for non-GET operations"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-8-error-handling.md"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "section_number": "1.3.12",
+  "prompt_version": "v1",
+  "video_title": "Why Dependency Inversion Flips Who Owns the Contract",
+  "thumbnail_text": "High-level owns the port",
+  "core_insight": "Dependency Inversion makes high-level business policy define the abstraction that low-level details implement, so policy stays stable while implementations can be swapped independently.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why does changing a payment provider force you to edit business logic?",
+      "visual": "Close-up of OrderService code creating StripeClient and opening Postgres connection, then red ripple edits spreading to business rules.",
+      "on_screen_text": "Changing infra shouldn't change policy",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "The problem is direction of dependency. OrderService, a high-level policy, directly calls low-level Stripe and Postgres details. Now a provider switch or a test requires editing stable business code.",
+      "visual": "Simple arrow diagram: OrderService -> StripeClient, OrderService -> Postgres. Highlight coupling.",
+      "on_screen_text": "High-level depends on low-level",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "voice": "Obvious fix is direct instantiation. It's fast to write, but it couples policy to implementation. Every infra change ripples into domain code, tests hit real services, releases touch stable logic.",
+      "visual": "Split screen: fast to write vs ripple edits, slow tests hitting real DB and API.",
+      "on_screen_text": "Direct = fast now, costly later",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 30,
+      "end_seconds": 45,
+      "voice": "The constraint is stability. Business policy changes less often than infrastructure, and we need independent deployability and testability. So who should define the contract?",
+      "visual": "Two timelines: Policy changes slowly, Infra changes fast. Question mark over contract ownership.",
+      "on_screen_text": "Stability direction matters",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 45,
+      "end_seconds": 60,
+      "voice": "Dependency Inversion flips it. High-level defines a port it needs, low-level implements it. OrderService depends only on PaymentPort.process, not Stripe. StripeAdapter implements the port and hides retries, keys, HTTP.",
+      "visual": "Mermaid flowchart showing OrderService -> PaymentPort <- -> StripeAdapter and OrderService -> RepoPort <- -> PostgresRepo.",
+      "on_screen_text": "Both depend on abstraction",
+      "mermaid": "flowchart TD\n    OrderService --> PaymentPort\n    PaymentPort <--> StripeAdapter\n    OrderService --> RepoPort\n    RepoPort <--> PostgresRepo"
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 60,
+      "end_seconds": 72,
+      "voice": "Dependency Injection wires the implementation at composition root. DIP is the principle, DI is the mechanism. Now you can swap Stripe for Adyen, Postgres for DynamoDB, or inject a fake for tests without touching Invoice.",
+      "visual": "Composition root wiring PaymentPort to StripeAdapter, then swapping to AdyenAdapter and FakePaymentPort with no change to OrderService.",
+      "on_screen_text": "Swap implementations, not policy",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 72,
+      "end_seconds": 82,
+      "voice": "Trade-off: you pay an indirection tax, extra interfaces and cognitive hops. If the abstraction is stable the tax amortizes. If you redesign the port every sprint, it becomes drag. Also watch for abstraction leakage, like PaymentPort.processWithStripeId.",
+      "visual": "Scale balancing indirection tax vs coupling cost over time. Highlight leaky method name.",
+      "on_screen_text": "Indirection tax vs coupling cost",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-08",
+      "start_seconds": 82,
+      "end_seconds": 90,
+      "voice": "Mental model: think power socket. The appliance defines the plug shape it needs. The wall provides power via that shape. You can change the generator behind the wall without rewiring the appliance.",
+      "visual": "Appliance plug into wall socket, generator behind wall being swapped, appliance unchanged.",
+      "on_screen_text": "High-level owns the plug",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "High-level policy owns the port, like an appliance defining its plug shape. Low-level infrastructure implements that shape. Change the generator behind the wall, not the appliance.",
+  "final_takeaway": "Invert dependencies so stable business policy defines the abstraction and volatile infrastructure implements it. You gain independent change and testability at the cost of disciplined indirection.",
+  "related_video_ideas": [
+    "When is premature abstraction worse than direct coupling?",
+    "Ports and Adapters vs Service Locator: why explicit dependencies win"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-12-dependency-inversion.md"
+  }
+}

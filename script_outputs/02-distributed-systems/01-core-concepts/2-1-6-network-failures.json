@@ -1,0 +1,88 @@
+{
+  "section_number": "2.1.6",
+  "prompt_version": "v1",
+  "video_title": "Network is unreliable by default",
+  "thumbnail_text": "Design for timeouts, not uptime",
+  "core_insight": "Network failures are normal, not exceptional. The key reasoning is to treat the network as a lossy, slow pipe and design detection via timeouts, idempotency for safe retries, and explicit availability vs consistency choices on partitions.",
+  "video_type": "why",
+  "language": "en",
+  "duration_target_seconds": 90,
+  "scenes": [
+    {
+      "scene_id": "scene-01",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "voice": "Why do distributed systems fail even when every service is up? The problem isn't downtime, it's the network.",
+      "visual": "Two service boxes on different hosts with a wavy pipe between them labeled Network. Pipe flickers.",
+      "on_screen_text": "Network is unreliable by default",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-02",
+      "start_seconds": 7,
+      "end_seconds": 18,
+      "voice": "You call Service B from Service A and assume the call returns. In production that assumption breaks. Latency spikes, packets drop, switches reboot, GC pauses. You can't control the network, only how you react.",
+      "visual": "Sequence of normal call then latency spike icon, packet loss icon, GC pause icon.",
+      "on_screen_text": "You can't control the network",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-03",
+      "start_seconds": 18,
+      "end_seconds": 32,
+      "voice": "The core mental model: network is a lossy, slow pipe that can disappear. Messages can be lost, delayed, duplicated, reordered. The remote side can be up while you think it's down.",
+      "visual": "Pipe with messages dropping, delaying, duplicating. Small note: 8 Fallacies of Distributed Computing.",
+      "on_screen_text": "Lossy, slow, can disappear",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-04",
+      "start_seconds": 32,
+      "end_seconds": 50,
+      "voice": "This creates two failure patterns. Partial failure: the remote processed the request but you never saw the response. You don't know if it happened. Partition: you can reach some replicas but not others.",
+      "visual": "Mermaid sequence diagram showing client to service A to service B with late response after timeout.",
+      "on_screen_text": "Did it process? Unknown",
+      "mermaid": "sequenceDiagram\n    participant C as Client\n    participant S as Service A\n    participant D as Service B\n    C->>S: request\n    S->>D: call\n    Note over S,D: packet loss / GC pause / partition\n    D-->>S: response late\n    S--x C: timeout after 500ms\n    Note over S: Did D process? Unknown"
+    },
+    {
+      "scene_id": "scene-05",
+      "start_seconds": 50,
+      "end_seconds": 65,
+      "voice": "So what do you design for? Bound the wait with a timeout. Make writes idempotent so retries are safe. Fail fast with circuit breakers and isolate with bulkheads. And decide explicitly: availability with eventual consistency, or consistency with unavailability on a partition.",
+      "visual": "Four icons appear in order: stopwatch Timeout, shield Idempotency, breaker Circuit, scale CAP.",
+      "on_screen_text": "Timeout → Idempotency → Isolate → Choose CAP",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-06",
+      "start_seconds": 65,
+      "end_seconds": 80,
+      "voice": "Trade-offs matter. Blind retries cause retry storms. Too short a timeout creates false failures, too long increases tail latency. Idempotency costs storage for dedupe keys, but it's cheaper than duplicate charges.",
+      "visual": "Graph of retry storm spike, then timeout slider between responsiveness and correctness.",
+      "on_screen_text": "Retries amplify, timeouts balance",
+      "mermaid": null
+    },
+    {
+      "scene_id": "scene-07",
+      "start_seconds": 80,
+      "end_seconds": 90,
+      "voice": "Network failures are the baseline. Timeout is how you detect them. Idempotency plus bounded retries is the minimum viable pattern for writes. Design for the network you have, not the one you wish for.",
+      "visual": "Baseline line labeled Normal with network icons above it. Final card with mental model.",
+      "on_screen_text": "Design for unreliable network",
+      "mermaid": null
+    }
+  ],
+  "mental_model": "Treat the network as a lossy, slow pipe that disappears. Detect failure with timeouts, make operations idempotent for safe retries, isolate failures, and explicitly choose availability vs consistency on partitions.",
+  "final_takeaway": "Network failures are normal. Timeout to detect, idempotency to retry safely, and choose your consistency trade-off explicitly.",
+  "related_video_ideas": [
+    "Circuit breakers vs retries: when to stop calling a failing service",
+    "Idempotency keys in practice for safe retries over HTTP",
+    "CAP in production: choosing availability vs consistency during partitions"
+  ],
+  "generation": {
+    "provider": "ollama",
+    "model": "muse-glimmer",
+    "host": "http://localhost:11434",
+    "source_file": "C:\\Users\\sarav\\source\\repos\\learn-by-reasoning\\02-distributed-systems\\01-core-concepts\\2-1-6-network-failures.md"
+  }
+}
