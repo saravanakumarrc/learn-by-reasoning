@@ -1,0 +1,404 @@
+{
+  "topics": [
+    {
+      "section_number": "1.1.1",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Clean code",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-1-clean-code.md"
+    },
+    {
+      "section_number": "1.1.10",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Design patterns",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-10-design-patterns.md"
+    },
+    {
+      "section_number": "1.1.11",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Refactoring",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-11-refactoring.md"
+    },
+    {
+      "section_number": "1.1.12",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Testing",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-12-testing.md"
+    },
+    {
+      "section_number": "1.1.13",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Profiling",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-13-profiling.md"
+    },
+    {
+      "section_number": "1.1.14",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Performance engineering",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-14-performance-engineering.md"
+    },
+    {
+      "section_number": "1.1.2",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Solid",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-2-solid.md"
+    },
+    {
+      "section_number": "1.1.3",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Oop",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-3-oop.md"
+    },
+    {
+      "section_number": "1.1.4",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Functional concepts",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-4-functional-concepts.md"
+    },
+    {
+      "section_number": "1.1.5",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Generics",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-5-generics.md"
+    },
+    {
+      "section_number": "1.1.6",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Async programming",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-6-async-programming.md"
+    },
+    {
+      "section_number": "1.1.7",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Concurrency",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-7-concurrency.md"
+    },
+    {
+      "section_number": "1.1.8",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Error handling",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-8-error-handling.md"
+    },
+    {
+      "section_number": "1.1.9",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "1. Programming Mastery",
+      "topic_title": "Dependency injection",
+      "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-9-dependency-injection.md"
+    },
+    {
+      "section_number": "1.2.1",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Rest",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-1-rest.md"
+    },
+    {
+      "section_number": "1.2.10",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Authentication",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-10-authentication.md"
+    },
+    {
+      "section_number": "1.2.11",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Authorization",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-11-authorization.md"
+    },
+    {
+      "section_number": "1.2.12",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Api gateways",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-12-api-gateways.md"
+    },
+    {
+      "section_number": "1.2.13",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Contract testing",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-13-contract-testing.md"
+    },
+    {
+      "section_number": "1.2.2",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Http",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-2-http.md"
+    },
+    {
+      "section_number": "1.2.3",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Grpc",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-3-grpc.md"
+    },
+    {
+      "section_number": "1.2.4",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Websockets",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-4-websockets.md"
+    },
+    {
+      "section_number": "1.2.5",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Graphql",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-5-graphql.md"
+    },
+    {
+      "section_number": "1.2.6",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Api versioning",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-6-api-versioning.md"
+    },
+    {
+      "section_number": "1.2.7",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Idempotency",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-7-idempotency.md"
+    },
+    {
+      "section_number": "1.2.8",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Pagination",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-8-pagination.md"
+    },
+    {
+      "section_number": "1.2.9",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "2. Api Engineering",
+      "topic_title": "Rate limiting",
+      "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-9-rate-limiting.md"
+    },
+    {
+      "section_number": "1.3.1",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Layered architecture",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-1-layered-architecture.md"
+    },
+    {
+      "section_number": "1.3.10",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Cqrs",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-10-cqrs.md"
+    },
+    {
+      "section_number": "1.3.11",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Event sourcing",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-11-event-sourcing.md"
+    },
+    {
+      "section_number": "1.3.12",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Dependency inversion",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-12-dependency-inversion.md"
+    },
+    {
+      "section_number": "1.3.13",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Architecture decision records",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-13-architecture-decision-records.md"
+    },
+    {
+      "section_number": "1.3.2",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Clean architecture",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-2-clean-architecture.md"
+    },
+    {
+      "section_number": "1.3.3",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Hexagonal architecture",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-3-hexagonal-architecture.md"
+    },
+    {
+      "section_number": "1.3.4",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Ports adapters",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-4-ports-adapters.md"
+    },
+    {
+      "section_number": "1.3.5",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Modular monolith",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-5-modular-monolith.md"
+    },
+    {
+      "section_number": "1.3.6",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Microservices",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-6-microservices.md"
+    },
+    {
+      "section_number": "1.3.7",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Domain driven design",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-7-domain-driven-design.md"
+    },
+    {
+      "section_number": "1.3.8",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Bounded contexts",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-8-bounded-contexts.md"
+    },
+    {
+      "section_number": "1.3.9",
+      "phase_number": 1,
+      "phase_title": "Architect S Developer Foundation",
+      "section_title": "3. Application Architecture",
+      "topic_title": "Aggregates",
+      "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-9-aggregates.md"
+    }
+  ]
+}
