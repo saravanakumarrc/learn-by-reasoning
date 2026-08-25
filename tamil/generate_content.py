@@ -40,7 +40,7 @@ import requests
 OLLAMA_URL = "http://localhost:11434/api/generate"
 DEFAULT_MODEL = "gemma3:12b"
 BASE_PROMPT_FILE = "master_base_prompt.md"
-LEARNING_PATH_FILE = "ai-solution-architect-learning-path.json"
+LEARNING_PATH_FILE = "learning_path.json"
 
 
 def slugify(value: str) -> str:
