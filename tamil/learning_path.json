@@ -997,8 +997,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Clean code",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "in_progress",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-1-clean-code/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-1-clean-code.md"
     },
     {
       "section_number": "1.1.2",
@@ -1466,9 +1466,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Performance testing strategy",
-      "status": "in_progress",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-8-performance-testing-strategy/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\01-testing-strategy\\2-1-8-performance-testing-strategy.md"
     },
     {
       "section_number": "2.1.9",
@@ -1476,9 +1476,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Test data management",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-9-test-data-management/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\01-testing-strategy\\2-1-9-test-data-management.md"
     },
     {
       "section_number": "2.2.1",
@@ -1486,9 +1486,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Structured logging",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/02-observability-foundations/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/02-observability-foundations/2-2-1-structured-logging/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\02-observability-foundations\\2-2-1-structured-logging.md"
     },
     {
       "section_number": "2.2.2",
@@ -1496,9 +1496,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Metrics fundamentals",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/02-observability-foundations/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/02-observability-foundations/2-2-2-metrics-fundamentals/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\02-observability-foundations\\2-2-2-metrics-fundamentals.md"
     },
     {
       "section_number": "2.2.3",
@@ -1506,9 +1506,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Distributed tracing basics",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/02-observability-foundations/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/02-observability-foundations/2-2-3-distributed-tracing-basics/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\02-observability-foundations\\2-2-3-distributed-tracing-basics.md"
     },
     {
       "section_number": "2.2.4",
@@ -1516,9 +1516,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "OpenTelemetry",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/02-observability-foundations/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/02-observability-foundations/2-2-4-opentelemetry/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\02-observability-foundations\\2-2-4-opentelemetry.md"
     },
     {
       "section_number": "2.2.5",
@@ -1526,9 +1526,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Dashboards",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/02-observability-foundations/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/02-observability-foundations/2-2-5-dashboards/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\02-observability-foundations\\2-2-5-dashboards.md"
     },
     {
       "section_number": "2.2.6",
@@ -1536,9 +1536,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "Alerting fundamentals",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/02-observability-foundations/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/02-observability-foundations/2-2-6-alerting-fundamentals/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\02-observability-foundations\\2-2-6-alerting-fundamentals.md"
     },
     {
       "section_number": "2.2.7",
@@ -1546,9 +1546,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Observability foundations",
       "topic_title": "SLI/SLO introduction",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/02-observability-foundations/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/02-observability-foundations/2-2-7-sli-slo-introduction/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\02-observability-foundations\\2-2-7-sli-slo-introduction.md"
     },
     {
       "section_number": "2.3.1",
@@ -1556,9 +1556,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "Postmortems",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/03-incident-on-call-basics/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/03-incident-on-call-basics/2-3-1-postmortems/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\03-incident-on-call-basics\\2-3-1-postmortems.md"
     },
     {
       "section_number": "2.3.2",
@@ -1566,9 +1566,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "Blameless culture",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/03-incident-on-call-basics/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/03-incident-on-call-basics/2-3-2-blameless-culture/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\03-incident-on-call-basics\\2-3-2-blameless-culture.md"
     },
     {
       "section_number": "2.3.3",
@@ -1576,9 +1576,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "On-call rotations",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/03-incident-on-call-basics/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/03-incident-on-call-basics/2-3-3-on-call-rotations/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\03-incident-on-call-basics\\2-3-3-on-call-rotations.md"
     },
     {
       "section_number": "2.3.4",
@@ -1586,9 +1586,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "Runbooks",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/03-incident-on-call-basics/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/03-incident-on-call-basics/2-3-4-runbooks/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\03-incident-on-call-basics\\2-3-4-runbooks.md"
     },
     {
       "section_number": "2.3.5",
@@ -1596,9 +1596,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Incident & on-call basics",
       "topic_title": "Incident severity levels",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/03-incident-on-call-basics/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/03-incident-on-call-basics/2-3-5-incident-severity-levels/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\03-incident-on-call-basics\\2-3-5-incident-severity-levels.md"
     },
     {
       "section_number": "3.1.1",
@@ -1607,8 +1607,8 @@
       "section_title": "Core concepts",
       "topic_title": "Processes",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-1-processes/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-1-processes.md"
     },
     {
       "section_number": "3.1.2",
@@ -1617,8 +1617,8 @@
       "section_title": "Core concepts",
       "topic_title": "Threads",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-2-threads/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-2-threads.md"
     },
     {
       "section_number": "3.1.3",
@@ -1627,8 +1627,8 @@
       "section_title": "Core concepts",
       "topic_title": "Concurrency",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-3-concurrency/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-3-concurrency.md"
     },
     {
       "section_number": "3.1.4",
@@ -1637,8 +1637,8 @@
       "section_title": "Core concepts",
       "topic_title": "Parallelism",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-4-parallelism/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-4-parallelism.md"
     },
     {
       "section_number": "3.1.5",
@@ -1647,8 +1647,8 @@
       "section_title": "Core concepts",
       "topic_title": "Distributed communication",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-5-distributed-communication/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-5-distributed-communication.md"
     },
     {
       "section_number": "3.1.6",
@@ -1657,8 +1657,8 @@
       "section_title": "Core concepts",
       "topic_title": "Network failures",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-6-network-failures/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-6-network-failures.md"
     },
     {
       "section_number": "3.1.7",
@@ -1667,8 +1667,8 @@
       "section_title": "Core concepts",
       "topic_title": "Partial failures",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-7-partial-failures/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-7-partial-failures.md"
     },
     {
       "section_number": "3.1.8",
@@ -1677,8 +1677,8 @@
       "section_title": "Core concepts",
       "topic_title": "Timeouts",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-8-timeouts/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-8-timeouts.md"
     },
     {
       "section_number": "3.1.9",
@@ -1687,8 +1687,8 @@
       "section_title": "Core concepts",
       "topic_title": "Retries",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-9-retries/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-9-retries.md"
     },
     {
       "section_number": "3.1.10",
@@ -1697,8 +1697,8 @@
       "section_title": "Core concepts",
       "topic_title": "Backpressure",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-10-backpressure/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-10-backpressure.md"
     },
     {
       "section_number": "3.1.11",
@@ -1707,8 +1707,8 @@
       "section_title": "Core concepts",
       "topic_title": "Circuit breakers",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-11-circuit-breakers/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-11-circuit-breakers.md"
     },
     {
       "section_number": "3.1.12",
@@ -1717,8 +1717,8 @@
       "section_title": "Core concepts",
       "topic_title": "Bulkheads",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-12-bulkheads/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-12-bulkheads.md"
     },
     {
       "section_number": "3.1.13",
@@ -1727,8 +1727,8 @@
       "section_title": "Core concepts",
       "topic_title": "Idempotency",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-13-idempotency/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-13-idempotency.md"
     },
     {
       "section_number": "3.1.14",
@@ -1737,8 +1737,8 @@
       "section_title": "Core concepts",
       "topic_title": "Distributed transactions",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-14-distributed-transactions/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-14-distributed-transactions.md"
     },
     {
       "section_number": "3.1.15",
@@ -1747,8 +1747,8 @@
       "section_title": "Core concepts",
       "topic_title": "Two-phase commit",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-15-two-phase-commit/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-15-two-phase-commit.md"
     },
     {
       "section_number": "3.1.16",
@@ -1757,8 +1757,8 @@
       "section_title": "Core concepts",
       "topic_title": "Saga pattern",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-16-saga-pattern/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-16-saga-pattern.md"
     },
     {
       "section_number": "3.1.17",
@@ -1767,8 +1767,8 @@
       "section_title": "Core concepts",
       "topic_title": "Eventual consistency",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-17-eventual-consistency/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-17-eventual-consistency.md"
     },
     {
       "section_number": "3.1.18",
@@ -1777,8 +1777,8 @@
       "section_title": "Core concepts",
       "topic_title": "Strong consistency",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-18-strong-consistency/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-18-strong-consistency.md"
     },
     {
       "section_number": "3.1.19",
@@ -1787,7 +1787,7 @@
       "section_title": "Core concepts",
       "topic_title": "CAP theorem",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
+      "status": "in_progress",
       "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-19-cap-theorem/README.md"
     },
     {
