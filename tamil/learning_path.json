@@ -1787,8 +1787,8 @@
       "section_title": "Core concepts",
       "topic_title": "CAP theorem",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "in_progress",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-19-cap-theorem/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-19-cap-theorem.md"
     },
     {
       "section_number": "3.1.20",
@@ -1797,8 +1797,8 @@
       "section_title": "Core concepts",
       "topic_title": "PACELC",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-20-pacelc/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-20-pacelc.md"
     },
     {
       "section_number": "3.1.21",
@@ -1807,8 +1807,8 @@
       "section_title": "Core concepts",
       "topic_title": "Consensus",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-21-consensus/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-21-consensus.md"
     },
     {
       "section_number": "3.1.22",
@@ -1817,8 +1817,8 @@
       "section_title": "Core concepts",
       "topic_title": "Leader election",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-22-leader-election/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-22-leader-election.md"
     },
     {
       "section_number": "3.1.23",
@@ -1827,8 +1827,8 @@
       "section_title": "Core concepts",
       "topic_title": "Distributed locking",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-23-distributed-locking/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-23-distributed-locking.md"
     },
     {
       "section_number": "3.1.24",
@@ -1837,8 +1837,8 @@
       "section_title": "Core concepts",
       "topic_title": "Ordering",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-24-ordering/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-24-ordering.md"
     },
     {
       "section_number": "3.1.25",
@@ -1847,8 +1847,8 @@
       "section_title": "Core concepts",
       "topic_title": "Deduplication",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-25-deduplication/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-25-deduplication.md"
     },
     {
       "section_number": "3.1.26",
@@ -1857,8 +1857,8 @@
       "section_title": "Core concepts",
       "topic_title": "Exactly-once vs at-least-once",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-26-exactly-once-vs-at-least-once/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-26-exactly-once-vs-at-least-once.md"
     },
     {
       "section_number": "3.1.27",
@@ -1867,8 +1867,8 @@
       "section_title": "Core concepts",
       "topic_title": "Message delivery semantics",
       "folder": "02-distributed-systems/01-core-concepts/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/01-core-concepts/3-1-27-message-delivery-semantics/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\01-core-concepts\\3-1-27-message-delivery-semantics.md"
     },
     {
       "section_number": "3.2.1",
@@ -1877,8 +1877,8 @@
       "section_title": "Messaging",
       "topic_title": "Queues",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-1-queues/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-1-queues.md"
     },
     {
       "section_number": "3.2.2",
@@ -1887,8 +1887,8 @@
       "section_title": "Messaging",
       "topic_title": "Pub/sub",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-2-pub-sub/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-2-pub-sub.md"
     },
     {
       "section_number": "3.2.3",
@@ -1897,8 +1897,8 @@
       "section_title": "Messaging",
       "topic_title": "Kafka",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-3-kafka/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-3-kafka.md"
     },
     {
       "section_number": "3.2.4",
@@ -1907,8 +1907,8 @@
       "section_title": "Messaging",
       "topic_title": "RabbitMQ",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-4-rabbitmq/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-4-rabbitmq.md"
     },
     {
       "section_number": "3.2.5",
@@ -1917,8 +1917,8 @@
       "section_title": "Messaging",
       "topic_title": "Event-driven architecture",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-5-event-driven-architecture/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-5-event-driven-architecture.md"
     },
     {
       "section_number": "3.2.6",
@@ -1927,8 +1927,8 @@
       "section_title": "Messaging",
       "topic_title": "Event choreography",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-6-event-choreography/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-6-event-choreography.md"
     },
     {
       "section_number": "3.2.7",
@@ -1937,8 +1937,8 @@
       "section_title": "Messaging",
       "topic_title": "Event orchestration",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-7-event-orchestration/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-7-event-orchestration.md"
     },
     {
       "section_number": "3.2.8",
@@ -1947,8 +1947,8 @@
       "section_title": "Messaging",
       "topic_title": "Dead-letter queues",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-8-dead-letter-queues/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-8-dead-letter-queues.md"
     },
     {
       "section_number": "3.2.9",
@@ -1957,8 +1957,8 @@
       "section_title": "Messaging",
       "topic_title": "Consumer groups",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-9-consumer-groups/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-9-consumer-groups.md"
     },
     {
       "section_number": "3.2.10",
@@ -1967,8 +1967,8 @@
       "section_title": "Messaging",
       "topic_title": "Partitioning",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-10-partitioning/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-10-partitioning.md"
     },
     {
       "section_number": "3.2.11",
@@ -1977,8 +1977,8 @@
       "section_title": "Messaging",
       "topic_title": "Ordering",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-11-ordering/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-11-ordering.md"
     },
     {
       "section_number": "3.2.12",
@@ -1987,8 +1987,8 @@
       "section_title": "Messaging",
       "topic_title": "Replay",
       "folder": "02-distributed-systems/02-messaging/",
-      "status": "pending",
-      "output_file": "tamil/02-distributed-systems/02-messaging/3-2-12-replay/README.md"
+      "status": "completed",
+      "output_file": "02-distributed-systems\\02-messaging\\3-2-12-replay.md"
     },
     {
       "section_number": "4.1.1",
@@ -1997,8 +1997,8 @@
       "section_title": "Databases",
       "topic_title": "Relational databases",
       "folder": "03-data-architecture/01-databases/",
-      "status": "pending",
-      "output_file": "tamil/03-data-architecture/01-databases/4-1-1-relational-databases/README.md"
+      "status": "completed",
+      "output_file": "03-data-architecture\\01-databases\\4-1-1-relational-databases.md"
     },
     {
       "section_number": "4.1.2",
@@ -2007,8 +2007,8 @@
       "section_title": "Databases",
       "topic_title": "SQL",
       "folder": "03-data-architecture/01-databases/",
-      "status": "pending",
-      "output_file": "tamil/03-data-architecture/01-databases/4-1-2-sql/README.md"
+      "status": "completed",
+      "output_file": "03-data-architecture\\01-databases\\4-1-2-sql.md"
     },
     {
       "section_number": "4.1.3",
@@ -2017,8 +2017,8 @@
       "section_title": "Databases",
       "topic_title": "PostgreSQL",
       "folder": "03-data-architecture/01-databases/",
-      "status": "pending",
-      "output_file": "tamil/03-data-architecture/01-databases/4-1-3-postgresql/README.md"
+      "status": "completed",
+      "output_file": "03-data-architecture\\01-databases\\4-1-3-postgresql.md"
     },
     {
       "section_number": "4.1.4",
@@ -2027,8 +2027,8 @@
       "section_title": "Databases",
       "topic_title": "SQL Server",
       "folder": "03-data-architecture/01-databases/",
-      "status": "pending",
-      "output_file": "tamil/03-data-architecture/01-databases/4-1-4-sql-server/README.md"
+      "status": "completed",
+      "output_file": "03-data-architecture\\01-databases\\4-1-4-sql-server.md"
     },
     {
       "section_number": "4.1.5",
@@ -2037,8 +2037,8 @@
       "section_title": "Databases",
       "topic_title": "Indexing",
       "folder": "03-data-architecture/01-databases/",
-      "status": "pending",
-      "output_file": "tamil/03-data-architecture/01-databases/4-1-5-indexing/README.md"
+      "status": "completed",
+      "output_file": "03-data-architecture\\01-databases\\4-1-5-indexing.md"
     },
     {
       "section_number": "4.1.6",
@@ -2047,8 +2047,8 @@
       "section_title": "Databases",
       "topic_title": "Query optimization",
       "folder": "03-data-architecture/01-databases/",
-      "status": "pending",
-      "output_file": "tamil/03-data-architecture/01-databases/4-1-6-query-optimization/README.md"
+      "status": "completed",
+      "output_file": "03-data-architecture\\01-databases\\4-1-6-query-optimization.md"
     },
     {
       "section_number": "4.1.7",
@@ -2057,8 +2057,8 @@
       "section_title": "Databases",
       "topic_title": "Transactions",
       "folder": "03-data-architecture/01-databases/",
-      "status": "pending",
-      "output_file": "tamil/03-data-architecture/01-databases/4-1-7-transactions/README.md"
+      "status": "completed",
+      "output_file": "03-data-architecture\\01-databases\\4-1-7-transactions.md"
     },
     {
       "section_number": "4.1.8",
@@ -2067,8 +2067,8 @@
       "section_title": "Databases",
       "topic_title": "Isolation levels",
       "folder": "03-data-architecture/01-databases/",
-      "status": "pending",
-      "output_file": "tamil/03-data-architecture/01-databases/4-1-8-isolation-levels/README.md"
+      "status": "completed",
+      "output_file": "03-data-architecture\\01-databases\\4-1-8-isolation-levels.md"
     },
     {
       "section_number": "4.1.9",
@@ -2077,7 +2077,7 @@
       "section_title": "Databases",
       "topic_title": "NoSQL",
       "folder": "03-data-architecture/01-databases/",
-      "status": "pending",
+      "status": "in_progress",
       "output_file": "tamil/03-data-architecture/01-databases/4-1-9-nosql/README.md"
     },
     {
