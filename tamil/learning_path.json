@@ -1017,8 +1017,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "OOP",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "in_progress",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-3-oop/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-3-oop.md"
     },
     {
       "section_number": "1.1.4",
@@ -1027,8 +1027,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Functional concepts",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-4-functional-concepts/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-4-functional-concepts.md"
     },
     {
       "section_number": "1.1.5",
@@ -1037,8 +1037,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Generics",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-5-generics/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-5-generics.md"
     },
     {
       "section_number": "1.1.6",
@@ -1047,8 +1047,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Async programming",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-6-async-programming/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-6-async-programming.md"
     },
     {
       "section_number": "1.1.7",
@@ -1057,8 +1057,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Concurrency",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-7-concurrency/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-7-concurrency.md"
     },
     {
       "section_number": "1.1.8",
@@ -1067,8 +1067,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Error handling",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-8-error-handling/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-8-error-handling.md"
     },
     {
       "section_number": "1.1.9",
@@ -1077,8 +1077,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Dependency injection",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-9-dependency-injection/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-9-dependency-injection.md"
     },
     {
       "section_number": "1.1.10",
@@ -1087,8 +1087,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Design patterns",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-10-design-patterns/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-10-design-patterns.md"
     },
     {
       "section_number": "1.1.11",
@@ -1097,8 +1097,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Refactoring",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-11-refactoring/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-11-refactoring.md"
     },
     {
       "section_number": "1.1.12",
@@ -1107,8 +1107,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Testing",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-12-testing/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-12-testing.md"
     },
     {
       "section_number": "1.1.13",
@@ -1117,8 +1117,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Profiling",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-13-profiling/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-13-profiling.md"
     },
     {
       "section_number": "1.1.14",
@@ -1127,8 +1127,8 @@
       "section_title": "1. Programming mastery",
       "topic_title": "Performance engineering",
       "folder": "01-architect-s-developer-foundation/01-1-programming-mastery/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/01-1-programming-mastery/1-1-14-performance-engineering/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\01-1-programming-mastery\\1-1-14-performance-engineering.md"
     },
     {
       "section_number": "1.2.1",
@@ -1137,8 +1137,8 @@
       "section_title": "2. API engineering",
       "topic_title": "REST",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-1-rest/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-1-rest.md"
     },
     {
       "section_number": "1.2.2",
@@ -1147,8 +1147,8 @@
       "section_title": "2. API engineering",
       "topic_title": "HTTP",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-2-http/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-2-http.md"
     },
     {
       "section_number": "1.2.3",
@@ -1157,8 +1157,8 @@
       "section_title": "2. API engineering",
       "topic_title": "gRPC",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-3-grpc/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-3-grpc.md"
     },
     {
       "section_number": "1.2.4",
@@ -1167,8 +1167,8 @@
       "section_title": "2. API engineering",
       "topic_title": "WebSockets",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-4-websockets/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-4-websockets.md"
     },
     {
       "section_number": "1.2.5",
@@ -1177,8 +1177,8 @@
       "section_title": "2. API engineering",
       "topic_title": "GraphQL",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-5-graphql/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-5-graphql.md"
     },
     {
       "section_number": "1.2.6",
@@ -1187,8 +1187,8 @@
       "section_title": "2. API engineering",
       "topic_title": "API versioning",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-6-api-versioning/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-6-api-versioning.md"
     },
     {
       "section_number": "1.2.7",
@@ -1197,8 +1197,8 @@
       "section_title": "2. API engineering",
       "topic_title": "Idempotency",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-7-idempotency/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-7-idempotency.md"
     },
     {
       "section_number": "1.2.8",
@@ -1207,8 +1207,8 @@
       "section_title": "2. API engineering",
       "topic_title": "Pagination",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-8-pagination/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-8-pagination.md"
     },
     {
       "section_number": "1.2.9",
@@ -1217,8 +1217,8 @@
       "section_title": "2. API engineering",
       "topic_title": "Rate limiting",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-9-rate-limiting/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-9-rate-limiting.md"
     },
     {
       "section_number": "1.2.10",
@@ -1227,8 +1227,8 @@
       "section_title": "2. API engineering",
       "topic_title": "Authentication",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-10-authentication/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-10-authentication.md"
     },
     {
       "section_number": "1.2.11",
@@ -1237,8 +1237,8 @@
       "section_title": "2. API engineering",
       "topic_title": "Authorization",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-11-authorization/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-11-authorization.md"
     },
     {
       "section_number": "1.2.12",
@@ -1247,8 +1247,8 @@
       "section_title": "2. API engineering",
       "topic_title": "API gateways",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-12-api-gateways/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-12-api-gateways.md"
     },
     {
       "section_number": "1.2.13",
@@ -1257,8 +1257,8 @@
       "section_title": "2. API engineering",
       "topic_title": "Contract testing",
       "folder": "01-architect-s-developer-foundation/02-2-api-engineering/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/02-2-api-engineering/1-2-13-contract-testing/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\02-2-api-engineering\\1-2-13-contract-testing.md"
     },
     {
       "section_number": "1.3.1",
@@ -1267,8 +1267,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Layered architecture",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-1-layered-architecture/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-1-layered-architecture.md"
     },
     {
       "section_number": "1.3.2",
@@ -1277,8 +1277,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Clean Architecture",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-2-clean-architecture/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-2-clean-architecture.md"
     },
     {
       "section_number": "1.3.3",
@@ -1287,8 +1287,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Hexagonal architecture",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-3-hexagonal-architecture/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-3-hexagonal-architecture.md"
     },
     {
       "section_number": "1.3.4",
@@ -1297,8 +1297,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Ports & adapters",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-4-ports-adapters/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-4-ports-adapters.md"
     },
     {
       "section_number": "1.3.5",
@@ -1307,8 +1307,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Modular monolith",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-5-modular-monolith/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-5-modular-monolith.md"
     },
     {
       "section_number": "1.3.6",
@@ -1317,8 +1317,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Microservices",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-6-microservices/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-6-microservices.md"
     },
     {
       "section_number": "1.3.7",
@@ -1327,8 +1327,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Domain-Driven Design",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-7-domain-driven-design/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-7-domain-driven-design.md"
     },
     {
       "section_number": "1.3.8",
@@ -1337,8 +1337,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Bounded contexts",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-8-bounded-contexts/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-8-bounded-contexts.md"
     },
     {
       "section_number": "1.3.9",
@@ -1347,8 +1347,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Aggregates",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-9-aggregates/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-9-aggregates.md"
     },
     {
       "section_number": "1.3.10",
@@ -1357,8 +1357,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "CQRS",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-10-cqrs/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-10-cqrs.md"
     },
     {
       "section_number": "1.3.11",
@@ -1367,8 +1367,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Event sourcing",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-11-event-sourcing/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-11-event-sourcing.md"
     },
     {
       "section_number": "1.3.12",
@@ -1377,8 +1377,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Dependency inversion",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-12-dependency-inversion/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-12-dependency-inversion.md"
     },
     {
       "section_number": "1.3.13",
@@ -1387,8 +1387,8 @@
       "section_title": "3. Application architecture",
       "topic_title": "Architecture Decision Records",
       "folder": "01-architect-s-developer-foundation/03-3-application-architecture/",
-      "status": "pending",
-      "output_file": "tamil/01-architect-s-developer-foundation/03-3-application-architecture/1-3-13-architecture-decision-records/README.md"
+      "status": "completed",
+      "output_file": "01-architect-s-developer-foundation\\03-3-application-architecture\\1-3-13-architecture-decision-records.md"
     },
     {
       "section_number": "2.1.1",
@@ -1396,9 +1396,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Test pyramid trade-offs",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-1-test-pyramid-trade-offs/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\01-testing-strategy\\2-1-1-test-pyramid-trade-offs.md"
     },
     {
       "section_number": "2.1.2",
@@ -1406,9 +1406,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Unit vs integration vs e2e testing",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-2-unit-vs-integration-vs-e2e-testing/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\01-testing-strategy\\2-1-2-unit-vs-integration-vs-e2e-testing.md"
     },
     {
       "section_number": "2.1.3",
@@ -1416,9 +1416,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Test doubles: mocks, stubs, fakes",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-3-test-doubles-mocks-stubs-fakes/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\01-testing-strategy\\2-1-3-test-doubles-mocks-stubs-fakes.md"
     },
     {
       "section_number": "2.1.4",
@@ -1426,9 +1426,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Property-based testing",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-4-property-based-testing/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\01-testing-strategy\\2-1-4-property-based-testing.md"
     },
     {
       "section_number": "2.1.5",
@@ -1436,9 +1436,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Snapshot testing",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-5-snapshot-testing/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\01-testing-strategy\\2-1-5-snapshot-testing.md"
     },
     {
       "section_number": "2.1.6",
@@ -1446,9 +1446,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Chaos engineering basics",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-6-chaos-engineering-basics/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\01-testing-strategy\\2-1-6-chaos-engineering-basics.md"
     },
     {
       "section_number": "2.1.7",
@@ -1456,9 +1456,9 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Load testing",
-      "status": "pending",
+      "status": "completed",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
-      "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-7-load-testing/README.md"
+      "output_file": "02-testing-quality-observability-foundations\\01-testing-strategy\\2-1-7-load-testing.md"
     },
     {
       "section_number": "2.1.8",
@@ -1466,7 +1466,7 @@
       "phase_title": "Testing, Quality & Observability Foundations",
       "section_title": "Testing strategy",
       "topic_title": "Performance testing strategy",
-      "status": "pending",
+      "status": "in_progress",
       "folder": "02-testing-quality-observability-foundations/01-testing-strategy/",
       "output_file": "tamil/02-testing-quality-observability-foundations/01-testing-strategy/2-1-8-performance-testing-strategy/README.md"
     },
