@@ -2637,8 +2637,8 @@
       "section_title": "Kubernetes",
       "topic_title": "StatefulSets",
       "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
-      "status": "in_progress",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/03-kubernetes/5-3-7-statefulsets/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\5-3-7-statefulsets.md"
     },
     {
       "section_number": "5.3.8",
@@ -2647,8 +2647,8 @@
       "section_title": "Kubernetes",
       "topic_title": "Jobs",
       "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/03-kubernetes/5-3-8-jobs/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\5-3-8-jobs.md"
     },
     {
       "section_number": "5.3.9",
@@ -2657,8 +2657,8 @@
       "section_title": "Kubernetes",
       "topic_title": "CronJobs",
       "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/03-kubernetes/5-3-9-cronjobs/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\5-3-9-cronjobs.md"
     },
     {
       "section_number": "5.3.10",
@@ -2667,8 +2667,8 @@
       "section_title": "Kubernetes",
       "topic_title": "HPA",
       "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/03-kubernetes/5-3-10-hpa/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\5-3-10-hpa.md"
     },
     {
       "section_number": "5.3.11",
@@ -2677,8 +2677,8 @@
       "section_title": "Kubernetes",
       "topic_title": "KEDA",
       "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/03-kubernetes/5-3-11-keda/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\5-3-11-keda.md"
     },
     {
       "section_number": "5.3.12",
@@ -2687,8 +2687,8 @@
       "section_title": "Kubernetes",
       "topic_title": "Resource limits",
       "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/03-kubernetes/5-3-12-resource-limits/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\5-3-12-resource-limits.md"
     },
     {
       "section_number": "5.3.13",
@@ -2697,8 +2697,8 @@
       "section_title": "Kubernetes",
       "topic_title": "Scheduling",
       "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/03-kubernetes/5-3-13-scheduling/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\5-3-13-scheduling.md"
     },
     {
       "section_number": "5.3.14",
@@ -2707,8 +2707,8 @@
       "section_title": "Kubernetes",
       "topic_title": "Persistent volumes",
       "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/03-kubernetes/5-3-14-persistent-volumes/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\5-3-14-persistent-volumes.md"
     },
     {
       "section_number": "5.3.15",
@@ -2717,8 +2717,8 @@
       "section_title": "Kubernetes",
       "topic_title": "Network policies",
       "folder": "04-cloud-infrastructure-architecture/03-kubernetes/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/03-kubernetes/5-3-15-network-policies/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\03-kubernetes\\5-3-15-network-policies.md"
     },
     {
       "section_number": "5.4.1",
@@ -2727,8 +2727,8 @@
       "section_title": "Platform engineering",
       "topic_title": "Kubernetes architecture",
       "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/04-platform-engineering/5-4-1-kubernetes-architecture/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\5-4-1-kubernetes-architecture.md"
     },
     {
       "section_number": "5.4.2",
@@ -2737,8 +2737,8 @@
       "section_title": "Platform engineering",
       "topic_title": "Helm",
       "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/04-platform-engineering/5-4-2-helm/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\5-4-2-helm.md"
     },
     {
       "section_number": "5.4.3",
@@ -2747,8 +2747,8 @@
       "section_title": "Platform engineering",
       "topic_title": "GitOps",
       "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/04-platform-engineering/5-4-3-gitops/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\5-4-3-gitops.md"
     },
     {
       "section_number": "5.4.4",
@@ -2757,8 +2757,8 @@
       "section_title": "Platform engineering",
       "topic_title": "ArgoCD",
       "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/04-platform-engineering/5-4-4-argocd/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\5-4-4-argocd.md"
     },
     {
       "section_number": "5.4.5",
@@ -2767,8 +2767,8 @@
       "section_title": "Platform engineering",
       "topic_title": "Infrastructure as Code",
       "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/04-platform-engineering/5-4-5-infrastructure-as-code/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\5-4-5-infrastructure-as-code.md"
     },
     {
       "section_number": "5.4.6",
@@ -2777,8 +2777,8 @@
       "section_title": "Platform engineering",
       "topic_title": "Terraform",
       "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/04-platform-engineering/5-4-6-terraform/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\5-4-6-terraform.md"
     },
     {
       "section_number": "5.4.7",
@@ -2787,8 +2787,8 @@
       "section_title": "Platform engineering",
       "topic_title": "Environment management",
       "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/04-platform-engineering/5-4-7-environment-management/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\5-4-7-environment-management.md"
     },
     {
       "section_number": "5.4.8",
@@ -2797,8 +2797,8 @@
       "section_title": "Platform engineering",
       "topic_title": "Service mesh",
       "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/04-platform-engineering/5-4-8-service-mesh/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\5-4-8-service-mesh.md"
     },
     {
       "section_number": "5.4.9",
@@ -2807,8 +2807,8 @@
       "section_title": "Platform engineering",
       "topic_title": "Platform APIs",
       "folder": "04-cloud-infrastructure-architecture/04-platform-engineering/",
-      "status": "pending",
-      "output_file": "tamil/04-cloud-infrastructure-architecture/04-platform-engineering/5-4-9-platform-apis/README.md"
+      "status": "completed",
+      "output_file": "04-cloud-infrastructure-architecture\\04-platform-engineering\\5-4-9-platform-apis.md"
     },
     {
       "section_number": "6.1.1",
@@ -2817,7 +2817,7 @@
       "section_title": "Application security",
       "topic_title": "Authentication",
       "folder": "05-security-architecture/01-application-security/",
-      "status": "pending",
+      "status": "in_progress",
       "output_file": "tamil/05-security-architecture/01-application-security/6-1-1-authentication/README.md"
     },
     {
