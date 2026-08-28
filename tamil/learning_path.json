@@ -3597,9 +3597,9 @@
       "phase_title": "Non-AI System Design Practice",
       "section_title": "System design practice",
       "topic_title": "Scaling strategies",
-      "status": "in_progress",
+      "status": "completed",
       "folder": "09-non-ai-system-design-practice/01-system-design-practice/",
-      "output_file": "tamil/09-non-ai-system-design-practice/01-system-design-practice/9-1-6-scaling-strategies/README.md"
+      "output_file": "09-non-ai-system-design-practice\\01-system-design-practice\\9-1-6-scaling-strategies.md"
     },
     {
       "section_number": "9.1.7",
@@ -3607,9 +3607,9 @@
       "phase_title": "Non-AI System Design Practice",
       "section_title": "System design practice",
       "topic_title": "Trade-off analysis",
-      "status": "pending",
+      "status": "completed",
       "folder": "09-non-ai-system-design-practice/01-system-design-practice/",
-      "output_file": "tamil/09-non-ai-system-design-practice/01-system-design-practice/9-1-7-trade-off-analysis/README.md"
+      "output_file": "09-non-ai-system-design-practice\\01-system-design-practice\\9-1-7-trade-off-analysis.md"
     },
     {
       "section_number": "9.1.8",
@@ -3617,9 +3617,9 @@
       "phase_title": "Non-AI System Design Practice",
       "section_title": "System design practice",
       "topic_title": "Design review & critique",
-      "status": "pending",
+      "status": "completed",
       "folder": "09-non-ai-system-design-practice/01-system-design-practice/",
-      "output_file": "tamil/09-non-ai-system-design-practice/01-system-design-practice/9-1-8-design-review-critique/README.md"
+      "output_file": "09-non-ai-system-design-practice\\01-system-design-practice\\9-1-8-design-review-critique.md"
     },
     {
       "section_number": "10.1.1",
@@ -3628,8 +3628,8 @@
       "section_title": "Understand",
       "topic_title": "AI vs ML vs Deep Learning vs GenAI",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-1-ai-vs-ml-vs-deep-learning-vs-genai/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-1-ai-vs-ml-vs-deep-learning-vs-genai.md"
     },
     {
       "section_number": "10.1.2",
@@ -3638,8 +3638,8 @@
       "section_title": "Understand",
       "topic_title": "Foundation models",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-2-foundation-models/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-2-foundation-models.md"
     },
     {
       "section_number": "10.1.3",
@@ -3648,8 +3648,8 @@
       "section_title": "Understand",
       "topic_title": "LLMs",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-3-llms/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-3-llms.md"
     },
     {
       "section_number": "10.1.4",
@@ -3658,8 +3658,8 @@
       "section_title": "Understand",
       "topic_title": "Tokens",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-4-tokens/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-4-tokens.md"
     },
     {
       "section_number": "10.1.5",
@@ -3668,8 +3668,8 @@
       "section_title": "Understand",
       "topic_title": "Context windows",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-5-context-windows/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-5-context-windows.md"
     },
     {
       "section_number": "10.1.6",
@@ -3678,8 +3678,8 @@
       "section_title": "Understand",
       "topic_title": "Transformer high-level architecture",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-6-transformer-high-level-architecture/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-6-transformer-high-level-architecture.md"
     },
     {
       "section_number": "10.1.7",
@@ -3688,8 +3688,8 @@
       "section_title": "Understand",
       "topic_title": "Attention — conceptual understanding",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-7-attention-conceptual-understanding/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-7-attention-conceptual-understanding.md"
     },
     {
       "section_number": "10.1.8",
@@ -3698,8 +3698,8 @@
       "section_title": "Understand",
       "topic_title": "Embeddings",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-8-embeddings/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-8-embeddings.md"
     },
     {
       "section_number": "10.1.9",
@@ -3708,8 +3708,8 @@
       "section_title": "Understand",
       "topic_title": "Inference",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-9-inference/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-9-inference.md"
     },
     {
       "section_number": "10.1.10",
@@ -3718,8 +3718,8 @@
       "section_title": "Understand",
       "topic_title": "Temperature",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-10-temperature/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-10-temperature.md"
     },
     {
       "section_number": "10.1.11",
@@ -3728,8 +3728,8 @@
       "section_title": "Understand",
       "topic_title": "Top-p",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-11-top-p/README.md"
+      "status": "completed",
+      "output_file": "06-ai-llm-foundations\\01-understand\\10-1-11-top-p.md"
     },
     {
       "section_number": "10.1.12",
@@ -3738,7 +3738,7 @@
       "section_title": "Understand",
       "topic_title": "Model parameters",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
+      "status": "in_progress",
       "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-12-model-parameters/README.md"
     },
     {
@@ -3748,9 +3748,10 @@
       "section_title": "Understand",
       "topic_title": "Model capabilities",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
+      "status": "in_progress",
       "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=1800)",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-13-model-capabilities/README.md"
+      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-13-model-capabilities/README.md",
+      "attempts": 1
     },
     {
       "section_number": "10.1.14",
