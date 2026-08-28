@@ -3748,10 +3748,18 @@
       "section_title": "Understand",
       "topic_title": "Model capabilities",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "in_progress",
-      "error": "HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=1800)",
+      "status": "failed",
+      "error": "Incomplete generation after 3 attempts: Ollama reported done_reason=length",
       "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-13-model-capabilities/README.md",
-      "attempts": 1
+      "attempts": 3,
+      "done_reason": "length",
+      "eval_count": 2204,
+      "eval_duration": 671886701000,
+      "prompt_eval_count": 1892,
+      "prompt_eval_duration": 1065647999,
+      "total_duration": 674787874200,
+      "load_duration": 1644731700,
+      "last_error": "Ollama reported done_reason=length"
     },
     {
       "section_number": "10.1.14",
@@ -3760,8 +3768,18 @@
       "section_title": "Understand",
       "topic_title": "Model limitations",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-14-model-limitations/README.md"
+      "status": "failed",
+      "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-14-model-limitations/README.md",
+      "attempts": 3,
+      "done_reason": "length",
+      "eval_count": 2204,
+      "eval_duration": 685256566000,
+      "prompt_eval_count": 1892,
+      "prompt_eval_duration": 961590000,
+      "total_duration": 688021610400,
+      "load_duration": 1604663400,
+      "last_error": "Ollama reported done_reason=length",
+      "error": "Incomplete generation after 3 attempts: Ollama reported done_reason=length"
     },
     {
       "section_number": "10.2.1",
@@ -3770,8 +3788,9 @@
       "section_title": "Model selection",
       "topic_title": "Quality",
       "folder": "06-ai-llm-foundations/02-model-selection/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/02-model-selection/10-2-1-quality/README.md"
+      "status": "in_progress",
+      "output_file": "tamil/06-ai-llm-foundations/02-model-selection/10-2-1-quality/README.md",
+      "attempts": 1
     },
     {
       "section_number": "10.2.2",
@@ -3780,8 +3799,17 @@
       "section_title": "Model selection",
       "topic_title": "Latency",
       "folder": "06-ai-llm-foundations/02-model-selection/",
-      "status": "pending",
-      "output_file": "tamil/06-ai-llm-foundations/02-model-selection/10-2-2-latency/README.md"
+      "status": "in_progress",
+      "output_file": "tamil/06-ai-llm-foundations/02-model-selection/10-2-2-latency/README.md",
+      "attempts": 3,
+      "done_reason": "length",
+      "eval_count": 2204,
+      "eval_duration": 687632643000,
+      "prompt_eval_count": 1892,
+      "prompt_eval_duration": 1109589000,
+      "total_duration": 690446845300,
+      "load_duration": 1521151200,
+      "last_error": "Ollama reported done_reason=length"
     },
     {
       "section_number": "10.2.3",
