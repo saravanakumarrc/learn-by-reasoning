@@ -2978,8 +2978,8 @@
       "section_title": "Enterprise security",
       "topic_title": "Data classification",
       "folder": "05-security-architecture/02-enterprise-security/",
-      "status": "in_progress",
-      "output_file": "tamil/05-security-architecture/02-enterprise-security/6-2-5-data-classification/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\02-enterprise-security\\6-2-5-data-classification.md"
     },
     {
       "section_number": "6.2.6",
@@ -2988,8 +2988,8 @@
       "section_title": "Enterprise security",
       "topic_title": "Data loss prevention",
       "folder": "05-security-architecture/02-enterprise-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/02-enterprise-security/6-2-6-data-loss-prevention/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\02-enterprise-security\\6-2-6-data-loss-prevention.md"
     },
     {
       "section_number": "6.2.7",
@@ -2998,8 +2998,8 @@
       "section_title": "Enterprise security",
       "topic_title": "Audit logging",
       "folder": "05-security-architecture/02-enterprise-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/02-enterprise-security/6-2-7-audit-logging/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\02-enterprise-security\\6-2-7-audit-logging.md"
     },
     {
       "section_number": "6.2.8",
@@ -3008,8 +3008,8 @@
       "section_title": "Enterprise security",
       "topic_title": "Compliance",
       "folder": "05-security-architecture/02-enterprise-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/02-enterprise-security/6-2-8-compliance/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\02-enterprise-security\\6-2-8-compliance.md"
     },
     {
       "section_number": "6.3.1",
@@ -3018,8 +3018,8 @@
       "section_title": "AI security",
       "topic_title": "Prompt injection",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-1-prompt-injection/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-1-prompt-injection.md"
     },
     {
       "section_number": "6.3.2",
@@ -3028,8 +3028,8 @@
       "section_title": "AI security",
       "topic_title": "Indirect prompt injection",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-2-indirect-prompt-injection/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-2-indirect-prompt-injection.md"
     },
     {
       "section_number": "6.3.3",
@@ -3038,8 +3038,8 @@
       "section_title": "AI security",
       "topic_title": "Jailbreaking",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-3-jailbreaking/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-3-jailbreaking.md"
     },
     {
       "section_number": "6.3.4",
@@ -3048,8 +3048,8 @@
       "section_title": "AI security",
       "topic_title": "Data exfiltration",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-4-data-exfiltration/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-4-data-exfiltration.md"
     },
     {
       "section_number": "6.3.5",
@@ -3058,8 +3058,8 @@
       "section_title": "AI security",
       "topic_title": "Tool abuse",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-5-tool-abuse/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-5-tool-abuse.md"
     },
     {
       "section_number": "6.3.6",
@@ -3068,8 +3068,8 @@
       "section_title": "AI security",
       "topic_title": "Excessive agency",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-6-excessive-agency/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-6-excessive-agency.md"
     },
     {
       "section_number": "6.3.7",
@@ -3078,8 +3078,8 @@
       "section_title": "AI security",
       "topic_title": "Insecure output handling",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-7-insecure-output-handling/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-7-insecure-output-handling.md"
     },
     {
       "section_number": "6.3.8",
@@ -3088,8 +3088,8 @@
       "section_title": "AI security",
       "topic_title": "RAG poisoning",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-8-rag-poisoning/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-8-rag-poisoning.md"
     },
     {
       "section_number": "6.3.9",
@@ -3098,8 +3098,8 @@
       "section_title": "AI security",
       "topic_title": "Training-data concerns",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-9-training-data-concerns/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-9-training-data-concerns.md"
     },
     {
       "section_number": "6.3.10",
@@ -3108,8 +3108,8 @@
       "section_title": "AI security",
       "topic_title": "Model supply-chain risks",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-10-model-supply-chain-risks/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-10-model-supply-chain-risks.md"
     },
     {
       "section_number": "6.3.11",
@@ -3118,8 +3118,8 @@
       "section_title": "AI security",
       "topic_title": "Agent identity",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-11-agent-identity/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-11-agent-identity.md"
     },
     {
       "section_number": "6.3.12",
@@ -3128,8 +3128,8 @@
       "section_title": "AI security",
       "topic_title": "Tool authorization",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-12-tool-authorization/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-12-tool-authorization.md"
     },
     {
       "section_number": "6.3.13",
@@ -3138,8 +3138,8 @@
       "section_title": "AI security",
       "topic_title": "Tenant isolation",
       "folder": "05-security-architecture/03-ai-security/",
-      "status": "pending",
-      "output_file": "tamil/05-security-architecture/03-ai-security/6-3-13-tenant-isolation/README.md"
+      "status": "completed",
+      "output_file": "05-security-architecture\\03-ai-security\\6-3-13-tenant-isolation.md"
     },
     {
       "section_number": "7.1.1",
@@ -3147,9 +3147,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Scalability",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-1-scalability/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-1-scalability.md"
     },
     {
       "section_number": "7.1.2",
@@ -3157,9 +3157,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Availability",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-2-availability/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-2-availability.md"
     },
     {
       "section_number": "7.1.3",
@@ -3167,9 +3167,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Reliability",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-3-reliability/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-3-reliability.md"
     },
     {
       "section_number": "7.1.4",
@@ -3177,9 +3177,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Durability",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-4-durability/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-4-durability.md"
     },
     {
       "section_number": "7.1.5",
@@ -3187,9 +3187,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Maintainability",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-5-maintainability/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-5-maintainability.md"
     },
     {
       "section_number": "7.1.6",
@@ -3197,9 +3197,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Performance requirements",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-6-performance-requirements/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-6-performance-requirements.md"
     },
     {
       "section_number": "7.1.7",
@@ -3207,9 +3207,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "SLA",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-7-sla/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-7-sla.md"
     },
     {
       "section_number": "7.1.8",
@@ -3217,9 +3217,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "SLO",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-8-slo/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-8-slo.md"
     },
     {
       "section_number": "7.1.9",
@@ -3227,9 +3227,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "SLI",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-9-sli/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-9-sli.md"
     },
     {
       "section_number": "7.1.10",
@@ -3237,9 +3237,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Non-functional requirements",
       "topic_title": "Capacity planning",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/01-non-functional-requirements/7-1-10-capacity-planning/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\01-non-functional-requirements\\7-1-10-capacity-planning.md"
     },
     {
       "section_number": "7.2.1",
@@ -3247,9 +3247,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Multi-region architecture",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/7-2-1-multi-region-architecture/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\7-2-1-multi-region-architecture.md"
     },
     {
       "section_number": "7.2.2",
@@ -3257,9 +3257,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Active-active vs active-passive",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/7-2-2-active-active-vs-active-passive/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\7-2-2-active-active-vs-active-passive.md"
     },
     {
       "section_number": "7.2.3",
@@ -3267,9 +3267,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Backup strategies",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/7-2-3-backup-strategies/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\7-2-3-backup-strategies.md"
     },
     {
       "section_number": "7.2.4",
@@ -3277,9 +3277,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Restore testing",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/7-2-4-restore-testing/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\7-2-4-restore-testing.md"
     },
     {
       "section_number": "7.2.5",
@@ -3287,9 +3287,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "RTO / RPO",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/7-2-5-rto-rpo/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\7-2-5-rto-rpo.md"
     },
     {
       "section_number": "7.2.6",
@@ -3297,9 +3297,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Failover design",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/7-2-6-failover-design/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\7-2-6-failover-design.md"
     },
     {
       "section_number": "7.2.7",
@@ -3307,9 +3307,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Disaster recovery & high availability",
       "topic_title": "Business continuity planning",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/02-disaster-recovery-high-availability/7-2-7-business-continuity-planning/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\02-disaster-recovery-high-availability\\7-2-7-business-continuity-planning.md"
     },
     {
       "section_number": "7.3.1",
@@ -3317,9 +3317,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Reserved vs spot instances",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/7-3-1-reserved-vs-spot-instances/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\7-3-1-reserved-vs-spot-instances.md"
     },
     {
       "section_number": "7.3.2",
@@ -3327,9 +3327,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Right-sizing",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/7-3-2-right-sizing/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\7-3-2-right-sizing.md"
     },
     {
       "section_number": "7.3.3",
@@ -3337,9 +3337,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Storage tiering",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/7-3-3-storage-tiering/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\7-3-3-storage-tiering.md"
     },
     {
       "section_number": "7.3.4",
@@ -3347,9 +3347,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Cost allocation & tagging",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/7-3-4-cost-allocation-tagging/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\7-3-4-cost-allocation-tagging.md"
     },
     {
       "section_number": "7.3.5",
@@ -3357,9 +3357,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Cost monitoring",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/7-3-5-cost-monitoring/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\7-3-5-cost-monitoring.md"
     },
     {
       "section_number": "7.3.6",
@@ -3367,9 +3367,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Autoscaling for cost efficiency",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/7-3-6-autoscaling-for-cost-efficiency/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\7-3-6-autoscaling-for-cost-efficiency.md"
     },
     {
       "section_number": "7.3.7",
@@ -3377,9 +3377,9 @@
       "phase_title": "Reliability Engineering & Cost Fundamentals",
       "section_title": "Cloud cost / FinOps",
       "topic_title": "Multi-cloud cost trade-offs",
-      "status": "pending",
+      "status": "completed",
       "folder": "07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/",
-      "output_file": "tamil/07-reliability-engineering-cost-fundamentals/03-cloud-cost-finops/7-3-7-multi-cloud-cost-trade-offs/README.md"
+      "output_file": "07-reliability-engineering-cost-fundamentals\\03-cloud-cost-finops\\7-3-7-multi-cloud-cost-trade-offs.md"
     },
     {
       "section_number": "8.1.1",
@@ -3387,9 +3387,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Code & delivery practices",
       "topic_title": "Code review practices",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/01-code-delivery-practices/",
-      "output_file": "tamil/08-technical-leadership-delivery/01-code-delivery-practices/8-1-1-code-review-practices/README.md"
+      "output_file": "08-technical-leadership-delivery\\01-code-delivery-practices\\8-1-1-code-review-practices.md"
     },
     {
       "section_number": "8.1.2",
@@ -3397,9 +3397,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Code & delivery practices",
       "topic_title": "Pull request etiquette",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/01-code-delivery-practices/",
-      "output_file": "tamil/08-technical-leadership-delivery/01-code-delivery-practices/8-1-2-pull-request-etiquette/README.md"
+      "output_file": "08-technical-leadership-delivery\\01-code-delivery-practices\\8-1-2-pull-request-etiquette.md"
     },
     {
       "section_number": "8.1.3",
@@ -3407,9 +3407,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Code & delivery practices",
       "topic_title": "Technical mentoring",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/01-code-delivery-practices/",
-      "output_file": "tamil/08-technical-leadership-delivery/01-code-delivery-practices/8-1-3-technical-mentoring/README.md"
+      "output_file": "08-technical-leadership-delivery\\01-code-delivery-practices\\8-1-3-technical-mentoring.md"
     },
     {
       "section_number": "8.1.4",
@@ -3417,9 +3417,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Code & delivery practices",
       "topic_title": "Task breakdown & estimation",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/01-code-delivery-practices/",
-      "output_file": "tamil/08-technical-leadership-delivery/01-code-delivery-practices/8-1-4-task-breakdown-estimation/README.md"
+      "output_file": "08-technical-leadership-delivery\\01-code-delivery-practices\\8-1-4-task-breakdown-estimation.md"
     },
     {
       "section_number": "8.1.5",
@@ -3427,9 +3427,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Code & delivery practices",
       "topic_title": "Agile/sprint involvement at tech-lead level",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/01-code-delivery-practices/",
-      "output_file": "tamil/08-technical-leadership-delivery/01-code-delivery-practices/8-1-5-agile-sprint-involvement-at-tech-lead-level/README.md"
+      "output_file": "08-technical-leadership-delivery\\01-code-delivery-practices\\8-1-5-agile-sprint-involvement-at-tech-lead-level.md"
     },
     {
       "section_number": "8.1.6",
@@ -3437,9 +3437,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Code & delivery practices",
       "topic_title": "Definition of done",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/01-code-delivery-practices/",
-      "output_file": "tamil/08-technical-leadership-delivery/01-code-delivery-practices/8-1-6-definition-of-done/README.md"
+      "output_file": "08-technical-leadership-delivery\\01-code-delivery-practices\\8-1-6-definition-of-done.md"
     },
     {
       "section_number": "8.2.1",
@@ -3447,9 +3447,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Incident & operational leadership",
       "topic_title": "Incident response leadership",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/02-incident-operational-leadership/",
-      "output_file": "tamil/08-technical-leadership-delivery/02-incident-operational-leadership/8-2-1-incident-response-leadership/README.md"
+      "output_file": "08-technical-leadership-delivery\\02-incident-operational-leadership\\8-2-1-incident-response-leadership.md"
     },
     {
       "section_number": "8.2.2",
@@ -3457,9 +3457,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Incident & operational leadership",
       "topic_title": "Postmortem facilitation",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/02-incident-operational-leadership/",
-      "output_file": "tamil/08-technical-leadership-delivery/02-incident-operational-leadership/8-2-2-postmortem-facilitation/README.md"
+      "output_file": "08-technical-leadership-delivery\\02-incident-operational-leadership\\8-2-2-postmortem-facilitation.md"
     },
     {
       "section_number": "8.2.3",
@@ -3467,9 +3467,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Incident & operational leadership",
       "topic_title": "On-call ownership",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/02-incident-operational-leadership/",
-      "output_file": "tamil/08-technical-leadership-delivery/02-incident-operational-leadership/8-2-3-on-call-ownership/README.md"
+      "output_file": "08-technical-leadership-delivery\\02-incident-operational-leadership\\8-2-3-on-call-ownership.md"
     },
     {
       "section_number": "8.2.4",
@@ -3477,9 +3477,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Incident & operational leadership",
       "topic_title": "Cross-team coordination",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/02-incident-operational-leadership/",
-      "output_file": "tamil/08-technical-leadership-delivery/02-incident-operational-leadership/8-2-4-cross-team-coordination/README.md"
+      "output_file": "08-technical-leadership-delivery\\02-incident-operational-leadership\\8-2-4-cross-team-coordination.md"
     },
     {
       "section_number": "8.2.5",
@@ -3487,9 +3487,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "Incident & operational leadership",
       "topic_title": "Escalation management",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/02-incident-operational-leadership/",
-      "output_file": "tamil/08-technical-leadership-delivery/02-incident-operational-leadership/8-2-5-escalation-management/README.md"
+      "output_file": "08-technical-leadership-delivery\\02-incident-operational-leadership\\8-2-5-escalation-management.md"
     },
     {
       "section_number": "8.3.1",
@@ -3497,9 +3497,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "People & process",
       "topic_title": "1:1s with reportees",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/03-people-process/",
-      "output_file": "tamil/08-technical-leadership-delivery/03-people-process/8-3-1-1-1s-with-reportees/README.md"
+      "output_file": "08-technical-leadership-delivery\\03-people-process\\8-3-1-1-1s-with-reportees.md"
     },
     {
       "section_number": "8.3.2",
@@ -3507,9 +3507,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "People & process",
       "topic_title": "Delegation",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/03-people-process/",
-      "output_file": "tamil/08-technical-leadership-delivery/03-people-process/8-3-2-delegation/README.md"
+      "output_file": "08-technical-leadership-delivery\\03-people-process\\8-3-2-delegation.md"
     },
     {
       "section_number": "8.3.3",
@@ -3517,9 +3517,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "People & process",
       "topic_title": "Technical hiring & interviewing",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/03-people-process/",
-      "output_file": "tamil/08-technical-leadership-delivery/03-people-process/8-3-3-technical-hiring-interviewing/README.md"
+      "output_file": "08-technical-leadership-delivery\\03-people-process\\8-3-3-technical-hiring-interviewing.md"
     },
     {
       "section_number": "8.3.4",
@@ -3527,9 +3527,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "People & process",
       "topic_title": "Onboarding new engineers",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/03-people-process/",
-      "output_file": "tamil/08-technical-leadership-delivery/03-people-process/8-3-4-onboarding-new-engineers/README.md"
+      "output_file": "08-technical-leadership-delivery\\03-people-process\\8-3-4-onboarding-new-engineers.md"
     },
     {
       "section_number": "8.3.5",
@@ -3537,9 +3537,9 @@
       "phase_title": "Technical Leadership & Delivery",
       "section_title": "People & process",
       "topic_title": "Conflict resolution",
-      "status": "pending",
+      "status": "completed",
       "folder": "08-technical-leadership-delivery/03-people-process/",
-      "output_file": "tamil/08-technical-leadership-delivery/03-people-process/8-3-5-conflict-resolution/README.md"
+      "output_file": "08-technical-leadership-delivery\\03-people-process\\8-3-5-conflict-resolution.md"
     },
     {
       "section_number": "9.1.1",
@@ -3547,9 +3547,9 @@
       "phase_title": "Non-AI System Design Practice",
       "section_title": "System design practice",
       "topic_title": "Requirements gathering",
-      "status": "pending",
+      "status": "completed",
       "folder": "09-non-ai-system-design-practice/01-system-design-practice/",
-      "output_file": "tamil/09-non-ai-system-design-practice/01-system-design-practice/9-1-1-requirements-gathering/README.md"
+      "output_file": "09-non-ai-system-design-practice\\01-system-design-practice\\9-1-1-requirements-gathering.md"
     },
     {
       "section_number": "9.1.2",
@@ -3557,9 +3557,9 @@
       "phase_title": "Non-AI System Design Practice",
       "section_title": "System design practice",
       "topic_title": "Capacity estimation",
-      "status": "pending",
+      "status": "completed",
       "folder": "09-non-ai-system-design-practice/01-system-design-practice/",
-      "output_file": "tamil/09-non-ai-system-design-practice/01-system-design-practice/9-1-2-capacity-estimation/README.md"
+      "output_file": "09-non-ai-system-design-practice\\01-system-design-practice\\9-1-2-capacity-estimation.md"
     },
     {
       "section_number": "9.1.3",
@@ -3567,9 +3567,9 @@
       "phase_title": "Non-AI System Design Practice",
       "section_title": "System design practice",
       "topic_title": "High-level design",
-      "status": "pending",
+      "status": "completed",
       "folder": "09-non-ai-system-design-practice/01-system-design-practice/",
-      "output_file": "tamil/09-non-ai-system-design-practice/01-system-design-practice/9-1-3-high-level-design/README.md"
+      "output_file": "09-non-ai-system-design-practice\\01-system-design-practice\\9-1-3-high-level-design.md"
     },
     {
       "section_number": "9.1.4",
@@ -3577,9 +3577,9 @@
       "phase_title": "Non-AI System Design Practice",
       "section_title": "System design practice",
       "topic_title": "API design",
-      "status": "pending",
+      "status": "completed",
       "folder": "09-non-ai-system-design-practice/01-system-design-practice/",
-      "output_file": "tamil/09-non-ai-system-design-practice/01-system-design-practice/9-1-4-api-design/README.md"
+      "output_file": "09-non-ai-system-design-practice\\01-system-design-practice\\9-1-4-api-design.md"
     },
     {
       "section_number": "9.1.5",
@@ -3587,9 +3587,9 @@
       "phase_title": "Non-AI System Design Practice",
       "section_title": "System design practice",
       "topic_title": "Database schema design",
-      "status": "pending",
+      "status": "completed",
       "folder": "09-non-ai-system-design-practice/01-system-design-practice/",
-      "output_file": "tamil/09-non-ai-system-design-practice/01-system-design-practice/9-1-5-database-schema-design/README.md"
+      "output_file": "09-non-ai-system-design-practice\\01-system-design-practice\\9-1-5-database-schema-design.md"
     },
     {
       "section_number": "9.1.6",
@@ -3597,7 +3597,7 @@
       "phase_title": "Non-AI System Design Practice",
       "section_title": "System design practice",
       "topic_title": "Scaling strategies",
-      "status": "pending",
+      "status": "in_progress",
       "folder": "09-non-ai-system-design-practice/01-system-design-practice/",
       "output_file": "tamil/09-non-ai-system-design-practice/01-system-design-practice/9-1-6-scaling-strategies/README.md"
     },
