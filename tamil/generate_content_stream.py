@@ -1,30 +1,52 @@
 #!/usr/bin/env python3
-"""Stream learning content from a local Ollama model safely."""
+"""Streaming Ollama learning-content generator.
+
+Length handling:
+  --num-predict is the starting output-token limit.
+  If Ollama returns done_reason=length, the next attempt increases the limit
+  by 50%, up to --max-num-predict.
+
+Example:
+  python generate_content_stream.py --model muse-glimmer --num-predict 16384
+"""
+
 from __future__ import annotations
-import argparse, json, re, sys, time
+
+import argparse
+import json
+import re
+import sys
+import time
 from pathlib import Path
 from typing import Any
+
 import requests
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 DEFAULT_MODEL = "gemma3:12b"
-DEFAULT_NUM_PREDICT = 8192
+DEFAULT_NUM_PREDICT = 16384
+DEFAULT_MAX_NUM_PREDICT = 32768
 DEFAULT_KEEP_ALIVE = "30m"
 DEFAULT_TIMEOUT = 3600
-DEFAULT_MAX_RETRIES = 2
+DEFAULT_MAX_RETRIES = 1
 BASE_PROMPT_FILE = "master_base_prompt.md"
 LEARNING_PATH_FILE = "learning_path.json"
+
 
 def slugify(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower().strip()).strip("-")
 
+
 def load_json(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    with path.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
 
 def save_json(path: Path, data: dict[str, Any]) -> None:
     tmp = path.with_suffix(".tmp")
     tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     tmp.replace(path)
+
 
 def build_prompt(template: str, topic: dict[str, Any]) -> str:
     replacements = {
@@ -35,23 +57,20 @@ def build_prompt(template: str, topic: dict[str, Any]) -> str:
         "{{SECTION_TITLE}}": topic["section_title"],
     }
     prompt = template
-    for key, value in replacements.items():
-        prompt = prompt.replace(key, value)
+    for placeholder, value in replacements.items():
+        prompt = prompt.replace(placeholder, value)
     if prompt == template:
-        raise ValueError("No topic placeholder found in master_base_prompt.md.")
+        raise ValueError("No topic placeholder found in master_base_prompt.md")
     return prompt
 
-def basic_completeness_check(text: str, done_reason: str | None) -> tuple[bool, str]:
-    if not text.strip():
-        return True, "empty response"
-    if done_reason == "length":
-        return True, "Ollama reported done_reason=length"
-    if text.count("```") % 2 != 0:
-        return True, "unclosed Markdown/code fence"
-    # Deliberately do not guess whether Tamil prose is grammatically complete.
-    return False, ""
 
-def stream_ollama(model: str, prompt: str, num_predict: int, keep_alive: str, timeout: int):
+def stream_ollama(
+    model: str,
+    prompt: str,
+    num_predict: int,
+    keep_alive: str,
+    timeout: int,
+) -> tuple[str, dict[str, Any]]:
     response = requests.post(
         OLLAMA_URL,
         json={
@@ -65,8 +84,10 @@ def stream_ollama(model: str, prompt: str, num_predict: int, keep_alive: str, ti
         timeout=timeout,
     )
     response.raise_for_status()
+
     chunks: list[str] = []
     final_payload: dict[str, Any] = {}
+
     try:
         for raw_line in response.iter_lines(decode_unicode=True):
             if not raw_line:
@@ -74,114 +95,210 @@ def stream_ollama(model: str, prompt: str, num_predict: int, keep_alive: str, ti
             payload = json.loads(raw_line)
             if payload.get("error"):
                 raise RuntimeError(payload["error"])
+
             chunk = payload.get("response", "")
             if chunk:
                 chunks.append(chunk)
                 print(".", end="", flush=True)
+
             if payload.get("done"):
                 final_payload = payload
                 break
     finally:
         response.close()
+
     print()
     content = "".join(chunks).strip()
     if not content:
-        raise RuntimeError("Ollama returned an empty response.")
+        raise RuntimeError("Ollama returned an empty response")
     return content, final_payload
 
+
 def output_path(root: Path, topic: dict[str, Any]) -> Path:
-    return root / topic["folder"] / (
+    folder = root / topic["folder"]
+    filename = (
         f"{topic['section_number'].replace('.', '-')}-"
         f"{slugify(topic['topic_title'])}.md"
     )
+    return folder / filename
 
-def save_partial(path: Path, topic: dict[str, Any], content: str, reason: str) -> None:
-    partial = path.with_suffix(".partial.md")
+
+def save_partial(output: Path, topic: dict[str, Any], content: str, reason: str, limit: int) -> None:
+    partial = output.with_suffix(".partial.md")
     partial.parent.mkdir(parents=True, exist_ok=True)
     partial.write_text(
         f"# PARTIAL — {topic['topic_title']}\n\n"
-        f"> Generation was not accepted as complete.\n"
-        f"> Reason: {reason}\n\n{content}\n",
+        f"> Reason: {reason}\n"
+        f"> num_predict: {limit}\n\n"
+        f"{content}\n",
         encoding="utf-8",
     )
 
-def save_completed(path: Path, topic: dict[str, Any], content: str) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
+
+def save_completed(output: Path, topic: dict[str, Any], content: str) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
     document = (
         f"# {topic['topic_title']}\n\n"
         f"> **Learning Path:** {topic['phase_title']}\n"
         f"> **Section:** {topic['section_number']} — {topic['section_title']}\n\n"
         f"{content.strip()}\n"
     )
-    tmp = path.with_suffix(".tmp.md")
+    tmp = output.with_suffix(".tmp.md")
     tmp.write_text(document, encoding="utf-8")
-    tmp.replace(path)
+    tmp.replace(output)
+
+
+def next_limit(current: int, maximum: int) -> int:
+    if current >= maximum:
+        return current
+    increased = int(current * 1.5)
+    increased = ((increased + 1023) // 1024) * 1024
+    return min(increased, maximum)
+
+
+def select_topics(topics, status, section, limit):
+    selected = topics
+    if status:
+        selected = [t for t in selected if t["status"] == status]
+    if section:
+        selected = [t for t in selected if t["section_number"] == section]
+    if limit:
+        selected = selected[:limit]
+    return selected
+
 
 def update_metadata(topic: dict[str, Any], metadata: dict[str, Any]) -> None:
-    for key in ("done_reason", "eval_count", "eval_duration", "prompt_eval_count",
-                "prompt_eval_duration", "total_duration", "load_duration"):
+    for key in (
+        "done_reason",
+        "eval_count",
+        "eval_duration",
+        "prompt_eval_count",
+        "prompt_eval_duration",
+        "total_duration",
+        "load_duration",
+    ):
         if key in metadata:
             topic[key] = metadata[key]
 
-def select_topics(topics, status, section, limit):
-    selected = [t for t in topics if not status or t["status"] == status]
-    if section:
-        selected = [t for t in selected if t["section_number"] == section]
-    return selected[:limit] if limit else selected
 
-def generate_topic(root, path_file, learning_path, topic, template, args) -> bool:
-    path = output_path(root, topic)
+def generate_topic(
+    root: Path,
+    path_file: Path,
+    learning_path: dict[str, Any],
+    topic: dict[str, Any],
+    template: str,
+    model: str,
+    starting_limit: int,
+    maximum_limit: int,
+    keep_alive: str,
+    timeout: int,
+    max_retries: int,
+) -> bool:
+    output = output_path(root, topic)
     prompt = build_prompt(template, topic)
-    attempts = args.max_retries + 1
-    for attempt in range(1, attempts + 1):
-        print(f"  Attempt {attempt}/{attempts} | num_predict={args.num_predict}")
+    limit = starting_limit
+    total_attempts = max_retries + 1
+
+    for attempt in range(1, total_attempts + 1):
+        print(f"  Attempt {attempt}/{total_attempts} | num_predict={limit}")
         topic["status"] = "in_progress"
         topic["attempts"] = attempt
+        topic["current_num_predict"] = limit
         save_json(path_file, learning_path)
+
         try:
             content, metadata = stream_ollama(
-                args.model, prompt, args.num_predict, args.keep_alive, args.timeout
+                model=model,
+                prompt=prompt,
+                num_predict=limit,
+                keep_alive=keep_alive,
+                timeout=timeout,
             )
             update_metadata(topic, metadata)
-            incomplete, reason = basic_completeness_check(content, metadata.get("done_reason"))
-            if incomplete:
+
+            done_reason = metadata.get("done_reason")
+
+            # This is the strongest reliable signal that output was truncated.
+            if done_reason == "length":
+                reason = "Ollama reached num_predict"
                 print(f"  ⚠ NOT accepted: {reason}")
-                save_partial(path, topic, content, reason)
+                save_partial(output, topic, content, reason, limit)
                 topic["last_error"] = reason
                 save_json(path_file, learning_path)
-                if attempt < attempts:
+
+                if attempt < total_attempts:
+                    new_limit = next_limit(limit, maximum_limit)
+                    if new_limit > limit:
+                        print(f"  ↻ Retrying with num_predict={new_limit}")
+                        limit = new_limit
+                        time.sleep(2)
+                        continue
+                break
+
+            # Don't accept structurally broken Markdown/Mermaid.
+            if content.count("```") % 2 != 0:
+                reason = "unclosed Markdown/code fence"
+                print(f"  ⚠ NOT accepted: {reason}")
+                save_partial(output, topic, content, reason, limit)
+                topic["last_error"] = reason
+                save_json(path_file, learning_path)
+                if attempt < total_attempts:
                     time.sleep(2)
                     continue
-                topic["status"] = "failed"
-                topic["error"] = f"Incomplete generation after {attempts} attempts: {reason}"
-                save_json(path_file, learning_path)
-                return False
-            save_completed(path, topic, content)
-            partial = path.with_suffix(".partial.md")
+                break
+
+            save_completed(output, topic, content)
+            partial = output.with_suffix(".partial.md")
             if partial.exists():
                 partial.unlink()
+
             topic["status"] = "completed"
-            topic["output_file"] = str(path.relative_to(root))
+            topic["output_file"] = str(output.relative_to(root))
+            topic["final_num_predict"] = limit
             topic.pop("last_error", None)
             topic.pop("error", None)
             save_json(path_file, learning_path)
-            print(f"  ✓ Completed | done_reason={metadata.get('done_reason', '?')} | output_tokens={metadata.get('eval_count', '?')}")
+
+            print(
+                f"  ✓ Completed | done_reason={done_reason or '?'} "
+                f"| output_tokens={metadata.get('eval_count', '?')}"
+            )
             return True
+
         except requests.RequestException as exc:
             reason = f"HTTP error: {exc}"
+            print(f"  ⚠ {reason}", file=sys.stderr)
+            topic["last_error"] = reason
+            save_json(path_file, learning_path)
+            if attempt < total_attempts:
+                time.sleep(5)
+                continue
+            topic["status"] = "failed"
+            topic["error"] = reason
+            save_json(path_file, learning_path)
+            return False
+
         except Exception as exc:
             reason = f"Generation error: {exc}"
-        print(f"  ⚠ {reason}", file=sys.stderr)
-        topic["last_error"] = reason
-        save_json(path_file, learning_path)
-        if attempt < attempts:
-            time.sleep(5)
-            continue
-        topic["status"] = "failed"
-        topic["error"] = reason
-        save_json(path_file, learning_path)
-        return False
+            print(f"  ⚠ {reason}", file=sys.stderr)
+            topic["last_error"] = reason
+            save_json(path_file, learning_path)
+            if attempt < total_attempts:
+                time.sleep(5)
+                continue
+            topic["status"] = "failed"
+            topic["error"] = reason
+            save_json(path_file, learning_path)
+            return False
+
+    topic["status"] = "failed"
+    topic["error"] = (
+        f"Incomplete after {total_attempts} attempts; "
+        f"maximum num_predict={maximum_limit}"
+    )
+    save_json(path_file, learning_path)
     return False
+
 
 def main() -> int:
     parser = argparse.ArgumentParser()
@@ -190,39 +307,80 @@ def main() -> int:
     parser.add_argument("--section")
     parser.add_argument("--limit", type=int)
     parser.add_argument("--num-predict", type=int, default=DEFAULT_NUM_PREDICT)
+    parser.add_argument("--max-num-predict", type=int, default=DEFAULT_MAX_NUM_PREDICT)
     parser.add_argument("--keep-alive", default=DEFAULT_KEEP_ALIVE)
     parser.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT)
     parser.add_argument("--max-retries", type=int, default=DEFAULT_MAX_RETRIES)
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
+
+    if args.num_predict <= 0:
+        parser.error("--num-predict must be > 0")
+    if args.max_num_predict < args.num_predict:
+        parser.error("--max-num-predict must be >= --num-predict")
+
     root = Path(__file__).resolve().parent
     path_file = root / LEARNING_PATH_FILE
     prompt_file = root / BASE_PROMPT_FILE
-    if not path_file.exists() or not prompt_file.exists():
-        print("Missing learning_path.json or master_base_prompt.md", file=sys.stderr)
+
+    if not path_file.exists():
+        print(f"Missing: {path_file}", file=sys.stderr)
         return 1
+    if not prompt_file.exists():
+        print(f"Missing: {prompt_file}", file=sys.stderr)
+        return 1
+
     learning_path = load_json(path_file)
     template = prompt_file.read_text(encoding="utf-8")
-    topics = select_topics(learning_path["topics"], args.status, args.section, args.limit)
+    topics = select_topics(
+        learning_path["topics"], args.status, args.section, args.limit
+    )
+
     if not topics:
         print("No matching topics found.")
         return 0
-    print(f"Topics={len(topics)} Model={args.model} num_predict={args.num_predict} keep_alive={args.keep_alive} timeout={args.timeout}s retries={args.max_retries}")
+
+    print(
+        f"Topics={len(topics)} Model={args.model} "
+        f"num_predict={args.num_predict} "
+        f"max_num_predict={args.max_num_predict} "
+        f"keep_alive={args.keep_alive} "
+        f"timeout={args.timeout}s retries={args.max_retries}"
+    )
+
     completed = failed = 0
+
     for topic in topics:
         print(f"\n[{topic['section_number']}] {topic['topic_title']}")
+
         if args.dry_run:
             print(build_prompt(template, topic))
             continue
+
         if topic.get("status") == "completed":
             print("  ↷ Already completed; skipping.")
             continue
-        if generate_topic(root, path_file, learning_path, topic, template, args):
+
+        if generate_topic(
+            root=root,
+            path_file=path_file,
+            learning_path=learning_path,
+            topic=topic,
+            template=template,
+            model=args.model,
+            starting_limit=args.num_predict,
+            maximum_limit=args.max_num_predict,
+            keep_alive=args.keep_alive,
+            timeout=args.timeout,
+            max_retries=args.max_retries,
+        ):
             completed += 1
         else:
             failed += 1
-    print(f"\nCompleted: {completed}\nFailed: {failed}")
+
+    print(f"\nCompleted={completed} Failed={failed}")
     return 0 if failed == 0 else 2
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

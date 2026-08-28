@@ -1,71 +1,91 @@
 # PARTIAL — Latency
 
-> Generation was not accepted as complete.
-> Reason: Ollama reported done_reason=length
+> Reason: Ollama reached num_predict
+> num_predict: 32768
 
-## Problem
+## 1. Problem
 
-உங்க team ஒரு customer support chatbot பண்ணுது. User ஒரு கேள்வி கேட்டவுடன் response வர 8-10 seconds ஆகுது. User typing-ஐ நிறுத்திட்டு wait பண்ணறார். சிலருக்கு timeout ஆகுது. Conversion drop ஆகுது.
+ஒரு chatbot-ல user ஒரு கேள்வி கேட்ட உடனே response வரணும், இல்லைனா user wait பண்ண மாட்டாரு. 
 
-இன்னொரு பக்கம் code generation tool உள்ளது. Developer-க்கு suggestion வேணும். அங்கே 8-10 seconds ஓகே தான்.
+நீங்கள் ஒரு LLM-ஐ select பண்ணும்போது, அது quality மட்டும் இல்ல, **latency**-ம் முக்கியம். 
 
-எதுலயும் "model slow" என்று சொல்லலாம். ஆனால் **எந்த latency தான் பிரச்சனை?** Model selection பண்ணும்போது நீங்கள் வெறும் accuracy மட்டும் பார்க்கலாம். Production-ல் latency தான் UX-ஐ முடிவு செய்யும்.
+ஒரு 70B model-ல் சரியான answer கிடைக்கலாம், ஆனா Time To First Token 3-4 seconds ஆகும். அதே prompt-க்கு 7B model 600ms-ல first token தரும். User-க்கு feel வேறு. 
 
-இதை தெளிவாக பார்க்க latency என்பது ஒரு single number இல்லை.
+என்ன problem? Model பெரிதாகும்போது inference slow ஆகும். Traffic அதிகமாகும்போது queue-ல wait பண்ணும். Network round-trip, serialization, prefill/decode எல்லாம் சேர்ந்து latency pile up ஆகும்.
 
-## Mental Model
+என்ன வரும்? Drop-off, retries, cost spike.
 
-Latency-ஐ இரண்டு பகுதியாக பிரித்து பாருங்கள்:
+## 2. Mental Model
 
-* **Time to First Token - TTFB**: user request போனது முதல் முதல் token வரை எவ்வளவு நேரம். இது perceived responsiveness-ஐ தீர்மானிக்கும்.
-* **Time to Last Token**: முழு response generate ஆக எவ்வளவு நேரம். இது throughput மற்றும் cost-ஐ தொடர்புடையது.
+Latency என்பது **user கேள்வி கேட்ட நேரத்தில் இருந்து first useful token கிடைக்கும் நேரம் வரை** உள்ள காலம்.
 
-ஒரு LLM-க்கு latency பெரும்பாலும் inference compute-ல் இருந்து வரும்: prefill phase + decode phase. Prefill என்பது prompt-ஐ process பண்ணும் phase. Decode என்பது token-by-token generate பண்ணும் phase.
+இதை மூன்று பகுதியா பார்க்கலாம்:
+* **TTFT - Time To First Token**: request வந்ததில் இருந்து முதல் token வரும் வரை
+* **TPOT - Time Per Output Token**: தொடர்ந்து token generate ஆகும் வேகம்
+* **Total latency**: TTFT + generation time
 
-ஒரு distributed system-ல் network, queue, serialization, tokenization, embedding lookup, RAG retrieval எல்லாம் சேர்ந்து latency budget-ஐ தின்னும்.
+Average latency பார்க்காதீங்க. p95, p99 பாருங்க. ஏனெனில் ஒரு slow request தான் user experience-ஐ கெடுக்கும்.
 
-## Architectural Reasoning
+## 3. How It Works
 
-Model selection-ல் latency ஒரு first class constraint.
+ஒரு LLM inference request flow பார்ப்போம்:
 
-**Constraints என்ன?**
-* User experience budget: Chat-க்கு TTFB < 800ms, p95 < 2s வேணும். Internal batch job-க்கு 30s ஓகே.
-* Traffic & throughput: 1000 RPS வரும். ஒரு request-க்கு 10s ஆனால் GPU-கள் எத்தனை வேணும்?
-* Cost: Bigger model = better quality ஆனால் higher latency + higher cost per token.
-* Consistency: p99 latency spike வந்தால் user abandon பண்ணுவார்.
+```mermaid
+graph LR
+A[User] --> B[API Gateway]
+B --> C[Router / Queue]
+C --> D[Model Server]
+D --> E[GPU / Inference Engine]
+E --> A
+```
 
-**Options உள்ளன:**
-1. **Model size trade-off**: 7B vs 70B vs 405B. Smaller model = lower latency, lower quality.
-2. **Optimization**: Quantization INT4/INT8, distillation, speculative decoding, continuous batching.
-3. **Architecture**: Streaming response, caching frequent prompts, RAG pre-fetch, router model - small model for easy queries, big model for hard queries.
-4. **Infrastructure**: GPU vs vCPU, KV cache management, max batch size.
+இங்கே latency வரும் இடங்கள்:
+1. **Queue wait**: concurrent requests இருந்தா model busy இருக்கும்
+2. **Prefill**: prompt tokens-ஐ ஒரே batch-ல process பண்ணுவது. Prompt length அதிகமானால் இது heavy
+3. **Decode**: ஒரு token generate ஆக ஒரு token time எடுக்கும். Autoregressive என்பதால் serial
+4. **Network & serialization**: API gateway, load balancer, token stream
 
-Architect ஆக நீங்கள் கேட்க வேண்டியது: *இந்த use case-க்கு quality-ஐ எவ்வளவு குறைத்தாலும் ஓகே?* அப்புறம் latency budget-க்கு எந்த model fit ஆகும்?
+Model selection இந்த எல்லா இடத்தையும் பாதிக்கும். பெரிய model = more parameters = more compute per token = higher latency.
 
-## Trade-offs
+## 4. Architectural Reasoning
 
-1. **Latency vs Quality**: Bigger model generally better reasoning, better hallucination control. ஆனால் latency அதிகம். 70B model 7B model-ஐ விட 3-5x slow ஆகும். உண்மையான trade-off user perception vs correctness.
+Model selection பண்ணும்போது நீங்கள் கேட்க வேண்டிய கேள்வி: **இந்த use case-க்கு எவ்வளவு latency acceptable?**
 
-2. **Latency vs Cost**: Fast latency வேணும்னா smaller model அல்லது more replicas வேணும். Both cost. ஒரு 70B model-ஐ low latency-ல் serve பண்ண நிறைய GPU வேணும். அதே cost-ல் 7B model-ஐ scale பண்ணி better p99 கொடுக்கலாம்.
+* Chat UI, real-time agent: TTFT < 800ms வேணும். Small model, quantization, or distilled model தேர்வு.
+* Async summarization, batch jobs: latency matter இல்ல. Large model use பண்ணலாம்.
+* RAG pipeline: retrieval + LLM. Retrieval latency + LLM latency = total. இங்கே model-ஐ fast-ஆக வைத்தால் overall pipeline fast ஆகும்.
 
-3. **TTFB vs Full response time**: Streaming ஆரம்பிக்கலாம். User-க்கு முதல் token விரைவாக வந்தால் பொறுமை வரும். ஆனால் total generation time மாறாது.
+Options உள்ளன:
+* Bigger model vs smaller model
+* Full precision vs quantized INT4/INT8
+* Local GPU vs hosted managed service
+* Single model vs router with fallback: fast model first, slow model for hard prompts
 
-4. **Batching vs Latency**: Throughput அதிகரிக்க batching செய்யலாம். Latency அதிகரிக்கும். Real-time chat-க்கு continuous batching தேவை, offline job-க்கு large batch ஓகே.
+ஒரு architect ஏன் small model choose பண்ணுவார்? Latency constraint-ஐ meet பண்ண. Throughput increase பண்ண. Cost per request குறையும்.
 
-Failure mode: p99 latency spike. ஏன்? Long context prompt, cache miss, GPU contention, cold start. Model selection பண்ணும்போது worst case-ஐ design பண்ணுங்கள், average case அல்ல.
+## 5. Trade-offs
 
-## Practical Example
+**Latency vs Quality**: பெரிய model தரமானது. சிறிய model வேகமானது. Use case define பண்ணும்.
 
-Enterprise RAG chatbot for sales support.
+**Latency vs Cost**: Low latency-க்கு more GPU replicas, smaller batch size வேணும். Cost per token அதிகம்.
 
-Request flow: User query -> intent classification -> embedding -> vector database search -> context build -> LLM generate.
+**Latency vs Throughput**: Batching செய்தால் throughput அதிகம், ஆனால் per-request latency அதிகரிக்கும். Real-time-க்கு dynamic batching தான் பயன்படுத்துவார்கள்.
 
-Latency breakdown: Retrieval 120ms, tokenization 30ms, prefill 400ms, decode 1.2s. TTFB ~ 550ms.
+**Consistency**: Latency spiky ஆகும். Cold start, GC pause, GPU contention. p99-ஐ design பண்ணனும்.
 
-Decision: 70B model TTFB 1.2s ஆகுது. UX team says >800ms unacceptable. Option A: 70B + speculative decoding + smaller context. Option B: 7B distilled model + router - simple queries 7B, complex queries 70B.
+Failure mode: Model overload ஆனால் queue pile up ஆகும். Timeout ஆகும். Client retry பண்ணும். அது cascade failure கொண்டு வரும். Circuit breaker வேணும்.
 
-அவர்கள் hybrid router தேர்ந்தெடுத்தார்கள். 80% queries 7B-ல் handle ஆகுது. p95 TTFB 650ms. Cost 40% குறைந்தது. Quality drop for simple queries கிடையாது.
+## 6. Practical Example
 
-இங்கே model selection என்பது ஒரு single model pick அல்ல. Latency budget-க்கு ஏற்ற architecture.
+Enterprise customer support chatbot. 
 
-##
+Peak time-ல 2000 concurrent users. SLA: TTFT < 1s.
+
+70B model-ல TTFT 2.5s வருது. p95 4s.
+
+நீங்கள் என்ன பண்ணீங்க?
+* Routing rule: simple FAQs-க்கு 7B distilled model. Complex troubleshooting-க்கு 70B.
+* Cache common prompts, RAG results.
+* Streaming response: first token வந்த உடனே UI-ல show பண்ண start.
+
+Result: average latency 700ms,
