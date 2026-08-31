@@ -5,87 +5,110 @@
 
 ## 1. Problem
 
-ஒரு LLM agent-ஐயோ, AI system-ஐயோ build பண்ணும்போது ஒரு basic pain point வரும்.
+உங்ககிட்ட ஒரு agent இருக்கு. User chat-ல "என்னோட last order-ல என்ன items இருந்துச்சு?"ன்னு கேட்கிறார். 
 
-User இப்போ என்ன சொன்னார், அதுக்கு முன்னாடி என்ன சொன்னார், இந்த conversation-ல overall goal என்ன — இதை மறந்துட்டா agent எப்படி coherent-ஆ பேசும்?
+Agent இப்போ தான் order service-ஐ call பண்ணி data எடுத்துட்டு வந்திருக்கு. அடுத்த turn-ல user "அதுல இருந்த laptop-ஐ return பண்ணுங்க"ன்னு சொல்றார்.
 
-Short-term memory இல்லாமல் ஒவ்வொரு turn-உம் isolated-ஆ தெரியும். User "அதை" என்று சொன்னால், "அது" எது என்று தெரியாது. Context window-ல data இருக்கும், ஆனால் *actively hold* பண்ணி reasoning-ல use பண்ணுவது வேறு.
+Agent-க்கு அந்த last order என்னன்னு நினைவு இருக்கணும். ஒவ்வொரு turn-க்கும் முழு conversation-ஐயும் database-ல இருந்து fetch பண்ணி, எல்லா context-யும் மறுபடியும் முழுசா feed பண்ண முடியுமா? முடியும், ஆனா slow ஆகும், expensive ஆகும்.
 
-**What goes wrong if we don't have this?** Hallucination, repetition, context loss, user frustrate ஆகிறார். Agent ஒவ்வொரு முறையும் from scratch start ஆகும்.
+இன்னொரு பக்கம், LLM-க்கு context window limited. 1000 turns-க்கு முன்னாடி நடந்தது இன்னைக்கு தேவையில்லை. ஆனா கடைசி 3-4 turns-ல நடந்தது இப்போதைக்கு critical.
+
+**What problem became painful enough?** Agent-க்கு "இப்போ நடக்கிற conversation-க்கு தேவையான recent context-ஐ கைவசம் வச்சுக்கணும்", ஆனா அதை permanent-ஆ store பண்ணக்கூடாது. அது short-term memory தேவை.
 
 ## 2. Mental Model
 
-Short-term memory = **working memory**. இது ஒரு session-க்குள், ஒரு task-க்குள் நடக்கும் சமீபத்திய context-ஐ hold பண்ணி, next step-க்கு use பண்ணும் mechanism.
+Short-term memory = இப்போ நடக்கிற session-க்கு தேவையான recent state.
 
-அனாலஜி: நீங்கள் ஒரு phone call-ல் பேசும்போது கடைசி 2-3 minutes மட்டும் தான் உங்கள் head-ல active-ஆ இருக்கும். அதை வைத்து தான் respond பண்ணுவீர்கள். Long-term memory என்பது notes app, short-term என்பது உங்கள் working table top.
+உதாரணத்துக்கு மனுஷன் short-term memory மாதிரி. நீங்க ஒரு phone number-ஐ கேட்டு 30 seconds வரை நினைவு வச்சிருப்பீங்க, அப்புறம் மறந்துடுவீங்க.
+
+AI system-ல short-term memory என்பது:
+
+* **Session scope** ஆன working context
+* Fast access, volatile
+* Turn-to-turn coherence-க்கு தேவை
+* Long-term memory-க்கு promote பண்ணாமல் தானாக expire ஆகும்
 
 ## 3. How It Works
 
-Practically, short-term memory என்பது 3 sources-இன் combination:
+இது system-ல 3 வழிகளில் வரும்.
 
-1. **Context window / conversation history**: Last N turns of chat. LLM இயற்கையாகவே இதை attend பண்ணும்.
-2. **Working state**: Agent loop-ல் current goal, plan, intermediate results, last action output. இது session state-ஆ memory-ல hold ஆகும்.
-3. **Buffer / scratchpad**: LLM reasoning steps, temporary calculations, tool outputs இப்போதைக்கு hold பண்ணும் place.
+**1. In-context window.** LLM-க்கு கடைசி N messages-ஐயே prompt-ல வைக்கிறோம். இது simplest form. No extra store.
 
-Implementation-ல இது usually:
-* in-memory store for session
-* session state in Redis / in-process cache
-* or simply sliding window of messages passed to LLM
+**2. Ephemeral session store.** Redis / in-memory cache-ல session_id கீயில் recent facts, entities, intermediate results வைக்கிறோம். TTL 15-60 mins.
 
-Key point: இது **ephemeral, fast, limited**. Long-term memory போல persistent இல்லை.
+**3. Working memory buffer.** Agent framework-ல ஒரு small structured buffer இருக்கும். `current_order_id`, `current_user_intent`, `last_action_result` போன்ற fields.
+
+Flow:
+
+User message → Retrieve session short-term memory → Merge with long-term profile → Build prompt → LLM generates → Update short-term memory with new facts → Respond
+
+Key point: Short-term memory is **derived and updated every turn**, not static lookup.
 
 ## 4. Architectural Reasoning
 
-Short-term memory useful ஆகும் போது:
-* Multi-turn conversation where coherence முக்கியம்
-* Agent multiple tools use பண்ணி step-by-step task solve பண்ணும் போது
-* User intent evolve ஆகும், clarification தேவைப்படும் போது
+எப்போ short-term memory தேவை?
 
-Constraint it addresses: LLM-க்கு stateless nature. Every request independent. Short-term memory state-ஐ inject பண்ணி stateless-ஐ stateful-ஆ மாற்றும்.
+* Multi-turn conversation, task completion தேவைப்படும் போது
+* User refers to "that", "it", "the same" போன்ற pronouns
+* Agent needs to maintain state across tool calls within same session
 
-Alternatives:
-* **Only context window**: Simple, but token cost high, history truncate ஆகும், long session-ல degrade ஆகும்
-* **Full retrieval every turn**: Slow, noisy, irrelevant info கலக்கும்
-* **State machine**: Deterministic, but flexible இல்லை
+Alternative என்ன?
 
-Architect choose பண்ணுவார் when latency low வேண்டும், session duration short, and coherence critical.
+* **Only long-term memory:** எல்லாத்தையும் DB-ல write பண்ணி திரும்ப read பண்ணலாம். ஆனா latency high, noise அதிகம்.
+* **Only context window:** Window fill ஆகும், cost அதிகம், privacy risk.
+
+Architect ஏன் choose பண்ணுவார்?
+
+Short-term memory gives you **low-latency coherence** with **bounded cost**. Session end ஆனதும் தானாக clean ஆகும், compliance-க்கு எளிது.
 
 ## 5. Trade-offs
 
-1. **Recency vs. Completeness**: Recent context மட்டும் keep பண்ணினால் speed high, ஆனால் important earlier detail loss ஆகும். Window size increase பண்ணினால் cost + latency increase.
-2. **Memory pollution**: Bad short-term memory = bad next response. Wrong state hold பண்ணினால் error propagate ஆகும். Need clear state reset / summarization.
-3. **Stateless scaling vs. session affinity**: Short-term memory keep பண்ண session sticky ஆக வேண்டியிருக்கும். Horizontal scale செய்யும்போது session store share பண்ண வேண்டும்.
-4. **Privacy & cost**: Conversation history memory-ல வைத்திருப்பது data retention issue கொண்டு வரும். How long to keep? When to evict?
+**1. Freshness vs Noise.** எவ்வளவு history வைக்கணும்? Too little → context loss. Too much → prompt dilution.
 
-Failure mode: Context window overflow ஆனால் important info truncate ஆகும். Agent முன்பு சொன்ன commitment-ஐ மறக்கும். User trust போய்விடும்.
+**2. Volatile vs Durable.** Memory-ஐ persist பண்ணலாம் ஆனா அப்போ அது short-term இல்ல. Session crash ஆனால் மறுபடியும் start பண்ண வேண்டும்.
+
+**3. Cost.** In-context வச்சால் token cost per request. Cache வச்சால் infra cost. Trade-off clear ஆ இருக்கணும்.
+
+**Failure modes:**
+
+* Session affinity loss. User next request வேற pod-க்கு போனால் memory miss.
+* Stale memory. User conversation topic மாறினாலும் பழைய facts influence பண்ணும்.
+* Memory leak. TTL set பண்ணாமல் cache grow ஆகும்.
 
 ## 6. Practical Example
 
-Enterprise support agent.
+E-commerce return agent.
 
-User: "எனக்கு Bangalore office-க்கு travel request create பண்ணுங்க"
-Agent: dates கேட்கிறது
-User: "15-17 Dec"
-Agent: budget கேட்கிறது
-User: "50k"
+User: "என்னோட கடைசி order-ல laptop வந்துச்சா?"
+Agent order service-ஐ call பண்ணி order_id=8421 என்று கண்டுபிடித்து, items list எடுத்து பதில் சொன்னது.
 
-இங்கே short-term memory இல்லாமல், 3rd turn-ல agent "எந்த office?" என்று திரும்ப கேட்கும்.
+Short-term memory-ல store பண்ணுவோம்:
+```
+session_abc123:
+  last_order_id: 8421
+  last_query_items: ["laptop", "mouse"]
+  last_action: "order_lookup"
+  ttl: 20 min
+```
 
-Architecture: Session ID -> Redis hash with keys: `current_goal`, `collected_params`, `last_tool_output`. Every turn, agent fetches session state, merges with last 4 messages, calls LLM. LLM output-ஐ parse பண்ணி state update பண்ணும்.
+Next turn:
+User: "அதை return பண்ணுங்க"
 
-இதனால் agent coherent-ஆ தொடர முடியும். Session end ஆனதும் memory evict ஆகும்.
+Agent short-term memory-ல இருந்து last_order_id எடுத்து, return API-க்கு call பண்ணும். User மறுபடியும் order number சொல்ல வேண்டாம்.
+
+Session end ஆனதும் 20 min-க்கு அப்புறம் Redis key expire ஆகும். அதே data long-term user profile-ல save பண்ண வேண்டாம்.
 
 ## 7. Reasoning Challenge
 
-உங்கள் agent 30 min conversation நீளும். User ஆரம்பத்தில் company policy பற்றி கேட்டார், பிறகு travel request பற்றி பேசினார். இப்போது user "அந்த policy-ஐயும் travel request-ல apply பண்ணுங்க" என்கிறார்.
+உங்க agent-க்கு 10,000 concurrent users இருக்காங்க. ஒவ்வொரு session-க்கும் short-term memory-ஐ Redis-ல வச்சிருக்கீங்க. Latency p95 50ms ஆக இருக்கணும். Cost குறைக்கணும்.
 
-Context window-ல policy mention இல்லை, truncate ஆகிவிட்டது. Short-term memory-ல current task மட்டும் இருக்கிறது.
+இப்போ peak time-ல Redis memory 80% fill ஆகுது. TTL-ஐ 5 min-ல இருந்து 2 min-க்கு குறைக்கலாமா? அல்லது context window size-ஐ அதிகரித்து cache dependency-ஐ குறைக்கலாமா?
 
-இங்கே என்ன problem வரும்? Short-term memory மட்டும் போதுமா? என்ன add பண்ணுவீர்கள்?
+எந்த trade-off பார்ப்பீங்க? Session drop ஆனால் என்ன ஆகும்?
 
 ## 8. Key Takeaways
 
-* Short-term memory = session-க்குள் active working context, coherence-க்கு அவசியம்
-* இது fast, ephemeral, limited. Long-term memory-க்கு complement
-* Window size, state management, eviction policy ஆகியவை trade-offs தரும்
-* ஒவ்வொரு architectural solution create another trade-off — இங்கே complexity, latency, cost vs coherence
+* Short-term memory = session-scoped, recent, volatile working context. Coherence-க்கு தேவை.
+* இது long-term memory-ஐ replace பண்ணாது, complement பண்ணும். Recent facts fast, durable facts slow.
+* Design decision: எவ்வளவு context-ஐ window-ல வைக்கிறோம் vs cache-ல வைக்கிறோம் என்பது latency, cost, correctness trade-off.
+* Every session memory has TTL. Expire strategy என்பது architecture decision, not implementation detail.

@@ -5,98 +5,100 @@
 
 ## 1. Problem
 
-உங்கள் RAG system-க்கு ஒரு user கேட்கிறார்: "எங்கள் company-ல் Q3 2025-க்கான revenue target என்ன?"
+உங்கள் RAG system ஒரு customer support agent-ஆக run ஆகுது. User கேட்கிறார்: "என் last order எப்போது deliver ஆகும்?"
 
-Retriever சரியாக relevant documents-ஐ கண்டுபிடித்து LLM-க்கு கொடுக்கிறது. LLM அந்த context-ஐ படித்துவிட்டு பதில் சொல்கிறது. ஆனால் பதில் தவறானது. அல்லது context-ல் இல்லாத ஒரு குறிப்பிட்ட எண்ணை கற்பனையாக உருவாக்கி தருகிறது.
+Retriever உண்மையான order data-வை கொண்டு வந்து context-ல் கொடுக்கிறது. ஆனால் LLM பதில் சொல்லும்போது: "உங்கள் order #48291 நேற்று 14:30-க்கு delivered ஆகிவிட்டது. Signature: R. Kumar"
 
-அந்த பதில் confident-ஆகவும், plausible-ஆகவும் இருக்கிறது. User நம்பிவிடுகிறார். Business decision தவறாகிறது.
+உண்மையில் அந்த order pending-ல் தான் இருக்கிறது.
 
-இது தான் hallucination. இது RAG-ல் ஏன் ஏற்படுகிறது? LLM ஒரு generative model. அதன் வேலை complete செய்வது. Context இல்லாத இடத்தை fill பண்ணுவது. RAG அதை குறைக்கிறது, ஆனால் அழிக்கவில்லை.
+இது ஒரு hallucination. Retrieval சரியாக இருந்தும், generation தவறாக உருவாக்கி விட்டது.
+
+**What goes wrong if we don't handle this?** User trust போகும். Wrong action எடுக்கும். Financial/legal risk வரும். RAG என்றாலும், output unreliable ஆகிறது.
+
+> Problem painful enough: LLM-க்கு knowledge இல்லாத இடத்தில் confident-ஆக பொய் சொல்லும்.
 
 ## 2. Mental Model
 
-Hallucination என்பது **grounding failure**.
+Hallucination என்பது LLM-ன் **confabulation**. அது context-ல் இல்லாத தகவலை, training data-வில் இருந்து கற்பனை செய்து பூர்த்தி செய்யும்.
 
-LLM-க்கு தரப்பட்ட evidence-க்கு அப்பால் அது தன் internal knowledge / statistical pattern-ஐ பயன்படுத்தி பதில் தயாரிக்கிறது.
+RAG-ல் இரண்டு இடத்தில் நடக்கும்:
 
-RAG-ல் இரண்டு இடத்தில் grounding break ஆகலாம்:
+1. **Retrieval hallucination**: Retriever தொடர்பில்லாத, irrelevant documents-ஐ கொண்டு வருகிறது. அல்லது wrong chunk.
+2. **Generation hallucination**: Retrieved context சரியாக இருந்தும், LLM அதை தவறாக interpret செய்து, கற்பனையான details சேர்க்கிறது.
 
-1. **Retrieval gap**: உண்மையான தகவல் corpus-ல் இல்லை அல்லது retriever கண்டுபிடிக்கவில்லை. LLM-க்கு போதுமான context இல்லை.
-2. **Generation drift**: Context இருக்கிறது, ஆனால் LLM அதை தவறாக interpret பண்ணி, அதை mix பண்ணி, அல்லது context-ல் இல்லாததை confidently சேர்க்கிறது.
-
-சுருக்கமாக: Model-க்கு "எனக்கு தெரியவில்லை" என்று சொல்ல தெரியாது.
+Mental model: LLM என்பது pattern completer, truth verifier அல்ல. Context கொடுத்தாலும், அது context-ஐ ground truth-ஆக பயன்படுத்தும் guarantee இல்லை.
 
 ## 3. How It Works
 
-Typical RAG pipeline: Query → Retriever → Context → LLM → Answer
+RAG pipeline: Query → Retriever → Ranker → Context → LLM → Answer
 
-Hallucination வரும் வழிகள்:
+Hallucination எப்படி creep ஆகிறது?
 
-**A. Retrieval failure**
-User query "Q3 2025 revenue target". Retriever Q2 data, generic revenue doc-ஐ மட்டும் கொண்டு வருகிறது. Specific target இல்லை. LLM இடைவெளியை fill பண்ணுகிறது.
-
-**B. Context overload / noise**
-10 documents கொடுக்கப்படுகிறது, 9-ல் irrelevant info இருக்கிறது. LLM confuse ஆகி, இரண்டு docs-ஐ merge பண்ணி புதிய தகவலை உருவாக்குகிறது.
-
-**C. Prompting weakness**
-System prompt-ல் "அறியாத தகவலுக்கு உறுதியாக பதில் சொல்லாதே" என்று இல்லை. Citation கட்டாயம் இல்லை.
-
-**D. Over-reliance on parametric knowledge**
-Model training-ல் பார்த்த similar company targets இருந்தால், அதை பயன்படுத்தி "நியாயமான" எண்ணை கற்பனை செய்கிறது.
+* **Context gap**: User question-க்கு தேவையான info retrieved context-ல் இல்லை. LLM பதில் தர வேண்டும் என்ற pressure-ல் fill-in-the-blanks செய்கிறது.
+* **Conflicting context**: 3 docs கொண்டு வரப்படுகிறது, 2 பழைய pricing, 1 புதிய pricing. LLM mix செய்து தவறான price கொடுக்கிறது.
+* **Over-trust in parametric memory**: "RAG" என்றாலும் LLM தன்னுடைய training knowledge-ஐ முன்னுரிமை கொடுக்கிறது, retrieved doc-ஐ ignore செய்கிறது.
+* **Prompt leakage**: System prompt சரியாக grounding enforce செய்யவில்லை. LLM-க்கு "unknown என்று சொல்லு" என்ற boundary இல்லை.
 
 ## 4. Architectural Reasoning
 
-Hallucination-ஐ முழுவதுமாக அகற்ற முடியாது. அதை **manage** செய்ய வேண்டும்.
+Hallucination-ஐ zero ஆக்க முடியாது. நீங்கள் manage செய்ய வேண்டும்.
 
-எப்போது இது painful ஆகிறது?
-- Financial, legal, medical, compliance data-ல்
-- User trust critical ஆக இருக்கும் chatbot-ல்
-- Answer-க்கு audit trail தேவைப்படும் enterprise RAG-ல்
+**When this becomes painful**: 
+* Customer-facing answers, financial, medical, legal domain
+* High-stakes RAG where citation தேவை
+* Agent workflows where LLM output அடுத்த tool call-ஐ trigger செய்கிறது
 
-Architectural options:
+**Options and reasoning**:
 
-* **Better retrieval**: Hybrid search, reranking, query expansion. Retrieval gap-ஐ குறைக்க.
-* **Context grounding constraints**: LLM-க்கு "answer only from context, else say I don't know" என்ற instruction. Output schema-ல் citation mandatory.
-* **RAG with verification**: Generated answer-ஐ மீண்டும் retriever-ல் pass பண்ணி, claim-கள் context-ல் supported ஆ? என்று check பண்ணும் self-consistency / RAG verification layer.
-* **Guardrails**: Post-generation classifier that detects unsupported claims, hallucination score.
-* **Smaller context window, higher quality**: 3 strong chunks > 20 noisy chunks.
+* **Better retrieval**: Hybrid search + reranker + context window pruning. Less noise, better relevance. Trade-off: latency and cost.
+* **Grounding enforcement**: Prompt engineering: "Answer only from context. If not present, say I don't know." System prompt + few-shot examples. Trade-off: LLM sometimes too conservative, refuses valid answers.
+* **Citation requirement**: LLM-ஐ force செய்ய source chunk id/span-ஐ cite செய்ய. Post-generation verifier checks citation actually supports claim. Trade-off: output format complexity.
+* **Self-consistency + verification**: Same query-ஐ 3 times run, majority vote. Or generate answer, then generate verification question and check against context. Trade-off: 2-3x LLM cost.
+* **Guardrails layer**: Output-ஐ classifier மூலம் hallucination probability score செய்து, threshold கீழ் reject செய். Trade-off: false positives.
+
+Architect ஆக நீங்கள் decide செய்வது: **Acceptable hallucination rate** என்ன? Support chatbot-க்கு 2% ஏற்புடையது. Loan approval RAG-க்கு 0% தேவை.
 
 ## 5. Trade-offs
 
-**Retrieval quality vs latency and cost**: Better reranking, multi-step retrieval கொடுத்தால் hallucination குறையும், ஆனால் latency & cost அதிகரிக்கும்.
+* **Faithfulness vs Completeness**: Strict grounding = safe ஆனால் "I don't know" அதிகம். Loose grounding = helpful ஆனால் hallucination அதிகம்.
+* **Latency vs Safety**: Retrieval + rerank + citation check + verification = slow மற்றும் costly. Real-time chat-ல் இது பிரச்சனை.
+* **Context size vs Precision**: பெரிய context கொடுத்தால் LLM lost-in-the-middle ஆகும். சிறிய context கொடுத்தால் missing info வரும்.
+* **Parametric knowledge vs Retrieved knowledge**: LLM-க்கு common sense தேவை. ஆனால் அதை அதிகம் நம்பினால் hallucination வரும்.
 
-**Strict grounding vs answer coverage**: "I don't know" rate அதிகரிக்கும். User experience குறையும். ஆனால் trust அதிகரிக்கும்.
-
-**Citation fidelity vs model flexibility**: Citation enforce செய்தால் model creative synthesis குறையும். சில use cases-ல் synthesis தேவை.
-
-**Operational complexity**: Hallucination detection, logging, human-in-the-loop review pipeline சேர்ப்பது team size மற்றும் operability-க்கு cost.
-
-Failure mode: Over-correction. System எல்லாவற்றுக்கும் "I don't know" என்று சொல்ல ஆரம்பித்தால், RAG-ன் value இல்லாமல் போகும்.
+Failure mode: Citation hallucination. LLM fake citation id கொடுக்கும். அதனால் citation check-க்கும் verifier தேவை.
 
 ## 6. Practical Example
 
-Enterprise support RAG. Knowledge base-ல் product manual, release notes உள்ளது.
+Enterprise RAG for HR policy.
 
-User: "Error code 5032 எப்படி fix பண்ணுவது?"
+User asks: "Remote work allowance எவ்வளவு?"
 
-Retriever ஒரு பழைய doc-ஐ கொண்டு வருகிறது. அதில் fix steps இல்லை. LLM: "Error code 5032 என்பது database connection timeout. Service restart பண்ணவும், connection pool அதிகரிக்கவும்."
+Retriever returns 2 chunks:
+1. 2023 policy: ₹10,000/month
+2. 2024 policy update: ₹15,000/month for employees in Tier 1 cities.
 
-இது plausible ஆனால் hallucinated. உண்மையான root cause ஒன்றும் வேறு.
+LLM hallucinate செய்து: "Allowance ₹15,000 for all employees."
 
-Architectural fix:
-1. Retriever confidence score < threshold என்றால் LLM-க்கு context கொடுக்காமல் "இந்த error-க்கு specific doc கிடைக்கவில்லை" என்று சொல்.
-2. System prompt-ல் "answer must be supported by provided chunks, include citation [doc_id]" கட்டாயம்.
-3. Generated steps-ஐ post-processor-ல் claim extraction + embedding similarity check செய்து, context-ல் support இல்லாத claim-களை redact செய்.
+சரியான architecture:
+
+* Retriever hybrid search + date filter
+* Reranker context-ஐ relevance + recency-க்கு sort செய்
+* Prompt: "Use only provided context. If policy varies by condition, mention condition. If info missing, say unknown."
+* Generation-க்கு பிறகு, output parser extracts claim "₹15,000 for all". Verifier checks if context supports "all". Does not support. So answer flagged.
+
+Result: "Tier 1 city employees-க்கு ₹15,000/month. உங்கள் city Tier 1 இல்லையெனில் தற்போது policy apply ஆகாது."
 
 ## 7. Reasoning Challenge
 
-உங்கள் RAG system 1000 QPS handle பண்ணுகிறது. Financial report Q&A. Compliance team "ஒவ்வொரு answer-க்கும் source citation தேவை" என்கிறார்கள். Product team "latency 500ms-க்குள் இருக்க வேண்டும்" என்கிறார்கள்.
+உங்களிடம் financial RAG agent இருக்கிறது. User கேட்கிறார்: "Q3 revenue எவ்வளவு?" Retriever 3 docs கொண்டு வருகிறது: Q3 draft, Q3 final, Q3 restated. LLM ஒரு single number கொடுக்கிறது.
 
-இந்த இரண்டு constraints-ஐ satisfy பண்ணும் வகையில் hallucination-ஐ manage செய்ய நீங்கள் என்ன architecture தேர்வு செய்வீர்கள்? Citation generation-ஐ எப்படி enforce பண்ணுவீர்கள்? ஏன்?
+உங்கள் constraints: Answer latency < 2 seconds, hallucination rate < 0.1%, cost sensitive.
+
+இந்த scenario-ல் நீங்கள் என்ன architecture தேர்வு செய்வீர்கள்? Retrieval, prompting, verification எதை prioritize செய்வீர்கள்? ஏன்?
 
 ## 8. Key Takeaways
 
-* Hallucination என்பது retrieval gap + generation drift இரண்டின் கலவை. Grounding failure தான் core.
-* Hallucination-ஐ அழிக்க முடியாது, manage செய்ய முடியும். Trade-off trust vs coverage.
-* Strict prompting + citation enforcement + retrieval quality மூன்றும் சேர்ந்தால் தான் production RAG safe ஆகும்.
-* Every architectural choice for reducing hallucination adds latency, cost, or reduces answer coverage.
+* Hallucination என்பது LLM-ன் default behavior, RAG தானாக தீர்க்காது.
+* Grounding என்பது retrieval quality + generation discipline + verification ஆகியவற்றின் கலவை.
+* Architect ஆக நீங்கள் trade-off செய்ய வேண்டும்: faithfulness vs completeness vs latency vs cost.
+* Production RAG-ல் "I don't know" என்பது ஒரு feature, failure அல்ல.

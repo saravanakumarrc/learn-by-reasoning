@@ -3,98 +3,92 @@
 > **Learning Path:** RAG Architecture
 > **Section:** 12.3.4 — RAG failure modes
 
+### 12.3.4 — RAG failure modes: Wrong ranking
+
 ## 1. Problem
 
-RAG system-ல user கேள்வி கேட்டா, LLM-க்கு relevant context கொடுத்து பதில் generate பண்றோம். ஆனா சில சமயம் பதில் technically correct-ஆ இருக்கும், ஆனா context-ல இருந்து தப்பா ரேங்க் ஆன documents வந்துடும்.
+உங்க RAG system-ல் user கேள்வி: *"நாங்கள் கடந்த quarter-ல் தயாரித்த highest margin product எது?"*
 
-உதாரணமா, user கேட்கிறார்: *"நம்ம subscription plan-ல free tier-க்கு API rate limit என்ன?"*
+Retriever 10 chunks திரும்பி கொடுத்தது. அதில் 3 chunks சரியாக relevant. ஆனால் LLM-க்கு கிடைத்த top 3 chunks எல்லாம் generic product description, financial summary மாதிரி irrelevant ஆனது.
 
-Retriever 3 documents திரும்ப கொடுத்தது:
-1. Free tier rate limit = 100/day
-2. Pro tier pricing page
-3. Free tier rate limit = 1000/day
+Result: LLM சரியான context இல்லாமல் hallucinate பண்ணுது அல்லது generic பதில் தருது. User-க்கு தப்பான ranking தெரியுது.
 
-இதுல 3-ம் document பழையது. ஆனா embedding similarity அதிகமா இருந்ததால அது top-1-ல வந்துடுச்சு. LLM அதை நம்பி பதில் கொடுத்துடும்.
-
-Wrong ranking என்பது இது தான்: **relevant ஆன document கிடைக்காம போகல, தவறான document முதல்ல வந்துடுச்சு.**
-
-இதனால என்ன ஆகும்? Hallucination இல்ல, ஆனா **grounding failure**. User-க்கு தப்பான தகவல் போகும். Business impact ஆகும். Trust போகும்.
+What goes wrong? Retriever தேடினான், ஆனால் **relevant-ஆனவற்றை முதலில் வைக்கவில்லை**. Wrong ranking = right information உள்ளே இருக்கு, ஆனால் LLM-ன் attention-க்கு வராமல் போய்விட்டது.
 
 ## 2. Mental Model
 
-Retriever-ன் வேலை = query-க்கு பொருத்தமான chunks-ஐ கண்டுபிடித்து, **சரியான order-ல** LLM-க்கு கொடுப்பது.
+RAG-ல் ranking என்பது **relevance ordering** மட்டுமல்ல, **decision power** கொடுப்பது.
 
-Ranking தப்பு ஆனால், LLM ரொம்ப smart ஆனாலும் அதுக்கு கொடுத்த context தான் உண்மை. Garbage in, garbage out.
+LLM-க்கு context window limited. முதல் few chunks தான் strong influence கொடுக்கும். Retriever ஒரு relevance score கொடுக்கும். அந்த score தவறாக இருந்தால், சரியான chunk deep-ல் புதைந்து விடும்.
 
-Vector similarity மட்டும் போதாது. Semantic similarity ≠ relevance.
+Think of it like search results: Page 1-ல் சரியான link இல்லை என்றால் user page 2-க்கு போக மாட்டார்.
 
 ## 3. How It Works
 
-RAG pipeline-ல ranking எப்படி நடக்குது?
+Typical flow:
 
-`Query embedding → Vector DB similarity search → Top-K chunks → Re-rank / Filter → LLM`
+`Query → Embedding → Vector DB similarity search → Top-K → Reranker? → LLM`
 
-Wrong ranking பெரும்பாலும் இங்கே நடக்கும்:
+Wrong ranking usually happens இங்கே:
 
-* **Embedding limitation:** query "rate limit free tier" என்பதற்கு, பழைய document-ல "free tier" மற்றும் "rate limit" words இருக்கு, அதனால cosine similarity high. ஆனா அது deprecated.
-* **Chunking artifact:** ஒரு document-ல முக்கியமான sentence தனியா chunk ஆகி, context இல்லாம போயிடும். அந்த chunk standalone-ஆ query-க்கு match ஆகும்.
-* **No recency / authority signal:** Vector DB similarity மட்டும் பார்க்கும். Created date, source trust, version எல்லாம் பார்க்காது.
-* **Duplicate/conflicting info:** Same topic-ல பல versions இருக்கும். Retriever அதை differentiate பண்ண மாட்டும்.
+* **Embedding similarity mismatch**: Query embedding "highest margin product" vs chunk embedding "Q2 sales report". Semantic similarity low ஆனால் conceptually related. Embedding model surface words-க்கு மட்டும் match பண்ணும்.
+* **Chunking artifact**: Important info 2 chunks-க்கு split ஆகி இருக்கும். Each chunk alone incomplete. Score low.
+* **No reranking**: Vector DB cosine similarity மட்டும் பயன்படுத்தினால், lexical nuance miss ஆகும். Cross-encoder reranker இல்லாமல் ranking noisy ஆகும்.
+* **Query misunderstanding**: User implicit context இருக்கும். "நாங்கள்" என்றால் company X. Retriever அதை capture பண்ணவில்லை.
 
 ## 4. Architectural Reasoning
 
-Wrong ranking எப்போ painful ஆகும்?
+Wrong ranking எப்போது painful ஆகும்?
 
-* **Enterprise knowledge base:** Policies மாறிக்கொண்டே இருக்கும். Old version இன்னும் index-ல இருக்கும்.
-* **Financial / compliance data:** தப்பான எண் கொடுத்தால் சட்ட பிரச்சனை.
-* **Multi-source RAG:** Wiki, docs, support tickets எல்லாம் ஒன்னா இருக்கும். Source authority வேறுபடும்.
+* **High precision needed**: Finance, legal, medical RAG-ல் ஒரு wrong chunk முதலில் வந்தால் decision தவறும்.
+* **Long corpus**: Millions of chunks-ல் signal-to-noise low.
+* **Ambiguous queries**: Same words, different intent.
 
-Alternatives / Mitigations:
+Options:
 
-* **Hybrid search:** Vector similarity + BM25 keyword search. Keyword exact match ranking-ஐ சரி பண்ணும்.
-* **Re-ranker model:** Cross-encoder போன்ற model query vs chunk ஐ பார்த்து fine-grained relevance score கொடுக்கும். Cost அதிகம், latency அதிகம்.
-* **Metadata filtering:** Recency, source type, document version, region filter போடுவது. Query time-ல filter.
-* **Contextual compression & deduplication:** Same topic-ல conflicting chunks-ஐ கண்டுபிடித்து merge / prefer latest.
+1. **Better chunking**: Smaller, semantically coherent chunks with metadata. Problem solve ஆகும்? Partial.
+2. **Hybrid retrieval**: Vector + BM25 keyword. Query has rare terms "margin" -> BM25 boost.
+3. **Reranker**: Cross-encoder with query+chunk. Computational cost அதிகம் ஆனால் ranking quality கணிசமாக improve ஆகும்.
+4. **Query expansion / rewrite**: LLM-ஆல் query-ஐ expand பண்ணி multiple queries generate செய்யலாம்.
+5. **Contextual reranking with LLM**: First pass top-50 → LLM judge relevance → top-5.
 
-Architect ஆக நீங்கள் தேர்வு செய்ய வேண்டியது: **Accuracy vs latency vs cost**.
+Architect choose பண்ணுவது constraint பொறுத்து: latency vs accuracy, cost vs quality.
 
 ## 5. Trade-offs
 
-* **Vector only vs Hybrid:** Vector மட்டும் fast ஆனா semantic drift வரும். Hybrid accurate ஆனா pipeline complex.
-* **Re-ranker:** Ranking quality கணிசமா மேம்படும். ஆனா per query 100-200ms கூடும், cost per query அதிகரிக்கும்.
-* **Metadata filtering:** Recency signal சேர்ப்பது easy, ஆனா filter too strict ஆனால் recall குறையும். Relevant document விட்டுபோகும்.
-* **More context vs less context:** Top-K அதிகமா கொடுத்தால் wrong ranked document-ன் தாக்கம் குறையும், ஆனா LLM context window, noise அதிகரிக்கும்.
+* **Recall vs Precision in top-K**: K அதிகமாக்கினால் relevant chunk கண்டிப்பாக வரும், ஆனால் LLM context window fill ஆகி noise அதிகம். K சிறியதாக இருந்தால் noise குறைவு, ஆனால் relevant miss ஆகும்.
+* **Reranker latency**: Cross-encoder ~50-200ms per query. Real-time chat-க்கு painful. Trade-off: async rerank or only for critical queries.
+* **Embedding model choice**: General embedding cheap & fast. Domain-specific embedding தேவைப்படும் ஆனால் retraining cost உண்டு.
+* **Ranking stability**: Same query, different runs different ranking if vector DB approximate search ANNS பயன்படுத்தினால். Determinism vs speed.
 
-Failure mode: Re-ranker இல்லாமல் vector மட்டும் பயன்படுத்தி, production-ல user கேள்விக்கு outdated pricing திரும்பி வந்தது. Customer support team-க்கு escalate ஆனது.
+Failure mode: Reranker overfits to query wording, மறைமுக related chunk-ஐ reject பண்ணும்.
 
 ## 6. Practical Example
 
-Enterprise SaaS company-க்கு internal RAG chatbot.
+Enterprise support RAG: User asks "Production API timeout எப்படி fix பண்ணுறது?" 
 
-Problem: "Refund policy 2024" என்று கேட்டால், 2022 policy document top-1-ல வந்தது. 2024 update document second page-ல இருந்தது.
+Retriever top results:
+1. "API timeout general overview" – generic
+2. "How to increase timeout in dev environment" – dev only
+3. "Production incident postmortem: 2024-06" – contains exact fix, but chunk title is "Postmortem summary"
 
-Architectural fix:
+Embedding score low because words mismatch. Wrong ranking.
 
-1. Metadata-ல `effective_from`, `effective_to`, `source_tier` சேர்த்தோம்.
-2. Retriever query time-ல `effective_to IS NULL OR effective_to >= now()` filter போட்டோம்.
-3. Hybrid search: vector + BM25.
-4. Top 20 chunks எடுத்து cross-encoder re-ranker-ல top 5 filter.
+Fix applied: Hybrid retrieval + metadata filter `env=production`. Reranker with instruction: "Prefer chunks with remediation steps". Now correct postmortem chunk #1-ல் வருகிறது.
 
-Result: Wrong ranking 60% குறைந்தது. Latency 180ms → 340ms ஆனது. Team அதை accept பண்ணது ஏனெனில் refund தவறு cost அதிகம்.
+Result: LLM correct runbook தருகிறது.
 
 ## 7. Reasoning Challenge
 
-உங்கள் RAG system-ல 2 types of queries வருகின்றன:
+உங்க RAG system-ல் 100K chunks உள்ளது. User query: "எந்த customer-க்கு refund approve பண்ண வேண்டும்?"
 
-A. Real-time product pricing, B. General conceptual docs like architecture principles.
+Retriever top-10-ல் 2 relevant chunks உள்ளன, ஆனால் rank 8 மற்றும் 9-ல் உள்ளன. LLM தவறான பதில் தருகிறது. Latency budget 800ms.
 
-Pricing query-க்கு recency மிக முக்கியம். Conceptual query-க்கு recency குறைவான முக்கியம்.
-
-ஒரே pipeline உங்களுக்கு இருக்கு. Wrong ranking-ஐ குறைக்க நீங்கள் என்ன architectural decision எடுப்பீர்கள்? Re-ranker எல்லா query-க்கும் போடுவீர்களா? ஏன் / ஏன் இல்லை?
+நீங்கள் reranker add பண்ணலாம், K அதிகமாக்கலாம், அல்லது hybrid retrieval பயன்படுத்தலாம். என்ன செய்வீர்கள்? ஏன்? Trade-off என்ன?
 
 ## 8. Key Takeaways
 
-* Wrong ranking = relevant document இல்லாமல் போகாமல், தவறான document முதலில் வருவது.
-* Vector similarity மட்டும் relevance-ஐ guarantee செய்யாது. Recency, authority, conflict signals தேவை.
-* Hybrid search + metadata filtering + selective re-ranking = practical balance between accuracy and latency.
-* Ranking தப்பு ஆனால் LLM-ஐ குறை சொல்ல முடியாது. Retriever-ன் responsibility.
+* Wrong ranking என்பது retrieval failure அல்ல, **ordering failure**. Relevant info உள்ளே இருந்தும் LLM-க்கு தெரியாமல் போகும்.
+* Embedding similarity மட்டும் போதாது. Hybrid + reranker பல real systems-ல் must.
+* Top-K choice, chunking strategy, metadata filtering எல்லாம் ranking quality-ஐ நேரடியாக மாற்றும்.
+* Ranking improve பண்ணினால் latency, cost, complexity அதிகரிக்கும். Architect அதை tradeoff பண்ணி தான் decide செய்ய வேண்டும்.

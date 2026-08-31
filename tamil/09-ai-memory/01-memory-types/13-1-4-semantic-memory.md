@@ -5,130 +5,104 @@
 
 ## 1. Problem
 
-உங்க AI agent க்கு conversation context மட்டும் கொடுத்தால் போதுமா?
+நீங்கள் ஒரு AI agent-ஐ build பண்ணுறீங்க. அது user-க்கு முந்தைய conversation-ஐ remember பண்ணணும். 
 
-User கேட்கிறார்: "என்னோட கடந்த மாத revenue எவ்வளவு?"
-Agent கடந்த 10 messages-ல் அது இல்லை. அது மறந்துவிடும்.
+ஒரு user கேட்டார்: "என் budget பத்தி நீ முன்னாடி என்ன சொன்ன?"
+மற்றொரு user கேட்டார்: "பொதுவா travel insurance எப்படி வேலை செய்யும்?"
 
-அடுத்து user கேட்கிறார்: "நாம எப்போதும் சொன்னதை போல செய்".
-அது என்ன? எந்த தடவை? எந்த user?
+முதல் கேள்விக்கு personal history தேவை. இரண்டாவது கேள்விக்கு general knowledge தேவை.
 
-ஒரு agent-க்கு தேவை:
-- **Episodic memory**: என்ன நடந்தது, எப்போது நடந்தது
-- **Semantic memory**: என்ன உண்மை, என்ன நிரந்தரமான knowledge
+இதை எல்லாம் ஒரே episodic log-ல வச்சு search பண்ணினா என்ன ஆகும்? Noise அதிகம், relevant fact கண்டுபிடிக்க கஷ்டம். Agent தன் சொந்த experience-லயே குழம்பும்.
 
-Semantic memory இல்லாமல், agent ஒவ்வொரு முறையும் முதல் முதல் கற்க வேண்டும். அதே facts-ஐ repeatedly retrieve பண்ண வேண்டும். Cost அதிகம், latency அதிகம், hallucination அதிகம்.
-
-**What problem became painful?** Context window limited, long-term facts decay, agent can't build consistent world model.
+**What goes wrong if we don't have this?** Agent கற்றதை generalize பண்ண முடியாது. ஒவ்வொரு முறையும் அதே context-ஐ மீண்டும் கற்றுக்கொள்ள வேண்டும்.
 
 ## 2. Mental Model
 
-Semantic memory = agent-ன் **knowledge base**.
+Semantic memory = **facts about the world, not memories of events**.
 
-Episodic memory என்பது diary போன்றது: "2025-11-01, user X asked about revenue".
-Semantic memory என்பது encyclopedia + company wiki போன்றது: "Company X revenue is calculated from Stripe + Shopify, fiscal year starts April, user X is finance lead".
+இது "எப்போது நடந்தது?" இல்லை, "என்ன உண்மை?" என்பது.
 
-Episodic என்பது *when it happened*. Semantic என்பது *what is true*.
+உங்களுக்கு நினைவு வருது: "Paris France-ன் capital" என்பது ஒரு semantic fact. நீங்கள் Paris போன experience ஒரு episodic memory.
 
-ஒரு human போல நினைக்கவும்: நீங்கள் ஒரு குறிப்பிட்ட உரையாடலை மறந்தாலும், "பூமி வட்டமானது", "என் பெயர்..." போன்ற உண்மைகள் நிலைத்திருக்கும்.
+System-ல சொன்னால்:
+* **Episodic memory**: யார், எப்போது, என்ன conversation நடந்தது. "User A on 2024-10-01 said budget is 50k"
+* **Semantic memory**: extracted knowledge, generalized. "Travel insurance covers trip cancellation, medical emergencies"
 
-Agent-க்கு semantic memory இல்லாமல், அது ஒரு goldfish மாதிரி.
+Semantic memory என்பது agent-ன் long-term knowledge base. இது time-stamped story இல்லை, distilled meaning.
 
 ## 3. How It Works
 
-Semantic memory-ஐ build பண்ண, agent தன்னுடைய experience-ஐ extract பண்ணி, generalize பண்ணி, store பண்ணும்.
+பொதுவா இது இப்படி build ஆகும்:
 
-Typical flow:
+User interaction / document → embedding → vector database → knowledge graph / structured store
 
-1. **Ingest**: Conversation, documents, tool outputs.
-2. **Extract**: Entities, relations, facts, preferences, constraints.
-3. **Consolidate**: Duplicate-ஐ merge பண்ணு, contradictions-ஐ resolve பண்ணு.
-4. **Store**: Structured knowledge graph or vector store with metadata.
-5. **Retrieve**: Query time-ல் relevant semantic facts-ஐ context-ல் inject பண்ணு.
+ஒரு agent conversation-ல இருந்து important facts-ஐ extract பண்ணி summarize செய்வோம். உதாரணமா, 10 turns-ல user repeatedly mention அவருக்கு vegetarian preference. அதை episodic log-ல வச்சிட்டு, semantic memory-ல "user dietary preference = vegetarian" என்று write பண்ணுவோம்.
 
-Implementation options:
-- **Vector DB + embedding**: semantic search-க்கு நல்லது. "revenue calculation" போன்ற fuzzy queries-க்கு.
-- **Knowledge graph / graph DB**: relations explicit ஆக வேண்டும் என்றால். "User X owns project Y" போன்றது.
-- **Relational DB + structured schema**: well-defined facts-க்கு. User profile, preferences.
+பின்னர் retrieval நடக்கும் போது, query-ஐ embed பண்ணி semantic store-ல cosine similarity-யால் relevant facts-ஐ fetch பண்ணுவோம்.
 
-பெரும்பாலும் hybrid: vector for recall, graph/relational for precise facts.
-
-Retrieval என்பது RAG போல தான், ஆனால் source என்பது agent-ன் own past experience, external docs அல்ல.
+RAG pipeline-ல இதுவே persistent knowledge layer ஆகிறது.
 
 ## 4. Architectural Reasoning
 
-Semantic memory எப்போது useful?
+Semantic memory எப்போ useful?
 
-- Agent needs persistent world model across sessions.
-- Facts repeat across conversations. e.g., company policies, user preferences, product catalog.
-- Need consistency: ஒரே user-க்கு ஒரே answer.
-- Need reasoning over long-term knowledge, not just last 10 messages.
+* Agent-க்கு domain knowledge தேவைப்படும் போது. Financial advisor, medical assistant போன்றவை.
+* Same fact-ஐ பல users / பல conversations-ல reuse பண்ண வேண்டும் போது.
+* Model context window-க்கு அப்பால் தகவல் வைத்திருக்க வேண்டும் போது.
+
+Constraints அது address பண்ணும்:
+* **Latency**: Every time from scratch generate பண்ணுவதை விட retrieve பண்ணுவது cheap
+* **Consistency**: பொதுவான facts ஒரே மாதிரி இருக்கும்
+* **Scalability**: Knowledge grows, but model weights fixed
 
 Alternatives:
-- **Long context window only**: Simple, but cost scales linearly, forgets old facts, no generalization.
-- **Episodic memory only**: Conversation history store பண்ணி retrieve பண்ணலாம். ஆனால் raw history-ல் signal noise அதிகம்.
-- **Semantic memory**: Extract and compress. Less noise, faster retrieval.
+* Episodic memory only: raw conversation history. Simple but noisy, expensive
+* Parametric memory only: fine-tune LLM. Expensive, slow to update, hallucination risk
+* Hybrid: semantic memory + episodic memory = best of both
 
-Architectural decision: Extract at write time vs read time?
-
-Write-time extraction: background job ஓடி facts-ஐ consolidate பண்ணும். Read latency குறைவு, but stale ஆகலாம்.
-Read-time extraction: on-demand summarization. Fresh, but latency அதிகம்.
-
-பெரும்பாலும் write-time + periodic consolidation.
+Architect choose பண்ணுவான் semantic memory-ஐ, when agent needs to learn and retain generalizable facts over time without retraining.
 
 ## 5. Trade-offs
 
-**Storage vs Accuracy**: More aggressive summarization = smaller store, ஆனால் nuance இழக்கும்.
+**1. Accuracy vs Freshness**
+Extracted facts stale ஆகலாம். "Best hotel in Chennai" 2023-ல உண்மை, 2025-ல இல்லை. Versioning மற்றும் TTL தேவை.
 
-**Freshness vs Stability**: Fact update ஆனால் old version-ஐ எப்படி invalidate பண்ணுவது? Versioning தேவை.
+**2. Generalization vs Hallucination**
+Summary பண்ணும்போது model over-generalize பண்ணி wrong fact create பண்ணும். "User likes vegetarian" என்பது "user is vegan" ஆக மாறலாம். Validation layer தேவை.
 
-**Generalization vs Hallucination**: Extraction model தவறாக infer பண்ணினால், wrong semantic fact store ஆகி, அது permanent bias ஆகும்.
+**3. Structured vs Unstructured**
+Pure vector store flexible ஆனால் reasoning கடினம். Knowledge graph structured ஆனால் maintenance heavy.
 
-**Retrieval precision**: Vector search approximate. Exact facts-க்கு hybrid retrieval தேவை: vector + keyword + structured filter.
+**4. Privacy & Scope**
+Semantic memory often cross-user. Personal data leak ஆகும் risk. Access control, tenant isolation must be explicit.
 
-Failure modes:
-- Contradictory facts merge ஆகாமல்.
-- User preference drift: user மாறினார், old preference இன்னும் active.
-- Privacy & compliance: semantic memory-ல் PII store ஆனால் GDPR deletion எப்படி?
+Failure mode: Agent semantic memory-ல தவறான fact-ஐ reinforce பண்ணி, அதை எப்போதும் retrieve பண்ணும். Garbage in, garbage out.
 
 ## 6. Practical Example
 
 Enterprise support agent.
 
-User: "நான் Chennai office-ல இருக்கேன், எனக்கு laptop issue".
-Agent semantic memory-ல்: User X = Chennai office, role = Design Lead, device = MacBook Pro M3, prefers remote support.
+Episodic: Ticket #12345, 2024-09-10, user reported login failure due to MFA.
 
-இது episodic அல்ல. இது semantic fact.
+Semantic extraction: "MFA reset requires admin approval and takes 24 hours"
 
-அடுத்த session-ல் user: "My laptop is slow".
-Agent context window-ல் previous chat இல்லை. ஆனால் semantic memory retrieve பண்ணி: device model தெரியும், location தெரியும், support SLA தெரியும். அதனால் தான் appropriate troubleshooting steps suggest பண்ண முடியும்.
+அடுத்த user கேட்டால் "MFA reset எவ்ளோ நேரம் ஆகும்?" என்று, agent semantic memory-ல இருந்து துல்லியமாக பதில் சொல்லும். Episodic-ல தேடினால் அது specific ticket-க்கு மட்டும் பொருந்தும்.
 
 Architecture:
-- Conversation → LLM extraction → `facts` table: `{subject, predicate, object, confidence, source, timestamp}`
-- Vector store for fuzzy facts: preferences, notes.
-- Retrieval: query "laptop slow" → semantic search → facts about device, user, past issues.
+User Query → Embedding → Vector DB [Semantic facts] + Episodic store → Reranker → LLM context
 
-Cost reduce ஆகும், because full history retrieve பண்ண தேவை இல்லை.
+Facts periodically reviewed by human-in-the-loop.
 
 ## 7. Reasoning Challenge
 
-உங்களுக்கு 10,000 users இருக்கும் customer success agent. ஒவ்வொரு user-க்கும் preferences, contract terms, past incidents தேவை.
+உங்களிடம் ஒரு customer support agent இருக்கு. 1M conversations/மாதம் வருது. User-specific preferences-ஐ தக்கவைக்க வேண்டும். பொதுவான product knowledge-ஐயும் தக்கவைக்க வேண்டும். Episodic store cost அதிகம் ஆகுது.
 
-நீங்கள் semantic memory-ஐ design பண்ண வேண்டும்.
-
-கேள்வி:
-- Vector DB மட்டும் போதுமா? அல்லது structured DB + vector hybrid வேண்டுமா?
-- Fact update ஆனால், எப்படி old version-ஐ invalidate பண்ணுவீர்கள்?
-- Confidence score எப்படி use பண்ணுவீர்கள் retrieval-ல்?
-
-இதற்கு எந்த trade-off-ஐ accept பண்ணுவீர்கள்: consistency vs freshness?
+நீங்கள் semantic memory-ஐ எப்படி design பண்ணுவீர்கள்? என்ன தகவலை semantic-ல move பண்ணுவீர்கள், என்ன episodic-ல வைத்திருப்பீர்கள்? Retrieval-க்கு என்ன trade-off எடுப்பீர்கள்?
 
 ## 8. Key Takeaways
 
-- Semantic memory = persistent, generalized knowledge. Episodic = specific events.
-- Context window-ஐ replace பண்ணாது, complement பண்ணும்.
-- Extract-consolidate-store-retrieve pipeline தேவை. Quality of extraction = quality of memory.
-- Hybrid storage வேண்டும்: vector for recall, structured/graph for precise facts.
-- Every write creates a maintenance problem: updates, contradictions, privacy deletion.
-
-**Mental model to leave with:** Semantic memory is the agent's long-term understanding of *what is true*, not just *what happened*.
+* Semantic memory = distilled facts about world, not personal event logs
+* Episodic gives you *what happened*, semantic gives you *what is true*
+* Good architecture uses both: semantic for general knowledge, episodic for personal context
+* Extraction quality is the bottleneck, not retrieval speed
+* Every update to semantic memory is an architectural decision about truth, privacy, and staleness

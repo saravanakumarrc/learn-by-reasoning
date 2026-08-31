@@ -5,108 +5,102 @@
 
 ## 1. Problem
 
-ஒரு LLM-ஐ ஒரு agent ஆக run பண்ணும்போது என்ன பிரச்சனை வரும்? 
+நீங்க ஒரு AI agent build பண்றீங்க. அது ஒவ்வொரு முறையும் task செய்யும்போது reasoning-ல இருந்து ஆரம்பிக்கிறது. ஒரு முறை கத்துக்கிட்ட skill-ஐ next time மறந்துட்டு மறுபடியும் step-by-step think பண்ணுது.
 
-RAG இல்லைனா, model-க்கு வெளியே இருக்கும் knowledge எல்லாம் தெரியாது. Long conversation-ல user என்ன சொன்னான்னு forget ஆகும். Tool use பண்ணணும், ஆனா எந்த tool, எப்போ call பண்ணணும், எந்த parameter கொடுக்கணும் என்பது மாறிக்கிட்டே இருக்கும்.
+உதாரணமா, ஒரு data pipeline-ல file-ஐ validate பண்ணி, clean பண்ணி, load பண்ணும் workflow. முதல் முறை agent 10 steps யோசிச்சு செய்யுது. இரண்டாவது முறை அதே file type வந்தாலும் மறுபடியும் 10 steps யோசிக்குது.
 
-இன்னும் painful ஆனது: model-க்கு ஒரு skill-ஐ ஒரே மாதிரி செய்ய சொல்லிக் கொடுக்கணும். எடுத்துக்காட்டாக, ஒவ்வொரு முறை "என்னுடைய weekly sales report-ஐ Slack-ல அனுப்பு"ன்னு சொன்னா, ஒவ்வொரு முறையும் steps ஞாபகம் வைத்து reasoning பண்ண வேண்டியிருக்கு. 
+இங்கே என்ன problem? **Latency, cost, and inconsistency**. ஒவ்வொரு முறையும் reasoning cost வருது, slow ஆகுது, தப்பு வாய்ப்பு அதிகம்.
 
-இது expensive, slow, மற்றும் inconsistent. ஏன்னா LLM தன் context window-க்குள் மட்டுமே remember பண்ணும். Procedural knowledge - *எப்படி செய்யணும்* - ஐ எப்படி persistent ஆக, reliable ஆக வைக்கிறது?
+இதுக்கு தான் procedural memory தேவை.
 
 ## 2. Mental Model
 
-Memory types ஐ ஒரு engineer க்கு புரிய வைக்க, நமக்கு தெரிந்த human memory-ஐ use பண்ணலாம்.
+Procedural memory = **how to do things, not what things are**.
 
-* **Episodic memory**: என்ன நடந்தது. "நேற்று user X என்ன கேட்டான்."
-* **Semantic memory**: என்ன தெரியும். "Interest rate என்ன?"
-* **Procedural memory**: எப்படி செய்யணும். "Git merge conflict solve பண்ணும் steps."
+Declarative memory என்பது facts, knowledge. "இந்த customer-க்கு credit limit 1L" என்பது fact.
 
-Procedural memory என்பது *skills and habits*. இது explicit recall இல்லாமல், automatic ஆக run ஆகும். நீங்கள் cycle பைக் ஓட்ட கற்றுக்கொண்டதும், ஒவ்வொரு முறையும் physics யோசிக்க மாட்டீர்கள்.
+Procedural memory என்பது skill. "credit check எப்படி பண்ணனும்", "payment retry எப்படி handle பண்ணனும்", "invoice generate பண்ணும் steps".
 
-AI system-ல, procedural memory = *reusable, step-by-step behavior* ஐ store பண்ணி, எப்போது தேவைப்படுகிறதோ அப்போது invoke பண்ணுவது.
+மனுஷனுக்கு procedural memory என்பது riding a bike. நீங்க ஒவ்வொரு முறையும் physics calculate பண்ண மாட்டீங்க. Body automatically knows.
+
+AI-ல அதே வேணும். Learned behavior pattern-ஐ store பண்ணி, next time direct execution.
+
+இது basically learned policy, not retrieved fact.
 
 ## 3. How It Works
 
-Procedural memory-ஐ implement பண்ண மூன்று common patterns உள்ளன.
+Procedural memory AI-ல usually மூன்று வழிகளில் store ஆகும்:
 
-**1. Tool / Function Schema as Procedure**
-Agent framework-ல ஒரு tool define பண்ணுவது procedural memory-ன் முதல் layer. `get_sales_report(week_start, region)` என்பது ஒரு procedure. Model-க்கு tool description கொடுக்கப்படும், அது எப்போது use பண்ணணும் என்பதை learn பண்ணும்.
+**1. Parameter memory**
+Model weights-லேயே skill embed ஆகும். Fine-tuning or RLHF மூலம். மாடல் அந்த pattern-ஐ internalize பண்ணிக்கும். இது implicit procedural memory.
 
-**2. Few-shot / Prompted workflow**
-ஒரு task-க்கான successful trajectory ஐ examples ஆக store பண்ணி, next time prompt-ல சேர்ப்பது. இது in-context procedural memory. Cheap, ஆனால் context window limited.
+**2. Skill library / Tool patterns**
+Pre-defined reusable workflows. Ex: `validate_and_load_csv`, `retry_with_backoff`. Agent இதை call பண்ணும். இது explicit procedural memory.
 
-**3. Explicit workflow store**
-Procedures ஐ structured format-ல external memory-ல வைத்துக்கொள்வது. எடுத்துக்காட்டாக:
-* A workflow graph / state machine: nodes = steps, edges = conditions
-* A library of reusable agents / skills: `OnboardingSkill`, `RefundSkill`
-* Fine-tuned model or LoRA adapter per skill
+**3. Traces / Replays**
+Past successful execution traces-ஐ store பண்ணி, next time similar context-ல அதை template ஆக use பண்ணுவது. இது case-based procedural memory.
 
-Agent-க்கு task வரும்போது, retriever procedure name-ஐ match பண்ணி, அந்த procedure-ஐ load பண்ணி execute பண்ணும். இது RAG for procedures.
-
-முக்கியம்: Procedural memory-க்கு *parameters* தேவை. Procedure static இல்லை, dynamic context-ஐ bind பண்ணணும்.
+Key point: Procedural memory is **action-oriented**. Input → Action sequence → Output. Context match ஆனால் action repeat பண்ணு.
 
 ## 4. Architectural Reasoning
 
-எப்போது procedural memory தேவை?
+எப்போது procedural memory useful?
 
-* Repeated multi-step tasks with same pattern, but different data.
-* Low latency தேவை, full reasoning ஒவ்வொரு முறையும் செய்ய முடியாது.
-* Consistency தேவை. Human operator error குறைக்க.
-* Auditability & control தேவை. Business process compliance.
+* Repetitive tasks with stable steps
+* Low latency தேவைப்படும் automation
+* Human-like skill acquisition வேண்டும்
+* Reasoning cost-ஐ குறைக்க வேண்டும்
+
+உதாரணமா, RAG system-ல query rewrite பண்ணும் skill. முதல் முறை LLM யோசிச்சு rewrite செய்யும். அந்த successful rewrite pattern-ஐ procedural memory-ல store பண்ணி, same query type வந்தால் direct apply பண்ணலாம்.
 
 Alternatives:
-* Pure LLM in-context reasoning: flexible, ஆனால் non-deterministic, expensive, மற்றும் forgetful.
-* Hard-coded business logic in code: deterministic, fast, ஆனால் change கடினம், LLM flexibility இல்லை.
-* Procedural memory = middle ground. Code-like reliability + LLM-like flexibility.
+* Pure prompt engineering: ஒவ்வொரு முறையும் instruction கொடு. Costly, inconsistent.
+* Episodic memory only: past conversation-ஐ retrieve பண்ணி reuse பண்ணு. Similar but not generalized skill.
 
-Architect choose procedural memory when *how* is stable but *what* is variable.
+Procedural memory choose பண்ணுவது என்பது **reasoning-ஐ amortize பண்ணுவது**. Expensive thinking ஒரு முறை, reuse பல முறை.
 
 ## 5. Trade-offs
 
-**Consistency vs Flexibility**
-Procedural memory gives repeatable steps. ஆனால் edge cases-ல rigid ஆகிவிடும். Model-க்கு override permission கொடுக்க வேண்டுமா?
+**Speed vs Flexibility**
+Procedural memory fast, but rigid. Novel situation வந்தால் fail ஆகும். Too much proceduralization = overfitting.
 
-**Retrieval Accuracy vs Latency**
-Procedure-ஐ vector DB-ல store பண்ணி retrieve பண்ணுவது slow ஆகலாம். Cache பண்ணினால் stale ஆகலாம்.
+**Learning vs Stability**
+Weights-ல procedural memory store பண்ணினால், update hard. Catastrophic forgetting வரும். Skill library approach-ல version control easy, but maintenance overhead.
 
-**Maintenance Burden**
-Procedures version manage பண்ண வேண்டும். ஒரு process மாறினால், எல்லா agents-க்கும் update போக வேண்டும். இது operational complexity.
+**Transparency vs Performance**
+Parameter memory black box. Skill library explicit, auditable, but less fluid.
 
-**Failure Mode**: Wrong procedure retrieval. Model-க்கு ஒத்த procedure வந்துவிட்டால் hallucination போல் தவறான workflow run ஆகும். அதனால் procedure selection-க்கு guardrails தேவை.
-
-Cost: In-context procedural memory cheap but context heavy. External store + retrieval cost + latency add ஆகும்.
+**Failure mode:** Stale procedure. Business rule மாறியும் agent பழைய steps-ஐ follow பண்ணும். Procedural memory needs invalidation signal, just like cache.
 
 ## 6. Practical Example
 
 Enterprise support agent.
 
-User: "Customer ID 12345-க்கு last month refund செய்யணும்."
+Problem: Customer password reset request வந்தால், agent எப்போதும் இதே flow follow பண்ணும்:
+1. Identity verify
+2. Check account lock status
+3. Send OTP
+4. Reset password
+5. Log audit
 
-எபிசோடிக் memory: customer chat history.
-செமாண்டிக் memory: refund policy.
-Procedural memory: `process_refund` workflow.
+முதல் முறை agent reasoning மூலம் இதை discover பண்ணும். அதன் trace-ஐ procedural memory-ல store பண்ணு.
 
-Procedure steps stored externally:
-1. verify_customer_exists
-2. check_refund_eligibility
-3. calculate_amount
-4. get_manager_approval_if > $500
-5. create_refund_ticket
-6. notify_customer
+Next time similar intent detect ஆனால், agent direct `password_reset_procedure` skill-ஐ invoke பண்ணும். Reasoning skip.
 
-Agent task planner procedure-ஐ retrieve பண்ணி, each step-க்கு relevant tool-ஐ call பண்ணும். Steps fixed, data dynamic.
+If new compliance rule வந்து step 2.5 add ஆகணும் என்றால், skill library-ல procedure update பண்ணு. All future executions reflect.
 
-இது ஒவ்வொரு முறையும் model-க்கு "எப்படி refund செய்யணும்" என்று யோசிக்க விடாமல், guaranteed path-ல run ஆகும்.
+இங்கே episodic memory என்ன பண்ணும்? Specific customer past interaction-ஐ recall பண்ணும். Semantic memory என்ன பண்ணும்? Password policy fact-ஐ recall பண்ணும். Procedural memory என்ன பண்ணும்? **How to execute reset**.
 
 ## 7. Reasoning Challenge
 
-உங்களிடம் 20 different customer onboarding flows இருக்கு. ஒவ்வொன்றும் 10-15 steps. Flows மாதத்திற்கு ஒரு முறை மாறுகின்றன. Agent ஒவ்வொரு flow-ஐயும் துல்லியமாக follow பண்ண வேண்டும், ஆனால் user inputs dynamic.
+உங்களிடம் ஒரு financial reconciliation agent உள்ளது. ஒவ்வொரு நாளும் 5000 transactions reconcile பண்ண வேண்டும். முதல் முறை agent rules-ஐ learn பண்ணி சரியா reconcile பண்ணியது. நாள் தோறும் data pattern மாறிக்கொண்டே இருக்கிறது, ஆனால் core logic same.
 
-நீங்கள் procedural memory-ஐ எப்படி design பண்ணுவீர்கள்? In-context examples, vector store, இல்லை code-based state machine? ஏன்? அதன் trade-off என்ன?
+நீங்கள் procedural memory-ஐ எப்படி design பண்ணுவீர்கள்? Weights-ல embed பண்ணுவீர்களா? Skill library-ல store பண்ணுவீர்களா? Trace replay use பண்ணுவீர்களா? ஏன்?
 
 ## 8. Key Takeaways
 
-* Procedural memory = *how to do it*, not *what happened* or *what is known*.
-* LLM context window alone is not procedural memory. Persistence + retrieval தேவை.
-* Procedures give consistency and cost saving, ஆனால் maintenance and rigidity கொண்டு வரும்.
-* Architecturally, procedural memory is a bridge between rigid code logic and free-form LLM reasoning.
+* Procedural memory = **how to do**, not **what is**. Skill, not fact.
+* Reasoning cost-ஐ amortize பண்ண, repeatable tasks-க்கு essential.
+* Parameter memory implicit ஆக fast, ஆனால் update கடினம். Skill library explicit ஆக controllable.
+* Every procedure needs invalidation. Stale skill என்பது silent failure.
+* Architecturally, procedural memory separates learning phase from execution phase.

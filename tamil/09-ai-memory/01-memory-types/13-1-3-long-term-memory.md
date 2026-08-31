@@ -3,106 +3,129 @@
 > **Learning Path:** AI Memory
 > **Section:** 13.1.3 — Memory types
 
-## 13.1.3 — Memory types: Long-term memory
+## 1. Problem
 
-### 1. Problem
+ஒரு LLM agent-ஐ ஒரு user-உடன் 3 மாதம் பேச விட்டால் என்ன ஆகும்?
 
-ஒரு AI agent-ஐ நீங்கள் build பண்ணும்போது, session முடிந்ததும் எல்லாம் மறந்துவிடுகிறது. அதே user மறுபடி வந்தால், "நான் யார்? என் பிராஜெக்ட் என்ன?" என்று கேட்க வேண்டியிருக்கிறது.
+Session 1-ல user சொன்னார்: "நான் Chennai-ல இருக்கேன், fintech domain-ல வேலை பாக்குறேன்".
+Session 2-ல user சொன்னார்: "எனக்கு payment reconciliation பிடிக்காது".
+Session 47-ல user கேட்கிறார்: "எனக்கு என்ன பிடிக்காதுன்னு சொன்னேன்?".
 
-Short-term memory, அதாவது conversation context window, சில ஆயிரம் tokens மட்டுமே வைத்திருக்கும். User-ன் preferences, past decisions, documents, past interactions — இவை எல்லாம் அடுத்த session-க்கு கொண்டு போக வேண்டும்.
+Context window மட்டும் வைத்திருந்தால், session 1-ல சொன்னது எல்லாம் மறந்து போயிருக்கும். Agent ஒவ்வொரு முறையும் முதல் முதல் போல behave பண்ணும்.
 
-**What goes wrong if we don't have this?** Every session starts from zero. User experience broken ஆகும், agent repetitive questions கேட்கும், personalization இருக்காது, முக்கியமான facts repeat ஆகும்.
+இது பிரச்சனை ஆகிறது ஏனெனில்:
+* User-க்கு personalization வேண்டும்
+* Long conversations-ல continuity வேண்டும்
+* Knowledge base-ல இருந்து facts-ஐ திரும்ப திரும்ப retrieve பண்ணக்கூடாது
+* Agent ஒரு முறை கற்றதை அடுத்த session-லயும் use பண்ண வேண்டும்
 
-அதனால் தேவை: session-க்கு அப்பால் survive பண்ணும் memory.
+What goes wrong if we don't have this? Agent stateless ஆக இருக்கும், costly re-computation, hallucination அதிகரிக்கும்.
 
-### 2. Mental Model
+## 2. Mental Model
 
-Long-term memory என்பது agent-ன் external brain.
+Memory என்பது agent-க்கு long-term storage + retrieval system.
 
-Short-term = RAM. Fast, volatile, limited.
+Simple ஆக சொன்னால்: short-term memory = context window, long-term memory = persistent store.
 
-Long-term = Disk. Slowish, persistent, huge.
+ஒரு human engineer-க்கு ஒப்பிட்டால்:
+* Working memory = உடனடி chat history
+* Long-term memory = notebook, wiki, database, vector store ல எழுதி வைத்தது
 
-Agent ஒரு thought பண்ணும்போது, அது தேவையானதை மட்டும் long-term இலிருந்து retrieve பண்ணி, short-term context-ல் வைத்து reason பண்ணும்.
+AI Memory-ல மூன்று layer உள்ளது:
 
-Mental model: **Store once, retrieve on demand, update over time.**
+1. **Short-term / Episodic memory**: Current session-ல உள்ள recent turns. Context window-ல வைத்திருக்கும்.
+2. **Working memory**: Session cross-ல தற்காலிக state, e.g., multi-step task progress.
+3. **Long-term memory**: Persistent, user-specific, domain-specific knowledge.
 
-### 3. How It Works
+நாம் இப்போது long-term memory types-ஐ பார்க்கிறோம்.
 
-Long-term memory வழக்கமாக மூன்று layer-களாக வேலை செய்கிறது:
+## 3. How It Works
 
-**Capture → Store → Retrieve**
+Long-term memory என்பது data + retrieval mechanism.
 
-**Capture:** Conversation, user action, document upload, tool output ஆகியவற்றிலிருந்து relevant facts-ஐ extract பண்ண வேண்டும். Raw conversation-ஐ முழுவதும் store பண்ணுவது waste. Summarization, entity extraction, embedding generation பண்ணி structured form-ல் save பண்ணுவது.
+Data என்ன?
+* User profile facts: name, role, preferences
+* Conversation history summaries
+* Agent experiences: past decisions, tool calls, outcomes
+* Domain knowledge: documents, notes, embeddings
 
-**Store:** இரண்டு வகை storage.
+Retrieval எப்படி?
+User query வரும்போது, agent அதை embed செய்து vector database-ல similarity search செய்யும். Relevant memories-ஐ fetch பண்ணி context window-ல inject பண்ணும்.
 
-* Structured: PostgreSQL / MongoDB-ல் user profile, preferences, facts table-ல் key-value அல்லது relational ஆக.
-* Unstructured / Semantic: Vector database-ல் embeddings ஆக. "இதே போன்ற அர்த்தம்" என்று search செய்ய வேண்டும்போது.
+Core loop:
+Query → Embed → Retrieve from long-term store → Rerank → Inject into prompt → Generate
 
-Long-term memory என்பது vector store மட்டும் அல்ல. Vector store semantic recall-க்கு, relational store explicit facts & relationships-க்கு.
+Memory-ஐ write பண்ணும்போது, raw conversation-ஐ முழுவதும் சேமிக்காமல், extract → summarize → compress → store என்று செய்வார்கள். இல்லை என்றால் storage cost, noise எல்லாம் அதிகரிக்கும்.
 
-**Retrieve:** New query வந்தால், user ID + query context-ன் அடிப்படையில் relevant memories-ஐ fetch பண்ணி context window-ல் inject பண்ணுவது. Retrieval = hybrid search: keyword + vector similarity + metadata filter.
+## 4. Architectural Reasoning
 
-### 4. Architectural Reasoning
+Long-term memory ஏன் தேவை?
 
-Long-term memory useful ஆகும்போது:
+* Continuity: Session A-ல கற்றதை Session B-ல use பண்ண வேண்டும்
+* Personalization: User specific facts-ஐ maintain பண்ண வேண்டும்
+* Knowledge reuse: Repeated queries-க்கு recompute பண்ணாமல் retrieve பண்ண வேண்டும்
 
-* User returning across sessions
-* Personalization தேவை
-* Knowledge base தேவை: documents, tickets, codebase
-* Agent continuity தேவை
-
-Constraint it addresses: context window limit and volatility.
+When to use?
+* Agent multiple sessions-ல interact பண்ணும் போது
+* User profile, preferences முக்கியம்
+* Domain knowledge large and static
+* Compliance/audit trail வேண்டும்
 
 Alternatives:
+* Context window மட்டும்: Simple, but limited to ~128k tokens, expensive, forgets
+* Summarization per session: Cheaper but loses details
+* Long-term memory with vector DB: Persistent, scalable, searchable
 
-* Bigger context window: Cost அதிகம், linear growth, irrelevant noise. முழு history-யும் load பண்ண முடியாது.
-* RAG only on external docs: user-specific learning இல்லை.
-* No memory: Stateless agent.
+Architect ஏன் choose பண்ணுவார்? Cost vs personalization trade-off. Short-term மட்டும் போதும் என்றால் memory system சேர்க்காமல் போகலாம்.
 
-ஏன் long-term memory தேர்வு? Because you need persistent, evolving user model. Trade-off ஏற்படும்: complexity & cost.
+## 5. Trade-offs
 
-### 5. Trade-offs
+1. **Recall accuracy vs noise**
+Better retrieval = better answer. ஆனால் irrelevant memories-ஐ fetch பண்ணினால் context pollution ஆகும், hallucination அதிகரிக்கும். Reranking, filtering தேவை.
 
-**Recall accuracy vs storage cost.** Everything store பண்ணினால் vector DB cost & noise அதிகம். Too little store பண்ணினால் important facts miss ஆகும். Need summarization policy.
+2. **Freshness vs stability**
+Memory எப்போது update பண்ணுவது? User preferences மாறும். Stale memory-ஐ திரும்ப திரும்ப use பண்ணினால் wrong personalization. TTL, versioning, overwrite policies தேவை.
 
-**Freshness vs stability.** User preference மாறும். Old memory stale ஆகும். Versioning, TTL, confidence score வேண்டும். இல்லை என்றால் agent hallucinate பண்ணும் with outdated info.
+3. **Privacy / security vs personalization**
+User-specific long-term memory என்பது PII. Storage, access control, encryption, deletion on request என்பது compliance requirement. Multi-tenant isolation must.
 
-**Privacy & security.** Long-term memory = PII storage. Compliance, encryption, deletion on request, access control தேவை. Stateless agent-க்கு இந்த liability இல்லை.
+4. **Write cost vs read quality**
+Every turn-ஐ store பண்ணினால் cheap. ஆனால் summarization, extraction pipeline சேர்த்தால் quality better but latency & cost அதிகம்.
 
-**Retrieval latency.** Real-time agent-க்கு memory fetch 200ms-க்குள் வர வேண்டும். Heavy hybrid search, re-ranking குறிப்பாக cost ஆகும்.
+Failure modes:
+* Memory leak: irrelevant facts accumulate
+* Memory hallucination: agent wrongly assumes memory exists
+* Retrieval failure: important memory miss due to bad embedding
 
-Failure modes: Wrong memories retrieved → context poisoning. Too many memories retrieved → context window overflow. No deduplication → same fact repeated.
+## 6. Practical Example
 
-### 6. Practical Example
+Enterprise AI assistant for a bank.
 
-Enterprise support agent.
+User: Relationship Manager. Customer data, notes, past interactions உள்ளன.
 
-User first session: "நான் Acme bank-ல் SRE. நாங்கள் Kubernetes 1.29 use பண்றோம். On-call rotation என்னுடையது."
+Architecture:
+* Conversation → Summarizer → Extract structured facts: customer_id, last meeting date, risk appetite, product interest
+* Facts stored in relational DB for structured query + vector DB for free text notes
+* Retrieval: User query வரும்போது, customer_id-ல fetch structured profile, vector search-ல relevant notes fetch
+* Inject into prompt with clear delimiters: `MEMORY: ...`
 
-Agent captures entities: user_id, role=SRE, company=Acme bank, k8s_version=1.29, on_call=true. Structured DB-ல் store.
+Result: Agent சொல்லும்: "நீங்கள் last month Senthil-க்கு loan renewal பற்றி பேசினீர்கள், அவர் 7% rate வேண்டும் என்று கேட்டிருந்தார்".
 
-Later session: "production-ல் pod crash ஆகுது, எப்படி debug பண்ணுறது?"
+Without long-term memory, agent ஒவ்வொரு முறையும் "நான் தெரியவில்லை" என்று சொல்லும்.
 
-Agent retrieves long-term memory: user is SRE, k8s 1.29, on-call. So response Kubernetes specific, kubectl commands, not generic. It also retrieves past incidents user faced, stored as embeddings in vector DB.
+## 7. Reasoning Challenge
 
-If user uploads runbook PDF, அதை chunk பண்ணி embeddings ஆக store. அடுத்த முறை "எங்கள் runbook-ல என்ன சொல்லியிருக்கு?" என்றால் semantic search-ல் relevant chunk retrieve ஆகும்.
+உங்கள் AI agent-க்கு 2 வகையான long-term memory வேண்டும்:
 
-Implementation: capture with LLM extractor, store in Postgres for structured facts + Pinecone/Qdrant for semantic, retrieve via hybrid search with user_id filter.
+A. User personal preferences: "எனக்கு tables வேண்டாம்"
+B. Domain knowledge: Company policy docs, 500 pages
 
-### 7. Reasoning Challenge
+இரண்டுக்கும் retrieval strategy வேறுபடுமா? எந்த memory-ஐ எப்படி store செய்வீர்கள், எப்படி retrieve செய்வீர்கள்? Consistency, freshness, access control-ல என்ன வித்தியாசம் வரும்?
 
-உங்களிடம் 10,000 active users இருக்கிறார்கள். ஒரு user-க்கு சராசரி 500 conversations per month. ஒவ்வொரு conversation-லும் 50 facts extract ஆகிறது.
+## 8. Key Takeaways
 
-இங்கே என்ன store பண்ணுவீர்கள்? எல்லா raw messages-ஐயும் store பண்ணுவீர்களா? அல்லது summarized facts மட்டுமா? Vector DB-ல் எதை put பண்ணுவீர்கள்? Retrieval time-ஐ எப்படி கட்டுப்படுத்துவீர்கள்?
-
-Think about cost, noise, privacy.
-
-### 8. Key Takeaways
-
-* Long-term memory = persistence across sessions, not bigger context window.
-* Structured store for explicit facts, vector store for semantic recall. Both தேவை.
-* Capture smart, store less but relevant, retrieve filtered.
-* Every memory system needs update policy, TTL, privacy controls. இல்லை என்றால் stale & toxic ஆகும்.
-* Architecturally, memory is a separate bounded context with its own consistency, retrieval SLA, and cost model.
+* Long-term memory என்பது context window-ன் extension, persistent store + retrieval system
+* Memory types-ஐ separate பண்ணுங்கள்: user profile vs domain knowledge vs agent experience
+* Write path-ல summarization/extract பண்ணுங்கள், raw chat-ஐ முழுவதும் store பண்ணாதீர்கள்
+* Retrieval quality = system quality. Bad recall > no memory
+* Every memory decision என்பது privacy, cost, freshness trade-off

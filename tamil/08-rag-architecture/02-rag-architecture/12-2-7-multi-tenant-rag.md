@@ -5,110 +5,122 @@
 
 ## 1. Problem
 
-ஒரு SaaS product-ல் 100+ customers இருக்காங்க. ஒவ்வொருத்தருக்கும் தனித்தனி documents, knowledge base, chat history இருக்கு.
+ஒரு RAG system build பண்ணியாச்சு. உங்கள் product-ல இப்போ 1 tenant. அதன் documents, embeddings, vector database எல்லாம் ஒரே pool-ல.
 
-Single-tenant RAG பண்ணினா? ஒவ்வொரு customer-க்கும் தனி vector database, தனி index, தனி pipeline வச்சா cost, ops complexity எகிறும்.
+இப்போ business சொல்லுது: "We need to onboard 10 customers, then 100."
 
-ஒரே RAG system-ல் எல்லாரையும் வச்சா என்ன ஆகும்?
+What goes wrong?
 
-Customer A-ன் data Customer B-க்கு leak ஆகும். Prompt injection-ல ஒருத்தர் இன்னொருத்தர் document-ஐ பார்க்க முடியும். Billing, rate limiting, retention policy எல்லாம் customer-specific ஆக இருக்கணும்.
+* Customer A-ன் confidential data Customer B-க்கு leak ஆகக்கூடாது.
+* Tenant A-க்கு 1M documents, Tenant B-க்கு 10k documents. Same vector DB-ல இருந்தா query performance, cost எல்லாம் எப்படி manage பண்ணுவீங்க?
+* One tenant ஒரு bad query-ல் அனைவருக்கும் latency spike கொடுக்குது.
+* Compliance: EU tenant data EU-ல மட்டும் இருக்கணும், US tenant data US-ல.
+* Billing, quotas, feature flags tenant-wise வேணும்.
 
-Multi-tenant RAG-ன் problem இதுதான்: **Same infrastructure, isolated data, isolated behavior, per-tenant control**.
+Single-tenant RAG-ல இந்த constraints எல்லாம் painful ஆகுது. அதனால் Multi-tenant RAG தேவைப்படுது.
 
 ## 2. Mental Model
 
-Multi-tenant RAG = One shared retrieval + generation pipeline, but tenant boundary எப்போதும் enforce ஆகணும்.
+Multi-tenant RAG என்பது **same RAG infrastructure-ஐ பல customers share பண்ணுவது, ஆனால் data, access, behavior தனித்தனியாக isolate செய்வது**.
 
-நினைச்சுக்கோ: ஒரு apartment building. Common elevator, plumbing இருக்கு. ஆனா ஒவ்வொரு flat-க்கும் தனி lock, தனி meter.
+Core mental model: **Isolation vs Sharing**.
 
-அதே மாதிரி RAG-ல் embedding model, LLM, API gateway common. Data access, index, policies tenant-specific.
+* Share பண்ணுவது: vector DB cluster, embedding model, LLM, orchestration code, infra cost.
+* Isolate பண்ணுவது: data, index, access control, tenant config, usage limits.
+
+இதை நீங்கள் எப்படி isolate பண்றீங்க என்பதுதான் architecture decision.
 
 ## 3. How It Works
 
-Core flow மாறாது: Query → Tenant Resolve → Filtered Retrieval → Generation → Response.
+Query வரும்போது flow இது:
 
-வித்தியாசம் tenant context எங்கே inject ஆகிறது.
+User query → API Gateway → Tenant identification → Tenant routing → Retrieval with tenant filter → LLM generation with tenant context → Response
 
-**Tenant Resolution:** API key, JWT claim, subdomain இல்லை header-ல tenant_id வரும். Auth layer-ல இதை extract பண்ணி request context-ல் வை.
+Key components:
 
-**Isolated Retrieval:** Vector DB query-ல tenant_id filter எப்போதும் add ஆகணும்.
-
-```
-vector_search(query_embedding, where: tenant_id = 't_123')
-```
-
-Index-level isolation வேண்டாம் என்றாலும் logical isolation must.
-
-**Per-tenant config:** Embedding model, chunk size, top-k, reranker, prompt template, guardrails ஒவ்வொரு tenant-க்கும் வேறு வேறு இருக்கலாம்.
-
-**Metadata enrichment:** Chunk-ஐ ingest பண்ணும்போது tenant_id, document_id, permissions, retention_date என metadata-வுடன் store பண்ணு.
+* **Tenant ID**: API key, subdomain, JWT claim மூலம் extract பண்ணுவீங்க.
+* **Retrieval isolation**: Vector DB-ல ஒவ்வொரு vector-க்கும் `tenant_id` field இருக்கும். Query-ல எப்போதும் `WHERE tenant_id = X` filter.
+* **Embedding + Storage**: Same embedding model பயன்படுத்தலாம், ஆனால் index தனி அல்லது shared.
+* **Prompt isolation**: System prompt-ல tenant-specific instructions, brand voice, allowed tools inject பண்ணுவீங்க.
+* **Access control**: Document level permissions, user roles tenant context-ல enforce.
 
 ## 4. Architectural Reasoning
 
-எப்போது multi-tenant வேண்டும்?
+Multi-tenancy-ல மூன்று main strategies உண்டு:
 
-* SaaS RAG product, multiple customers share same service.
-* Cost efficiency முக்கியம். Separate infra per tenant cost அதிகம்.
-* Operational overhead குறைக்கணும்.
+### A. Shared Database, Shared Schema + Tenant ID filter
+ஒரே vector DB, ஒரே collection/table. ஒவ்வொரு row-க்கும் tenant_id.
 
-Alternatives:
+* When useful: Small to medium scale, cost save வேணும், operational simplicity வேணும்.
+* Constraint address: Fast to build, low infra cost.
+* Trade: Noisy neighbor problem, one tenant-ன் huge data எல்லாரையும் slow பண்ணும். Security risk அதிகம் if filter miss ஆகும்.
 
-* **Single-tenant:** ஒவ்வொரு customer-க்கும் dedicated vector DB + LLM. Strong isolation, high cost, ops nightmare.
-* **Shared DB + No tenant filter:** Cheapest, but data leak guarantee.
-* **Multi-tenant with physical isolation:** Tenant per database / collection. Middle ground.
+### B. Shared Database, Separate Schema / Collection per Tenant
+ஒவ்வொரு tenant-க்கும் தனி collection / index. Same DB cluster.
 
-Decision point: Compliance requirement.
+* When useful: Strong logical isolation வேணும், per-tenant performance control வேணும்.
+* Trade: Metadata management சிக்கல், 1000 tenants = 1000 collections. DB limits வரும்.
 
-GDPR, HIPAA போன்ற strict isolation வேண்டும் என்றால் physical isolation or at least collection-per-tenant வேண்டும். Startups-க்கு logical isolation + strict filtering போதும், scale-க்கு மேலே physical isolation-க்கு migrate.
+### C. Separate Database / Cluster per Tenant
+ஒவ்வொரு tenant-க்கும் dedicated vector DB, even separate region.
+
+* When useful: Enterprise customers, compliance, strict isolation, custom models.
+* Trade: Cost அதிகம், operational complexity அதிகம்.
+
+Architect ஆக நீங்கள் choose பண்ணும்போது பார்க்க வேண்டியது:
+
+* Data isolation requirement - GDPR, HIPAA?
+* Scale per tenant - data size, QPS வேறுபடுமா?
+* Team size & operability - நீங்கள் எத்தனை clusters manage பண்ண முடியும்?
+* Cost model - per-tenant pricing சாத்தியமா?
 
 ## 5. Trade-offs
 
 **Isolation vs Cost**
-Logical isolation cheap. Physical isolation safe. Trade-off is ops complexity and storage.
+Strong isolation = higher cost, more infra. Shared = cheaper but risk.
 
-**Performance vs Correctness**
-Tenant filter every query add latency. Cache per tenant வேண்டும். Cross-tenant cache hit கூடாது.
+**Performance vs Simplicity**
+Per-tenant index = predictable latency. Shared index = noisy neighbor, need query routing & rate limiting.
 
-**Query complexity**
-Where filter-ல் tenant_id always mandatory. Developer mistake ஆனால் data leak. Defense in depth வேண்டும்: DB level Row Level Security, application level filter, audit logs.
+**Security vs Developer velocity**
+Filter-based isolation fast to build. But one bug in filter = data leak. Defense in depth தேவை: DB filter + application level check + audit logs.
 
-**Embedding drift**
-ஒரு tenant தனியாக embedding model upgrade செய்ய விரும்பலாம். Shared model-ல் versioning தேவை. அல்லது tenant-specific embedding store.
+**Flexibility vs Standardization**
+Some tenants want custom embedding model, custom retriever, custom LLM. Multi-tenant platform-ல அதை எப்படி allow பண்ணுவது? If you allow too much customization, you lose sharing benefits.
 
-Failure modes: Tenant ID missing → query fail closed, never return data. Tenant ID spoof → strict auth + validation. Index rebuild-ல் tenant metadata drop ஆனால் data leak.
+Failure modes கவனிக்க வேண்டியது:
+
+* Missing tenant filter in retrieval → cross-tenant data leak. This is catastrophic.
+* Embedding model drift across tenants if you update model without re-embedding.
+* Cold start: new tenant-க்கு index build time.
 
 ## 6. Practical Example
 
-Enterprise support assistant.
+Enterprise knowledge base product.
 
-Tenant A = Bank. Tenant B = E-commerce.
+Tenant A = Bank, 5M documents, needs EU region, PII filtering, dedicated LLM fine-tune.
+Tenant B = Startup, 50k documents, US region, standard model.
 
-Both use same RAG API: `POST /rag/chat`
+Architecture decision:
 
-Request header: `X-Tenant-ID: bank_01` + JWT.
+* Shared API gateway + auth service.
+* Routing layer tenant config-ல இருந்து reads.
+* Tenant A: Separate vector DB cluster in EU, dedicated collection, separate embedding pipeline.
+* Tenant B: Shared vector DB cluster in US, shared collection with tenant_id filter, shared embedding pipeline.
+* Retrieval service always injects tenant_id filter + row-level security policy.
+* LLM call-ல tenant-specific system prompt + guardrails.
 
-Ingestion pipeline: Documents upload ஆகும்போது tenant_id tag ஆகி chunks create ஆகும். Vector DB-ல Pinecone / Weaviate-ல collection shared, metadata-ல tenant_id இருக்கு.
-
-Retrieval: Query embedding → `where tenant_id = 'bank_01' AND permissions IN ('public','agent')` → top-k 5 → rerank → LLM context.
-
-Prompt template tenant-specific: Bank-க்கு tone formal, PII redaction strict. E-commerce-க்கு casual, product catalog bias.
-
-Billing: Token usage, retrieval count per tenant track பண்ணி meter.
-
-Ops: One Kubernetes deployment, horizontal scale. Vector DB shared but tenant filtered.
+Result: Cost optimized for small tenants, isolation guaranteed for enterprise tenant, compliance satisfied.
 
 ## 7. Reasoning Challenge
 
-உங்களுக்கு 200 tenants இருக்கு. 10 tenants மட்டும் enterprise, அவங்களுக்கு 99.99% SLA, data residency EU. மீதி 190 tenants standard, global.
+உங்களிடம் 200 tenants இருக்கு. 180 tenants சிறியவை, 20 tenants பெரியவை. எல்லாரும் same embedding model use பண்ணுறாங்க. ஒரு tenant திடீரென 10x traffic spike பண்ணும்போது மற்ற tenants-க்கு latency increase ஆகுது.
 
-Shared vector DB, single LLM endpoint use பண்ணுறீங்க.
-
-**Question:** Enterprise tenants-க்கு isolation எப்படி ensure பண்ணுவீங்க? Physical collection per tenant வேண்டுமா? Logical filter போதுமா? Cost, latency, ops என்ன trade-off வரும்? Decision எப்படி justify பண்ணுவீங்க?
+Shared collection with tenant_id filter vs per-tenant collection என்றால் எதை தேர்வு செய்வீர்கள்? அல்லது hybrid approach? எந்த failure mode-ஐ நீங்கள் முதலில் mitigate பண்ணுவீர்கள்?
 
 ## 8. Key Takeaways
 
-* Multi-tenant RAG-ன் core problem data isolation, not retrieval accuracy.
-* Tenant ID must be part of every retrieval path, never optional.
-* Logical isolation cost-effective to start, physical isolation for compliance heavy tenants.
-* Per-tenant config for prompt, top-k, guardrails முக்கியம், one size fits all work ஆகாது.
-* Every architectural choice creates new ops burden; design for fail-closed, audit everything.
+* Multi-tenant RAG-ன் core problem isolation + cost sharing balance.
+* Tenant ID filter எப்போதும் mandatory, ஆனால் filter மட்டும் போதாது, defense in depth வேணும்.
+* Architecture choice depends on tenant size, compliance, and operational capacity, not just technology.
+* Every isolation decision creates cost and complexity trade-off.

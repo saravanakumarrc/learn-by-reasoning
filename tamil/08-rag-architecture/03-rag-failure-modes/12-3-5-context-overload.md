@@ -5,118 +5,98 @@
 
 ## 1. Problem
 
-உங்கள் RAG system ஒரு enterprise document மீது கட்டப்பட்டிருக்கு. User ஒரு complex question கேட்கிறார். Retriever 15 chunks எடுக்கிறது, ஒவ்வொன்னும் 800 tokens. System prompt 500 tokens, user query 100 tokens, response budget 500 tokens.
+உங்கள் RAG system ரொம்ப நல்லா work பண்ணுது. Query வருது, retriever சரியா chunks-ஐ கொண்டு வருது, LLM answer கொடுக்குது.
 
-Total = ~13,000 tokens. 
+பிறகு ஒரு நாள் user கேட்கிறார்: "எங்கள் கடந்த 2 வருட sales report, அதுல வந்த top 10 customers, அவர்களோட recent support tickets, product returns pattern எல்லாம் சொல்லு."
 
-LLM context window 16k என்றால் fit ஆகும். ஆனால்:
+Retriever 40 chunks திருப்பி கொடுக்குது. ஒவ்வொன்றும் 800-1200 tokens. Total 35k tokens.
 
-* Latency போய் விடுகிறது
-* Cost per query அதிகரிக்கிறது
-* Model attention dilute ஆகிறது, relevant signal relevant noise-ல மறைந்து விடுகிறது
-* Hallucination அதிகரிக்கிறது
+LLM-க்கு prompt-ல system instruction + query + 35k context = 37k tokens. Model limit 128k என்றாலும், இங்கே என்ன நடக்கும்?
+
+Answer generic ஆகிவிடும். Hallucination அதிகரிக்கும். Relevant facts miss ஆகும். Latency 8 sec → 30 sec ஆகும். Cost 3x ஆகும்.
 
 இது தான் **context overload**.
 
-நீங்கள் அதிக தகவலை கொடுக்க முயற்சிக்கும்போது, model உண்மையில் குறைவாக புரிந்துகொள்கிறது. 
-
-> What goes wrong if we don't have this? Model தேவையற்ற chunks-ல திளைத்து, முக்கியமான fact-ஐ miss செய்கிறது. User experience degrade ஆகிறது.
+What goes wrong if we don't have this? Retriever "more is better" என்று நினைக்கும். LLM-ன் attention spread ஆகும். Signal-ல noise கலந்துவிடும்.
 
 ## 2. Mental Model
 
-Context window ஒரு limited working memory போல.
+LLM ஒரு reader மாதிரி. அவனுக்கு ஒரே நேரத்தில் 100 பக்கங்களை கொடுத்து "இதுல முக்கியமானது சொல்லு" என்றால், அவன் confuse ஆகுவான்.
 
-ஒரு engineer-க்கு 50 pages printout கொடுத்து "இதுல answer கண்டுபிடி" என்றால் என்ன ஆகும்? Time எடுக்கும், முக்கிய page எது என்று குழம்பும்.
+Context window என்பது capacity, attention budget. Token அதிகமானால், important facts-ன் weight குறையும்.
 
-Context overload = **too much retrieved data, too little signal density**.
-
-Retrieval சரியாக இருந்தாலும், அளவு தவறாக இருந்தால் RAG fail ஆகும்.
+Context overload = **Too much retrieved information, too little focus**.
 
 ## 3. How It Works
 
-RAG pipeline-ல் overload எங்கே வருகிறது:
+RAG-ல் overload வரும் 3 இடங்களில்:
 
-1. **Retriever over-fetch**: Top-K அதிகம். k=20 வைத்தால், பெரும்பாலும் irrelevant chunks வரும்.
-2. **Chunk size too large**: 2000 tokens per chunk என்றால், 10 chunks = 20k tokens.
-3. **No reranking / filtering**: Similarity score மட்டும் பார்த்து, redundancy உள்ள chunks சேர்க்கப்படும்.
-4. **Conversation history bloat**: Multi-turn chat-ல் முழு history-யும் append செய்வது.
-5. **Multi-document aggregation**: User 5 documents குறிப்பிட்டால், அனைத்தையும் முழுமையாக சேர்ப்பது.
+**Retriever greediness:** Top-K = 20 என்று வைத்துவிட்டால், relevance 0.4 இருக்கும் chunk கூட வந்துவிடும்.
 
-LLM context window நிரம்பும்போது, model early tokens மீது attention குறைக்கிறது. உங்கள் best chunk கடைசியில் வந்தால், அது மறந்துவிடப்படுகிறது.
+**Chunk size too big:** 2000 token chunk-ஐ retrieve செய்தால், ஒரே chunk-ல் query-க்கு தேவையில்லாத 1800 tokens வந்துவிடும்.
+
+**Multi-hop accumulation:** Agent 3 steps போகும். Step 1-ல் 10 chunks, Step 2-ல் 10 chunks, Step 3-ல் 10 chunks. அனைத்தையும் history-யுடன் அனுப்பினால் context snowball ஆகும்.
+
+Result: LLM prompt-ல் முக்கியமான sentence-கள் dilute ஆகும். Model "summary mode"-க்கு போகும். Precision குறையும்.
 
 ## 4. Architectural Reasoning
 
-Context overload என்பது retrieval quality பிரச்சனை அல்ல, **selection பிரச்சனை**.
+Context overload-ஐ தடுக்க வேண்டும் என்றால், retrieve செய்வதை குறைக்க வேண்டும் என்று அர்த்தமில்லை. **Focus செய்ய வேண்டும்**.
 
-எப்போது useful?
+Options:
 
-* Large corpus, long documents
-* Complex multi-hop queries
-* High QPS, cost sensitive services
-* Agentic RAG where multiple tools return data
+* **Re-ranking:** BM25/embedding cosine score மட்டும் போதாது. Cross-encoder-ஆல் top-K-ல் இருந்து top-5 தேர்வு. Query relevance-க்கு படி.
 
-Alternatives:
+* **Compression / Summarization:** Retrieved chunks-ஐ LLM-ஆல் compress செய். 800 token chunk → 120 token summary. Rerun with condensed context.
 
-* **Increase context window**: 128k, 200k models. வேலை செய்யும், ஆனால் cost x2, latency x1.5. Signal-to-noise improve ஆகாது.
-* **Better retrieval**: Hybrid search, reranker. உதவும், ஆனால் K அதிகமாக இருந்தாலும் overload தொடரும்.
-* **Compression & summarization**: Retrieved chunks-ஐ condense செய்து, key facts மட்டும் வைக்க.
+* **Context window budgeting:** Max tokens per query set செய். Example: 8k for context. Retriever 12k retrieve செய்தாலும், budget-க்கு fit ஆக trim செய்.
 
-Architect முடிவு எப்போது செய்ய வேண்டும்? 
+* **Query decomposition:** Complex query-ஐ sub-queries-ஆக split செய். "sales report + top customers" என்பது 2 independent retrieval. Results merge செய்.
 
-When retrieval recall > precision needed. நீங்கள் முதலில் recall உயர்த்தி, பிறகு precision trim செய்ய வேண்டும்.
+* **Hybrid retrieval with filters:** Metadata filters போட்டு irrelevant domain-ஐ கழி. Time range, document type filter செய்.
+
+Architect எப்போது choose பண்ணுவார்? 
+Retrieval latency முக்கியம், cost குறைவாக வேண்டும், answer precision > recall என்றால் compression + rerank.
 
 ## 5. Trade-offs
 
-**Relevance vs Coverage**: குறைவான chunks = less latency, better focus, ஆனால் முக்கிய fact miss ஆகலாம். 
+* **Recall vs Precision:** K குறைத்தால் precision அதிகரிக்கும், ஆனால் நீங்கள் தேவையான fact-ஐ miss செய்யலாம். Trade-off தெளிவாக தெரிய வேண்டும்.
 
-**Compression vs Fidelity**: Summarize செய்தால், noise குறையும், ஆனால் nuance, numbers, citations காணாமல் போகலாம்.
+* **Compression quality:** Summarizer தவறாக compress செய்தால் nuance, numbers போய்விடும். Financial data-க்கு risky.
 
-**Latency vs Accuracy**: Rerank + filter + re-rank adds 100-300ms. User acceptable ஆ?
+* **Latency vs Quality:** Rerank + compression = extra LLM calls. P99 latency 2x ஆகலாம்.
 
-**Cost vs Quality**: Larger context = higher token cost. Production-ல் per query cost budget உண்டு.
+* **Operability:** Context size dynamic. Monitoring வேண்டும்: tokens per query, retrieved chunks count, compression ratio, answer faithfulness score.
 
-Failure modes:
-
-* **Redundancy collapse**: 10 chunks same paragraph-ல் இருந்தால், model அதே தகவலை 10 முறை படிக்கிறது.
-* **Position bias**: முதல்/கடைசி chunks மீது model bias உண்டு. முக்கிய fact middle-ல் இருந்தால் lose ஆகும்.
-* **Citation hallucination**: Context அதிகமாக இருந்தால், model source-ஐ தவறாக map செய்யும்.
+Failure mode: Over-aggressive filtering. User "summarize everything" என்று கேட்டால், நீங்கள் top-3 மட்டும் கொடுத்தால் answer incomplete.
 
 ## 6. Practical Example
 
-Enterprise RAG for policy documents.
+Enterprise support RAG. Knowledge base = 500k support tickets.
 
-User query: "Remote work policy-ல் reimbursement எப்படி claim பண்ணுறது, tax implication என்ன?"
+User query: "Order #12345 delay ஆக காரணம் என்ன? Similar orders-க்கு என்ன resolution?"
 
-Retriever returns:
+Naive flow: Retriever top-30 chunks. 30 x 1000 = 30k tokens. LLM confused, returns generic shipping policy.
 
-* 8 chunks from Remote Work Policy v3
-* 5 chunks from Tax Guide 2024
-* 4 chunks from Expense Reimbursement SOP
+Better flow:
+1. Metadata filter: order_id = 12345, created_at last 90 days.
+2. Retrieve top 10, rerank cross-encoder → top 5.
+3. If query contains "similar", do second retrieval with vector similarity on issue type.
+4. Budget: 5 chunks * 1000 = 5k + 1k summary of similar = 6k.
+5. Prompt-ல்: <context> limited, explicit instruction: "Only use provided facts, cite chunk id".
 
-Total 17 chunks ~ 12k tokens.
-
-Architecture decision:
-
-1. Retrieve top 30 with hybrid search
-2. Cross-encoder reranker ஓடி top 8 தேர்வு
-3. Deduplicate by semantic similarity >0.9
-4. Chunk-level summarizer: each chunk-ஐ 2-3 sentences-க்கு compress
-5. Final context ~ 2,500 tokens
-
-Result: Latency 1.2s → 0.6s, cost 40% down, answer accuracy up because model focused.
+Result: Latency 3s, cost 40% down, answer accurate with citation.
 
 ## 7. Reasoning Challenge
 
-உங்களிடம் customer support RAG இருக்கு. Average query 3 documents தொடர்புடையது. Retriever top 15 chunks தருகிறது. 70% queries-ல் answer முதல் 5 chunks-ல் இருக்கிறது. ஆனால் remaining 30% queries-ல் 6-15 வரை தேவைப்படுகிறது.
+உங்கள் RAG system-ல் average query 15 chunks retrieve செய்கிறது. 70% queries-க்கு 3 chunks மட்டும் போதும். ஆனால் 10% queries complex multi-hop. 
 
-Context overload-ஐ தடுக்க நீங்கள் என்ன செய்வீர்கள்? 
-
-Reranker மட்டும் போதுமா? அல்லது adaptive K + compression வேண்டுமா? ஏன்?
+நீங்கள் ஒரே context budget எல்லா queries-க்கும் பயன்படுத்த வேண்டுமா? அல்லது dynamic budget வைக்கலாமா? Dynamic என்றால் எப்படி detect செய்வீர்கள்? Trade-off என்ன?
 
 ## 8. Key Takeaways
 
-* Context overload என்பது too much data, not bad retrieval.
-* Signal density > raw recall. 5 relevant chunks > 20 noisy chunks.
-* Rerank, dedupe, compress, and adaptive K இவை மூன்றும் ஒன்றாக தேவை.
-* Every token in context has a cost: latency, money, attention dilution.
-* Design for the 95th percentile query, not the worst case.
+* More context ≠ better answer. Attention dilutes.
+* Context overload ஆனது retrieve greediness + large chunks + multi-hop accumulation-ல் வரும்.
+* Solution is focus, not just reduce: rerank, compress, budget, decompose.
+* Monitor tokens per query, precision-recall curve, faithfulness.
+* Every reduction in context introduces risk of missing critical fact.

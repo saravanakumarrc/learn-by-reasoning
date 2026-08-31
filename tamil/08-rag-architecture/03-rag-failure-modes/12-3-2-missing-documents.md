@@ -3,98 +3,102 @@
 > **Learning Path:** RAG Architecture
 > **Section:** 12.3.2 — RAG failure modes
 
-## 1. Problem
+## 12.3.2 — RAG failure modes: Missing documents
 
-உங்க RAG system-ல user கேள்வி கேட்கிறார்: "Q3-ல நம்ம churn rate எவ்ளோ?"
+### 1. Problem
 
-LLM-க்கு போகும் context-ல relevant document இல்லை. Embedding search பண்ணினாலும் top-k results-ல அந்த doc வரல. அல்லது doc corpus-லேயே இல்லை.
+உங்க RAG system-ல user ஒரு question கேக்கிறார். Retrieval பண்ணி top-k chunks எடுத்து, LLM-க்கு கொடுக்கிறீங்க. LLM பதில் சொல்லுது. ஆனா அந்த பதில் தப்பா இருக்கு, அல்லது "I don't have enough information"ன்னு சொல்லுது.
 
-என்ன ஆகும்? LLM hallucinate பண்ணும். அல்லது "I don't have information" என்று சொல்லும். இரண்டும் business-க்கு பிரச்சனை.
+ஏன்? 
+ஏன்னா தேவையான document-ஐ vector database-லேயே இல்லை. அல்லது document இருக்கு, ஆனா chunking/embedding-ல கெட்டுபோய் retrieve ஆகல.
 
-Missing documents என்பது **retrieval failure-ன் மிகவும் சாதாரண வடிவம்**. ஆனால் இது system design முடிவு, மாடல் திறமை அல்ல.
+இது silent failure. System crash ஆகாது. Latency நல்லா இருக்கும். ஆனா answer quality மோசமா இருக்கும். User trust போயிடும்.
 
-## 2. Mental Model
+### 2. Mental Model
 
-RAG = Retrieve + Generate.
+RAG-ன் trust chain இப்படி:
+**Source → Ingestion → Chunking → Embedding → Index → Retrieval → Context → Generation**
 
-Generate எவ்ளோ நல்லா இருந்தாலும், Retrieve தரும் context தான் ceiling-ஐ set பண்ணும்.
+Missing documents என்பது chain-ன் முதல் பகுதியிலேயே break ஆகிறது. Retrieval எவ்வளவு smart-ஆ இருந்தாலும், index-ல தகவல் இல்லாமல் எதையும் கண்டுபிடிக்க முடியாது.
 
-Missing document என்பது:
+இது "garbage in, garbage out" க்கு முன்னாடி வரும் "nothing in" பிரச்சனை.
 
-* **Corpus gap**: Document எப்போதும் index-ல இல்லை.
-* **Index gap**: Document உள்ளது, ஆனால் chunking / embedding / metadata தப்பு, அதனால் retrieve ஆகவில்லை.
-* **Access gap**: Document உள்ளது, ஆனால் permission / freshness காரணமாக user-க்கு தர முடியாது.
+### 3. How It Works
 
-இது "zero recall" சூழ்நிலை.
+Missing documents பொதுவாக 3 இடத்தில் உருவாகும்:
 
-## 3. How It Works
+**a. Ingestion gap:** 
+Source system-ல document create/update ஆனது, ஆனா ingestion pipeline-க்கு signal போகல. அல்லது pipeline fail ஆனது, retry இல்லை. 
+Event-driven ingestion இல்லாததால் manual sync மிஸ் ஆகும்.
 
-Retrieval path இப்படி இருக்கும்:
+**b. Chunking / filtering loss:**
+Document இருக்கு, ஆனா chunking strategy மோசமா இருக்கு. முக்கியமான info ஒரு chunk-ன் edge-ல cut ஆகி, context இழக்கிறது. அல்லது filter பண்ணும்போது PII, boilerplate நீக்கும்போது useful data தப்பா நீக்கப்படுது.
 
-User query → embedding → vector database search → top-k chunks → reranker → LLM context.
+**c. Index staleness / drift:**
+Document update ஆனது, ஆனா vector index மாற்றப்படல. Old embedding இன்னும் இருக்கு. அல்லது document delete ஆனது, index-ல இன்னும் இருக்கு. User-க்கு outdated அல்லது hallucinated answer.
 
-Missing document நிகழும் இடங்கள்:
+Retrieval-ல top-k கிடைக்கும், ஆனா relevance zero. LLM அதை பயன்படுத்தி hallucinate பண்ணும்.
 
-* **Ingestion மிஸ்**: Source system-ல document உருவாகிறது, ஆனால் ingestion pipeline trigger ஆகவில்லை. E.g., Confluence page update ஆனது, crawler வந்து பார்க்காமல் போனது.
-* **Chunking மோசம்**: ஒரு 50 page PDF-ஐ 500 token chunk-களாக வெட்டினால், அந்த specific fact ஒரு chunk border-ல cut ஆகி, embedding meaning-ஐ lose பண்ணும்.
-* **Embedding drift**: Query phrasing மற்றும் document phrasing இடையே semantic gap. Technical term-கள் synonyms இல்லாமல் match ஆகாது.
-* **Vector DB limitations**: Top-k = 5 என்று வைத்தால், relevant doc rank 6-ல் இருந்தால் மிஸ்.
-* **Filter மிஸ்**: Metadata filter தப்பாக வைத்தால், relevant doc filter out ஆகும்.
+### 4. Architectural Reasoning
 
-## 4. Architectural Reasoning
+இது ஏன் painful? ஏன்னா RAG-ன் value proposition முழுக்க correctness மற்றும் coverage மேல தான். Missing doc இருந்தால் system மௌனமாக தோல்வி அடையும்.
 
-Missing documents எப்போது painful ஆகும்?
+எப்போ இது serious ஆகும்?
+- Compliance / finance / healthcare போன்ற domain-ல, source of truth முக்கியம்
+- Document set பெரியது, manual review சாத்தியமில்லை
+- Updates frequent ஆக நடக்கும்
 
-* Enterprise RAG-ல compliance / financial data தேவைப்படும் போது.
-* Real-time data தேவைப்படும் போது. E.g., ticket status, inventory.
-* Long-tail queries, rare documents.
+Options:
+1. **Batch ingestion + periodic reconciliation.** எளிது, ஆனா lag அதிகம்.
+2. **Event-driven ingestion with CDC.** Source change ஆன உடனே index update. Real-time, ஆனா operational complexity அதிகம்.
+3. **Retrieval-time guardrails.** No relevant docs found என்றால் LLM-ஐ generate பண்ண விடாமல் fallback. இது missing-ஐ expose பண்ணும், ஆனா root cause-ஐ fix பண்ணாது.
 
-Alternatives / Mitigations:
+Architect-க்கு முக்கியம்: coverage visibility வேண்டும். என்ன documents indexed, என்ன missing என்பதை தெரிந்துகொள்ள monitoring வேண்டும்.
 
-* **Better coverage**: Ingestion completeness-ஐ monitor பண்ணு. Source inventory vs indexed inventory reconciliation.
-* **Hybrid retrieval**: Vector மட்டும் இல்லாமல் keyword BM25 + vector + metadata filter சேர்த்து recall-ஐ உயர்த்து.
-* **Query expansion**: LLM-ஐ use பண்ணி query-ஐ paraphrase பண்ணி multiple embeddings generate பண்ணு.
-* **Retrieval augmentation**: RAG system "I don't know" சொல்ல வேண்டும், hallucinate கூடாது. Retrieval confidence score < threshold என்றால், safe fallback.
+### 5. Trade-offs
 
-என்ன constraint address பண்ணுகிறது? **Recall over precision**. Architect-கள் பெரும்பாலும் precision-ல focus பண்ணுவார்கள். Missing doc case-ல recall தான் முக்கியம்.
+**Coverage vs Freshness vs Cost**
+Real-time ingestion கொடுத்தால் freshness கிடைக்கும், ஆனா embedding compute cost, queue complexity அதிகரிக்கும்.
 
-## 5. Trade-offs
+**Chunk size trade-off**
+Small chunks = better retrieval precision, ஆனா context fragmentation. Large chunks = context retain ஆகும், ஆனா retrieval noisy ஆகும். Missing info chunk boundary-ல தொலையும்.
 
-* **Recall vs Latency & Cost**: Hybrid retrieval, query expansion, larger top-k எல்லாம் recall-ஐ உயர்த்தும், ஆனால் latency மற்றும் vector DB cost உயரும்.
-* **Freshness vs Stability**: Real-time ingestion வைத்தால் missing doc குறையும், ஆனால் ingestion pipeline complexity, failure modes அதிகரிக்கும்.
-* **Chunk size trade-off**: Small chunk → precise retrieval ஆனால் context loss. Large chunk → context retain ஆனால் noise அதிகம், embedding less discriminative.
-* **Confidence threshold**: Low threshold வைத்தால் hallucination risk. High threshold வைத்தால் "I don't know" அதிகம், user experience கெடும்.
+**Completeness check overhead**
+ஒவ்வொரு query-க்கும் retrieval score low என்றால், document missing என்று அர்த்தமா? இல்லை query ambiguous-ஆ? இதை differentiate பண்ண கடினம்.
 
-Important failure mode: **Silent missing**. System success rate 95% காட்டும், ஆனால் அந்த 5% critical queries-ல தான் missing doc நடக்கும்.
+Failure modes:
+- Silent staleness: User outdated policy document அடிப்படையில் decision எடுக்கிறார்.
+- Partial coverage: சில departments-ன் docs மட்டும் index ஆகியிருக்கு, மற்றவை missing. User bias-ஐ assume பண்ண மாட்டார்.
+- Poisoned fallback: No relevant docs என்றால் LLM-ஐ general knowledge-ல generate விட்டால் hallucination.
 
-## 6. Practical Example
+### 6. Practical Example
 
-ஒரு bank-ன் RAG chatbot.
+Enterprise HR RAG system. Employee handbook, payroll policy, benefits docs indexed.
 
-Source: internal policy PDFs, FAQs, ticket system.
+Ingestion pipeline: SharePoint folder watcher → parser → chunker → embedding → vector DB.
 
-Q: "நான் credit card-ஐ freeze பண்ணினேன், எப்படி unfreeze பண்ணுவது?"
+Problem: Payroll policy PDF மாதத்திற்கு ஒருமுறை update ஆகும். Watcher cron job fail ஆனது. Log-ல error இல்லை, just silent skip.
 
-Document உள்ளது, ஆனால் 2024 policy update PDF ingestion ஆகவில்லை. Index-ல 2023 version மட்டுமே உள்ளது. User-க்கு outdated steps தரப்படுகிறது.
+User கேட்கிறார்: "ஜனவரி 2026 bonus payout date என்ன?"
+System retrieve பண்ணது December 2025 version. LLM confidently தப்பான date சொல்லுது.
 
-Architectural fix:
+Fix: 
+- Source of truth-ல document version metadata-ஐ store செய்து, index-ல last_ingested_version track செய்ய.
+- Reconciliation job: daily ஒருமுறை source list vs index list compare செய்து missing/ stale docs alert.
+- Retrieval score threshold + citation requirement. Score < 0.7 என்றால் "I don't have current info" என்று fallback.
 
-1. Ingestion audit log: Source document list vs vector DB document list diff daily.
-2. Hybrid retrieval: keyword "unfreeze" + vector search.
-3. Retrieval confidence score < 0.7 என்றால், LLM-க்கு context கொடுக்காமல் "இதற்கு நிச்சயமான பதில் இல்லை, support team-ஐ தொடர்பு கொள்ளுங்கள்" என்று fallback.
-4. Freshness SLA: Policy docs-க்கு ingestion lag < 1 hour.
+### 7. Reasoning Challenge
 
-## 7. Reasoning Challenge
+உங்க company-ல 3 sources உள்ளன: GitHub repos, Confluence, Customer support tickets. 
+GitHub daily update, Confluence weekly update, tickets real-time.
 
-உங்களிடம் customer support RAG உள்ளது. 50k documents indexed. User queries-ல 12% "I don't know" response வருகிறது. Logs பார்த்தால், retrieval returns non-empty, ஆனால் LLM says insufficient context.
+உங்க vector DB cost கட்டுப்படுத்த வேண்டும். Full re-embed ஒவ்வொரு முறையும் செலவு அதிகம்.
 
-Missing documents தான் காரணமா? இல்லை retrieval quality problem தானா? 
+இங்கே ingestion frequency எப்படி design செய்வீர்கள்? Missing documents ஆகாமல் இருக்க என்ன observability வைப்பீர்கள்? ஏன்?
 
-நீங்கள் என்ன மெட்ரிக்ஸ் பார்ப்பீர்கள், என்ன experiment design பண்ணுவீர்கள்? Recall-ஐ உயர்த்த, precision-ஐ கெடுக்காமல் என்ன architecture மாற்றம் செய்வீர்கள்?
+### 8. Key Takeaways
 
-## 8. Key Takeaways
-
-* Missing document என்பது corpus, ingestion, chunking, embedding, filtering chain-ல எங்கும் நடக்கலாம்.
-* RAG-ல recall தான் ultimate ceiling. Precision-ஐ மட்டும் optimize பண்ணினால் போதாது.
-* "I don't know" என்று சொல்லும் திறன், hallucination-ஐ விட முக்கியம்.
-* Ingestion coverage-ஐ monitor பண்ணு, missing doc-ஐ silent failure ஆக விடாதே.
+* RAG failure என்பது retrieval மட்டும் இல்லை, ingestion coverage முதல் problem தான்.
+* Missing document = silent hallucination trigger. System healthy-ஆ தெரியும், ஆனா answer தப்பாகும்.
+* Freshness-க்கு event-driven ingestion + periodic reconciliation இரண்டும் வேண்டும். ஒன்று மட்டும் போதாது.
+* Retrieval score மற்றும் citation coverage-ஐ monitor செய்யாமல், missing docs-ஐ கண்டுபிடிக்க முடியாது.

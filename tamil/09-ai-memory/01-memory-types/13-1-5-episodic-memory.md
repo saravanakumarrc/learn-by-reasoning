@@ -5,114 +5,107 @@
 
 ## 1. Problem
 
-உங்களிடம் ஒரு AI agent இருக்கு. அது customer support chat-ல work பண்ணுது.
+ஒரு agent-க்கு முன்பு நடந்த conversation-ஐ மட்டும் தெரியுமா? இல்லை. Agent-க்கு "நான் கடந்த வாரம் உங்களுடன் பேசினபோது..." என்று நினைவு வைத்துக்கொள்ள வேண்டும்.
 
-Customer இன்னைக்கு கேட்டது: "என் last order எங்க இருக்கு?"
-நாளைக்கு அதே customer கேக்குது: "நீ கடந்த தடவை சொன்னது என்ன?"
+RAG + vector database இருந்தாலும், ஒரு customer என்ன சொன்னார், எப்போது சொன்னார், எந்த context-ல் சொன்னார் என்பது தெரியாமல் போகிறது.
 
-Agent-க்கு என்ன தேவை?
-இப்போதைக்கு context மட்டும் போதாது. Agent அந்த customer-உடன் நடந்த **நிகழ்வு** ஞாபகம் வைத்திருக்க வேண்டும்.
+> What goes wrong if we don't have this? Agent stateless ஆக இருக்கும். ஒவ்வொரு interaction-ம் முதல் முறையாகத் தெரியும். Personalization, continuity, trust எல்லாம் போய்விடும்.
 
-எந்த product, எந்த date-ல order பண்ணினார், என்ன complaint பண்ணினார், நீங்கள் என்ன promise பண்ணினீர்கள் — இது எல்லாம் time-stamped experience.
-
-இதை வைத்திருக்காமல், agent எப்போதும் generic ஆக பதில் தரும். Personalization இல்லை, continuity இல்லை. User trust போய்விடும்.
-
-**What problem became painful?** Same user, multiple interactions over time. System-க்கு அந்த interaction-ஐ ஒரு story ஆக நினைவில் வைக்க தெரியவில்லை.
+இந்த தேவையிலிருந்துதான் Episodic memory வருகிறது.
 
 ## 2. Mental Model
 
-Episodic memory = **when, where, who, what happened**.
+Episodic memory = **எப்போது, எங்கே, யாருடன், என்ன நடந்தது** என்ற நினைவு.
 
-Semantic memory என்பது facts: "iPhone 16 price is 79,000". Static knowledge.
+Human brain-ல் நாம் personal experiences-ஐ time + context உடன் சேமிப்பது போல.
 
-Episodic memory என்பது experience: "2025-08-12 அன்று 11:23 AM-க்கு user Arjun உடன் chat ஆரம்பித்து, order #48291 delay பற்றி புகார் செய்தான். நான் refund approve செய்ததாக சொன்னேன்."
+AI system-ல் இது: timestamped events, interactions, user actions, conversation turns, session data, என்ன context-ல் நடந்தது என்ற metadata உடன் சேமிக்கப்படும் memory.
 
-இது ஒரு memory with context and timestamp. Human brain-ல நாம் personal episodes ஆக நினைவு வைக்கிறோம். AI-க்கு அதை simulate பண்ண வேண்டும்.
+Semantic memory-ல் "facts" இருக்கும். Episodic memory-ல் "stories" இருக்கும்.
 
 ## 3. How It Works
 
-Episodic memory system basically 3 பகுதிகள்:
+ஒரு episode = structured record
 
-**1. Capture:** Conversation, action, event நடக்கும் போது அதை capture பண்ணி structure செய்ய வேண்டும்.
-Input = raw interaction. Output = episode object.
+* `who`: user_id, agent_id
+* `when`: timestamp, session_id
+* `what`: conversation transcript, action taken, decision made
+* `where`: channel, product, task context
+* `why`: intent, outcome
 
-Example episode:
-```
-{
-  timestamp: 2025-08-12T11:23:00Z,
-  user_id: u_4821,
-  session_id: s_991,
-  event_type: "support_chat",
-  summary: "Order delay complaint",
-  entities: {order_id: 48291, product: "iPhone 16"},
-  outcome: "refund promised"
-}
-```
+இந்த episodes-ஐ store செய்ய வேண்டும். பின்னர் retrieve செய்யும்போது:
 
-**2. Store:** Episodes store ஆகும். Vector database + relational store combo பொதுவாக use பண்ணுவார்கள்.
-Vector embedding for semantic search: "என் last order" என்ற query-க்கு relevant episodes கண்டுபிடிக்க.
-Relational metadata for filtering: user_id, date range, event_type.
+1. **Index by time + user + context**
+2. **Query for relevant past episodes** - "இதே user கடந்த 30 நாளில் என்ன கேட்டார்?"
+3. **Summarize & reason** - past episodes-ஐ current query-க்கு connect செய்ய LLM பயன்படுத்தும்.
 
-**3. Retrieve:** New query வரும்போது, current context + relevant past episodes retrieve பண்ணி LLM-க்கு provide பண்ணுவது.
-RAG pipeline-ல இது memory retrieval step.
-
-இது working memory அல்ல. Long-term, persistent.
+Vector DB மட்டும் போதாது. Episodic memory-க்கு relational + time-series store தேவை. அதனால் hybrid store பயன்படுத்தப்படுகிறது: PostgreSQL / TiDB for structured episodes + vector embeddings for semantic search.
 
 ## 4. Architectural Reasoning
 
-Episodic memory useful ஆகும் போது?
+**When useful?**
 
-* Agent needs continuity across sessions
-* Personalization requires history of past interactions
-* Audit / compliance க்கு "என்ன சொன்னோம்" proof வேண்டும்
-* Multi-turn planning: past attempt fail ஆனது, அதை திரும்ப try பண்ணக்கூடாது
+* Multi-turn conversations
+* Personal assistants, customer support agents
+* Long-running workflows where continuity matters
+* Audit & compliance - "ஏன் இந்த decision எடுக்கப்பட்டது?"
 
-Constraint it addresses: LLM stateless. Model-க்கு past session தெரியாது. System-க்கு memory layer வேண்டும்.
+**What constraint it addresses?**
 
-Alternatives:
-* **Full conversation history replay:** Simple but expensive, context window overflow, noise அதிகம்.
-* **Summarized session memory:** Semantic memory. Useful but loses specific details like timestamp, exact promise.
-* **Episodic memory:** Structured episodes with metadata, searchable, replayable.
+Stateless LLM-ன் context window limit + no persistent personal history.
 
-Architect choose episodic memory when fidelity + retrieval control முக்கியம்.
+**Alternatives**
+
+* Short-term context window only: cheap, but forgets quickly
+* Semantic memory only: facts remember, but story forget
+* Full conversation log dump: works for small scale, retrieval பயங்கரம்
+
+**Why choose episodic?**
+
+Because architect-க்கு தெரிய வேண்டும்: user-க்கு consistent experience வேண்டும், மற்றும் system-க்கு explainability வேண்டும்.
 
 ## 5. Trade-offs
 
-**Storage cost vs usefulness:** Every interaction-ஐ episode ஆக்கி store பண்ணினால் data volume வேகமாக வளரும். Summarize பண்ணி prune பண்ண வேண்டும்.
+* **Storage vs Recall quality**: எல்லா interaction-ம் save செய்தால் storage cost அதிகம், noise அதிகம். Filter, summarize, compress செய்ய வேண்டும்.
+* **Privacy & compliance**: Episodic memory = personal data. GDPR delete request வந்தால் அந்த user-ன் episodes-ஐ முழுவதும் purge செய்ய வேண்டும். Retention policy தேவை.
+* **Retrieval latency**: Past episodes-ஐ தேடுவது expensive. Indexing, TTL, summarization layer தேவை.
+* **Freshness vs Relevance**: பழைய episode-ஐ எப்போது forget செய்ய வேண்டும்? Forgetting policy இல்லை என்றால் stale context வரும்.
 
-**Precision vs recall:** Too specific episodes -> miss similar intent. Too generic -> wrong episode retrieve ஆகும். Embedding quality and summarization strategy matter.
-
-**Privacy & security:** Episodes contain PII. User-specific memory isolation வேண்டும். GDPR right to be forgotten -> specific user's episodes delete செய்ய வேண்டும். Vector DB-ல hard delete சிக்கல்.
-
-**Freshness vs hallucination:** Retrieval system outdated episode கொடுத்தால் agent wrong info சொல்லும். Timestamp filter, recency weighting must.
-
-**Operational complexity:** Capture pipeline, embedding pipeline, retrieval pipeline, retention policy எல்லாம் maintain பண்ண வேண்டும். Team size small என்றால் over-engineering ஆகும்.
+Failure mode: Wrong episode retrieve ஆனால் hallucination போல தவறான personalization. Hence source attribution முக்கியம்.
 
 ## 6. Practical Example
 
-Enterprise customer support agent.
+Enterprise support agent.
+
+User: "நான் கடந்த மாதம் புகார் கொடுத்தேன், அது என்ன ஆச்சு?"
+
+System:
+
+1. Episodic memory store-ல் user_id + last 90 days episodes query
+2. Episode: 2025-07-12, ticket #4821, issue: billing error, agent resolved with refund
+3. Current query-க்கு connect செய்து answer: "உங்கள் refund 2025-07-15 process ஆகி..."
+
+இங்கே semantic search மட்டும் "billing error" என்ற fact கொடுக்கும். Episodic memory "நீங்கள்", "கடந்த மாதம்", "ticket #4821" என்ற story கொடுக்கும்.
 
 Architecture:
-`Chat API -> Conversation Capture Service -> Episode Builder -> Vector DB [episodes] + Postgres [metadata]`
-`Retriever -> RAG -> LLM`
 
-User returns after 3 days: "நீ கடந்த தடவை சொன்ன refund எப்போ வரும்?"
-Retriever query: user_id + semantic similarity on "refund". Top 2 episodes from last 7 days retrieve.
-LLM receives current chat + episodes: summary, timestamp, outcome.
-Agent can answer: "நீங்கள் 12-08-க்கு order #48291 delay குறித்து பேசினீர்கள். Refund 5 working days-ல process ஆகும் என்று சொன்னேன். நிலை இப்படி இருக்கு..."
+`API Gateway -> Agent Service -> Memory Service`
+Memory Service -> `Postgres` for episodes table, `Vector DB` for semantic linkage, `Cache` for recent episodes.
 
-Without episodic memory, agent would ask repeat questions. With it, continuity உண்டு.
+Write path: every session end-ல் episode summarize செய்து store.
+
+Read path: current user query + recent episodes retrieve -> LLM context-ல் inject.
 
 ## 7. Reasoning Challenge
 
-உங்களிடம் banking assistant agent இருக்கு. User ஒரு loan application பற்றி 3 வாரங்களாக பேசுகிறார். 8 sessions நடந்துள்ளது. Agent ஒவ்வொரு session-லயும் அதே document request செய்கிறது.
+உங்களிடம் banking assistant உள்ளது. Customer-கள் தினமும் 1000 interactions செய்கிறார்கள். Episodes-ஐ 7 years வைத்திருக்க வேண்டும் compliance-க்கு. ஆனால் agent-க்கு கடந்த 3 மாத episodes மட்டுமே relevant.
 
-என்ன problem? எப்படி episodic memory design பண்ணி இதை தீர்ப்பீர்கள்? What metadata store பண்ணுவீர்கள், என்ன prune strategy use பண்ணுவீர்கள்?
+நீங்கள் என்ன architecture தேர்வு செய்வீர்கள்? Hot vs cold storage எப்படி பிரிப்பீர்கள்? Privacy delete request வந்தால் எப்படி handle செய்வீர்கள்?
 
 ## 8. Key Takeaways
 
-* Episodic memory = timestamped experiences, not just facts.
-* It solves continuity and personalization across sessions.
-* Capture -> Store -> Retrieve pipeline வேண்டும். Vector + relational combo works well.
-* Trade-off: fidelity vs cost, privacy vs personalization, freshness vs hallucination.
-* Use it when agent needs to remember *what happened with whom and when*, not just *what is true*.
+* Episodic memory = time-bound personal experiences, not just facts
+* இது continuity, personalization, trust-க்கு தேவை
+* Semantic + Episodic memory-ஐ hybrid store-ல் combine செய்ய வேண்டும்
+* Storage cost, privacy, retrieval latency முக்கிய trade-offs
+* Every architectural solution creates forgetting & compliance problem

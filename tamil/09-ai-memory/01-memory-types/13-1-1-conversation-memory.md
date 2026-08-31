@@ -3,112 +3,115 @@
 > **Learning Path:** AI Memory
 > **Section:** 13.1.1 — Memory types
 
-### 1. Problem
+## 1. Problem
 
-ஒரு chatbot-ஐ பேச வைக்கிறோம். User: "என் பெயர் Arjun". அடுத்த turn-ல: "எனக்கு ஒரு itinerary ப்ளான் பண்ணு". 
+ஒரு AI agent-ஐ chat பண்ணும்போது முதல் 5 turns சூப்பரா இருக்கும். 6வது turn-ல இருந்து "நான் யார்? என்ன பண்ணிட்டு இருந்தேன்?" என்று கேட்க ஆரம்பிக்கிறது.
 
-Agent-க்கு Arjun யார் என்று தெரியவில்லை. ஒவ்வொரு turn-ம் isolated ஆக இருந்தால் context இழந்துவிடும்.
+ஏன்? ஏனென்றால் model-க்கு context window மட்டுமே தெரியும். User session-க்குள்ளேயும் கூட, ஒவ்வொரு request-மும் கொஞ்சம் நினைவை மறந்துவிடுகிறது. Long-running conversation, multi-session follow-up, user preference retention எல்லாம் கைவிடப்படுகிறது.
 
-இன்னும் மோசம்: User 10 நாட்களுக்கு முன் சொன்ன preference, budget, travel style எல்லாம் இப்போது தேவை. அதை எப்படி கொண்டு வருவது?
+**What goes wrong if we don't have this?**
+- Repetition: user தன்னைப் பற்றி திரும்ப திரும்ப சொல்ல வேண்டும்
+- Inconsistent answers
+- Agent can't build relationship
+- Cost ஏறும்: முழு history-யும் ஒவ்வொரு request-லும் அனுப்பினால் token cost அதிகம்
 
-Conversation memory இல்லாமல், ஒவ்வொரு request-ம் முதல் முறையாகத் தெரிகிறது. User frustrated ஆகிறார். Repeating information ஆகிறது.
+## 2. Mental Model
 
-இந்த pain தான் memory types-ஐ உருவாக்கியது.
+Conversation memory என்பது ஒரு agent-க்கு **நினைவாற்றல் layers** கொடுப்பது.
 
-### 2. Mental Model
+மனிதனை பாருங்கள்:
+* Working memory = இப்போது பேசிக்கொண்டிருக்கும் sentence
+* Short-term memory = இந்த session-ன் கடந்த சில நிமிடங்கள்
+* Long-term memory = பழைய preferences, facts, உங்கள் பற்றிய தகவல்கள்
 
-Conversation memory-ஐ 3 layer stack ஆக பார்.
+AI-க்கும் இதே மாதிரி 3 layer தேவை. இல்லையெனில் அது stateless chatbot மட்டுமே.
 
-**Short-term = Working memory**
-இந்த session-க்குள் நடந்தது. Last few turns. LLM-ன் context window-க்குள் இருக்கிறது.
+## 3. How It Works
 
-**Medium-term = Conversation memory / Session memory**
-Session முடிந்த பிறகும் தக்க வைக்க வேண்டியது. User profile, preferences, past decisions.
+**1. Conversation / Session Memory - Short-term**
+இது current session-ன் recent turns-ஐ keep செய்கிறது. Usually context window-க்குள் fit ஆகும் window-வை slide செய்து manage பண்ணுகிறோம்.
 
-**Long-term = Persistent memory / Knowledge memory**
-User-க்கு மட்டுமல்ல, product-க்கும் தேவையான long lived facts. "Arjun likes vegetarian food, budget < 2L, hates flights before 9am". இது weeks/months வரை இருக்க வேண்டும்.
+Technique: conversation history buffer, summarization, sliding window. Redis / in-memory store. TTL based.
 
-ஒரு conversation என்பது stream. Memory என்பது அந்த stream-ஐ எவ்வளவு தூரம் திரும்ப பார்க்க முடியும் என்பது.
+**2. Episodic Memory - Medium-term**
+ஒரு session முடிந்த பிறகும் தொடர்புடைய interactions-ஐ retain செய்கிறது. "Last week நீங்கள் X பற்றி கேட்டீர்கள்" என்று link செய்ய.
 
-### 3. How It Works
+Implementation: vector database + metadata. Each conversation turn / session-ஐ embedding பண்ணி store. Retrieval = similarity search on user query.
 
-Practically, மூன்று வழிகள்:
+**3. Semantic / Long-term Memory**
+User profile, preferences, facts that change rarely. "User is vegetarian", "uses USD", "works in fintech".
 
-**Context window.** LLM-க்கு உள்ளேயே last N tokens. Simple, fast, but limited and expensive. Long conversation-ல் cost ஏறும், மறந்துவிடும்.
+Implementation: structured profile store, key-value DB, or vector DB with strong metadata filtering. Update via explicit extraction + confirmation.
 
-**Conversation store.** Session ID-க்கு ஒரு table. Messages-ஐ append பண்ணி வைத்துக்கொள்வது. Retrieval-ன் போது recent messages + relevant summary-ஐ prompt-ல் சேர்ப்பது.
+All three layers work together at inference time:
+Query → Retrieve relevant episodic + semantic → Build augmented prompt → Generate
 
-**External memory store.** Vector database / graph / relational DB. User profile, facts, embeddings. Query time-ல் retrieve செய்து context-ல் inject செய்வது.
+## 4. Architectural Reasoning
 
-Workflow: User input → retrieve relevant memory → build augmented prompt → generate → write back important facts to memory.
+எப்போது இது useful?
 
-அதனால் memory = retrieve + write policy.
-
-### 4. Architectural Reasoning
-
-எப்போது தேவை?
-
-* Multi-turn task completion. Booking, support, planning.
-* Personalization. User-க்கு தனிப்பட்ட experience வேண்டும்.
-* Agent continuity. Different tools, different steps.
-
-Constraints-ஐ பார்:
-
-* **Latency.** Retrieve செய்வது extra round trip.
-* **Cost.** Bigger context = more tokens.
-* **Privacy.** User data retain செய்வது compliance issue.
-* **Correctness.** Stale memory toxic ஆகும்.
+* Multi-turn task: booking, research, coding help
+* Personal assistant: preferences முக்கியம்
+* Customer support: history இல்லாமல் agent useless
+* RAG agents: conversation memory + knowledge base memory combine ஆக வேண்டும்
 
 Alternatives:
+* Full history in context: simple, but cost high, window limit
+* Summarization only: cheap, but detail loss
+* No memory: stateless, cheap, poor UX
 
-* Stateless per turn. Cheapest, zero retention. Good for simple Q&A.
-* Full history in context. Easy but scales badly.
-* Summarization. Compress history to key facts.
-* Hybrid: short-term in context + long-term in vector DB.
+Architect decision point: **Consistency vs Freshness vs Cost**
 
-Architect choose பண்ணும்போது question: "எவ்வளவு தூரம் நினைவில் வைக்க வேண்டும்? எவ்வளவு செலவு ஏற்றுக்கொள்ளலாம்?"
+## 5. Trade-offs
 
-### 5. Trade-offs
+**1. Freshness vs Relevance**
+பழைய memory-ஐ எப்போது discard பண்ணுவது? User preferences மாறும். Stale memory = hallucination. Need versioning + timestamp + update policy.
 
-**Recency vs Relevance.** Recent messages எப்போதும் முக்கியமா? சில சமயம் 10 turns முன் சொன்ன budget தான் முக்கியம். Retrieval ranking தேவை.
+**2. Privacy & Security**
+Conversation data PII நிறைந்தது. Long-term storage = compliance risk. Need encryption at rest, access control, retention policy, right to be forgotten.
 
-**Fidelity vs Compression.** Full transcript வைத்தால் accurate ஆனால் noisy. Summary வைத்தால் concise ஆனால் loss of detail. Summarization drift ஆகும்.
+**3. Retrieval Quality vs Latency**
+Vector search + filtering செய்ய latency add ஆகும். Too much retrieval = context overload, model confuse ஆகும். Need ranking, top-k limit, reranking.
 
-**Freshness vs Stability.** User preference மாறும். Old fact-ஐ overwrite எப்படி செய்வது? Versioning மற்றும் timestamp தேவை.
+**4. Cost**
+Every memory read = embedding + vector search + tokens. At scale இது cost significant. Cache hot sessions, summarize long sessions.
 
-**Privacy vs Personalization.** More memory = better UX. More retention = higher risk. GDPR delete, anonymize policy தேவை.
+Failure modes:
+* Memory poisoning: wrong fact stored, then repeated
+* Context bloat: irrelevant history model-ஐ confuse செய்யும்
+* Cross-user leakage: isolation fail ஆனால் serious
 
-Failure modes: Memory poisoning - hallucinated fact store ஆகி போவது. Context overflow - irrelevant history prompt-ஐ மூழ்கடிப்பது. Stale preference - user now wants non-veg, system still serves veg.
-
-### 6. Practical Example
+## 6. Practical Example
 
 Enterprise support agent.
 
-User first conversation: "என் account ID 44521, நான் Chennai-ல இருக்கேன், preferred language Tamil".
+User: "நேற்று நான் கேட்ட payment issue முன்னேற்றம் என்ன?"
+Session memory இல்லாமல் agent கேட்கும்: "நீங்கள் எந்த payment பற்றி பேசுகிறீர்கள்?"
 
-System: Short-term memory-ல் இதை வைத்து respond செய்யும். Session முடிந்ததும், key facts extract: account_id, location, language. Write to conversation store + user profile DB.
+Architecture:
+* Session Memory: last 10 turns in Redis with TTL 24h
+* Episodic Memory: each resolved ticket as document in vector DB with user_id, ticket_id, timestamp
+* Semantic Memory: user profile in Postgres - customer tier, preferred language, payment method
 
-2 weeks later user returns: "மீண்டும் என் bill பார்க்கணும்".
+Flow:
+1. Query வரும்போது user_id filter பண்ணி episodic memory-ல recent tickets retrieve
+2. Semantic memory-ல் preference load
+3. Both-ஐ prompt-ல inject
+4. Response generate
 
-System: Session memory-ல் retrieve பண்ணி account_id தெரிந்து, language Tamil-ல் respond. No re-ask.
+Result: agent context-aware, no repetition, consistent.
 
-3 months later user says: "இனி English-ல பேசு".
+## 7. Reasoning Challenge
 
-System should update preference, old Tamil preference-ஐ invalidate செய்ய வேண்டும்.
+உங்களிடம் ஒரு chatbot உள்ளது. 1M daily active users. ஒவ்வொரு user-க்கும் average 15 turns per session, session duration 30 mins. You want continuity across sessions for 90 days.
 
-Architecture: Messages table per session, user profile in Postgres, important facts embeddings in vector DB for semantic search. Write policy: extract structured facts with LLM, validate, then store.
+எந்த memory type எங்கே store பண்ணுவீர்கள்? Redis vs Postgres vs Vector DB? Retrieval எப்படி செய்வீர்கள் cost-ஐ control பண்ண? Privacy requirement உள்ளது.
 
-### 7. Reasoning Challenge
+சொல்லுங்கள்: data model, retention policy, மற்றும் எப்போது summarization use பண்ணுவீர்கள்?
 
-உங்களிடம் 10M users இருக்கிறார்கள். ஒவ்வொரு user-க்கும் average 50 conversations per month. ஒவ்வொரு conversation-லும் ~200 messages.
+## 8. Key Takeaways
 
-உங்கள் agent-க்கு last 5 conversations-ல் இருந்து personalization தேவை, ஆனால் full history-ஐ context-ல் வைக்க முடியாது. Latency < 600ms வேண்டும். Cost control முக்கியம்.
-
-நீங்கள் memory types-ஐ எப்படி design செய்வீர்கள்? Short-term, medium-term, long-term-க்கு எந்த storage, எந்த retrieval strategy use பண்ணுவீர்கள்? ஏன்?
-
-### 8. Key Takeaways
-
-* Conversation memory என்பது session continuation அல்ல, personalization மற்றும் continuity க்கான system.
-* Short-term = context window, Medium-term = session store, Long-term = persistent profile + vector store.
-* Memory decisions = retrieve policy + write policy + retention policy.
-* Every memory solution adds latency, cost, privacy risk. Choose based on how far back you really need to remember.
+* Memory is layered: session, episodic, semantic. ஒவ்வொன்றுக்கும் வெவ்வேறு storage & lifecycle
+* Memory = architectural decision, not feature. Cost, privacy, freshness trade-offs இருக்கு
+* Retrieve less but relevant. Context bloat மோசமானது
+* Always design for update & deletion. User data changes, and must be forgettable

@@ -7,93 +7,103 @@
 
 ## 1. Problem
 
-உங்கள் RAG system ஒரு enterprise knowledge base-ஐ serve பண்ணுது. Document update ஆகும். உதாரணமாக, pricing page மாறியது, policy update ஆனது, product spec மாறியது.
+உங்க RAG system-ல ஒரு user கேட்கிறார்: "நம்ம ப்ராடக்ட் X-ன் latest price என்ன?"
 
-User query வருது: "இந்த மாதம் subscription price என்ன?"
+RAG retriever உங்க vector database-ல இருந்து ஒரு chunk எடுத்து LLM-க்கு கொடுக்கிறது. LLM நம்பிக்கையோடு பதில் சொல்கிறது.
 
-LLM vector database-ல இருந்து retrieve பண்ணி answer கொடுக்குது. ஆனா அந்த answer 2 மாதம் பழைய price-ஐ காட்டுது.
+ஆனால் அந்த chunk 3 வாரங்களுக்கு முன்பு எழுதப்பட்டது. Price மாறியிருக்கு. Promotion முடிந்திருக்கு.
 
-என்ன நடந்தது? Source document update ஆனது. ஆனால் embedding pipeline அதை process பண்ணல. Vector index மாறல. Cache-ல பழைய chunk இருக்கு.
+User-க்கு தப்பான பதில் போயிருக்கு. Support ticket வந்திருக்கு. Trust போயிருக்கு.
 
-User-க்கு wrong information போய்விட்டது. Trust போய்விட்டது. இதுதான் stale data failure.
+**What goes wrong if we don't have this?** 
+Source data மாறியும், vector index மாறாமல் இருக்கும். RAG hallucinate பண்ணவில்லை, அது உண்மையாக நம்பும் stale information-ஐ repeat பண்ணும்.
 
-**What goes wrong if we don't have this?** Freshness guarantee இல்லாமல் RAG ஒரு hallucination machine ஆகிவிடும், ஆனால் source உள்ளது என்ற பாசாங்கில்.
+இது RAG-ன் classic failure mode: **stale data**.
 
 ## 2. Mental Model
 
-RAG = Retrieve + Generate.
+RAG என்பது 3 moving parts-ன் composition:
+`Source of truth → Indexing pipeline → Vector DB + LLM`
 
-Retrieve என்பது **point-in-time snapshot** of knowledge.
+Stale data என்பது source மாறியது, ஆனால் index மாறவில்லை என்பதால் வரும் lag.
 
-Source world மாறிக்கொண்டே இருக்கும். Embedding index, vector database, cache ஆகியவை மாறாமல் இருந்தால், நீங்கள் past-ஐ retrieve பண்ணி present-க்கு generate பண்ணுகிறீர்கள்.
+ஒரு distributed system-ல eventual consistency போல. நீங்கள் write பண்ணினீர்கள், ஆனால் read path still old version-ஐ பார்க்கிறது.
 
-Stale data என்பது **source freshness ≠ index freshness** என்ற gap.
+ஆனால் இங்கே cost அதிகம்: Business decision, pricing, compliance, medical info போன்றவற்றில் stale answer = wrong decision.
 
 ## 3. How It Works
 
-Typical flow:
-`Source Document -> Ingestion -> Chunking -> Embedding -> Vector DB -> Retrieval -> LLM`
+Stale data எப்படி உருவாகிறது?
 
-Stale data வரும் இடங்கள்:
+1. **Source changes.** DB row update ஆகிறது, webpage மாறுகிறது, product catalog refresh ஆகிறது.
+2. **Change detection miss.** Crawler / CDC / webhook இல்லை. அல்லது poll interval மிகப்பெரியது.
+3. **Indexing lag.** Chunking, embedding, upsert queue-ல தேங்கி நிற்கிறது.
+4. **Serving reads old vectors.** LLM இன்னும் பழைய embedding-ஐ retrieve பண்ணுகிறது.
 
-* **Ingestion lag:** Document update ஆனது, ஆனால் crawler / webhook trigger ஆகல.
-* **Index lag:** Document ingest ஆனது, ஆனால் embedding job queue-ல் pending-ல் இருக்கு.
-* **Version mismatch:** Multiple sources. Vector DB-ல் old version chunk இன்னும் இருக்கு, new version add ஆனது ஆனால் delete ஆகல.
-* **Cache staleness:** Retrieval result or LLM answer cache ஆகி, source மாறியும் serve ஆகுது.
+Result: Freshness gap = `t_source_update → t_index_visible`
 
-இது silent failure. Error வராது. Wrong answer வரும்.
+இந்த gap நிமிடங்கள் முதல் வாரங்கள் வரை இருக்கலாம்.
 
 ## 4. Architectural Reasoning
 
-இது painful ஆகும் போது தேவை:
+Stale data எப்போது painful ஆகிறது?
 
-* Time-sensitive knowledge: pricing, inventory, policy, SLA, medical guidelines
-* High write churn: documents நிறைய update ஆகும்
-* Compliance need: "as of date" prove பண்ண வேண்டும்
+* Low latency requirement உள்ள domains: pricing, inventory, flight status, stock quotes
+* Compliance / legal: policy documents மாறும்
+* High churn knowledge base: news, product specs
 
-Options:
+எப்போது குறைவாக painful?
+Static knowledge, historical documents, rarely changing internal wiki.
 
-* **Pull-based re-ingest:** Periodic full crawl. Simple ஆனால் lag அதிகம்.
-* **Push-based update:** Source system webhook emit செய்யும். Ingestion near real-time.
-* **Versioned index:** ஒவ்வொரு document-க்கும் version, timestamp, updated_at. Retrieval-ல் filter.
-* **Hybrid freshness:** Hot documents real-time sync, cold documents batch sync.
+Options architects weigh:
 
-Architect முடிவு எடுக்கும்போது கேட்க வேண்டியது:
-Latency requirement என்ன? Data freshness SLA என்ன? 5 min? 1 hour? 1 day?
+* **Batch re-indexing:** Nightly / weekly full crawl. Simple, cheap. Freshness மோசம்.
+* **Incremental / CDC-based indexing:** Source DB change events → immediate re-embed. Freshness நல்லது, complexity அதிகம்.
+* **TTL + freshness metadata:** Every chunk-க்கு `last_updated` timestamp. Retrieval-ல filter பண்ணு. Old docs-ஐ downgrade பண்ணு.
+* **Hybrid retrieval:** Vector + live lookup. Retrieval செய்த பிறகு, source system-ல real-time fetch செய்து verify / override.
+* **Read-time re-ranking by freshness:** Score = similarity * freshness_decay.
+
+Decision depends on constraints: freshness SLA, cost, source accessibility, team ops capacity.
 
 ## 5. Trade-offs
 
-* **Freshness vs Cost:** Real-time embedding = compute cost அதிகம். Batch = cheap ஆனால் stale.
-* **Consistency vs Availability:** New document ingest ஆகும் வரை old answer serve செய்வது safe ஆ? அல்லது "I don't know" சொல்வது safe ஆ?
-* **Index size vs Correctness:** Old version-ஐ delete பண்ணாமல் வைத்தால் duplicate retrieval வரும். Delete பண்ணினால் replay/ audit கஷ்டம்.
-* **Operability:** Freshness monitoring வேண்டும். Source updated_at vs index updated_at drift-ஐ track செய்ய வேண்டும்.
+**Freshness vs Cost.** Real-time CDC + immediate upsert கட்டமைப்பு விலை உயர்ந்தது. Embedding API calls, queue infra, vector DB write load. Batch cheap ஆனால் stale.
 
-Failure mode: Update ஆன document-க்கு embedding பண்ணும்போது chunk boundary மாறி, old chunks orphan ஆகி vector DB-ல் தங்கிவிடும். User still gets old info.
+**Freshness vs Recall.** Freshness filter கடுமையாக வைத்தால், பழைய ஆனால் relevant context தவறிவிடும். நீங்கள் relevance-ஐ தியாகம் செய்கிறீர்கள்.
+
+**Consistency vs Availability.** Strong freshness க்கு index update-ஐ synchronous ஆக்க வேண்டும். அது pipeline failure-ல் retrieval-ஐ block பண்ணும். Most teams eventual consistency-ஐ தேர்ந்தெடுக்கிறார்கள்.
+
+**Failure modes:**
+* Silent staleness: User-க்கு தெரியாது. Trust degrade slowly.
+* Partial update: Document-ன் பாதி மட்டும் re-index ஆகி, chunk inconsistency உருவாகிறது.
+* Version skew: Multiple sources-ன் freshness வெவ்வேறு, LLM confused context-ஐ mix பண்ணுகிறது.
 
 ## 6. Practical Example
 
-Enterprise RAG for support.
+Enterprise support RAG. Knowledge base = Confluence + Zendesk articles.
 
-Product docs S3-ல் உள்ளது. `price.md` Aug 1-ல் ₹999 என்று இருந்தது. Sep 1-ல் ₹1,199 ஆக மாறியது.
+Product team price change பண்ணினார்கள். Confluence page update ஆனது.
 
-Ingestion pipeline daily batch 2 AM-ல் run ஆகும். Sep 1-ல் 10 AM-க்கு user query வந்தது. Vector DB-ல் ₹999 தான் இருக்கு. LLM confidently answer கொடுக்குது.
+நீங்கள் nightly batch crawler வைத்திருக்கிறீர்கள். User next morning query பண்ணினால், பழைய price-ஐ காட்டுகிறது.
 
-Fix:
-* Source-ல் webhook போட்டு S3 object updated event-ஐ capture செய்ய.
-* Ingestion service document-ஐ fetch பண்ணி, version check பண்ணி, old chunks-ஐ delete பண்ணி new chunks-ஐ upsert பண்ணு.
-* Vector metadata-ல் `doc_updated_at` store பண்ணு. Retrieval-ல் `doc_updated_at > 30 days` என்றால் warn செய்.
-* Answer-ல் citation along with "as of Sep 1 2025" காட்டு.
+Architectural fix:
+* Confluence webhook → Event bus → Ingestion worker → Chunk, embed, upsert to vector DB with `updated_at`.
+* Retrieval query-ல `updated_at > now - 7 days` போன்ற filter, அல்லது re-rank.
+* Critical fields price/inventory-க்கு hybrid path: Vector retrieve செய்த பிறகு, product catalog API-ல live fetch செய்து LLM prompt-ல inject செய்யவும். Source citation-ல "as of timestamp" காட்டவும்.
+
+Now freshness SLA ~ 2 minutes. Cost அதிகரித்தது, ஆனால் support tickets குறைந்தன.
 
 ## 7. Reasoning Challenge
 
-உங்கள் RAG system-ல் 1M documents உள்ளது. 5% documents மட்டும் வாரம் ஒரு முறை update ஆகும். Freshness SLA 1 hour.
+உங்களிடம் ஒரு RAG agent உள்ளது. இது financial reports-ல இருந்து answer கொடுக்கிறது. Reports quarterly மாறுகின்றன, ஆனால் அதற்கிடையில் analyst notes தினமும் update ஆகின்றன.
 
-நீங்கள் full re-index every hour செய்வீர்களா? அல்லது incremental update + versioning செய்வீர்களா? ஏன்? Cost, latency, correctness எப்படி trade-off ஆகும்?
+நீங்கள் ஒரே indexing pipeline-ஐ பயன்படுத்தினால், என்ன trade-off வரும்? Reports-க்கும் notes-க்கும் வெவ்வேறு freshness strategy வேண்டுமா? எப்படி design பண்ணுவீர்கள்?
 
 ## 8. Key Takeaways
 
-* Stale data = source update ஆனது, ஆனால் index update ஆகவில்லை. Silent wrong answer.
-* Freshness ஒரு architectural constraint, feature அல்ல.
-* Ingestion lag, index lag, cache lag மூன்றையும் monitor செய்ய வேண்டும்.
-* Hot data-க்கு push, cold data-க்கு batch. Version metadata retrieval-ல் பயன்படுத்து.
-* Always answer-ல் source timestamp காட்டு. Trust restore ஆகும்.
+* Stale data என்பது RAG-ல silent failure. LLM சரியாகவே பதில் சொல்லும், ஆனால் அது outdated.
+* Freshness = source change detection + indexing latency + serving visibility. மூன்றும் பார்க்க வேண்டும்.
+* One size fits all indexing இல்லை. Data class-ன் churn rate-க்கு ஏற்ப freshness strategy மாறும்.
+* Critical facts-க்கு vector மட்டும் போதாது. Hybrid retrieval with live lookup + freshness metadata தேவை.
+
+நீங்கள் இப்போது ஏன் stale data வருகிறது என்பதை reason பண்ண முடியும், எப்போது tolerate பண்ணலாம், எப்போது real-time update தேவை என்பதை decide பண்ண முடியும்.

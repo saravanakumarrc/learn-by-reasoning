@@ -3,129 +3,99 @@
 > **Learning Path:** RAG Architecture
 > **Section:** 12.3.9 — RAG failure modes
 
-## 12.3.9 — RAG failure modes: Citation failures
+## 1. Problem
 
-### 1. Problem
+RAG system-ல LLM ஒரு answer கொடுக்கும்போது, அதுக்கு source-ஐ cite பண்ணணும். "இந்த தகவல் இந்த document-ல இருந்து வந்தது"ன்னு சொல்லணும்.
 
-நீங்கள் ஒரு RAG system கட்டி முடித்தீர்கள். LLM க்கு context கொடுக்கிறீர்கள், answer வருகிறது. ஆனால் business user கேட்கிறார்: "இந்த தகவல் எங்கிருந்து வந்தது?"
+ஆனா real world-ல என்ன நடக்குது?
 
-நீங்கள் source ஐ காட்ட முடியவில்லை. அல்லது காட்டினாலும் அது தவறான paragraph ஆக இருக்கிறது. அல்லது citation இருக்கிறது ஆனால் answer-ல் இருக்கும் claim அந்த source-ல் இல்லை.
+LLM retrieval செய்த chunks-ஐ பார்த்து answer generate பண்ணுது. பிறகு அந்த answer-க்கு citation attach பண்ணுது. இங்கே தான் failure வருது.
 
-இது citation failure. Production RAG-ல் இது மிகவும் painful ஆன problem.
+ஒரு citation failureன்னா: LLM சொன்ன தகவலுக்கு சரியான source இல்லை, தவறான source attach ஆகி இருக்கு, source-ல அந்த தகவலே இல்லை, அல்லது citation format தவறாக இருக்கு.
 
-ஏனென்றால்:
+இது ஏன் painful? Legal, finance, healthcare மாதிரி domain-ல "இதை எங்கிருந்து எடுத்தீங்க?"ன்னு கேட்பார்கள். Citation இல்லாமல் அல்லது தவறான citation-உடன் answer கொடுத்தால் trust போய்விடும். Audit-ல தோல்வி.
 
-* Compliance team கேட்கும். Financial, legal domain-ல் source இல்லாமல் answer ஏற்க முடியாது.
-* User trust போய்விடும். "Hallucination ஆக இருக்கலாம்" என்று நினைப்பார்கள்.
-* Debugging கடினம். எந்த retrieval step தவறு, எந்த generation step தவறு என்று தெரியாது.
+## 2. Mental Model
 
-> What goes wrong if we don't have reliable citations? Answer is unverifiable, untrustable, and unmaintainable.
+Citation என்பது answer-க்கும் retrieved context-க்கும் இடையேயான link.
 
-### 2. Mental Model
+நினைச்சுக்கோ: LLM ஒரு student, retrieved chunks ஒரு pile of books. Student answer எழுதி, "இந்த வரி இந்த புத்தகத்தின் page 12-ல இருந்து"ன்னு reference கொடுக்கணும்.
 
-RAG-ல் உண்மையில் மூன்று flow இருக்கிறது.
+Citation failure ஆனால் student கற்பனை செய்ததை உண்மைன்னு சொல்லி, தவறான புத்தகத்தை cite பண்ணிடுறார். அல்லது உண்மையான புத்தகத்தை பார்த்து தவறான page சொல்றார்.
 
-1. **Retrieve** → relevant chunks கண்டுபிடி
-2. **Ground** → LLM அந்த chunks மீது மட்டும் answer உருவாக்கு
-3. **Cite** → answer-ல் உள்ள ஒவ்வொரு claim-க்கும் source link போடு
+## 3. How It Works
 
-Citation failure என்பது 2 மற்றும் 3 இடையே gap வருவது. LLM உருவாக்கிய claim, retrieved context-ல் இல்லாததை reference பண்ணுவது. அல்லது context சரியாக இருந்தும் LLM அதை பயன்படுத்தாமல் hallucinate பண்ணுவது.
+RAG pipeline-ல citation fail ஆகும் இடங்கள்:
 
-ஒரு analogy: ஒரு researcher ஆவணங்களை table மீது போட்டு விட்டு, "இதை base பண்ணி எழுது" என்றால், researcher சில facts-ஐ தன்னிச்சையாக கற்பனை செய்து விடுகிறார். அதற்கு பிறகு bibliography ல் தவறான page number கொடுக்கிறார்.
+**Retrieval mismatch:** Query-க்கு தொடர்பில்லாத chunk retrieve ஆகி, LLM அதை பயன்படுத்தி answer கொடுக்குது. Citation technically valid ஆனால் semantically wrong.
 
-### 3. How It Works
+**Hallucinated grounding:** LLM context-ல இல்லாத தகவலை generate பண்ணி, அருகில் இருந்த ஒரு chunk-ஐ citation-ஆக தூக்கி விடுது. இதை *citation hallucination*ன்னு சொல்லலாம்.
 
-Citation failure பொதுவாக மூன்று வகையில் வரும்.
+**Chunk boundary error:** உண்மையான statement ஒரு chunk-ல split ஆகி இருக்கும். LLM ஒரு பகுதியை மட்டும் பார்த்து citation கொடுக்கும். Source-ல அந்த full claim இல்லை.
 
-**a) Retrieval failure leading to citation mismatch**
-Retriever தவறான chunk-ஐ கொண்டு வருகிறது. Semantic similarity இருக்கிறது ஆனால் factual support இல்லை. LLM அந்த chunk-ஐ cite பண்ணுகிறது, ஆனால் claim அந்த chunk-ல் இல்லை.
+**Aggregation without traceability:** பல chunks-ல இருந்து தகவல் எடுத்து ஒரு summary உருவாக்கினால், எந்த chunk எந்த part-க்கு பொறுப்பு என்று map பண்ண முடியாது.
 
-**b) Generation drift**
-Retrieved chunks சரியாக இருக்கிறது. ஆனால் LLM, multiple chunks-ஐ combine செய்யும் போது inference செய்கிறது. அந்த inference-க்கு direct citation இல்லை. ஆனால் model அதற்கும் citation கொடுக்கிறது.
+**Post-processing loss:** Generation-க்கு பிறகு citation metadata தொலைந்து விடும். LLM output JSON-ல citation field empty ஆகி விடும்.
 
-**c) Citation formatting failure**
-LLM answer சரியாக இருக்கிறது, grounding நல்லா இருக்கிறது. ஆனால் citation IDs, document IDs, page numbers தவறாக generate ஆகிறது. அல்லது citation missing.
+## 4. Architectural Reasoning
 
-இவை எல்லாம் ஏன் நடக்கிறது?
+Citation தேவைப்படும் system-ல, retrieval-க்கு பிறகு citation integrity-ஐ enforce பண்ணணும்.
 
-* LLM-க்கு instruction following weak. "Cite every claim" என்றாலும், அது சில claims-ஐ skip பண்ணும்.
-* Context window நிரம்பி, chunk boundaries மறைந்து விடும்.
-* Embedding model-ல் nuance புரியாமல் போகும்.
-* No verification step. Generate → cite என்று ஒரே step-ல் போய்விடும்.
+எப்போது useful?
+* Audit trail தேவை
+* Compliance / legal review
+* High-stakes decision support
 
-### 4. Architectural Reasoning
+எப்படி address பண்ணலாம்?
 
-Citation reliability வேண்டுமானால், generate செய்த பிறகு verify செய்ய வேண்டும்.
+**Retrieval-time filtering:** Relevance score threshold வைத்து irrelevant chunks-ஐ drop பண்ணு. Reranker use பண்ணு.
 
-அடிப்படை design options:
+**Generation constraints:** Prompt-ல "cite only from provided context, do not invent" என்று strict instruction. Better: structured output where each sentence must have citation id.
 
-**Option 1: Prompt-based citation**
-Prompt-ல் "Cite sources for every claim" என்று சொல். Simple, cheap. ஆனால் unreliable. Model தான் cite செய்கிறது, தானே validate செய்கிறது.
+**Post-generation verification:** LLM answer-ன் ஒவ்வொரு claim-ஐயும் retrieved chunk-டுடன் cross-check பண்ணும் verifier model / rule-based checker. Citation-க்கு பின்னால் உள்ள text-ல claim உண்மையாக இருக்கிறதா என்பதை validate பண்ணு.
 
-**Option 2: Retrieval-Augmented Generation with citation enforcement**
-Answer generation-க்கு பிறகு, ஒரு separate verification step. ஒவ்வொரு cited sentence-க்கும், அது source chunk-ல் உள்ளதா என்று check பண்ணு. String match, embedding similarity, or NLI model use பண்ணு.
+**Chunking strategy:** Overlap + metadata rich chunks. Citation granularity fine ஆக்கு. Page number, paragraph id வைத்திரு.
 
-**Option 3: Extractive RAG**
-LLM-க்கு summarize செய்யாமல், retrieved chunks-ல் இருந்து sentences-ஐ extract பண்ணு. அப்போ citation தானாக correct ஆகும். Trade-off: answer less fluent.
+Alternative: Citation-ஐ generate செய்யாமல், retrieval result-ஐயே answer-ஆக return பண்ணு. But user experience கெட்டுவிடும்.
 
-**Option 4: Structured output + post-processor**
-LLM output-ஐ JSON-ல் claim + citation_id format-ல் வரவழை. பிறகு citation_id valid ஆக உள்ளதா, chunk-ல் claim support ஆகிறதா என்று validate.
+## 5. Trade-offs
 
-எந்த architect இதை தேர்வு செய்வார்?
+* **Strict citation vs answer completeness:** Strict enforcement செய்தால் LLM safe answer தரும், ஆனால் "I don't know" அதிகம் வரும். Relax செய்தால் hallucinations அதிகம்.
+* **Verification cost vs latency:** Post-generation verification ஒரு extra LLM call அல்லது model inference. Latency + cost increase.
+* **Granularity vs usability:** Sentence-level citation accurate ஆனால் output clutter ஆகும். Paragraph-level citation clean ஆனால் traceability குறையும்.
+* **Precision vs recall:** Retrieval tight ஆக்கினால் citation accurate ஆகும், ஆனால் useful context miss ஆகலாம்.
 
-* High trust domain = legal, medical, finance → Option 2 or 4
-* Low latency chatbot → Option 1 with light monitoring
-* Knowledge base small and static → Option 3
+Failure mode: Verifier-ஐ தவறாக tune பண்ணினால், valid citations-ஐயும் reject பண்ணி false negatives வரும். User trust குறையும்.
 
-### 5. Trade-offs
+## 6. Practical Example
 
-**Accuracy vs Latency**: Verify step சேர்த்தால் latency உயரும், cost உயரும். ஆனால் trust கிடைக்கும்.
-
-**Granularity**: Chunk level citation vs sentence level citation. Chunk level cheap, ஆனால் imprecise. Sentence level precise, ஆனால் mapping hard.
-
-**Coverage**: ஒவ்வொரு claim-க்கும் citation கட்டாயம் என்றால், model "I don't know" சொல்ல வேண்டியிருக்கும். அது user experience-ஐ பாதிக்கும்.
-
-**Operational complexity**: Citation store, chunk ID management, versioning. Document update ஆனால் old citations stale ஆகும். அதை track பண்ண வேண்டும்.
-
-Failure modes:
-
-* **Hallucinated citation**: source இல்லாத ID generate ஆகும்.
-* **Weak citation**: claim-க்கு related ஆன chunk cite செய்யப்படும், ஆனால் exact support இல்லை.
-* **Citation overload**: 10 citations for one simple fact. User confused.
-
-### 6. Practical Example
-
-Enterprise HR policy assistant.
+Enterprise knowledge base RAG: HR policy bot.
 
 User கேட்கிறார்: "Maternity leave எத்தனை நாள்?"
 
-Retriever கொண்டு வருகிறது: HR policy doc v2, page 12: "Maternity leave is 26 weeks as per policy effective Jan 2024."
+Retriever 2 chunks கொடுத்தது:
+* Chunk A: "Maternity leave 180 days for permanent employees"
+* Chunk B: "Paternity leave 15 days"
 
-LLM answer: "Maternity leave is 26 weeks. [HR Policy v2 p12]"
+LLM answer: "Maternity leave 180 days and paternity leave 15 days."
 
-இது சரி.
+Citation: [Chunk A, Chunk B] - correct.
 
-இப்போ document v3 update ஆகி 18 weeks ஆக மாறியது. Vector DB update ஆகவில்லை. Retriever still old chunk கொண்டு வருகிறது. Answer outdated ஆகிறது, citation valid ஆனால் stale.
+இப்போது retrieval fail ஆனால்: Chunk C மட்டும் வந்தது: "Contract employees get 90 days maternity leave". LLM 180 days-ஐ தான் சொல்லும் பழக்கத்தால் answer-ஐ 180 days என்றே generate பண்ணி, Chunk C-ஐ cite பண்ணிடும். இது citation failure.
 
-இங்கே citation failure இல்லை, data freshness failure. ஆனால் user-க்கு தெரியும்: citation இருந்தும் தவறான தகவல்.
+Solution: Prompt-ல context-க்கு மட்டும் answer பண்ணு, plus post-generation check: answer-ல உள்ள "180 days" string chunk-ல இருக்கிறதா என்பதை search பண்ணு. இல்லைன்னா citation strip பண்ணி "insufficient source" flag செய்.
 
-Solution: Document versioning + citation metadata: `doc_id, version, chunk_hash`. Retrieval time-ல் freshness check. Generate போது citation-ல் version காட்டு.
+## 7. Reasoning Challenge
 
-### 7. Reasoning Challenge
+உங்கள் RAG system financial report analysis செய்கிறது. Analyst ஒரு query கேட்டால், LLM பல sentences generate பண்ணி, ஒவ்வொன்றுக்கும் citation கொடுக்கிறது. நீங்கள் கண்டுபிடித்தீர்கள் 12% sentences-ல cited chunk-ல அந்த claim exact match இல்லை, ஆனால் semantically related.
 
-உங்களிடம் RAG system உள்ளது. Users கேட்கும் claims-க்கு 95% accuracy வேண்டும். LLM க்கு 4k context கொடுக்கிறீர்கள். 20 chunks. Generation பிறகு citation மட்டும் கேட்கிறீர்கள்.
+நீங்கள் என்ன செய்வீர்கள்? Strict verifier-ஐ on பண்ணி citations-ஐ reject செய்யலாமா, அல்லது fuzzy match threshold adjust பண்ணி allow செய்யலாமா? Latency முக்கியம். Cost முக்கியம். Compliance முக்கியம்.
 
-நீங்கள் கண்டீர்கள்: 12% answers-ல் citation-கள் claim-ஐ support செய்யவில்லை.
+ஏன் அந்த தேர்வு?
 
-Latency budget 800ms. Cost sensitive.
+## 8. Key Takeaways
 
-இங்கே என்ன architecture மாற்றம் செய்வீர்கள்? Verify step சேர்க்கலாமா? அல்லது prompt மாற்றலாமா? ஏன்?
-
-### 8. Key Takeaways
-
-* Citation failure என்பது retrieval failure அல்ல, grounding + verification gap.
-* Generate செய்தவுடன் cite செய்வது போதாது. Claim support-ஐ independent ஆக validate செய்ய வேண்டும்.
-* High trust system-ல் extractive or verify-after-generate pattern முக்கியம்.
-* Document versioning, chunk IDs, and citation metadata இல்லாமல் production RAG maintain செய்ய முடியாது.
-
-இது ஏன் தேவைன்னு புரிஞ்சுது. எப்போ citation enforcement வேணும்னு தெரியும். எதை trade-off பண்ணுறோம்னு reason பண்ண முடியும்.
+* Citation failure என்பது retrieval mismatch, hallucinated grounding, அல்லது traceability loss-ல இருந்து வரும்.
+* Answer correctness-க்கு citation integrity தனி concern. LLM-க்கு trust பண்ணாதீர்கள், verify பண்ணுங்கள்.
+* Architecturally, citation-ஐ generate செய்வது மட்டும் போதாது. Post-generation grounding check + retrieval quality முக்கியம்.
+* Trade-off எப்போதும் strictness vs coverage. Domain risk அதற்கு தீர்மானிக்கும்.

@@ -5,119 +5,123 @@
 
 ## 1. Problem
 
-உங்க RAG system ஒரு user கேள்விக்கு பதில் தரணும். Same query-க்கு ஒரு source சொல்லுது "Interest rate 7.2%". இன்னொரு source சொல்லுது "Interest rate 8.5%". இன்னொரு source சொல்லுது "As of 2024, rate is 7.2%".
+உங்கள் RAG system ஒரு user question க்கு answer generate பண்ணுது. அதுக்காக retriever 3 documents கொண்டு வந்திருக்கு.
 
-இப்போ LLM-க்கு மூன்று chunks கொடுத்தா, அது என்ன பண்ணும்? 
+Document A: "Product X release date is 2024-01-15"
+Document B: "Product X release date is 2024-03-10"
+Document C: "Product X is planned for Q1 2024"
 
-சில சமயம் முதல் source-ஐ தேர்ந்தெடுக்கும். சில சமயம் இரண்டையும் கலந்து ஒரு முடிவு எடுக்கும். சில சமயம் "According to sources, rate is 7.2% to 8.5%"ன்னு vague பதில் தரும்.
+இப்போ LLM எதை நம்பி answer பண்ணும்? முதல் document ஐயா? average ஆக்குமா? அல்லது "Conflicting information found" என்று சொல்லுமா?
 
-இது user-க்கு trust-ஐ குறைக்கும். Finance, legal, medical RAG-ல இது critical failure.
+Real system-ல இது தினமும் நடக்கும். Source update ஆகாம இருக்கும், different teams different docs எழுதுவாங்க, old blog vs new release notes vs internal wiki. Retrieval ல top-k results எடுத்தால் conflicting facts கலந்து வரும்.
 
-> **What goes wrong if we don't have this?** Hallucination-க்கு அடுத்தபடியாக, conflicting sources-ஐ முறையாக handle பண்ணாம விட்டால், model நம்பகத்தன்மை இழக்கும், முரண்பட்ட பதில்கள் வரும், audit-ல explain பண்ண முடியாது.
+இப்படி conflicting sources இருந்தால் என்ன ஆகும்?
+* Hallucination இல்லாமல், model பொய் சொல்லாமல் இருந்தாலும், அது முரணான தகவலை mix பண்ணி ஒரு uncertain answer கொடுக்கும்.
+* User trust போய்விடும்.
+* Financial / legal domain ல இது பெரிய risk.
+
+Conflicting sources என்பது RAG failure mode இல்லை, data problem. ஆனால் RAG architecture இதை handle பண்ணாம விட்டால் system unreliable ஆகும்.
 
 ## 2. Mental Model
 
-Conflicting sources என்பது retrieval-ல வந்த data-ல உண்மை வேறுபாடு இருப்பது அல்ல. அது **contextual conflict** ஆக இருக்கலாம்.
+RAG என்பது "retrieve then generate". Retrieval என்பது relevance மட்டும் பார்க்கிறது, truthfulness அல்ல.
 
-மூன்று வகை conflict:
+ஒரு question க்கு நீங்கள் 5 sources எடுத்தால், அவை ஒன்றுக்கொன்று agree பண்ணுதா, disagree பண்ணுதா என்பதை system தெரிந்து கொள்ள வேண்டும்.
 
-1. **Factual conflict**: Same entity, different value. Interest rate 7.2% vs 8.5%
-2. **Temporal conflict**: Value changed over time. 2022-ல 7.2%, 2025-ல 8.5%
-3. **Scope conflict**: Different audience/condition. Personal loan 8.5%, home loan 7.2%
+Mental model: **Source Provenance + Versioning + Conflict Detection**.
 
-RAG-ல retriever எல்லாவற்றையும் fetch பண்ணும். LLM-க்கு கொடுத்துட்டா, model-க்கு source-ஐ rank பண்ணும் logic இல்லை.
+ஒரு fact ஐ ஒரு source இல்லை, source + timestamp + authority + confidence உடன் பார்க்க வேண்டும்.
 
 ## 3. How It Works
 
-Retrieval ஆனதும் நமக்கு top-k chunks கிடைக்கும். அவற்றில் conflict இருந்தால், அது LLM-க்கு தெரியாது.
+Conflict எப்படி detect பண்ணுவது?
 
-Typical pipeline:
+**Simple approach:** LLM ஐயே judge ஆக்குவது.
+Retrieved chunks-ஐ prompt-ல போட்டு: "Do these sources agree on the release date? If conflict, list differences."
 
-Query → Retriever → Ranked chunks → Context builder → LLM → Answer
+Problem: LLM itself inconsistent ஆக இருக்கும், and it adds inference cost.
 
-Conflict handling இங்கே இரண்டு இடத்தில் செய்யலாம்:
+**Better approach:** Structured extraction முன் செய்யுங்கள்.
+Retrieval அப்புறம், each chunk-ல relevant fact-ஐ extract பண்ணி structured form-ல மாற்றுங்கள். உதாரணமாக release date field.
 
-**Pre-generation**: Retrieval அப்புறம் conflict detection செய்து, context-ஐ clean பண்ணுவது.
-**Post-generation**: Answer generate ஆன பிறகு citation-ஐ validate பண்ணி, contradiction flag போடுவது.
+```
+doc_id | fact_type | value | timestamp | source_type
+A      | release_date | 2024-01-15 | 2024-01-10 | release_notes
+B      | release_date | 2024-03-10 | 2024-02-01 | blog
+```
+
+இப்போ value mismatch தெரியும். இதை conflict detection layer பார்த்து flag பண்ணும்.
+
+LLM generate செய்யும்போது, conflict இருந்தால்:
+* Both values-ஐ cite பண்ணி present செய்யும்
+* Or higher authority source-ஐ prioritize பண்ணும்
+* Or user-க்கு "conflict detected, human review needed" என்று சொல்லும்
 
 ## 4. Architectural Reasoning
 
-இந்த problem எப்போ painful ஆகும்?
+எப்போது இது useful ஆகும்?
+* Enterprise knowledge base where multiple teams write docs
+* Financial / medical / legal RAG where correctness matters
+* System where data changes frequently
 
-- Multiple knowledge bases merge ஆன போது: internal wiki + external web + product docs
-- Time-sensitive data: prices, rates, policies
-- Multi-author content: sales team vs engineering docs
+Constraint இது address பண்ணுவது: **Consistency vs Freshness vs Authority**.
 
 Options:
+1. **Last-write-wins**: timestamp மூலம் சமீபத்திய source எடு. Simple, ஆனால் wrong blog புதுசா இருந்தால் அது தவறானதாகும்.
+2. **Authority-weighted**: source type-க்கு weight கொடு. Official release notes > internal wiki > community blog.
+3. **Explicit conflict surface**: conflict இருந்தால் user-க்கு show பண்ணு, decision-ஐ user-க்கு விடு.
+4. **Consensus threshold**: k sources-ல majority agree ஆனால் மட்டும் answer கொடு.
 
-**A. Single source of truth enforce பண்ணு.** Retrieval-க்கு முன் source priority define பண்ணு. Ex: Internal DB > Official docs > Web.
-Trade-off: Simpler, but new sources add பண்ண கஷ்டம்.
-
-**B. Conflict detection layer வை.** Chunks-ல metadata compare பண்ணி conflict score கணக்கிடு. timestamp, source authority, provenance.
-Trade-off: More accurate, but pipeline complex ஆகும்.
-
-**C. LLM-க்கு conflict-ஐ explicitly கொடு.** Prompt-ல "If sources conflict, mention both and explain". 
-Trade-off: Quick fix, but model inconsistent.
-
-Architect-க்கு தேர்வு: System-ன் correctness requirement-ஐ பார்க்கணும். Finance/legal-ல A or B. Internal Q&A-ல C போதும்.
+Architect choose பண்ணுவது depends on risk. Customer support bot-க்கு last-write-wins போதும். Contract clause extraction-க்கு explicit conflict surface தேவை.
 
 ## 5. Trade-offs
 
-**Authority vs Recency**: ஒரு authoritative source பழையதாக இருக்கலாம். Recent source less authoritative ஆக இருக்கலாம். எது prioritize?
+* **Detection cost vs accuracy**: LLM-based conflict detection flexible ஆனால் slow, non-deterministic. Structured extraction accurate ஆனால் schema maintain பண்ண வேண்டும்.
+* **Automation vs human-in-the-loop**: Auto resolve பண்ணினால் fast ஆனால் wrong resolution risk உள்ளது. Human review safe ஆனால் latency அதிகம்.
+* **Citation transparency**: எல்லா conflicting sources-ஐயும் cite பண்ணினால் user confused ஆகலாம். ஆனால் hide பண்ணினால் trust போகும்.
+* **Freshness vs stability**: Newer source எப்போதும் correct இல்லை. Versioning இல்லாமல் vector DB-ல update பண்ணினால் old fact இன்னும் index-ல இருக்கும்.
 
-**Coverage vs Precision**: top-k ஐ அதிகப்படுத்தினால் conflict அதிகம் வரும். குறைத்தால் missing info.
-
-**Transparency vs Confidence**: User-க்கு conflict-ஐ சொல்லி "two sources say different things"ன்னு கொடுக்கலாம். அது honest ஆனால், user experience குறையும்.
-
-**Operational cost**: Conflict detection-க்கு extra embedding, metadata store, re-ranking logic தேவை. Small team-க்கு over-engineering ஆகலாம்.
-
-Failure mode: LLM மிகவும் confident-ஆக தவறான source-ஐ pick பண்ணும். Citation hallucinations.
+Failure mode: Conflict detection இல்லாமல், LLM இரண்டு dates-ஐயும் combine பண்ணி "release date is around January to March 2024" போன்ற vague answer கொடுக்கும். அது technically wrong இல்லை, ஆனால் useless.
 
 ## 6. Practical Example
 
-Enterprise RAG for bank policy.
+RAG for internal product knowledge.
 
-Sources:
-- `policy_2023.pdf` : FD interest 7.2%
-- `policy_2025.pdf` : FD interest 8.5%
-- `website FAQ` : FD interest 7.2% as of Jan 2024
+Architecture:
+Retriever -> top 10 chunks -> Conflict Detection Service -> LLM Generator
 
-Query: "What is current FD interest rate?"
+Conflict Detection Service:
+* Extract fact: `release_date` using small LLM or regex
+* Group by fact_type
+* Compare values across sources
+* Compute source authority score: release_notes=1.0, wiki=0.7, blog=0.5
+* Compute recency score
+* Final score = weighted sum
 
-Good architecture:
+If variance > threshold, flag conflict.
 
-Retriever returns 3 chunks. Pre-generation layer metadata-ல `published_date` பார்க்கும்.
-
-Conflict resolver logic:
+Generator prompt:
 ```
-if same entity and different value:
-  pick latest timestamp with source_authority >= threshold
-  keep older source as "historical reference"
-```
-
-Context builder LLM-க்கு கொடுக்கும்:
-```
-Current rate: 8.5% [policy_2025.pdf, published 2025-03-01]
-Previous rate: 7.2% [policy_2023.pdf, published 2023-01-15]
+You are given sources. Some conflict on release_date.
+A says 2024-01-15, source=release_notes, date=2024-01-10
+B says 2024-03-10, source=blog, date=2024-02-01
+Prefer higher authority. Acknowledge conflict.
 ```
 
-LLM answer: Current rate 8.5% and cite. If user asks about 2023, then show old rate.
-
-Alternative: If no timestamp, route to human review or ask clarifying question.
+Answer will be: "According to official release notes dated 2024-01-10, release date is 2024-01-15. Note: a blog post dated 2024-02-01 mentions 2024-03-10."
 
 ## 7. Reasoning Challenge
 
-உங்களிடம் RAG system இருக்கு. Two sources:
-- Internal CRM notes: customer tier = Gold, last updated 2021
-- Support chat transcript: customer tier = Platinum, last updated 2024
+உங்களிடம் ஒரு medical RAG system உள்ளது. Retriever ஒரு drug dosage க்கு 3 sources கொடுக்கிறது:
+* FDA label 2023: 10mg
+* Hospital guideline 2024: 20mg
+* Research paper 2025: 15mg
 
-User query: "What discount should I apply for this customer?"
-
-Discount depends on tier. இங்கே என்ன architecture தேர்வு செய்வீர்கள்? Conflict-ஐ எப்படி handle பண்ணுவீர்கள்? Recency எடுக்கலாமா, authority எடுக்கலாமா? User-க்கு என்ன பதில் கொடுப்பீர்கள்?
+User asks for recommended dosage. உங்கள் system எப்படி respond பண்ணும்? Auto resolve பண்ணுவீர்களா? Conflict-ஐ surface பண்ணுவீர்களா? ஏன்? Authority, recency, safety ஆகியவற்றை எப்படி balance பண்ணுவீர்கள்?
 
 ## 8. Key Takeaways
 
-- Conflicting sources என்பது retrieval problem அல்ல, reasoning + provenance problem
-- Timestamp, source authority, scope metadata இல்லாமல் RAG production ready ஆகாது
-- Conflict-ஐ hide பண்ணாதே, detect பண்ணி explicit ஆக manage பண்ணு
-- Every conflict resolution strategy creates a new trade-off between recency, authority, and transparency
+* Conflict என்பது retrieval quality problem அல்ல, provenance problem.
+* RAG system-க்கு source metadata - timestamp, authority, version - கண்டிப்பாக தேவை.
+* LLM-ஐ blindly generate விடாமல், conflict detection layer வைத்து facts-ஐ normalize செய்து பிறகு generate செய்யுங்கள்.
+* Safety critical domains-ல auto resolution-க்கு பதில் explicit conflict surfacing தான் சரியான trade-off.

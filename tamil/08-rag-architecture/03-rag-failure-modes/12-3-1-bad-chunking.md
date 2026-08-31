@@ -5,120 +5,101 @@
 
 ## 1. Problem
 
-RAG system-ல உனக்கு query வருது. LLM context-ல retrieve பண்ண document chunks கொடுக்கிறோம். ஆனாலும் answer தப்பா வருது, hallucination பண்ணுது, அல்லது relevant information miss பண்ணுது.
+நீங்கள் ஒரு RAG system build பண்ணியிருக்கீங்க. Document-ஐ upload பண்ணி, chunk பண்ணி, embedding பண்ணி, vector database-ல store பண்ணி, query வந்தா retrieve பண்ணி LLM-க்கு கொடுக்கிறீங்க.
 
-ஏன்? 
+Query வருது: *"நம்ம customer refund policy-ல 30 days க்கு மேல return accept பண்ண மாட்டோம்னு சொல்லியிருக்காங்களா?"*
 
-ஏன்னா retrieve பண்ணது தான் relevant ஆனது இல்லை. Embedding similarity match ஆகல. 
+System answer தருது: *"நாங்கள் திரும்புதலை ஏற்றுக்கொள்ளவில்லை"* — ஆனால் அது ஒரு வேறு product category-க்கான policy.
 
-அதுக்கு முக்கிய காரணம்: **chunking தப்பா இருக்கு.**
+ஏன் தப்பு? Retrieve ஆனது சரியான document-தான், ஆனால் chunk cut ஆன இடத்தில் context போய்விட்டது. Policy-ல 30 days rule இருந்தது, ஆனால் அது next chunk-ல இருந்தது. LLM-க்கு கிடைத்தது incomplete sentence.
 
-உதாரணமா ஒரு user profile-ல "பயனர் Chennai-ல இருக்கார். அவருக்கு premium plan வேண்டும்." இது ஒரே sentence-ல தொடர்புடையது. நீ chunking பண்ணும்போது ஒன்றை cut பண்ணி மற்றதை வேற chunk-ல போட்டுட்டா, query "user city?" என்றால் embedding match ஆகும். ஆனால் chunk-ல city மட்டும் இருக்கும், plan info இல்லை. அல்லது இரண்டும் ஒன்றாக இருந்தாலும் chunk boundary தப்பா வந்து context இழந்துவிடும்.
+இது **Bad chunking** failure. Information fragmented ஆகி, meaning lost ஆகிறது.
 
-> Bad chunking என்றால் information-ஐ தவறான துண்டுகளாக வெட்டுவது. அதனால் meaning break ஆகிறது, retrieval தோல்வி அடைகிறது.
+> What goes wrong if we don't have this? Wrong retrieval, hallucination, incomplete answers, user trust loss.
 
 ## 2. Mental Model
 
-RAG-ல chunk என்பது retrieval-க்கு basic unit.
+Chunking என்பது ஒரு document-ஐ LLM-க்கு digestible pieces ஆக cut பண்ணுவது. ஆனால் cut செய்யும் இடம் தப்பா இருந்தால், ஒரு concept அரை குறையாக பிரிந்து விடும்.
 
-LLM-க்கு கொடுக்கும் context = retrieved chunks.
+நினைச்சுக்கோங்க: ஒரு book-ஐ page-ஆக cut பண்ணுவது. Page எல்லைக்குள் ஒரு sentence நடுவில் cut ஆனால் படிக்க முடியாது.
 
-Embedding model-க்கு புரிய வேண்டியது chunk-இன் meaning.
+Embedding model ஒரு chunk-க்கு vector உருவாக்கும். அந்த vector அந்த chunk-ன் meaning-ஐ represent பண்ணும். Chunk meaningless ஆனால் vector-ம் useless.
 
-எனவே chunk = **self-contained meaning unit**.
-
-நல்ல chunking என்பது:
-
-* ஒரு chunk-ல ஒரு logical idea முழுமையாக இருக்க வேண்டும்
-* Related facts ஒன்றாக இருக்க வேண்டும்
-* Chunk boundary-ல meaning cut ஆகக்கூடாது
-
-Bad chunking என்பது இதற்கு எதிரானது.
+நல்ல chunk = self-contained, semantically complete, context preserve பண்ணும்.
 
 ## 3. How It Works
 
-Chunking என்பது மூன்று decisions:
+RAG pipeline-ல chunking மூன்று விஷயங்களை control பண்ணும்:
 
-**1. Chunk size:** Too small → context loss. Too large → dilution, token waste, irrelevant noise.
-Typical sweet spot 300-800 tokens, ஆனால் content-ஆல் மாறும்.
+* **Size**: tokens per chunk. 500 vs 2000.
+* **Overlap**: இரண்டு chunk-க்கு இடையே common tokens.
+* **Boundary**: sentence, paragraph, heading, semantic boundary-ல cut பண்ணுவதா?
 
-**2. Overlap:** Boundary-ல information repeat ஆகுமா?
-Overlap இல்லாமல் cut பண்ணினால் sentence half-ல முடிந்து விடும். 10-20% overlap meaning preserve பண்ணும்.
-
-**3. Strategy:** Fixed size vs semantic.
-
-Fixed size: every N tokens cut. Simple ஆனால் sentence, paragraph break மதிக்காது.
-Semantic chunking: topic boundary, heading, paragraph, sentence coherence பார்த்து cut. Better meaning preservation.
-
-Bad chunking-ன் விளைவு:
-* **Split entity:** "John Doe" ஒரு chunk-ல first name மட்டும், last name அடுத்த chunk-ல.
-* **Split fact:** "invoice amount is 5000 and due date is 2025-10-01" - amount ஒரு chunk, date அடுத்த chunk.
-* **Merge unrelated:** 3 different topics ஒரே chunk-ல. Embedding average ஆகி எதுக்கும் match ஆகாது.
+Bad chunking வரும் போது:
+* **Overly small chunks**: ஒரு sentence மட்டும். Subject-verb-object துண்டாகி, meaning இல்லாமல் போகும். Embedding weak ஆகும்.
+* **Overly large chunks**: ஒரு chunk-ல 5 topics இருக்கும். Query specific topic-க்கு retrieve ஆனாலும் noise அதிகம். LLM confuse ஆகும், context window waste ஆகும்.
+* **Wrong boundary**: Table row cut ஆகி header இல்லாமல் போகும். List item நடுவில் cut ஆகும். Code block split ஆகும்.
+* **No overlap**: Continuation இரண்டு chunk-க்கும் இடையே link இல்லாமல் போகும். 1st chunk end-ல "We do not accept returns after..." 2nd chunk start "30 days" என்று இருந்தால் retrieve ஒன்று மட்டும் வந்தால் answer incomplete.
 
 ## 4. Architectural Reasoning
 
-Bad chunking எப்போது painful ஆகிறது?
+Chunking ஏன் முக்கியம்? ஏனென்றால் vector search என்பது chunk level-ல தான் நடக்கும்.
 
-* **Conversational / multi-hop queries:** "அந்த user எந்த city-ல இருக்கார்? அவர் plan என்ன?" இரண்டு facts ஒன்றாக தேவை.
-* **Structured data in text:** tables, forms, specs. Row cut ஆனால் meaning lost.
-* **Long documents:** legal contracts, support tickets, research papers.
+Constraint பாருங்கள்:
+* LLM context window limited. Relevant information மட்டும் கொடுக்க வேண்டும்.
+* Embedding quality depends on semantic completeness.
+* Retrieval recall and precision trade-off.
 
-Alternatives:
-* **Semantic chunking with sentence boundaries:** `langchain` `RecursiveCharacterTextSplitter` with separators `["\n\n", "\n", ".", " "]`
-* **Metadata aware chunking:** heading + paragraph together.
-* **Hybrid:** large chunk for embedding, smaller sub-chunks for reranking.
+When bad chunking happens, you get:
+* Low recall: சரியான information இருந்தாலும் chunk split ஆனதால் query match ஆகாது.
+* Low precision: Irrelevant noise retrieve ஆகும்.
 
-Architect ஆக நீ choose பண்ணுவது: domain-ஆல் மாறும்.
+Architect decision என்ன?
+* Fixed-size chunking with overlap vs semantic chunking.
+* Structure-aware chunking: Markdown headings, tables, sections respect பண்ணுவது.
 
-Support ticket-க்கு semantic chunking + 200 token overlap நல்லது. Code repo-க்கு function level chunking நல்லது.
+Alternative: RAG without chunking? Entire document ஒரே chunk ஆக வைக்கலாம். ஆனால் document 50k tokens ஆனால் LLM context overflow ஆகும், retrieval useless.
+
+எனவே cut பண்ண வேண்டும், ஆனால் meaning preserve பண்ணி cut பண்ண வேண்டும்.
 
 ## 5. Trade-offs
 
-**Small chunks vs large chunks**
-Small = precise retrieval, ஆனால் context missing. Large = context rich, ஆனால் noise + similarity dilute.
+**Size vs Specificity**: Small chunk = specific retrieval, ஆனால் context loss. Large chunk = context rich, ஆனால் noise அதிகம், vector diluted.
 
-**Overlap vs storage cost**
-Overlap = better continuity, ஆனால் vector DB size அதிகம், cost அதிகம்.
+**Overlap cost**: Overlap வைத்தால் redundancy அதிகம், vector DB size, cost, indexing time increase ஆகும். ஆனால் boundary cut risk குறையும்.
 
-**Semantic vs fixed**
-Semantic = better quality, ஆனால் processing slow, complex. Fixed = fast, deterministic, ஆனால் meaning break risk.
+**Semantic chunking complexity**: NLP model use பண்ணி topic boundary detect பண்ணலாம். Accuracy better, ஆனால் pipeline complex, latency, cost அதிகம்.
 
-**Failure modes:**
-* **Lost co-reference:** "அவர்..." previous sentence-ல யார் என்று தெரியாது.
-* **Unanswerable chunk:** chunk-ல subject இருக்கு ஆனால் object இல்லை.
-* **Retrieval miss:** query semantically close ஆனால் chunk-இன் embedding diluted ஆகி top-k-ல வராது.
+**Failure modes**:
+* Hallucination from partial context
+* Contradictory chunks retrieve ஆனால் LLM confused
+* Table / code split ஆனால் data corruption
+* Multi-language document-ல chunk boundary wrong ஆனால் meaning shift
 
 ## 6. Practical Example
 
-Enterprise support RAG system.
+Enterprise knowledge base: HR policy PDFs.
 
-Document: Customer ticket.
+Bad approach: 1000 tokens fixed chunk, no overlap, naive split by characters.
+Result: "Refund will be processed within" என்று ஒரு chunk முடியும். "7 business days after approval" அடுத்த chunk-ல start ஆகும். Query: "refund processing time?" Retrieve first chunk மட்டும் ஆனால் answer incomplete.
 
-Bad chunking with fixed 500 chars no overlap:
-Chunk1 ends with "... customer requested refund because"
-Chunk2 starts with "the product arrived damaged"
+Good approach: Sentence-aware chunking + 150 token overlap. Heading preserve. Table rows as one chunk.
 
-Query: "Why did customer request refund?"
+Query retrieve ஆனால் chunk contains full sentence with context: "Refund will be processed within 7 business days after approval is received."
 
-Chunk1-ல reason incomplete. Chunk2-ல reason இருக்கு ஆனால் "because" link இல்லை. LLM hallucinate பண்ணும்: "reason not found".
-
-Good chunking: semantic split at sentence, overlap 100 chars.
-
-Chunk1: "... customer requested refund because the product arrived damaged. The damage was visible on packaging."
-Query-க்கு match ஆகும், context complete.
+இங்கே architecture choice: Pre-processing pipeline-ல `chunking strategy` config. Document type-க்கு தகுந்த மாதிரி strategy மாற்றலாம்: policy doc -> semantic chunking, log file -> fixed size with overlap, code repo -> file level + function level.
 
 ## 7. Reasoning Challenge
 
-உன்னிடம் 10,000 product spec PDFs இருக்கு. ஒவ்வொன்றிலும் specs table உள்ளது. Query வரும்: "Model X123 battery capacity?"
+உங்களிடம் ஒரு customer support RAG system உள்ளது. Documents mix ஆக இருக்கு: FAQs, long conversation transcripts, product spec tables.
 
-நீ fixed 1000 token chunking பண்ணி overlap 0 வச்சுருக்கே. Retrieval quality குறைவா இருக்கு. 
+நீங்கள் fixed 500 token chunk + 50 token overlap use பண்ணியிருக்கீங்கள். Users complain answers incomplete, especially for refund policy and specs.
 
-இங்கே chunking-ல என்ன பிரச்சனை வரலாம்? நீ strategy-ஐ எப்படி மாற்றுவாய்? Trade-off என்ன?
+நீங்கள் என்ன செய்வீர்கள்? Chunk size மாற்றுவீர்களா? Overlap மாற்றுவீர்களா? Semantic boundary use பண்ணுவீர்களா? ஏன்?
 
 ## 8. Key Takeaways
 
-* Chunk என்பது retrieval unit. Meaning break ஆனால் RAG fail ஆகும்.
-* Bad chunking = split fact, split entity, merge unrelated. இதனால் embedding match தோல்வி.
-* Chunk size, overlap, strategy மூன்றும் domain-ஆல் மாறும். One size fits all இல்லை.
-* Semantic boundary மதித்து chunk பண்ணு. Self-contained meaning-ஐ காப்பாற்று.
-* Chunking தவறு என்றால் better retriever, better LLM எதுவும் காப்பாற்றாது.
+* Chunking என்பது retrieval quality-ன் foundation. Bad chunk = bad RAG, even with perfect embedding model.
+* Self-contained and semantically complete chunk-ஐ target பண்ணுங்கள். Cut என்பது meaning boundary-ல செய்ய வேண்டும், token count-ல மட்டும் அல்ல.
+* Size, overlap, boundary மூன்றும் trade-off. Document type, query pattern, cost constraints-க்கு ஏற்ப tune பண்ணுங்கள்.
+* Chunking failure-ஐ தடுக்க overlap + structure-aware splitting + chunk validation உதவும்.

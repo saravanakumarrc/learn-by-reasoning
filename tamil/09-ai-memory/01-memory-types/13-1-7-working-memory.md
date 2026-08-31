@@ -5,103 +5,107 @@
 
 ### 1. Problem
 
-ஒரு agent-ஐ ஒரு user conversation-ல run பண்ணும்போது என்ன பிரச்சனை வரும்?
+ஒரு LLM agent-ஐ நீங்கள் build பண்ணுகிறீர்கள். User-க்கு conversation நடக்கிறது. 
+Session-இல் user சொன்னது: "என்னோட budget 5 லட்சம்", "Bangalore-ல வீடு வேண்டும்", "2 BHK".
 
-User சொன்னது, agent tool call பண்ணிச்சு, result வந்தது, next turn-ல மறந்துடுச்சு. "நான் just சொன்னது என்ன?" ன்னு திரும்ப கேக்குது.
+Agent-ஐ அடுத்த turn-ல் கேட்டால் "நீங்க எங்கே வீடு வேண்டும்?" என்று கேட்கிறது. ஏன்? Because model-க்கு context window மட்டுமே தெரியும். Long conversation-ல் முந்தைய தகவல் slide out ஆகிவிடும்.
 
-LLM-க்கு context window இருக்கு. ஆனா அது limited, expensive, மற்றும் stateless. ஒவ்வொரு request-லயும் முழு history-யும் அனுப்பினா token cost ஏறும், latency ஏறும், முக்கியமான signal noise-ல மறைஞ்சுடும்.
+இன்னொரு பிரச்சனை: ஒரே session-இல் real-time reasoning செய்ய வேண்டும். ஒரு math problem solve பண்ணும்போது intermediate steps-ஐ தற்காலிகமாக வைத்திருக்க வேண்டும். அதை எங்கே வைப்பது? Database-ல் போட்டால் slow, prompt-ல் வைத்தால் context window நிரம்பும்.
 
-Engineer-க்கு தேவை: **இந்த session-க்குள்ள மட்டும் வேண்டிய facts-ஐ, short-term-ல hold பண்ணி, immediate reasoning-க்கு use பண்ணணும்.** அதுதான் Working Memory.
+Working memory என்பது இந்த பிரச்சனைக்கான பதில்.
 
 ### 2. Mental Model
 
-Working Memory = இப்போ நடக்கிற conversation-ன் short-term scratchpad.
+Working memory = Agent-ன் short-term scratchpad.
 
-Long-Term Memory போல permanent store இல்லை. Episodic Memory போல பெரிய history archive இல்லை.
+அது session-க்கு மட்டும் தேவையான, தற்காலிகமான தகவல்களை வைத்திருக்கும். Like human working memory.
 
-இது ஒரு agent-ன் **current turn-ன் context** ஆக இருக்கு. User intent, last tool output, intermediate plan, temporary variables.
+Long-term memory என்பது durable knowledge store: vector DB, knowledge graph, RAG index. 
+Working memory என்பது ephemeral, fast, in-session.
 
-Analogy: ஒரு engineer meeting-ல whiteboard. Meeting முடிஞ்சதும் board clean ஆகும். அதுல current problem-ன் notes மட்டும் இருக்கும். அது permanent document இல்லை.
+Analogy: நீங்கள் ஒரு meeting-ல் இருக்கிறீர்கள். Notebook-ல் meeting notes எடுக்கிறீர்கள் - அது working memory. Meeting முடிந்த பிறகு அதை filing cabinet-ல் file பண்ணினால் அது long-term memory.
 
 ### 3. How It Works
 
-Architecturally Working Memory என்பது session-scoped state.
+Agent ஒரு turn process பண்ணும்போது:
 
-பொதுவாக இது இப்படி implement ஆகும்:
+1. Input: user message + conversation history
+2. Working memory-ல் இருந்து relevant facts load ஆகும்
+3. Model reasoning செய்யும். Intermediate thoughts, plan, tool results, temporary variables எல்லாம் working memory-க்குள் write ஆகும்
+4. Output generate ஆகும்
 
-* **In-context**: LLM prompt-ன் system + user messages + recent turns. இது simplest.
-* **Session store**: Redis / in-memory store-ல session_id கீ-க்கு ஒரு small JSON object வைக்கிறது. Current entities, last action, partial plan.
-* **Agent runtime state**: LangGraph / AutoGen போன்ற frameworks-ல state object. Each node update பண்ணும்.
+Implementation வகைகள்:
+- **In-context working memory**: System prompt + conversation history + scratchpad inside context window. Simple, but token limit உள்ளது.
+- **External working memory**: Session store in Redis / in-memory DB. Structured key-value. Agent ஒவ்வொரு turn-க்கும் read/write செய்யும். Faster than DB, persistent across turns.
+- **Agent-specific buffer**: ReAct, Chain-of-Thought style. Model-ன் own internal reasoning tokens. Ephemeral to that single turn.
 
-Flow:
-`User Input -> Working Memory Update -> Reason -> Tool Call -> Result -> Working Memory Update -> Next turn`
-
-Memory update என்பது selective retention. எல்லாத்தையும் வைக்காம, relevant facts மட்டும் compress செய்து வைக்கிறது.
+முக்கியம்: Working memory should be fast, mutable, and discardable. Durability தேவையில்லை.
 
 ### 4. Architectural Reasoning
 
-Working Memory எப்போ useful?
-
-* Multi-turn conversation-ல context continuity வேண்டும்.
-* Tool outputs-ஐ next step-ல use பண்ணணும்.
-* Agent internal plan-ஐ step-by-step track பண்ணணும்.
-
-Constraint it addresses: LLM stateless + context window limit.
+Working memory தேவைப்படும் போது:
+- Multi-turn conversation-ல் user intent தொடர்ச்சியாக இருக்க வேண்டும். Budget, location போன்ற slots fill பண்ண வேண்டும்.
+- Complex task-ல் multi-step planning: agent plan -> execute -> observe -> revise. Plan-ஐ எங்கே வைக்கிறது?
+- Tool use-ல் intermediate results-ஐ keep பண்ண வேண்டும். API call result-ஐ next step-க்கு use பண்ண வேண்டும்.
+- Real-time personalization: current session-ன் tone, preferences.
 
 Alternatives:
-* **Everything in context window**: Simple ஆனா cost, latency, noise அதிகம்.
-* **Only Long-Term Memory**: Too slow, too permanent. Current turn-ன் nuance தொலையும்.
-* **No memory**: Stateless bot. ஒவ்வொரு turn-லயும் fresh start.
+- Just rely on context window: Simple but expensive, token blow up, limited to ~128k tokens, no structured access.
+- Push everything to long-term memory: Slow, over-persistent, session-specific noise long-term DB-ல் குப்பை ஆகும்.
 
-ஏன் architect choose பண்ணுவார்? Because reasoning quality directly depends on relevant recent facts. Working Memory gives fast, cheap, session-local access.
+Architectural decision: Session-scoped memory store with TTL. Redis with key `session:{id}:working`. Structure: `facts`, `plan`, `tool_state`, `scratch`.
 
 ### 5. Trade-offs
 
-**1. Freshness vs Noise**
-Working Memory-ல நிறைய வச்சா context pollution ஆகும். குறைவா வச்சா needed fact missing ஆகும். Summarization policy முக்கியம்.
+**Speed vs Durability**: Working memory fast, in-memory. Data loss ஆனால் பரவாயில்லை. Session restart ஆனால் rebuild பண்ணலாம். Long-term memory slow but durable.
 
-**2. Ephemerality vs Persistence**
-Session முடிஞ்சதும் discard பண்ணலாம். Privacy-க்கு நல்லது. ஆனா user திரும்ப வந்தா continuity இழக்கும். எவ்வளவு நேரம் retain பண்ணுவது என்பது decision.
+**Context size vs Coherence**: Working memory-ல் too much info வைத்தால் context pollution. Relevant மட்டும் keep பண்ண வேண்டும். Summarization / eviction policy தேவை.
 
-**3. Cost vs Latency**
-In-context memory cheap to build ஆனா token cost அதிகம். External session store latency சேர்க்கும் ஆனா context window clean இருக்கும்.
+**Consistency vs Latency**: External working memory-க்கு read/write ஒவ்வொரு turn-லும் செய்ய வேண்டும். Latency add ஆகும். In-context மட்டும் வைத்தால் model latency மட்டும்.
 
-**4. Consistency**
-Concurrent updates வந்தா race condition வரும். Agent-ன் Working Memory single writer model இல்லனா stale state வரும். Session lock / last-write-wins தேவை.
-
-Failure mode: Working Memory corrupt ஆனா agent hallucinates based on wrong intermediate data. Example: tool result mis-parsed and stored, next steps all wrong.
+Failure modes:
+- Memory leak: session data accumulate ஆகி never expire ஆகும். Cost & privacy issue.
+- Stale facts: User "budget 5L" என்று சொல்லி பிறகு "budget 7L" என்று change செய்தார். Working memory-ல் old value overwrite ஆகவில்லை என்றால் hallucination.
+- Cross-session contamination: Session A-ன் working memory Session B-க்கு leak ஆகும்.
 
 ### 6. Practical Example
 
-Enterprise support agent.
+RAG-based real estate agent.
 
-User: "என் order ID 98234 status என்ன?"
-Agent DB tool call பண்ணி, status = Shipped, tracking = XYZ.
-
-Working Memory-ல store:
-```json
+User: "Bangalore-ல 2 BHK வேண்டும்"
+Agent working memory-ல்:
+```
 {
-  "order_id": "98234",
-  "last_topic": "order_status",
-  "tracking": "XYZ",
-  "user_intent": "status_check"
+  "intent": "buy_home",
+  "location": "Bangalore",
+  "bedrooms": 2,
+  "budget": null,
+  "stage": "collecting_requirements"
 }
 ```
 
-Next turn user: "tracking link தர முடியுமா?"
-Agent Working Memory-ல order_id இருக்குறதால immediate link generate பண்ணும். History முழுவதும் search பண்ண தேவை இல்லை.
+Next turn: User: "budget 5 லட்சம் மாத rental"
+Agent updates working memory: budget = 50000, stage = "searching"
 
-Session end ஆனதும், இந்த data discard / archive to Episodic Memory. Working Memory clean.
+Agent plan in working memory:
+1. Search listings with filters
+2. Call price check API
+3. Summarize top 3
+
+Tool result வந்த பிறகு, agent working memory-ல் `search_results` வைக்கும். அடுத்த turn-ல் user கேட்டால் மீண்டும் search செய்யாமல் அதே results-ஐ use பண்ணும்.
+
+Session end ஆனதும் working memory expire ஆகும். User-ன் long-term preferences மட்டும் long-term memory-க்கு promote ஆகும்: "prefers Bangalore, 2 BHK".
 
 ### 7. Reasoning Challenge
 
-உங்க agent-க்கு 30 min session இருக்கு. User 50+ turns பேசுறான். ஒவ்வொரு turn-லயும் full history-யை context-ல வைக்க முடியாது. Working Memory-ல எதை வைப்பீங்க, எதை drop பண்ணுவீங்க? Summarization எப்போ trigger பண்ணுவீங்க? ஏன்?
+உங்கள் agent-க்கு 30 min session timeout உள்ளது. ஒரு user 25 turns பேசியுள்ளார். Context window 80% நிரம்பியுள்ளது. Working memory-ல் 200+ facts accumulate ஆகியுள்ளன. Performance degrade ஆகிறது.
+
+என்ன செய்வீர்கள்? Working memory-ல் எதை keep பண்ணுவீர்கள், எதை discard / summarize பண்ணுவீர்கள்? ஏன்?
 
 ### 8. Key Takeaways
 
-* Working Memory = session-scoped, short-term scratchpad for current reasoning, not permanent storage.
-* It bridges LLM statelessness and conversation continuity without bloating context window.
-* Design decision: what to keep, how long to keep, how to compress, and when to discard.
-* Every update to Working Memory is an architectural trade-off between freshness, cost, and noise.
-
-இதை புரிஞ்சா agent-ன் turn-to-turn coherence ஏன் முக்கியம், எப்படி manage பண்ணுறோம் என்பது clear ஆகும்.
+- Working memory = session-scoped, ephemeral scratchpad for in-flight reasoning, not durable knowledge.
+- இது long-term memory-ஐ replace செய்யாது, complement செய்கிறது.
+- Speed, mutability, and bounded size தான் முக்கிய design constraints.
+- Every write to working memory needs an eviction / summarization policy, இல்லை என்றால் context pollution ஆகும்.
+- Architectural choice: in-context vs external session store. Trade-off latency vs control.

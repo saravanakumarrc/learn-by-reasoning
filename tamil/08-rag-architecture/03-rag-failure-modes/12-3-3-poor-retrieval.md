@@ -3,101 +3,106 @@
 > **Learning Path:** RAG Architecture
 > **Section:** 12.3.3 — RAG failure modes
 
-## 1. Problem
+## 12.3.3 — RAG failure modes: Poor retrieval
 
-உங்க RAG system-ல LLM சரியா பதில் சொல்லுது, ஆனா சில கேள்விகளுக்கு பதில் தப்பா இருக்கு, அல்லது hallucination போல இருக்கு. 
+### 1. Problem
 
-Query: "நம்ம product return policy என்ன?"
-LLM answer: "30 நாளுக்குள் return செய்யலாம்"
+உங்கள் RAG system-ல் LLM சரியாகத் தான் respond பண்ணுது. Prompt, grounding, formatting எல்லாம் சரி. ஆனால் answer தவறாக இருக்கிறது, hallucinate பண்ணுகிறது, அல்லது outdated information கொடுக்கிறது.
 
-ஆனால் உண்மையான policy 15 நாள். ஏன்? LLM திறமையானது. Embeddings-ம் okay. ஆனா retrieve ஆன chunks-ல policy பற்றிய correct information இல்லை. தவறான chunk வந்திருக்கு, அல்லது relevant chunk வரவே இல்லை.
+ஏன்?
 
-Poor retrieval என்பது: **User query-க்கு தேவையான தகவல் இருக்கும் corpus-ல இருக்கு, ஆனா retriever அதை கண்டுபிடிக்க தவறுகிறது.**
+LLM-க்கு கொடுத்த context தான் தவறு.
 
-What goes wrong if we don't have this? LLM தான் தகவலை உருவாக்க ஆரம்பிக்கும். Trust முறிவு. Production-ல business risk.
+> "User கேட்டதுக்கு சரியான document தேவை. ஆனால் retriever திரும்பியது irrelevant document."
 
-## 2. Mental Model
+இது தான் **poor retrieval**. Generator எவ்வளவு நல்லது இருந்தாலும், கொடுத்த input தவறாக இருந்தால் output தவறாகத்தான் வரும்.
 
-Retrieval என்பது ஒரு search problem. Query embedding vs document embedding space-ல similarity கணக்கிடுவது.
+Garbage in, garbage out. RAG-ல் garbage என்பது பெரும்பாலும் wrong retrieval.
 
-Poor retrieval என்றால், query intent-ம் document content-ம் match ஆகவில்லை. இது 3 இடத்தில் நடக்கும்:
+### 2. Mental Model
 
-1. **Query misunderstanding** - user என்ன கேட்கிறான் என்பதை retriever புரிந்து கொள்ளவில்லை
-2. **Representation gap** - document chunk எப்படி cut ஆகியிருக்கு, அதன் embedding query-க்கு தூரமாக இருக்கு
-3. **Index gap** - தேவையான தகவலே corpus-ல சரியாக இல்லை, அல்லது outdated
+RAG என்பது இரண்டு step:
 
-## 3. How It Works
+**Retrieve → Generate**
 
-RAG pipeline: Query → Embed → Vector DB Search → Top-K chunks → LLM Context → Answer
+Generate step தவறாக இருந்தால், LLM-ஐ tune பண்ணலாம், prompt மாற்றலாம்.
 
-Poor retrieval இங்கே search step-ல break ஆகும்.
+Retrieve step தவறாக இருந்தால், LLM செய்வது ஒன்றும் இல்லை. அது தப்பான தகவலை திடமாக நம்பி தரும்.
 
-ஒரு தவறான உதாரணம்:
-Query: "GST rate for SaaS export"
-Chunk A: "SaaS export services are zero-rated under GST"
-Chunk B: "Our product pricing includes 18% GST"
+Retrieval என்பது user query-க்கு **relevant, accurate, fresh** chunks-ஐ கொண்டு வருவது. அதில் ஒன்று கூட தவறினால் answer quality விழும்.
 
-Retriever Chunk B-ஐ திரும்ப கொடுக்கிறது ஏனென்றால் "GST" token match strong. ஆனால் intent mismatch.
+### 3. How It Works
 
-இது ஏன் நடக்கும்?
-- Chunk too small: context இழக்கப்படுகிறது
-- Chunk too large: signal dilute ஆகிறது
-- Embedding model domain mismatch
-- Synonym / paraphrase problem: user "return window" என்கிறான், doc "refund period" என்கிறது
+Poor retrieval வருவதற்கு மூன்று root causes:
 
-## 4. Architectural Reasoning
+**a. Representation mismatch**
+Query embedding vs document embedding சரியாக align ஆகவில்லை. User natural language-ல் கேட்கிறார், document formal technical language-ல் உள்ளது. அல்லது query vague. Embedding model அந்த semantic gap-ஐ பிடிக்கவில்லை.
 
-Poor retrieval எப்போது வரும்?
+**b. Chunking problem**
+Information பிரிந்து போய் விட்டது. ஒரு fact இரண்டு chunk-களுக்கு இடையில் பிரிந்து உள்ளது. Chunk too small → context lost. Chunk too big → noise அதிகம், signal dilute ஆகிறது. Vector DB cosine similarity குறைந்து விடுகிறது.
 
-- **Ambiguous queries**: user குறைவாக எழுதுகிறான். "policy" என்றால் என்ன policy?
-- **Multi-hop need**: ஒரு chunk-ல முழு பதில் இல்லை. இரண்டு docs ஒன்றாக link செய்ய வேண்டும்
-- **Freshness**: corpus-ல பழைய version இருக்கு. New policy embed ஆகவில்லை
-- **Chunking strategy**: paragraph boundary, fixed size, semantic chunk எது என்பது தவறு
+**c. Index quality problem**
+Index stale. Document update ஆனது, ஆனால் embedding re-index ஆகவில்லை. Duplicate content. Metadata filter தவறாக configure ஆகியுள்ளது. User role-க்கு relevant section filter ஆகாமல் இருக்கிறது.
 
-Alternatives:
-- Better retriever: hybrid search BM25 + vector
-- Query expansion / re-ranking
-- Larger context window + more chunks
-- Reranker model
+Retriever top-k திருப்பும் போது, relevant item ranking-ல் கீழே இருக்கிறது அல்லது top-k-க்குள் வரவில்லை.
 
-Architect தேர்வு செய்யும் போது constraint பார்க்கணும்:
-Latency constraint இருந்தால் reranker add பண்ணுவது கடினம். Cost constraint இருந்தால் larger K அதிக token cost.
+### 4. Architectural Reasoning
 
-## 5. Trade-offs
+Poor retrieval எப்போது தெரியும்?
 
-**Relevance vs Recall**
-Top-3 மட்டும் கொடுத்தால் latency குறைவு, ஆனா recall குறையும். Top-20 கொடுத்தால் recall நன்றாக இருக்கும் ஆனால் LLM context window fill ஆகி, noise அதிகரிக்கும்.
+Latency குறைவு, cost குறைவு, ஆனால் answer hallucination அதிகம். User trust குறையும்.
 
-**Chunk size**
-சிறிய chunk = precise retrieval, ஆனால் context loss. பெரிய chunk = context retain, ஆனால் embedding diluted, irrelevant info வரும்.
+இதற்கு solution என்ன?
 
-**Hybrid vs Pure vector**
-Hybrid search BM25 + vector accuracy improve ஆகும். ஆனால் operational complexity அதிகரிக்கும். Two indexes maintain செய்ய வேண்டும்.
+**Retrieval quality-ஐ improve செய்ய வேண்டும், generator-ஐ மட்டும் பெரிதாக்காதீர்கள்.**
 
-**Failure mode**: Poor retrieval-ஐ debug செய்வது கடினம். LLM output தவறு என்றால் அது retrieval தவறா, generation தவறா என்று தெரியாது. Observability வேண்டும்: query, retrieved chunks, scores log செய்ய வேண்டும்.
+Options:
 
-## 6. Practical Example
+* Better embedding model. Domain-specific fine-tuned embedding vs generic. Tamil-English mix content-க்கு multilingual embedding தேவை.
+* Hybrid retrieval. Vector similarity + BM25 keyword search. Keyword exact match தேவைப்படும் technical terms-க்கு உதவும்.
+* Re-ranker. First retrieval broad, then cross-encoder re-ranker-ல் top 20-ல் இருந்து top 5-ஐ select.
+* Query expansion / query rewriting. LLM-ஐ use செய்து user query-ஐ rewrite செய்து multiple queries generate செய்யலாம்.
+* Metadata filtering. User, tenant, date range, document type போன்ற filters apply செய்து search space குறைக்கலாம்.
+* Chunking strategy re-evaluate. Semantic chunking, overlap, metadata-aware chunking.
 
-Enterprise support RAG. Customer எழுதுகிறார்: "எனது order cancel செய்தேன் ஆனால் refund வரவில்லை"
+Architect-ஆக நீங்கள் தேர்வு செய்ய வேண்டியது: **quality vs latency vs cost trade-off.**
 
-Corpus-ல 2 docs உள்ளன:
-Doc1: Cancellation policy - refund 7-10 working days
-Doc2: Refund process steps
+Re-ranker சேர்ப்பது latency அதிகப்படுத்தும். Hybrid search infrastructure சிக்கலாகும்.
 
-Poor retrieval scenario:
-Chunker fixed 500 tokens-ல cut செய்தது. Doc1-ன் cancellation policy chunk-ல refund timeline இல்லை, அது அடுத்த chunk-ல இருக்கு. Retriever முதல் chunk-ஐ மட்டும் கொண்டு வருகிறது. LLM-க்கு timeline தெரியாது. அது generic answer கொடுக்கிறது.
+### 5. Trade-offs
 
-Fix: semantic chunking by section header. "Refund timeline" என்ற section தனியாக chunk ஆகும். அல்லது query expansion: "refund not received" → "refund timeline", "refund delay".
+* **Precision vs Recall.** Top-k-ஐ அதிகப்படுத்தினால் recall அதிகம், ஆனால் generator-க்கு noise அதிகம். குறைத்தால் relevant doc miss ஆகலாம்.
+* **Latency vs Quality.** Re-ranker, query expansion, multi-query improve quality ஆனால் round trip அதிகம்.
+* **Index freshness vs Cost.** Real-time re-indexing செய்தால் retrieval accurate ஆகும், ஆனால் embedding compute cost, vector DB write load அதிகம்.
+* **Generic embedding vs Domain embedding.** Domain embedding better retrieval, ஆனால் maintain, retrain செய்ய வேண்டும்.
 
-## 7. Reasoning Challenge
+Failure mode: Retrieval poor என்பதை உணராமல், LLM-ஐ larger model-க்கு upgrade செய்து விடுவது. அது cost-ஐ மட்டும் அதிகப்படுத்தும்.
 
-உங்க RAG system-ல 80% queries-க்கு good answer வருகிறது. ஆனால் "pricing" related queries-க்கு மட்டும் தவறான தகவல் வருகிறது. Vector DB-ல 10,000 pricing docs உள்ளன. Queries short and ambiguous. 
+### 6. Practical Example
 
-இங்கே poor retrieval-ன் root cause என்னவாக இருக்கலாம்? Query, chunking, அல்லது index? நீங்கள் முதலில் என்ன diagnostic செய்வீர்கள், மற்றும் architecture-ல என்ன மாற்றம் செய்வீர்கள்? ஏன்?
+Enterprise RAG: Internal knowledge base-ல் 10,000 policy documents உள்ளன.
 
-## 8. Key Takeaways
+User query: "Leave encashment for resigning employees in Tamil Nadu"
 
-- Poor retrieval = correct info corpus-ல இருக்கு, ஆனால் retriever அதை கண்டுபிடிக்கவில்லை. இது RAG-ன் மிகப்பெரிய failure mode.
-- Chunking strategy, embedding quality, query understanding மூன்றும் retrieval-ஐ நிர்ணயிக்கின்றன.
-- Top-K அதிகரிப்பது recall கொடுக்கும் ஆனால் noise மற்றும் cost உருவாக்கும். Reranker உதவும்.
-- Retrieval quality-ஐ மதிப்பிட, ground truth queries-க்கு recall@K மற்றும் relevant chunk presence track செய்ய வேண்டும்.
+Retriever vector search-ல் திருப்பியது: "General leave policy" document, "HR onboarding FAQ". Relevant "Resignation & Exit Policy - TN" document top-5-ல் இல்லை.
+
+காரணம்: Query-ல் "encashment" என்ற word document-ல் "leave payout" என்று இருக்கிறது. Synonym mismatch. Document chunked per page, payout info 2 pages-க்கு பரவி உள்ளது, single chunk-ல் full context இல்லை.
+
+Fix: Hybrid search add செய்து "resigning" keyword exact match பெற, chunk overlap 150 tokens வைக்க, metadata filter "state = Tamil Nadu", re-ranker add செய்ய.
+
+இப்போது correct doc top-3-ல் வருகிறது.
+
+### 7. Reasoning Challenge
+
+உங்கள் RAG system-ல் user query-க்கு answer சரியாக வருகிறது, ஆனால் 30% queries-க்கு retriever top-10-ல் relevant doc இல்லை. Embedding model generic, chunk size 512 tokens fixed, no metadata filter.
+
+நீங்கள் budget-ல் மூன்று மாற்றம் மட்டுமே செய்ய முடியும்.
+
+எந்த மூன்று தேர்வு செய்வீர்கள்: hybrid search, re-ranker, query expansion, metadata filtering, chunking strategy change, domain embedding? ஏன்?
+
+### 8. Key Takeaways
+
+* Poor retrieval என்பது RAG-ல் மிகப் பெரிய failure mode. Generator நன்றாக இருந்தாலும் பயனில்லை.
+* Problem representation mismatch, chunking, index freshness ஆகியவற்றால் வருகிறது.
+* Fix என்பது LLM-ஐ பெரிதாக்குவது அல்ல. Retrieval pipeline-ஐ improve செய்வது.
+* Precision vs Recall, latency vs quality trade-off-ஐ மனதில் வைத்து hybrid retrieval, re-ranking, metadata filtering போன்றவற்றை தேர்வு செய்யுங்கள்.
