@@ -2857,7 +2857,7 @@
       "section_title": "Application security",
       "topic_title": "OAuth2",
       "folder": "05-security-architecture/01-application-security/",
-      "status": "in_progress",
+      "status": "completed",
       "output_file": "tamil/05-security-architecture/01-application-security/6-1-5-oauth2/README.md",
       "error": "HTTP error: 404 Client Error: Not Found for url: http://localhost:11434/api/generate",
       "attempts": 1,
@@ -3741,7 +3741,7 @@
       "section_title": "Understand",
       "topic_title": "Model parameters",
       "folder": "06-ai-llm-foundations/01-understand/",
-      "status": "in_progress",
+      "status": "completed",
       "output_file": "tamil/06-ai-llm-foundations/01-understand/10-1-12-model-parameters/README.md",
       "attempts": 1,
       "current_num_predict": 16384,
@@ -5987,7 +5987,7 @@
       "section_title": "Memory types",
       "topic_title": "User memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "in_progress",
+      "status": "completed",
       "output_file": "tamil/09-ai-memory/01-memory-types/13-1-8-user-memory/README.md",
       "attempts": 1,
       "current_num_predict": 16384
@@ -5999,8 +5999,10 @@
       "section_title": "Memory types",
       "topic_title": "Organizational memory",
       "folder": "09-ai-memory/01-memory-types/",
-      "status": "pending",
-      "output_file": "tamil/09-ai-memory/01-memory-types/13-1-9-organizational-memory/README.md"
+      "status": "in_progress",
+      "output_file": "tamil/09-ai-memory/01-memory-types/13-1-9-organizational-memory/README.md",
+      "attempts": 1,
+      "current_num_predict": 16384
     },
     {
       "section_number": "13.2.1",
@@ -6009,7 +6011,7 @@
       "section_title": "Architecture",
       "topic_title": "What should be remembered?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/09-ai-memory/02-architecture/13-2-1-what-should-be-remembered/README.md"
     },
     {
@@ -6019,7 +6021,7 @@
       "section_title": "Architecture",
       "topic_title": "What should never be remembered?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/09-ai-memory/02-architecture/13-2-2-what-should-never-be-remembered/README.md"
     },
     {
@@ -6029,7 +6031,7 @@
       "section_title": "Architecture",
       "topic_title": "Where should memory live?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/09-ai-memory/02-architecture/13-2-3-where-should-memory-live/README.md"
     },
     {
@@ -6039,7 +6041,7 @@
       "section_title": "Architecture",
       "topic_title": "When should memory be retrieved?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/09-ai-memory/02-architecture/13-2-4-when-should-memory-be-retrieved/README.md"
     },
     {
@@ -6049,7 +6051,7 @@
       "section_title": "Architecture",
       "topic_title": "When should memory be updated?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/09-ai-memory/02-architecture/13-2-5-when-should-memory-be-updated/README.md"
     },
     {
@@ -6059,7 +6061,7 @@
       "section_title": "Architecture",
       "topic_title": "How do we forget?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/09-ai-memory/02-architecture/13-2-6-how-do-we-forget/README.md"
     },
     {
@@ -6069,7 +6071,7 @@
       "section_title": "Architecture",
       "topic_title": "How do we correct memory?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/09-ai-memory/02-architecture/13-2-7-how-do-we-correct-memory/README.md"
     },
     {
@@ -6079,7 +6081,7 @@
       "section_title": "Architecture",
       "topic_title": "How do we prevent memory poisoning?",
       "folder": "09-ai-memory/02-architecture/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/09-ai-memory/02-architecture/13-2-8-how-do-we-prevent-memory-poisoning/README.md"
     },
     {
@@ -6089,7 +6091,7 @@
       "section_title": "Learn",
       "topic_title": "Function calling",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-1-function-calling/README.md"
     },
     {
@@ -6099,7 +6101,7 @@
       "section_title": "Learn",
       "topic_title": "Tool schemas",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-2-tool-schemas/README.md"
     },
     {
@@ -6109,7 +6111,7 @@
       "section_title": "Learn",
       "topic_title": "Tool discovery",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-3-tool-discovery/README.md"
     },
     {
@@ -6119,7 +6121,7 @@
       "section_title": "Learn",
       "topic_title": "Tool selection",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-4-tool-selection/README.md"
     },
     {
@@ -6129,7 +6131,7 @@
       "section_title": "Learn",
       "topic_title": "Tool validation",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-5-tool-validation/README.md"
     },
     {
@@ -6139,7 +6141,7 @@
       "section_title": "Learn",
       "topic_title": "Tool permissions",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-6-tool-permissions/README.md"
     },
     {
@@ -6149,7 +6151,7 @@
       "section_title": "Learn",
       "topic_title": "Tool execution",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-7-tool-execution/README.md"
     },
     {
@@ -6159,7 +6161,7 @@
       "section_title": "Learn",
       "topic_title": "Tool results",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-8-tool-results/README.md"
     },
     {
@@ -6169,7 +6171,7 @@
       "section_title": "Learn",
       "topic_title": "Error handling",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-9-error-handling/README.md"
     },
     {
@@ -6179,7 +6181,7 @@
       "section_title": "Learn",
       "topic_title": "Tool retries",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-10-tool-retries/README.md"
     },
     {
@@ -6189,7 +6191,7 @@
       "section_title": "Learn",
       "topic_title": "Idempotency",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-11-idempotency/README.md"
     },
     {
@@ -6199,7 +6201,7 @@
       "section_title": "Learn",
       "topic_title": "Human approval",
       "folder": "10-tool-calling-ai-interfaces/01-learn/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/01-learn/14-1-12-human-approval/README.md"
     },
     {
@@ -6209,7 +6211,7 @@
       "section_title": "MCP",
       "topic_title": "MCP architecture",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-1-mcp-architecture/README.md"
     },
     {
@@ -6219,7 +6221,7 @@
       "section_title": "MCP",
       "topic_title": "MCP clients",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-2-mcp-clients/README.md"
     },
     {
@@ -6229,7 +6231,7 @@
       "section_title": "MCP",
       "topic_title": "MCP servers",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-3-mcp-servers/README.md"
     },
     {
@@ -6239,7 +6241,7 @@
       "section_title": "MCP",
       "topic_title": "Resources",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-4-resources/README.md"
     },
     {
@@ -6249,7 +6251,7 @@
       "section_title": "MCP",
       "topic_title": "Tools",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-5-tools/README.md"
     },
     {
@@ -6259,7 +6261,7 @@
       "section_title": "MCP",
       "topic_title": "Prompts",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-6-prompts/README.md"
     },
     {
@@ -6269,7 +6271,7 @@
       "section_title": "MCP",
       "topic_title": "Authentication",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-7-authentication/README.md"
     },
     {
@@ -6279,7 +6281,7 @@
       "section_title": "MCP",
       "topic_title": "Authorization",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-8-authorization/README.md"
     },
     {
@@ -6289,7 +6291,7 @@
       "section_title": "MCP",
       "topic_title": "Security",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-9-security/README.md"
     },
     {
@@ -6299,7 +6301,7 @@
       "section_title": "MCP",
       "topic_title": "Enterprise MCP architecture",
       "folder": "10-tool-calling-ai-interfaces/02-mcp/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/10-tool-calling-ai-interfaces/02-mcp/14-2-10-enterprise-mcp-architecture/README.md"
     },
     {
@@ -6309,7 +6311,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Agent definition",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-1-agent-definition/README.md"
     },
     {
@@ -6319,7 +6321,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Perception",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-2-perception/README.md"
     },
     {
@@ -6329,7 +6331,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Reasoning",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-3-reasoning/README.md"
     },
     {
@@ -6339,7 +6341,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Planning",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-4-planning/README.md"
     },
     {
@@ -6349,7 +6351,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Action",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-5-action/README.md"
     },
     {
@@ -6359,7 +6361,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Observation",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-6-observation/README.md"
     },
     {
@@ -6369,7 +6371,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Feedback",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-7-feedback/README.md"
     },
     {
@@ -6379,7 +6381,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "State",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-8-state/README.md"
     },
     {
@@ -6389,7 +6391,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Goals",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-9-goals/README.md"
     },
     {
@@ -6399,7 +6401,7 @@
       "section_title": "Agent fundamentals",
       "topic_title": "Tools",
       "folder": "11-agentic-ai/01-agent-fundamentals/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/01-agent-fundamentals/15-1-10-tools/README.md"
     },
     {
@@ -6409,7 +6411,7 @@
       "section_title": "Agent patterns",
       "topic_title": "ReAct",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-1-react/README.md"
     },
     {
@@ -6419,7 +6421,7 @@
       "section_title": "Agent patterns",
       "topic_title": "Planner",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-2-planner/README.md"
     },
     {
@@ -6429,7 +6431,7 @@
       "section_title": "Agent patterns",
       "topic_title": "Executor",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-3-executor/README.md"
     },
     {
@@ -6439,7 +6441,7 @@
       "section_title": "Agent patterns",
       "topic_title": "Router",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-4-router/README.md"
     },
     {
@@ -6449,7 +6451,7 @@
       "section_title": "Agent patterns",
       "topic_title": "Supervisor",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-5-supervisor/README.md"
     },
     {
@@ -6459,7 +6461,7 @@
       "section_title": "Agent patterns",
       "topic_title": "Critic",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-6-critic/README.md"
     },
     {
@@ -6469,7 +6471,7 @@
       "section_title": "Agent patterns",
       "topic_title": "Reflection",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-7-reflection/README.md"
     },
     {
@@ -6479,7 +6481,7 @@
       "section_title": "Agent patterns",
       "topic_title": "Human-in-the-loop",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-8-human-in-the-loop/README.md"
     },
     {
@@ -6489,7 +6491,7 @@
       "section_title": "Agent patterns",
       "topic_title": "Autonomous agent",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-9-autonomous-agent/README.md"
     },
     {
@@ -6499,7 +6501,7 @@
       "section_title": "Agent patterns",
       "topic_title": "Workflow agent",
       "folder": "11-agentic-ai/02-agent-patterns/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/02-agent-patterns/15-2-10-workflow-agent/README.md"
     },
     {
@@ -6509,7 +6511,7 @@
       "section_title": "Agent state",
       "topic_title": "State modeling",
       "folder": "11-agentic-ai/03-agent-state/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/03-agent-state/15-3-1-state-modeling/README.md"
     },
     {
@@ -6519,7 +6521,7 @@
       "section_title": "Agent state",
       "topic_title": "Persistence",
       "folder": "11-agentic-ai/03-agent-state/",
-      "status": "pending",
+      "status": "completed",
       "output_file": "tamil/11-agentic-ai/03-agent-state/15-3-2-persistence/README.md"
     },
     {
@@ -6529,8 +6531,10 @@
       "section_title": "Agent state",
       "topic_title": "Checkpoints",
       "folder": "11-agentic-ai/03-agent-state/",
-      "status": "pending",
-      "output_file": "tamil/11-agentic-ai/03-agent-state/15-3-3-checkpoints/README.md"
+      "status": "in_progress",
+      "output_file": "tamil/11-agentic-ai/03-agent-state/15-3-3-checkpoints/README.md",
+      "attempts": 1,
+      "current_num_predict": 16384
     },
     {
       "section_number": "15.3.4",
